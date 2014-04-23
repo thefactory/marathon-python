@@ -69,9 +69,9 @@ cd docs/
 make html
 ```
 
-The documentation will be in `<project-root>/docs/_build/html`:
+The documentation will be in `<project-root>/gh-pages/html`:
 ```bash
-open _build/html/index.html
+open gh-pages/html/index.html
 ```
 
 ## License
