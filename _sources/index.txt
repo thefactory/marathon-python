@@ -6,6 +6,8 @@
 marathon-python documentation
 =============================
 
+Python library for interfacing with [Marathon](https://github.com/mesosphere/marathon) servers via Marathon's [REST API](https://github.com/mesosphere/marathon/blob/master/REST.md).
+
 Project home: https://github.com/thefactory/marathon-python
 
 Contents:
