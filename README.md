@@ -51,8 +51,10 @@ MarathonApp:myapp3
 ```python
 >>> c.list_tasks('myapp1')
 [MarathonTask:myapp1-1398201790254]
->>> c.kill_tasks('myapp1')
+>>> c.kill_tasks('myapp1', scale=True)
 [MarathonTask:myapp1-1398201790254]
+>>> c.list_tasks('myapp1')
+[]
 ```
 
 ## Documentation
