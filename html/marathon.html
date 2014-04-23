@@ -1,0 +1,419 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>marathon package &mdash; marathon-python  documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="marathon-python  documentation" href="index.html"/>
+        <link rel="prev" title="marathon-python documentation" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> marathon-python</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">marathon package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-marathon.client">marathon.client module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-marathon.resources">marathon.resources module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-marathon">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">marathon-python</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>marathon package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/marathon.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="marathon-package">
+<h1>marathon package<a class="headerlink" href="#marathon-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-marathon.client">
+<span id="marathon-client-module"></span><h2>marathon.client module<a class="headerlink" href="#module-marathon.client" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="marathon.client.MarathonClient">
+<em class="property">class </em><tt class="descclassname">marathon.client.</tt><tt class="descname">MarathonClient</tt><big>(</big><em>base_url</em>, <em>username=None</em>, <em>password=None</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Client interface for the Marathon REST API</p>
+<dl class="method">
+<dt id="marathon.client.MarathonClient.create_app">
+<tt class="descname">create_app</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.create_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.create_app" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create and start an app.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>kwargs</strong> &#8211; application properties</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">success</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="marathon.client.MarathonClient.destroy_app">
+<tt class="descname">destroy_app</tt><big>(</big><em>app_id</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.destroy_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.destroy_app" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop and destroy an app.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>app_id</strong> (<em>str</em>) &#8211; application ID</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">success</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="marathon.client.MarathonClient.get_app">
+<tt class="descname">get_app</tt><big>(</big><em>app_id</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.get_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.get_app" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a single app.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>app_id</strong> (<em>str</em>) &#8211; application ID</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">application</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">MarathonApp</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="marathon.client.MarathonClient.get_version">
+<tt class="descname">get_version</tt><big>(</big><em>app_id</em>, <em>version</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.get_version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.get_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the configuration of an app at a specific version.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>app_id</strong> (<em>str</em>) &#8211; application ID</li>
+<li><strong>version</strong> (<em>str</em>) &#8211; application version</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">application configuration</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">MarathonApp</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="marathon.client.MarathonClient.kill_task">
+<tt class="descname">kill_task</tt><big>(</big><em>app_id</em>, <em>task_id</em>, <em>scale=False</em>, <em>host=None</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.kill_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.kill_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Kill a task.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>app_id</strong> (<em>str</em>) &#8211; application ID</li>
+<li><strong>scale</strong> (<em>bool</em>) &#8211; if true, scale down the app by one if the task exists</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the killed task</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">MarathonTask</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="marathon.client.MarathonClient.kill_tasks">
+<tt class="descname">kill_tasks</tt><big>(</big><em>app_id</em>, <em>scale=False</em>, <em>host=None</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.kill_tasks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.kill_tasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Kill all tasks belonging to app.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>app_id</strong> (<em>str</em>) &#8211; application ID</li>
+<li><strong>scale</strong> (<em>bool</em>) &#8211; if true, scale down the app by the number of tasks killed</li>
+<li><strong>host</strong> (<em>str</em>) &#8211; if provided, only terminate tasks on this Mesos slave</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list of killed tasks</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list[MarathonTask]</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="marathon.client.MarathonClient.list_apps">
+<tt class="descname">list_apps</tt><big>(</big><em>cmd=None</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_apps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_apps" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all apps, optionally filtered by <cite>cmd</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>app_id</strong> (<em>str</em>) &#8211; application ID</li>
+<li><strong>cmd</strong> (<em>str</em>) &#8211; if passed, only show apps with a matching <cite>cmd</cite></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list of applications</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list[MarathonApp]</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="marathon.client.MarathonClient.list_tasks">
+<tt class="descname">list_tasks</tt><big>(</big><em>app_id=None</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_tasks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_tasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>List running tasks, optionally filtered by app_id.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>app_id</strong> (<em>str</em>) &#8211; if passed, only show tasks for this application</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of tasks</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list[MarathonTask]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="marathon.client.MarathonClient.list_versions">
+<tt class="descname">list_versions</tt><big>(</big><em>app_id</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_versions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_versions" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the versions of an app.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>app_id</strong> (<em>str</em>) &#8211; application ID</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of versions</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list[str]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="marathon.client.MarathonClient.update_app">
+<tt class="descname">update_app</tt><big>(</big><em>app_id</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.update_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.update_app" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update an app.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>app_id</strong> (<em>str</em>) &#8211; application ID</li>
+<li><strong>kwargs</strong> &#8211; application properties</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">success</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-marathon.resources">
+<span id="marathon-resources-module"></span><h2>marathon.resources module<a class="headerlink" href="#module-marathon.resources" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="marathon.resources.MarathonApp">
+<em class="property">class </em><tt class="descclassname">marathon.resources.</tt><tt class="descname">MarathonApp</tt><big>(</big><em>attributes</em><big>)</big><a class="reference internal" href="_modules/marathon/resources.html#MarathonApp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.resources.MarathonApp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.resources.MarathonResource" title="marathon.resources.MarathonResource"><tt class="xref py py-class docutils literal"><span class="pre">marathon.resources.MarathonResource</span></tt></a></p>
+<p>Marathon Application resource</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="marathon.resources.MarathonResource">
+<em class="property">class </em><tt class="descclassname">marathon.resources.</tt><tt class="descname">MarathonResource</tt><big>(</big><em>attributes</em><big>)</big><a class="reference internal" href="_modules/marathon/resources.html#MarathonResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.resources.MarathonResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Base Marathon resource</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="marathon.resources.MarathonTask">
+<em class="property">class </em><tt class="descclassname">marathon.resources.</tt><tt class="descname">MarathonTask</tt><big>(</big><em>attributes</em><big>)</big><a class="reference internal" href="_modules/marathon/resources.html#MarathonTask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.resources.MarathonTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.resources.MarathonResource" title="marathon.resources.MarathonResource"><tt class="xref py py-class docutils literal"><span class="pre">marathon.resources.MarathonResource</span></tt></a></p>
+<p>Marathon Task resource</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-marathon">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-marathon" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="marathon-python documentation"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, The Factory.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
