@@ -60,3 +60,5 @@ docs/_build/
 
 # Packer http://packer.io
 packer_cache
+
+/gh-pages
