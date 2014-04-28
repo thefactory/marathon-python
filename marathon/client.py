@@ -10,11 +10,12 @@ except ImportError:
 import requests
 
 import marathon
-from marathon.resources import MarathonApp, MarathonTask
+from marathon.models import MarathonApp, MarathonTask
+from marathon.exceptions import NotFoundError
 
 
 class MarathonClient(object):
-    """Client interface for the Marathon REST API"""
+    """Client interface for the Marathon REST API."""
 
     def __init__(self, base_url, username=None, password=None):
         self.base_url = base_url.rstrip('/')
@@ -35,9 +36,9 @@ class MarathonClient(object):
             return
 
         if is_list:
-            return [clazz(resource) for resource in response.json()[resource_name]]
+            return [clazz.json_decode(resource) for resource in response.json()[resource_name]]
         else:
-            return clazz(response.json()[resource_name])
+            return clazz.json_decode(response.json()[resource_name])
 
     def _do_request(self, method, path, params=None, data=None):
         """Query Marathon server."""
@@ -74,7 +75,7 @@ class MarathonClient(object):
         :param str cmd: if passed, only show apps with a matching `cmd`
 
         :returns: list of applications
-        :rtype: list[MarathonApp]
+        :rtype: list[:class:`marathon.models.app.MarathonApp`]
         """
         params = {'cmd': cmd} if cmd else {}
         response = self._do_request("GET", "/v2/apps", params=params)
@@ -86,22 +87,36 @@ class MarathonClient(object):
         :param str app_id: application ID
 
         :returns: application
-        :rtype: MarathonApp
+        :rtype: :class:`marathon.models.app.MarathonApp`
         """
         response = self._do_request("GET", "/v2/apps/{app_id}".format(app_id=app_id))
         return self._parse_response(response, MarathonApp)
 
-    def update_app(self, app_id, **kwargs):
+    def update_app(self, app_id=None, app=None, **kwargs):
         """Update an app.
 
+        If `app` is passed, use this as a base on which `kwargs` are overlaid. The resulting configuration
+        is pushed to Marathon.
+
+        Note: this method can not be used to rename apps.
+
         :param str app_id: application ID
+        :param app: [optional] an app instance
+        :type app: :class:`marathon.models.app.MarathonApp`
         :param kwargs: application properties
 
         :returns: success
         :rtype: bool
         """
-        data = json.dumps(kwargs)
-        response = self._do_request("POST", "/v2/apps/{app_id}".format(app_id=app_id), data=data)
+        if app:
+            updated_app = MarathonApp(**app.__dict__)
+            for key, value in kwargs.iteritems():
+                setattr(updated_app, key, value)
+        else:
+            updated_app = MarathonApp(**kwargs)
+
+        data = json.dumps(updated_app.json_encode())
+        response = self._do_request("PUT", "/v2/apps/{app_id}".format(app_id=app_id), data=data)
         return True if response.status_code is 204 else False
 
     def destroy_app(self, app_id):
@@ -115,13 +130,42 @@ class MarathonClient(object):
         response = self._do_request("DELETE", "/v2/apps/{app_id}".format(app_id=app_id))
         return True if response.status_code is 204 else False
 
+    def scale_app(self, app_id, instances=None, delta=None):
+        """Scale an app.
+
+        Scale an app to a target number of instances (with `instances`), or scale the number of
+        instances up or down by some delta (`delta`). If the resulting number of instances would be negative,
+        desired instances will be set to zero.
+
+        If both `instances` and `delta` are passed, use `instances`.
+
+        :param str app_id: application ID
+        :param int instances: [optional] the number of instances to scale to
+        :param int delta: [optional] the number of instances to scale up or down by
+
+        :returns: success
+        :rtype: bool
+        """
+        if instances is None and delta is None:
+            marathon.log.error("instances or delta must be passed")
+            return
+
+        try:
+            app = self.get_app(app_id)
+        except NotFoundError:
+            marathon.log.error("App '{app}' not found".format(app=app_id))
+            return
+
+        new_instances = instances if instances is not None else (app.instances + delta)
+        return self.update_app(app_id, app=app, instances=new_instances)
+
     def list_tasks(self, app_id=None):
         """List running tasks, optionally filtered by app_id.
 
         :param str app_id: if passed, only show tasks for this application
 
         :returns: list of tasks
-        :rtype: list[MarathonTask]
+        :rtype: list[:class:`marathon.models.task.MarathonTask`]
         """
         if app_id:
             response = self._do_request("GET", "/v2/apps/{app_id}/tasks".format(app_id=app_id))
@@ -138,7 +182,7 @@ class MarathonClient(object):
         :param str host: if provided, only terminate tasks on this Mesos slave
 
         :returns: list of killed tasks
-        :rtype: list[MarathonTask]
+        :rtype: list[:class:`marathon.models.task.MarathonTask`]
         """
         params = {'scale': scale}
         if host: params['host'] = host
@@ -152,7 +196,7 @@ class MarathonClient(object):
         :param bool scale: if true, scale down the app by one if the task exists
 
         :returns: the killed task
-        :rtype: MarathonTask
+        :rtype: :class:`marathon.models.task.MarathonTask`
         """
         params = {'scale': scale}
         if host: params['host'] = host
@@ -178,7 +222,7 @@ class MarathonClient(object):
         :param str version: application version
 
         :return: application configuration
-        :rtype: MarathonApp
+        :rtype: :class:`marathon.models.app.MarathonApp`
         """
         response = self._do_request("GET", "/v2/apps/{app_id}/versions/{version}"
                                     .format(app_id=app_id, version=version))

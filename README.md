@@ -35,17 +35,35 @@ Create a `MarathonClient()` instance pointing at your Marathon server:
 Then try calling some methods:
 ```python
 >>> c.list_apps()
-[MarathonApp:myapp1, MarathonApp:myapp2]
+[MarathonApp::myapp1, MarathonApp::myapp2]
 ```
 
 ```python
 >>> c.create_app(id='myapp3', cmd='sleep 100', mem=16, cpu=1)
 True
+```
+
+```python
 >>> app = c.get_app('myapp3')
->>> app
-MarathonApp:myapp3
 >>> app.ports
 [19671]
+>>> c.update_app('myapp3', app, mem=32)
+True
+>>> c.get_app('myapp3').mem
+32.0
+```
+
+```python
+>>> c.get_app('myapp3').instances
+1
+>>> c.scale_app('myapp3', 2)
+True
+>>> c.get_app('myapp3').instances
+3
+>>> c.scale_app('myapp3', delta=-1)
+True
+>>> c.get_app('myapp3').instances
+2
 ```
 
 ```python
