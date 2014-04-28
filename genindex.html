@@ -58,9 +58,9 @@
         
             <ul>
 <li class="toctree-l1"><a class="reference internal" href="marathon.html">marathon package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="marathon.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="marathon.html#module-marathon.client">marathon.client module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="marathon.html#module-marathon.resources">marathon.resources module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="marathon.html#module-marathon.models.app">marathon.models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="marathon.html#module-marathon.client">marathon.client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="marathon.html#module-marathon.exceptions">marathon.exceptions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="marathon.html#module-marathon">Module contents</a></li>
 </ul>
 </li>
@@ -103,9 +103,15 @@
  <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
  | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
  
 </div>
@@ -114,6 +120,12 @@
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="marathon.html#marathon.client.MarathonClient.create_app">create_app() (marathon.client.MarathonClient method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="marathon.html#marathon.models.app.MarathonApp.CREATE_ONLY_ATTRIBUTES">CREATE_ONLY_ATTRIBUTES (marathon.models.app.MarathonApp attribute)</a>
   </dt>
 
   </dl></td>
@@ -142,6 +154,60 @@
   <dt><a href="marathon.html#marathon.client.MarathonClient.get_version">get_version() (marathon.client.MarathonClient method)</a>
   </dt>
 
+  </dl></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="marathon.html#marathon.exceptions.InvalidOperatorError">InvalidOperatorError</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="marathon.html#marathon.models.app.MarathonApp.json_decode">json_decode() (marathon.models.app.MarathonApp class method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="marathon.html#marathon.models.base.MarathonResource.json_decode">(marathon.models.base.MarathonResource class method)</a>
+  </dt>
+
+        
+  <dt><a href="marathon.html#marathon.models.constraint.MarathonConstraint.json_decode">(marathon.models.constraint.MarathonConstraint class method)</a>
+  </dt>
+
+        
+  <dt><a href="marathon.html#marathon.models.task.MarathonTask.json_decode">(marathon.models.task.MarathonTask class method)</a>
+  </dt>
+
+      </dl></dd>
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="marathon.html#marathon.models.app.MarathonApp.json_encode">json_encode() (marathon.models.app.MarathonApp method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="marathon.html#marathon.models.base.MarathonResource.json_encode">(marathon.models.base.MarathonResource method)</a>
+  </dt>
+
+        
+  <dt><a href="marathon.html#marathon.models.constraint.MarathonConstraint.json_encode">(marathon.models.constraint.MarathonConstraint method)</a>
+  </dt>
+
+        
+  <dt><a href="marathon.html#marathon.models.task.MarathonTask.json_encode">(marathon.models.task.MarathonTask method)</a>
+  </dt>
+
+      </dl></dd>
   </dl></td>
 </tr></table>
 
@@ -193,25 +259,93 @@
   </dt>
 
       
-  <dt><a href="marathon.html#module-marathon.resources">marathon.resources (module)</a>
+  <dt><a href="marathon.html#module-marathon.exceptions">marathon.exceptions (module)</a>
   </dt>
 
       
-  <dt><a href="marathon.html#marathon.resources.MarathonApp">MarathonApp (class in marathon.resources)</a>
+  <dt><a href="marathon.html#module-marathon.models.app">marathon.models.app (module)</a>
+  </dt>
+
+      
+  <dt><a href="marathon.html#module-marathon.models.base">marathon.models.base (module)</a>
+  </dt>
+
+      
+  <dt><a href="marathon.html#module-marathon.models.constraint">marathon.models.constraint (module)</a>
+  </dt>
+
+      
+  <dt><a href="marathon.html#module-marathon.models.task">marathon.models.task (module)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
+  <dt><a href="marathon.html#marathon.models.app.MarathonApp">MarathonApp (class in marathon.models.app)</a>
+  </dt>
+
+      
   <dt><a href="marathon.html#marathon.client.MarathonClient">MarathonClient (class in marathon.client)</a>
   </dt>
 
       
-  <dt><a href="marathon.html#marathon.resources.MarathonResource">MarathonResource (class in marathon.resources)</a>
+  <dt><a href="marathon.html#marathon.models.constraint.MarathonConstraint">MarathonConstraint (class in marathon.models.constraint)</a>
   </dt>
 
       
-  <dt><a href="marathon.html#marathon.resources.MarathonTask">MarathonTask (class in marathon.resources)</a>
+  <dt><a href="marathon.html#marathon.exceptions.MarathonError">MarathonError</a>
+  </dt>
+
+      
+  <dt><a href="marathon.html#marathon.exceptions.MarathonHttpError">MarathonHttpError</a>
+  </dt>
+
+      
+  <dt><a href="marathon.html#marathon.models.base.MarathonResource">MarathonResource (class in marathon.models.base)</a>
+  </dt>
+
+      
+  <dt><a href="marathon.html#marathon.models.task.MarathonTask">MarathonTask (class in marathon.models.task)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="marathon.html#marathon.exceptions.NotFoundError">NotFoundError</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="marathon.html#marathon.models.app.MarathonApp.READ_ONLY_ATTRIBUTES">READ_ONLY_ATTRIBUTES (marathon.models.app.MarathonApp attribute)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="marathon.html#marathon.client.MarathonClient.scale_app">scale_app() (marathon.client.MarathonClient method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="marathon.html#marathon.models.task.MarathonTask.TIMESTAMP_FORMAT">TIMESTAMP_FORMAT (marathon.models.task.MarathonTask attribute)</a>
   </dt>
 
   </dl></td>
@@ -222,6 +356,12 @@
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="marathon.html#marathon.client.MarathonClient.update_app">update_app() (marathon.client.MarathonClient method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="marathon.html#marathon.models.app.MarathonApp.UPDATE_OK_ATTRIBUTES">UPDATE_OK_ATTRIBUTES (marathon.models.app.MarathonApp attribute)</a>
   </dt>
 
   </dl></td>

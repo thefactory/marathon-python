@@ -1,21 +1,41 @@
 marathon package
 ================
 
-Submodules
-----------
+marathon.models
+---------------
 
-marathon.client module
-----------------------
+.. automodule:: marathon.models.app
+        :members:
+        :undoc-members:
+        :show-inheritance:
+
+.. automodule:: marathon.models.base
+        :members:
+        :undoc-members:
+        :show-inheritance:
+
+.. automodule:: marathon.models.constraint
+        :members:
+        :undoc-members:
+        :show-inheritance:
+
+.. automodule:: marathon.models.task
+        :members:
+        :undoc-members:
+        :show-inheritance:
+
+marathon.client
+---------------
 
 .. automodule:: marathon.client
     :members:
     :undoc-members:
     :show-inheritance:
 
-marathon.resources module
--------------------------
+marathon.exceptions
+-------------------
 
-.. automodule:: marathon.resources
+.. automodule:: marathon.exceptions
     :members:
     :undoc-members:
     :show-inheritance:

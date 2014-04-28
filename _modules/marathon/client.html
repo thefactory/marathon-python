@@ -58,9 +58,9 @@
         
             <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../marathon.html">marathon package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../marathon.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../marathon.html#module-marathon.client">marathon.client module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../marathon.html#module-marathon.resources">marathon.resources module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../marathon.html#module-marathon.models.app">marathon.models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../marathon.html#module-marathon.client">marathon.client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../marathon.html#module-marathon.exceptions">marathon.exceptions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../marathon.html#module-marathon">Module contents</a></li>
 </ul>
 </li>
@@ -111,12 +111,12 @@
 <span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="kn">import</span> <span class="nn">marathon</span>
-<span class="kn">from</span> <span class="nn">marathon.resources</span> <span class="kn">import</span> <span class="n">MarathonApp</span><span class="p">,</span> <span class="n">MarathonTask</span>
+<span class="kn">from</span> <span class="nn">marathon.models</span> <span class="kn">import</span> <span class="n">MarathonApp</span><span class="p">,</span> <span class="n">MarathonTask</span>
+<span class="kn">from</span> <span class="nn">marathon.exceptions</span> <span class="kn">import</span> <span class="n">NotFoundError</span>
 
 
 <div class="viewcode-block" id="MarathonClient"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient">[docs]</a><span class="k">class</span> <span class="nc">MarathonClient</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Client interface for the Marathon REST API&quot;&quot;&quot;</span>
-
+    <span class="sd">&quot;&quot;&quot;Client interface for the Marathon REST API.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="n">base_url</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span> <span class="k">if</span> <span class="n">username</span> <span class="ow">and</span> <span class="n">password</span> <span class="k">else</span> <span class="bp">None</span>
@@ -136,9 +136,9 @@
             <span class="k">return</span>
 
         <span class="k">if</span> <span class="n">is_list</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">[</span><span class="n">clazz</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span> <span class="k">for</span> <span class="n">resource</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="n">resource_name</span><span class="p">]]</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">clazz</span><span class="o">.</span><span class="n">json_decode</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span> <span class="k">for</span> <span class="n">resource</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="n">resource_name</span><span class="p">]]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">clazz</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="n">resource_name</span><span class="p">])</span>
+            <span class="k">return</span> <span class="n">clazz</span><span class="o">.</span><span class="n">json_decode</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="n">resource_name</span><span class="p">])</span>
 
     <span class="k">def</span> <span class="nf">_do_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Query Marathon server.&quot;&quot;&quot;</span>
@@ -175,7 +175,7 @@
 <span class="sd">        :param str cmd: if passed, only show apps with a matching `cmd`</span>
 
 <span class="sd">        :returns: list of applications</span>
-<span class="sd">        :rtype: list[MarathonApp]</span>
+<span class="sd">        :rtype: list[:class:`marathon.models.app.MarathonApp`]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;cmd&#39;</span><span class="p">:</span> <span class="n">cmd</span><span class="p">}</span> <span class="k">if</span> <span class="n">cmd</span> <span class="k">else</span> <span class="p">{}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&quot;GET&quot;</span><span class="p">,</span> <span class="s">&quot;/v2/apps&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
@@ -187,22 +187,36 @@
 <span class="sd">        :param str app_id: application ID</span>
 
 <span class="sd">        :returns: application</span>
-<span class="sd">        :rtype: MarathonApp</span>
+<span class="sd">        :rtype: :class:`marathon.models.app.MarathonApp`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&quot;GET&quot;</span><span class="p">,</span> <span class="s">&quot;/v2/apps/{app_id}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">app_id</span><span class="o">=</span><span class="n">app_id</span><span class="p">))</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">MarathonApp</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="MarathonClient.update_app"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.update_app">[docs]</a>    <span class="k">def</span> <span class="nf">update_app</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="MarathonClient.update_app"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.update_app">[docs]</a>    <span class="k">def</span> <span class="nf">update_app</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">app</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Update an app.</span>
 
+<span class="sd">        If `app` is passed, use this as a base on which `kwargs` are overlaid. The resulting configuration</span>
+<span class="sd">        is pushed to Marathon.</span>
+
+<span class="sd">        Note: this method can not be used to rename apps.</span>
+
 <span class="sd">        :param str app_id: application ID</span>
+<span class="sd">        :param app: [optional] an app instance</span>
+<span class="sd">        :type app: :class:`marathon.models.app.MarathonApp`</span>
 <span class="sd">        :param kwargs: application properties</span>
 
 <span class="sd">        :returns: success</span>
 <span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&quot;POST&quot;</span><span class="p">,</span> <span class="s">&quot;/v2/apps/{app_id}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">app_id</span><span class="o">=</span><span class="n">app_id</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">app</span><span class="p">:</span>
+            <span class="n">updated_app</span> <span class="o">=</span> <span class="n">MarathonApp</span><span class="p">(</span><span class="o">**</span><span class="n">app</span><span class="o">.</span><span class="n">__dict__</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">updated_app</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">updated_app</span> <span class="o">=</span> <span class="n">MarathonApp</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">updated_app</span><span class="o">.</span><span class="n">json_encode</span><span class="p">())</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&quot;PUT&quot;</span><span class="p">,</span> <span class="s">&quot;/v2/apps/{app_id}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">app_id</span><span class="o">=</span><span class="n">app_id</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">True</span> <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">is</span> <span class="mi">204</span> <span class="k">else</span> <span class="bp">False</span>
 </div>
 <div class="viewcode-block" id="MarathonClient.destroy_app"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.destroy_app">[docs]</a>    <span class="k">def</span> <span class="nf">destroy_app</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="p">):</span>
@@ -216,13 +230,42 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&quot;DELETE&quot;</span><span class="p">,</span> <span class="s">&quot;/v2/apps/{app_id}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">app_id</span><span class="o">=</span><span class="n">app_id</span><span class="p">))</span>
         <span class="k">return</span> <span class="bp">True</span> <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">is</span> <span class="mi">204</span> <span class="k">else</span> <span class="bp">False</span>
 </div>
+<div class="viewcode-block" id="MarathonClient.scale_app"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.scale_app">[docs]</a>    <span class="k">def</span> <span class="nf">scale_app</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="p">,</span> <span class="n">instances</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Scale an app.</span>
+
+<span class="sd">        Scale an app to a target number of instances (with `instances`), or scale the number of</span>
+<span class="sd">        instances up or down by some delta (`delta`). If the resulting number of instances would be negative,</span>
+<span class="sd">        desired instances will be set to zero.</span>
+
+<span class="sd">        If both `instances` and `delta` are passed, use `instances`.</span>
+
+<span class="sd">        :param str app_id: application ID</span>
+<span class="sd">        :param int instances: [optional] the number of instances to scale to</span>
+<span class="sd">        :param int delta: [optional] the number of instances to scale up or down by</span>
+
+<span class="sd">        :returns: success</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">instances</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">delta</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">marathon</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;instances or delta must be passed&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_app</span><span class="p">(</span><span class="n">app_id</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">NotFoundError</span><span class="p">:</span>
+            <span class="n">marathon</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;App &#39;{app}&#39; not found&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="n">app_id</span><span class="p">))</span>
+            <span class="k">return</span>
+
+        <span class="n">new_instances</span> <span class="o">=</span> <span class="n">instances</span> <span class="k">if</span> <span class="n">instances</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">instances</span> <span class="o">+</span> <span class="n">delta</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_app</span><span class="p">(</span><span class="n">app_id</span><span class="p">,</span> <span class="n">app</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">instances</span><span class="o">=</span><span class="n">new_instances</span><span class="p">)</span>
+</div>
 <div class="viewcode-block" id="MarathonClient.list_tasks"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.list_tasks">[docs]</a>    <span class="k">def</span> <span class="nf">list_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List running tasks, optionally filtered by app_id.</span>
 
 <span class="sd">        :param str app_id: if passed, only show tasks for this application</span>
 
 <span class="sd">        :returns: list of tasks</span>
-<span class="sd">        :rtype: list[MarathonTask]</span>
+<span class="sd">        :rtype: list[:class:`marathon.models.task.MarathonTask`]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">app_id</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&quot;GET&quot;</span><span class="p">,</span> <span class="s">&quot;/v2/apps/{app_id}/tasks&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">app_id</span><span class="o">=</span><span class="n">app_id</span><span class="p">))</span>
@@ -239,7 +282,7 @@
 <span class="sd">        :param str host: if provided, only terminate tasks on this Mesos slave</span>
 
 <span class="sd">        :returns: list of killed tasks</span>
-<span class="sd">        :rtype: list[MarathonTask]</span>
+<span class="sd">        :rtype: list[:class:`marathon.models.task.MarathonTask`]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;scale&#39;</span><span class="p">:</span> <span class="n">scale</span><span class="p">}</span>
         <span class="k">if</span> <span class="n">host</span><span class="p">:</span> <span class="n">params</span><span class="p">[</span><span class="s">&#39;host&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">host</span>
@@ -253,7 +296,7 @@
 <span class="sd">        :param bool scale: if true, scale down the app by one if the task exists</span>
 
 <span class="sd">        :returns: the killed task</span>
-<span class="sd">        :rtype: MarathonTask</span>
+<span class="sd">        :rtype: :class:`marathon.models.task.MarathonTask`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;scale&#39;</span><span class="p">:</span> <span class="n">scale</span><span class="p">}</span>
         <span class="k">if</span> <span class="n">host</span><span class="p">:</span> <span class="n">params</span><span class="p">[</span><span class="s">&#39;host&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">host</span>
@@ -279,7 +322,7 @@
 <span class="sd">        :param str version: application version</span>
 
 <span class="sd">        :return: application configuration</span>
-<span class="sd">        :rtype: MarathonApp</span>
+<span class="sd">        :rtype: :class:`marathon.models.app.MarathonApp`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&quot;GET&quot;</span><span class="p">,</span> <span class="s">&quot;/v2/apps/{app_id}/versions/{version}&quot;</span>
                                     <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">app_id</span><span class="o">=</span><span class="n">app_id</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">))</span>
