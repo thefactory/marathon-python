@@ -6,14 +6,14 @@ if sys.version_info >= (3,):
     extra['use_2to3'] = True
 
 setup(name='marathon',
-      version="0.2.0",
+      version="0.2.1",
       description='Marathon Client Library',
       long_description="""Python interface to the Marathon REST API.""",
       author='Mike Babineau',
       author_email='michael.babineau@gmail.com',
       install_requires=[ 'requests>=2.0.0' ],
       url='https://github.com/thefactory/marathon-python',
-      packages=['marathon'],
+      packages=['marathon', 'marathon.models'],
       license='MIT',
       platforms='Posix; MacOS X; Windows',
       classifiers=['Development Status :: 3 - Alpha',

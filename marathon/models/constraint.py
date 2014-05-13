@@ -1,4 +1,4 @@
-from marathon.exceptions import InvalidOperatorError
+from ..exceptions import InvalidOperatorError
 
 
 UNIQUE_OPERATOR = 'UNIQUE'

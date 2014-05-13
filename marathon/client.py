@@ -10,8 +10,8 @@ except ImportError:
 import requests
 
 import marathon
-from marathon.models import MarathonApp, MarathonTask
-from marathon.exceptions import NotFoundError
+from .models import MarathonApp, MarathonTask
+from .exceptions import NotFoundError
 
 
 class MarathonClient(object):

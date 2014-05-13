@@ -4,7 +4,7 @@ try:
 except ImportError:
     import simplejson as json
 
-from marathon.models.base import MarathonResource
+from .base import MarathonResource
 
 
 class MarathonTask(MarathonResource):
