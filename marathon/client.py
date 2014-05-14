@@ -1,3 +1,6 @@
+import time
+import itertools
+
 try:
     import json
 except ImportError:
@@ -68,18 +71,22 @@ class MarathonClient(object):
         response = self._do_request("POST", "/v2/apps", data=data)
         return True if response.status_code is 204 else False
 
-    def list_apps(self, cmd=None):
+    def list_apps(self, cmd=None, **kwargs):
         """List all apps, optionally filtered by `cmd`.
 
         :param str app_id: application ID
         :param str cmd: if passed, only show apps with a matching `cmd`
+        :param kwargs: arbitrary search filters
 
         :returns: list of applications
         :rtype: list[:class:`marathon.models.app.MarathonApp`]
         """
         params = {'cmd': cmd} if cmd else {}
         response = self._do_request("GET", "/v2/apps", params=params)
-        return self._parse_response(response, MarathonApp, is_list=True)
+        apps = self._parse_response(response, MarathonApp, is_list=True)
+        for k,v in kwargs.iteritems():
+            apps = filter(lambda o: getattr(o, k) == v, apps)
+        return apps
 
     def get_app(self, app_id):
         """Get a single app.
@@ -159,10 +166,11 @@ class MarathonClient(object):
         new_instances = instances if instances is not None else (app.instances + delta)
         return self.update_app(app_id, app=app, instances=new_instances)
 
-    def list_tasks(self, app_id=None):
+    def list_tasks(self, app_id=None, **kwargs):
         """List running tasks, optionally filtered by app_id.
 
         :param str app_id: if passed, only show tasks for this application
+        :param kwargs: arbitrary search filters
 
         :returns: list of tasks
         :rtype: list[:class:`marathon.models.task.MarathonTask`]
@@ -172,24 +180,45 @@ class MarathonClient(object):
         else:
             response = self._do_request("GET", "/v2/tasks")
 
-        return self._parse_response(response, MarathonTask, is_list=True)
+        tasks = self._parse_response(response, MarathonTask, is_list=True)
+        for k,v in kwargs.iteritems():
+            tasks = filter(lambda o: getattr(o, k) == v, tasks)
+        return tasks
 
-    def kill_tasks(self, app_id, scale=False, host=None):
+    def kill_tasks(self, app_id, scale=False, host=None, batch_size=0, batch_delay=0):
         """Kill all tasks belonging to app.
 
         :param str app_id: application ID
         :param bool scale: if true, scale down the app by the number of tasks killed
         :param str host: if provided, only terminate tasks on this Mesos slave
+        :param int batch_size: if non-zero, terminate tasks in groups of this size
+        :param int batch_delay: time (in seconds) to wait in between batched kills
 
         :returns: list of killed tasks
         :rtype: list[:class:`marathon.models.task.MarathonTask`]
         """
-        params = {'scale': scale}
-        if host: params['host'] = host
-        response = self._do_request("DELETE", "/v2/apps/{app_id}/tasks".format(app_id=app_id), params)
-        return self._parse_response(response, MarathonTask, is_list=True)
+        def batch(iterable, size):
+            sourceiter = iter(iterable)
+            while True:
+                batchiter = itertools.islice(sourceiter, size)
+                yield itertools.chain([batchiter.next()], batchiter)
 
-    def kill_task(self, app_id, task_id, scale=False, host=None):
+        if batch_size == 0:
+            # Terminate all at once
+            params = {'scale': scale}
+            if host: params['host'] = host
+            response = self._do_request("DELETE", "/v2/apps/{app_id}/tasks".format(app_id=app_id), params)
+            return self._parse_response(response, MarathonTask, is_list=True)
+        else:
+            # Terminate in batches
+            tasks = self.list_tasks(app_id, host=host) if host else self.list_tasks(app_id)
+            for tbatch in batch(tasks, batch_size):
+                [self.kill_task(app_id, t.id, scale=scale) for t in tbatch]
+                time.sleep(batch_delay)
+
+            return tasks
+
+    def kill_task(self, app_id, task_id, scale=False):
         """Kill a task.
 
         :param str app_id: application ID
@@ -199,7 +228,6 @@ class MarathonClient(object):
         :rtype: :class:`marathon.models.task.MarathonTask`
         """
         params = {'scale': scale}
-        if host: params['host'] = host
         response = self._do_request("DELETE", "/v2/apps/{app_id}/tasks/{task_id}"
                                     .format(app_id=app_id, task_id=task_id), params)
         return self._parse_response(response, MarathonTask)
