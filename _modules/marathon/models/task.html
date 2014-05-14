@@ -105,7 +105,7 @@
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">simplejson</span> <span class="kn">as</span> <span class="nn">json</span>
 
-<span class="kn">from</span> <span class="nn">marathon.models.base</span> <span class="kn">import</span> <span class="n">MarathonResource</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">MarathonResource</span>
 
 
 <div class="viewcode-block" id="MarathonTask"><a class="viewcode-back" href="../../../marathon.html#marathon.models.task.MarathonTask">[docs]</a><span class="k">class</span> <span class="nc">MarathonTask</span><span class="p">(</span><span class="n">MarathonResource</span><span class="p">):</span>
@@ -118,6 +118,7 @@
 <span class="sd">    :param datetime staged_at: when this task was staged</span>
 <span class="sd">    :param datetime started_at: when this task was started</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="c"># Example: 2014-02-12T01:49:12.293Z</span>
     <span class="n">TIMESTAMP_FORMAT</span> <span class="o">=</span> <span class="s">&#39;%Y-%m-</span><span class="si">%d</span><span class="s">T%H:%M:%S.</span><span class="si">%f</span><span class="s">Z&#39;</span>
     <span class="sd">&quot;&quot;&quot;Timestamp format used in Marathon responses&quot;&quot;&quot;</span>

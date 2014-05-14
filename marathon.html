@@ -413,7 +413,7 @@
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.kill_task">
-<tt class="descname">kill_task</tt><big>(</big><em>app_id</em>, <em>task_id</em>, <em>scale=False</em>, <em>host=None</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.kill_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.kill_task" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">kill_task</tt><big>(</big><em>app_id</em>, <em>task_id</em>, <em>scale=False</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.kill_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.kill_task" title="Permalink to this definition">¶</a></dt>
 <dd><p>Kill a task.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -437,7 +437,7 @@
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.kill_tasks">
-<tt class="descname">kill_tasks</tt><big>(</big><em>app_id</em>, <em>scale=False</em>, <em>host=None</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.kill_tasks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.kill_tasks" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">kill_tasks</tt><big>(</big><em>app_id</em>, <em>scale=False</em>, <em>host=None</em>, <em>batch_size=0</em>, <em>batch_delay=0</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.kill_tasks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.kill_tasks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Kill all tasks belonging to app.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -447,6 +447,8 @@
 <li><strong>app_id</strong> (<em>str</em>) &#8211; application ID</li>
 <li><strong>scale</strong> (<em>bool</em>) &#8211; if true, scale down the app by the number of tasks killed</li>
 <li><strong>host</strong> (<em>str</em>) &#8211; if provided, only terminate tasks on this Mesos slave</li>
+<li><strong>batch_size</strong> (<em>int</em>) &#8211; if non-zero, terminate tasks in groups of this size</li>
+<li><strong>batch_delay</strong> (<em>int</em>) &#8211; time (in seconds) to wait in between batched kills</li>
 </ul>
 </td>
 </tr>
@@ -462,7 +464,7 @@
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.list_apps">
-<tt class="descname">list_apps</tt><big>(</big><em>cmd=None</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_apps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_apps" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">list_apps</tt><big>(</big><em>cmd=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_apps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_apps" title="Permalink to this definition">¶</a></dt>
 <dd><p>List all apps, optionally filtered by <cite>cmd</cite>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -471,6 +473,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>app_id</strong> (<em>str</em>) &#8211; application ID</li>
 <li><strong>cmd</strong> (<em>str</em>) &#8211; if passed, only show apps with a matching <cite>cmd</cite></li>
+<li><strong>kwargs</strong> &#8211; arbitrary search filters</li>
 </ul>
 </td>
 </tr>
@@ -486,17 +489,23 @@
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.list_tasks">
-<tt class="descname">list_tasks</tt><big>(</big><em>app_id=None</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_tasks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_tasks" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">list_tasks</tt><big>(</big><em>app_id=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_tasks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_tasks" title="Permalink to this definition">¶</a></dt>
 <dd><p>List running tasks, optionally filtered by app_id.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>app_id</strong> (<em>str</em>) &#8211; if passed, only show tasks for this application</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>app_id</strong> (<em>str</em>) &#8211; if passed, only show tasks for this application</li>
+<li><strong>kwargs</strong> &#8211; arbitrary search filters</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of tasks</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list of tasks</p>
+</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list[<a class="reference internal" href="#marathon.models.task.MarathonTask" title="marathon.models.task.MarathonTask"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.task.MarathonTask</span></tt></a>]</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list[<a class="reference internal" href="#marathon.models.task.MarathonTask" title="marathon.models.task.MarathonTask"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.task.MarathonTask</span></tt></a>]</p>
+</td>
 </tr>
 </tbody>
 </table>

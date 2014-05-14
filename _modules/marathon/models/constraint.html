@@ -99,7 +99,7 @@
           <div role="main">
             
   <h1>Source code for marathon.models.constraint</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">marathon.exceptions</span> <span class="kn">import</span> <span class="n">InvalidOperatorError</span>
+<span class="kn">from</span> <span class="nn">..exceptions</span> <span class="kn">import</span> <span class="n">InvalidOperatorError</span>
 
 
 <span class="n">UNIQUE_OPERATOR</span> <span class="o">=</span> <span class="s">&#39;UNIQUE&#39;</span>
@@ -118,6 +118,7 @@
 <span class="sd">    If `operator` is GROUP_BY, place at most `value` tasks per group</span>
 <span class="sd">    :type value: str, int, or None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">operator</span> <span class="ow">in</span> <span class="p">[</span><span class="n">UNIQUE_OPERATOR</span><span class="p">,</span> <span class="n">CLUSTER_OPERATOR</span><span class="p">,</span> <span class="n">GROUP_BY_OPERATOR</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="n">InvalidOperatorError</span><span class="p">(</span><span class="n">operator</span><span class="p">)</span>
