@@ -37,7 +37,7 @@ class MarathonApp(MarathonResource):
     def __init__(self, cmd=None, constraints=None, container=None, cpus=None, env=None, executor=None,
                  id=None, instances=None, mem=None, ports=None, tasks=None, uris=None):
         self.cmd = cmd
-        self.constraints = constraints
+        self.constraints = constraints or []
         self.container = container
         self.cpus = cpus
         self.env = env
@@ -46,7 +46,7 @@ class MarathonApp(MarathonResource):
         self.instances = instances
         self.mem = mem
         self.ports = ports
-        self.tasks = tasks
+        self.tasks = tasks or []
         self.uris = uris
 
     @classmethod

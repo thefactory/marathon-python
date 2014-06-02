@@ -26,7 +26,7 @@ class MarathonTask(MarathonResource):
         self.app_id = app_id
         self.host = host
         self.id = id
-        self.ports = ports
+        self.ports = ports or []
         self.staged_at = staged_at
         self.started_at = started_at
 
