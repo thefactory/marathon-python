@@ -126,7 +126,7 @@ class MarathonClient(object):
         response = self._do_request("PUT", "/v2/apps/{app_id}".format(app_id=app_id), data=data)
         return True if response.status_code is 204 else False
 
-    def destroy_app(self, app_id):
+    def delete_app(self, app_id):
         """Stop and destroy an app.
 
         :param str app_id: application ID
