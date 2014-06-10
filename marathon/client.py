@@ -69,7 +69,7 @@ class MarathonClient(object):
         """
         data = json.dumps(kwargs)
         response = self._do_request("POST", "/v2/apps", data=data)
-        return True if response.status_code is 204 else False
+        return True if response.status_code is 201 else False
 
     def list_apps(self, cmd=None, **kwargs):
         """List all apps, optionally filtered by `cmd`.
