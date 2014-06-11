@@ -4,7 +4,7 @@ This is a Python library for interfacing with [Marathon](https://github.com/meso
 
 #### Compatibility
 
-* marathon-python has been tested with Marathon 0.4.1 ([REST API version 2](https://github.com/mesosphere/marathon/blob/marathon-0.4.1/REST.md))
+* marathon-python has been tested with Marathon 0.5.1 ([REST API version 2](https://github.com/mesosphere/marathon/blob/marathon-0.5.1/REST.md))
 
 ## Installation
 
