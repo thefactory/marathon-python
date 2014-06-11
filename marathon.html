@@ -352,8 +352,26 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="marathon.client.MarathonClient.destroy_app">
-<tt class="descname">destroy_app</tt><big>(</big><em>app_id</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.destroy_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.destroy_app" title="Permalink to this definition">¶</a></dt>
+<dt id="marathon.client.MarathonClient.create_event_subscription">
+<tt class="descname">create_event_subscription</tt><big>(</big><em>url</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.create_event_subscription"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.create_event_subscription" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a callback URL as an event subscriber.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>url</strong> (<em>str</em>) &#8211; callback URL</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the created event subscription</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="marathon.client.MarathonClient.delete_app">
+<tt class="descname">delete_app</tt><big>(</big><em>app_id</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.delete_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.delete_app" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stop and destroy an app.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -364,6 +382,24 @@
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">success</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="marathon.client.MarathonClient.delete_event_subscription">
+<tt class="descname">delete_event_subscription</tt><big>(</big><em>url</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.delete_event_subscription"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.delete_event_subscription" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deregister a callback URL as an event subscriber.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>url</strong> (<em>str</em>) &#8211; callback URL</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the deleted event subscription</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
 </tr>
 </tbody>
 </table>
@@ -482,6 +518,22 @@
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list[<a class="reference internal" href="#marathon.models.app.MarathonApp" title="marathon.models.app.MarathonApp"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonApp</span></tt></a>]</p>
 </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="marathon.client.MarathonClient.list_event_subscriptions">
+<tt class="descname">list_event_subscriptions</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_event_subscriptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_event_subscriptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the event subscriber callback URLs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list of callback URLs</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list[str]</td>
 </tr>
 </tbody>
 </table>
