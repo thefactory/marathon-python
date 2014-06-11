@@ -255,3 +255,36 @@ class MarathonClient(object):
         response = self._do_request("GET", "/v2/apps/{app_id}/versions/{version}"
                                     .format(app_id=app_id, version=version))
         return MarathonApp(response.json())
+
+    def list_event_subscriptions(self):
+        """List the event subscriber callback URLs.
+
+        :returns: list of callback URLs
+        :rtype: list[str]
+        """
+        response = self._do_request("GET", "/v2/eventSubscriptions")
+        return [url for url in response.json()['callbackUrls']]
+
+    def create_event_subscription(self, url):
+        """Register a callback URL as an event subscriber.
+
+        :param str url: callback URL
+
+        :returns: the created event subscription
+        :rtype: dict
+        """
+        params = {"callbackUrl": url}
+        response = self._do_request("POST", "/v2/eventSubscriptions", params)
+        return response.json()
+
+    def delete_event_subscription(self, url):
+        """Deregister a callback URL as an event subscriber.
+
+        :param str url: callback URL
+
+        :returns: the deleted event subscription
+        :rtype: dict
+        """
+        params = {"callbackUrl": url}
+        response = self._do_request("DELETE", "/v2/eventSubscriptions", params)
+        return response.json()
