@@ -43,8 +43,10 @@ class MarathonTask(MarathonResource):
             host=obj.get('host'),
             id=obj.get('id'),
             ports=obj.get('ports'),
-            staged_at=datetime.strptime(obj.get('stagedAt'), cls.TIMESTAMP_FORMAT),
-            started_at=datetime.strptime(obj.get('startedAt'), cls.TIMESTAMP_FORMAT)
+            staged_at=datetime.strptime(obj.get('stagedAt'), cls.TIMESTAMP_FORMAT) \
+                        if obj.get('stagedAt') else None,
+            started_at=datetime.strptime(obj.get('startedAt'), cls.TIMESTAMP_FORMAT) \
+                        if obj.get('startedAt') else None,
         )
 
     def json_encode(self):
@@ -57,6 +59,8 @@ class MarathonTask(MarathonResource):
             'host': self.host,
             'id': self.id,
             'ports': self.ports,
-            'staged_at': self.staged_at.strftime(self.TIMESTAMP_FORMAT),
-            'started_at': self.started_at.strftime(self.TIMESTAMP_FORMAT)
+            'staged_at': self.staged_at.strftime(self.TIMESTAMP_FORMAT) \
+                            if self.staged_at else None,
+            'started_at': self.started_at.strftime(self.TIMESTAMP_FORMAT) \
+                            if self.started_at else None,
         }
