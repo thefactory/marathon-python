@@ -39,7 +39,7 @@ Then try calling some methods:
 ```
 
 ```python
->>> c.create_app(id='myapp3', cmd='sleep 100', mem=16, cpu=1)
+>>> c.create_app(id='myapp3', cmd='sleep 100', mem=16, cpus=1)
 True
 ```
 
