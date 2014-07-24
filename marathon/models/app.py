@@ -35,13 +35,14 @@ class MarathonApp(MarathonResource):
     """List of read-only attributes"""
 
     def __init__(self, cmd=None, constraints=None, container=None, cpus=None, env=None, executor=None,
-                 id=None, instances=None, mem=None, ports=None, tasks=None, uris=None):
+                 health_checks=None, id=None, instances=None, mem=None, ports=None, tasks=None, uris=None):
         self.cmd = cmd
         self.constraints = constraints or []
         self.container = container
         self.cpus = cpus
         self.env = env
         self.executor = executor
+        self.health_checks = health_checks
         self.id = id
         self.instances = instances
         self.mem = mem
@@ -64,6 +65,7 @@ class MarathonApp(MarathonResource):
             cpus=obj.get('cpus'),
             env=obj.get('env'),
             executor=obj.get('executor'),
+            health_checks=obj.get('healthChecks'),
             id=obj.get('id'),
             instances=obj.get('instances'),
             mem=obj.get('mem'),
@@ -82,6 +84,7 @@ class MarathonApp(MarathonResource):
             'constraints': [c.json_encode() for c in self.constraints],
             'cpus': self.cpus,
             'env': self.env,
+            'healthChecks': self.health_checks,
             'id': self.id,
             'instances': self.instances,
             'mem': self.mem,
