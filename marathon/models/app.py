@@ -46,7 +46,7 @@ class MarathonApp(MarathonResource):
         self.id = id
         self.instances = instances
         self.mem = mem
-        self.ports = ports
+        self.ports = ports or []
         self.tasks = tasks or []
         self.uris = uris
 
