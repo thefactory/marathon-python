@@ -59,8 +59,8 @@ class MarathonTask(MarathonResource):
             'host': self.host,
             'id': self.id,
             'ports': self.ports,
-            'staged_at': self.staged_at.strftime(self.TIMESTAMP_FORMAT) \
+            'stagedAt': self.staged_at.strftime(self.TIMESTAMP_FORMAT) \
                             if self.staged_at else None,
-            'started_at': self.started_at.strftime(self.TIMESTAMP_FORMAT) \
+            'startedAt': self.started_at.strftime(self.TIMESTAMP_FORMAT) \
                             if self.started_at else None,
         }
