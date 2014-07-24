@@ -13,7 +13,7 @@ except ImportError:
 import requests
 
 import marathon
-from .models import MarathonApp, MarathonTask
+from .models import MarathonApp, MarathonTask, MarathonEndpoint
 from .exceptions import NotFoundError
 
 
@@ -58,6 +58,17 @@ class MarathonClient(object):
             return response
         except Exception as e:
             print e
+
+    def list_endpoints(self):
+        """List the current endpoints for all applications
+
+        :returns: list of endpoints
+        :rtype: list[`MarathonEndpoint`]
+        """
+        response = self._do_request("GET", "/v1/endpoints")
+        endpoints = [MarathonEndpoint.json_decode(app) for app in response.json()]
+        # Flatten result
+        return [item for sublist in endpoints for item in sublist]
 
     def create_app(self, **kwargs):
         """Create and start an app.
