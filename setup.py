@@ -6,7 +6,7 @@ if sys.version_info >= (3,):
     extra['use_2to3'] = True
 
 setup(name='marathon',
-      version="0.2.7",
+      version="0.2.8",
       description='Marathon Client Library',
       long_description="""Python interface to the Marathon REST API.""",
       author='Mike Babineau',

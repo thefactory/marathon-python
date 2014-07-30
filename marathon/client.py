@@ -20,9 +20,17 @@ from .exceptions import NotFoundError
 class MarathonClient(object):
     """Client interface for the Marathon REST API."""
 
-    def __init__(self, base_url, username=None, password=None):
+    def __init__(self, base_url, username=None, password=None, timeout=5):
+        """Create a MarathonClient instance
+
+        :param str base_url: Base Marathon URL (e.g., 'http://marathon.mycompany.com:8080')
+        :param str username: Basic auth username
+        :param str password: Basic auth password
+        :param int timeout: Timeout (in seconds) for requests to Marathon
+        """
         self.base_url = base_url.rstrip('/')
         self.auth = (username, password) if username and password else None
+        self.timeout = timeout
 
     def __repr__(self):
         return "Connection:%s" % self.base_url
@@ -48,7 +56,8 @@ class MarathonClient(object):
         headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
         url = "".join([self.base_url, path])
         try:
-            response = requests.request(method, url, params=params, data=data, headers=headers, auth=self.auth)
+            response = requests.request(method, url, params=params, data=data, headers=headers,
+                                        auth=self.auth, timeout=self.timeout)
 
             if response.status_code >= 300:
                 marathon.log.warn("Got HTTP {code}: {body}".format(code=response.status_code, body=response.text))
