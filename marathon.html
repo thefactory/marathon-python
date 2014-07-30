@@ -330,7 +330,7 @@
 <span id="marathon-client"></span><h2>marathon.client<a class="headerlink" href="#module-marathon.client" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="marathon.client.MarathonClient">
-<em class="property">class </em><tt class="descclassname">marathon.client.</tt><tt class="descname">MarathonClient</tt><big>(</big><em>base_url</em>, <em>username=None</em>, <em>password=None</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">marathon.client.</tt><tt class="descname">MarathonClient</tt><big>(</big><em>base_url</em>, <em>username=None</em>, <em>password=None</em>, <em>timeout=5</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
 <p>Client interface for the Marathon REST API.</p>
 <dl class="method">
@@ -518,6 +518,22 @@
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list[<a class="reference internal" href="#marathon.models.app.MarathonApp" title="marathon.models.app.MarathonApp"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonApp</span></tt></a>]</p>
 </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="marathon.client.MarathonClient.list_endpoints">
+<tt class="descname">list_endpoints</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_endpoints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_endpoints" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the current endpoints for all applications</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list of endpoints</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list[<cite>MarathonEndpoint</cite>]</td>
 </tr>
 </tbody>
 </table>
