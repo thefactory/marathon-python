@@ -55,18 +55,15 @@ class MarathonClient(object):
         """Query Marathon server."""
         headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
         url = "".join([self.base_url, path])
-        try:
-            response = requests.request(method, url, params=params, data=data, headers=headers,
-                                        auth=self.auth, timeout=self.timeout)
+        response = requests.request(method, url, params=params, data=data, headers=headers,
+                                    auth=self.auth, timeout=self.timeout)
 
-            if response.status_code >= 300:
-                marathon.log.warn("Got HTTP {code}: {body}".format(code=response.status_code, body=response.text))
-            else:
-                marathon.log.debug("Got HTTP {code}: {body}".format(code=response.status_code, body=response.text))
+        if response.status_code >= 300:
+            marathon.log.warn("Got HTTP {code}: {body}".format(code=response.status_code, body=response.text))
+        else:
+            marathon.log.debug("Got HTTP {code}: {body}".format(code=response.status_code, body=response.text))
 
-            return response
-        except Exception as e:
-            print e
+        return response
 
     def list_endpoints(self):
         """List the current endpoints for all applications
