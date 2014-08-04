@@ -87,7 +87,8 @@ class MarathonClient(object):
         :returns: success
         :rtype: bool
         """
-        data = json.dumps(kwargs)
+        app = MarathonApp(**kwargs)
+        data = json.dumps(app.json_encode())
         response = self._do_request("POST", "/v2/apps", data=data)
         return True if response.status_code is 201 else False
 

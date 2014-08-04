@@ -42,7 +42,7 @@ class MarathonApp(MarathonResource):
         self.cpus = cpus
         self.env = env
         self.executor = executor
-        self.health_checks = health_checks
+        self.health_checks = health_checks or []
         self.id = id
         self.instances = instances
         self.mem = mem
