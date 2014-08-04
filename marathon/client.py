@@ -210,7 +210,7 @@ class MarathonClient(object):
         :param bool scale: if true, scale down the app by the number of tasks killed
         :param str host: if provided, only terminate tasks on this Mesos slave
         :param int batch_size: if non-zero, terminate tasks in groups of this size
-        :param int batch_delay: time (in seconds) to wait in between batched kills
+        :param int batch_delay: time (in seconds) to wait in between batched kills. If zero, automatically determine delay
 
         :returns: list of killed tasks
         :rtype: list[:class:`marathon.models.task.MarathonTask`]
@@ -231,8 +231,25 @@ class MarathonClient(object):
             # Terminate in batches
             tasks = self.list_tasks(app_id, host=host) if host else self.list_tasks(app_id)
             for tbatch in batch(tasks, batch_size):
-                [self.kill_task(app_id, t.id, scale=scale) for t in tbatch]
-                time.sleep(batch_delay)
+                killed_tasks = [self.kill_task(app_id, t.id, scale=scale) for t in tbatch]
+
+                # Pause until the tasks have been killed to avoid race conditions
+                killed_task_ids = set(t.id for t in killed_tasks)
+                running_task_ids = killed_task_ids
+                while killed_task_ids.intersection(running_task_ids):
+                    time.sleep(1)
+                    running_task_ids = set(t.id for t in self.get_app(app_id).tasks)
+
+                if batch_delay == 0:
+                    # Pause until the replacement tasks are healthy
+                    desired_instances = self.get_app(app_id).instances
+                    running_instances = 0
+                    while running_instances < desired_instances:
+                        time.sleep(1)
+                        running_instances = sum(t.started_at != None for t in self.get_app(app_id).tasks)
+                else:
+                    time.sleep(batch_delay)
+
 
             return tasks
 
