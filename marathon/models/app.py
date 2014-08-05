@@ -84,6 +84,7 @@ class MarathonApp(MarathonResource):
             'constraints': [c.json_encode() for c in self.constraints],
             'cpus': self.cpus,
             'env': self.env,
+            'executor': self.executor,
             'healthChecks': self.health_checks,
             'id': self.id,
             'instances': self.instances,
