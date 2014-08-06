@@ -82,6 +82,7 @@ class MarathonApp(MarathonResource):
         return {
             'cmd': self.cmd,
             'constraints': [c.json_encode() for c in self.constraints],
+            'container': self.container,
             'cpus': self.cpus,
             'env': self.env,
             'executor': self.executor,
