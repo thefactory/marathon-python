@@ -14,7 +14,7 @@ import requests
 
 import marathon
 from .models import MarathonApp, MarathonTask, MarathonEndpoint
-from .exceptions import NotFoundError
+from .exceptions import InternalServerError, NotFoundError
 
 
 class MarathonClient(object):
@@ -58,7 +58,13 @@ class MarathonClient(object):
         response = requests.request(method, url, params=params, data=data, headers=headers,
                                     auth=self.auth, timeout=self.timeout)
 
-        if response.status_code >= 300:
+        if response.status_code >= 500:
+            marathon.log.error("Got HTTP {code}: {body}".format(code=response.status_code, body=response.text))
+            raise InternalServerError(response)
+        elif response.status_code >= 400:
+            marathon.log.error("Got HTTP {code}: {body}".format(code=response.status_code, body=response.text))
+            raise NotFoundError(response)
+        elif response.status_code >= 300:
             marathon.log.warn("Got HTTP {code}: {body}".format(code=response.status_code, body=response.text))
         else:
             marathon.log.debug("Got HTTP {code}: {body}".format(code=response.status_code, body=response.text))

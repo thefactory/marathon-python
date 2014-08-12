@@ -15,7 +15,7 @@ class MarathonHttpError(MarathonError):
         super(MarathonHttpError, self).__init__(self.__str__() )
 
     def __repr__(self):
-        return 'MarathonError: HTTP `%s - %s` returned with message, "%s"' % \
+        return 'MarathonHttpError: HTTP `%s - %s` returned with message, "%s"' % \
                (self.status_code, self.status_desc, self.error_message)
 
     def __str__(self):
@@ -23,6 +23,10 @@ class MarathonHttpError(MarathonError):
 
 
 class NotFoundError(MarathonHttpError):
+    pass
+
+
+class InternalServerError(MarathonHttpError):
     pass
 
 
