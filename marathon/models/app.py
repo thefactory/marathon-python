@@ -37,7 +37,9 @@ class MarathonApp(MarathonResource):
     def __init__(self, cmd=None, constraints=None, container=None, cpus=None, env=None, executor=None,
                  health_checks=None, id=None, instances=None, mem=None, ports=None, tasks=None, uris=None):
         self.cmd = cmd
-        self.constraints = constraints or []
+        self.constraints = [
+            c if isinstance(c, MarathonConstraint) else MarathonConstraint(*c)
+            for c in (constraints or [])]
         self.container = container
         self.cpus = cpus
         self.env = env
