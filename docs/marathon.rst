@@ -19,6 +19,36 @@ marathon.models
         :undoc-members:
         :show-inheritance:
 
+.. automodule:: marathon.models.container
+        :members:
+        :undoc-members:
+        :show-inheritance:
+
+.. automodule:: marathon.models.deployment
+        :members:
+        :undoc-members:
+        :show-inheritance:
+
+.. automodule:: marathon.models.endpoint
+        :members:
+        :undoc-members:
+        :show-inheritance:
+
+.. automodule:: marathon.models.group
+        :members:
+        :undoc-members:
+        :show-inheritance:
+
+.. automodule:: marathon.models.info
+        :members:
+        :undoc-members:
+        :show-inheritance:
+
+.. automodule:: marathon.models.queue
+        :members:
+        :undoc-members:
+        :show-inheritance:
+
 .. automodule:: marathon.models.task
         :members:
         :undoc-members:
