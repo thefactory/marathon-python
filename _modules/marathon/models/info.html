@@ -1,0 +1,247 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>marathon.models.info &mdash; marathon-python  documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="marathon-python  documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../index.html" class="fa fa-home"> marathon-python</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../marathon.html">marathon package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon.models.app">marathon.models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon.client">marathon.client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon.exceptions">marathon.exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">marathon-python</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>marathon.models.info</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <h1>Source code for marathon.models.info</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">MarathonObject</span><span class="p">,</span> <span class="n">MarathonResource</span>
+
+
+<div class="viewcode-block" id="MarathonInfo"><a class="viewcode-back" href="../../../marathon.html#marathon.models.info.MarathonInfo">[docs]</a><span class="k">class</span> <span class="nc">MarathonInfo</span><span class="p">(</span><span class="n">MarathonResource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Marathon Info.</span>
+
+<span class="sd">    See: https://mesosphere.github.io/marathon/docs/rest-api.html#get-/v2/info</span>
+
+<span class="sd">    :param str framework_id:</span>
+<span class="sd">    :param str leader:</span>
+<span class="sd">    :param marathon_config:</span>
+<span class="sd">    :type marathon_config: :class:`marathon.models.info.MarathonConfig` or dict</span>
+<span class="sd">    :param str name:</span>
+<span class="sd">    :param str version:</span>
+<span class="sd">    :param zookeeper_config:</span>
+<span class="sd">    :type zookeeper_config: :class:`marathon.models.info.MarathonZooKeeperConfig` or dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">framework_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">leader</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">marathon_config</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">zookeeper_config</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">framework_id</span> <span class="o">=</span> <span class="n">framework_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">leader</span> <span class="o">=</span> <span class="n">leader</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">marathon_config</span> <span class="o">=</span> <span class="n">marathon_config</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">marathon_config</span><span class="p">,</span> <span class="n">MarathonConfig</span><span class="p">)</span> \
+            <span class="k">else</span> <span class="n">MarathonConfig</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">marathon_config</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zookeeper_config</span> <span class="o">=</span> <span class="n">zookeeper_config</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">zookeeper_config</span><span class="p">,</span> <span class="n">MarathonZooKeeperConfig</span><span class="p">)</span> \
+            <span class="k">else</span> <span class="n">MarathonZooKeeperConfig</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">zookeeper_config</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="MarathonConfig"><a class="viewcode-back" href="../../../marathon.html#marathon.models.info.MarathonConfig">[docs]</a><span class="k">class</span> <span class="nc">MarathonConfig</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Marathon Application resource.</span>
+
+<span class="sd">    See: https://mesosphere.github.io/marathon/docs/rest-api.html#deployments</span>
+
+<span class="sd">    :param bool checkpoint:</span>
+<span class="sd">    :param str executor:</span>
+<span class="sd">    :param int failover_timeout:</span>
+<span class="sd">    :param bool ha:</span>
+<span class="sd">    :param str hostname:</span>
+<span class="sd">    :param int local_port_min:</span>
+<span class="sd">    :param int local_port_max:</span>
+<span class="sd">    :param str master:</span>
+<span class="sd">    :param str mesos_role:</span>
+<span class="sd">    :param str mesos_user:</span>
+<span class="sd">    :param int reconciliation_initial_delay:</span>
+<span class="sd">    :param int reconciliation_interval:</span>
+<span class="sd">    :param int task_launch_timeout:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checkpoint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">failover_timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">hostname</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">local_port_min</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">local_port_max</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">mesos_role</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">mesos_user</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">reconciliation_initial_delay</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">reconciliation_interval</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">task_launch_timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">checkpoint</span> <span class="o">=</span> <span class="n">checkpoint</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">executor</span> <span class="o">=</span> <span class="n">executor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">failover_timeout</span> <span class="o">=</span> <span class="n">failover_timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ha</span> <span class="o">=</span> <span class="n">ha</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="n">hostname</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">local_port_min</span> <span class="o">=</span> <span class="n">local_port_min</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">local_port_max</span> <span class="o">=</span> <span class="n">local_port_max</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">master</span> <span class="o">=</span> <span class="n">master</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mesos_role</span> <span class="o">=</span> <span class="n">mesos_role</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mesos_user</span> <span class="o">=</span> <span class="n">mesos_user</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reconciliation_initial_delay</span> <span class="o">=</span> <span class="n">reconciliation_initial_delay</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reconciliation_interval</span> <span class="o">=</span> <span class="n">reconciliation_interval</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_launch_timeout</span> <span class="o">=</span> <span class="n">task_launch_timeout</span>
+
+</div>
+<div class="viewcode-block" id="MarathonZooKeeperConfig"><a class="viewcode-back" href="../../../marathon.html#marathon.models.info.MarathonZooKeeperConfig">[docs]</a><span class="k">class</span> <span class="nc">MarathonZooKeeperConfig</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Marathon Application resource.</span>
+
+<span class="sd">    See: https://mesosphere.github.io/marathon/docs/rest-api.html#deployments</span>
+
+<span class="sd">    :param str zk:</span>
+<span class="sd">    :param dict zk_future_timeout:</span>
+<span class="sd">    :param str zk_hosts:</span>
+<span class="sd">    :param str zk_path:</span>
+<span class="sd">    :param str zk_state:</span>
+<span class="sd">    :param int zk_timeout:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">zk</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">zk_future_timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">zk_hosts</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">zk_path</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">zk_state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">zk_timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zk</span> <span class="o">=</span> <span class="n">zk</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zk_future_timeout</span> <span class="o">=</span> <span class="n">zk_future_timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zk_hosts</span> <span class="o">=</span> <span class="n">zk_hosts</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zk_path</span> <span class="o">=</span> <span class="n">zk_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zk_state</span> <span class="o">=</span> <span class="n">zk_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zk_timeout</span> <span class="o">=</span> <span class="n">zk_timeout</span></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, The Factory.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
