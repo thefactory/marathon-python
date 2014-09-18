@@ -54,7 +54,7 @@ class MarathonClient(object):
         if response.status_code >= 500:
             marathon.log.error("Got HTTP {code}: {body}".format(code=response.status_code, body=response.text))
             raise InternalServerError(response)
-        elif response.status_code == 400:
+        elif response.status_code >= 400:
             marathon.log.error("Got HTTP {code}: {body}".format(code=response.status_code, body=response.text))
             if response.status_code == 404:
                 raise NotFoundError(response)
