@@ -43,10 +43,13 @@ open gh-pages/html/index.html
 
 ## Basic Usage
 
-Create a `MarathonClient()` instance pointing at your Marathon server:
+Create a `MarathonClient()` instance pointing at your Marathon server(s):
 ```python
 >>> from marathon import MarathonClient
->>> c = MarathonClient("http://localhost:8080")
+>>> c = MarathonClient('http://localhost:8080')
+
+>>> # or multiple servers:
+>>> c = MarathonClient(['http://host1:8080', 'http://host2:8080'])
 ```
 
 Then try calling some methods:

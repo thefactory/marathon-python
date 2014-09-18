@@ -1,5 +1,6 @@
-import time
 import itertools
+import time
+import urlparse
 
 try:
     import json
@@ -11,29 +12,35 @@ except ImportError:
     from urllib.error import HTTPError
 
 import requests
+import requests.exceptions
 
 import marathon
 from .models import MarathonApp, MarathonDeployment, MarathonGroup, MarathonInfo, MarathonTask, MarathonEndpoint
-from .exceptions import InternalServerError, NotFoundError, MarathonHttpError
+from .exceptions import InternalServerError, NotFoundError, MarathonHttpError, MarathonError
 
 
 class MarathonClient(object):
     """Client interface for the Marathon REST API."""
 
-    def __init__(self, base_url, username=None, password=None, timeout=5):
-        """Create a MarathonClient instance
+    def __init__(self, servers, username=None, password=None, timeout=5):
+        """Create a MarathonClient instance.
 
-        :param str base_url: Base Marathon URL (e.g., 'http://marathon.mycompany.com:8080')
+        If multiple servers are specified, each will be tried in succession until a non-"Connection Error"-type
+        response is received. Servers are expected to have the same username and password.
+
+        :param servers: One or a priority-ordered list of Marathon URLs (e.g., 'http://host:8080' or
+        ['http://host1:8080','http://host2:8080'])
+        :type servers: str or list[str]
         :param str username: Basic auth username
         :param str password: Basic auth password
         :param int timeout: Timeout (in seconds) for requests to Marathon
         """
-        self.base_url = base_url.rstrip('/')
+        self.servers = servers if isinstance(servers, list) else [servers]
         self.auth = (username, password) if username and password else None
         self.timeout = timeout
 
     def __repr__(self):
-        return "Connection:%s" % self.base_url
+        return 'Connection:%s' % self.servers
 
     @staticmethod
     def _parse_response(response, clazz, is_list=False, resource_name=None):
@@ -47,23 +54,34 @@ class MarathonClient(object):
     def _do_request(self, method, path, params=None, data=None):
         """Query Marathon server."""
         headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
-        url = "".join([self.base_url, path])
-        response = requests.request(method, url, params=params, data=data, headers=headers,
-                                    auth=self.auth, timeout=self.timeout)
+        response = None
+        servers = list(self.servers)
+        while servers and response is None:
+            server = servers.pop(0)
+            url = ''.join([server.rstrip('/'), path])
+            try:
+                response = requests.request(method, url, params=params, data=data, headers=headers,
+                                            auth=self.auth, timeout=self.timeout)
+                marathon.log.info('Got response from %s', server)
+            except requests.exceptions.RequestException, e:
+                marathon.log.error('Error while calling %s: %s', url, e.message)
+
+        if response is None:
+            raise MarathonError('No remaining Marathon servers to try')
 
         if response.status_code >= 500:
-            marathon.log.error("Got HTTP {code}: {body}".format(code=response.status_code, body=response.text))
+            marathon.log.error('Got HTTP {code}: {body}'.format(code=response.status_code, body=response.text))
             raise InternalServerError(response)
         elif response.status_code >= 400:
-            marathon.log.error("Got HTTP {code}: {body}".format(code=response.status_code, body=response.text))
+            marathon.log.error('Got HTTP {code}: {body}'.format(code=response.status_code, body=response.text))
             if response.status_code == 404:
                 raise NotFoundError(response)
             else:
                 raise MarathonHttpError(response)
         elif response.status_code >= 300:
-            marathon.log.warn("Got HTTP {code}: {body}".format(code=response.status_code, body=response.text))
+            marathon.log.warn('Got HTTP {code}: {body}'.format(code=response.status_code, body=response.text))
         else:
-            marathon.log.debug("Got HTTP {code}: {body}".format(code=response.status_code, body=response.text))
+            marathon.log.debug('Got HTTP {code}: {body}'.format(code=response.status_code, body=response.text))
 
         return response
 
@@ -73,7 +91,7 @@ class MarathonClient(object):
         :returns: list of endpoints
         :rtype: list[`MarathonEndpoint`]
         """
-        response = self._do_request("GET", "/v1/endpoints")
+        response = self._do_request('GET', '/v1/endpoints')
         endpoints = [MarathonEndpoint.from_json(app) for app in response.json()]
         # Flatten result
         return [item for sublist in endpoints for item in sublist]
@@ -89,7 +107,7 @@ class MarathonClient(object):
         """
         app.id = app_id
         data = app.to_json()
-        response = self._do_request("POST", "/v2/apps", data=data)
+        response = self._do_request('POST', '/v2/apps', data=data)
         if response.status_code == 201:
             return self._parse_response(response, MarathonApp)
         else:
@@ -106,7 +124,7 @@ class MarathonClient(object):
         :rtype: list[:class:`marathon.models.app.MarathonApp`]
         """
         params = {'cmd': cmd} if cmd else {}
-        response = self._do_request("GET", "/v2/apps", params=params)
+        response = self._do_request('GET', '/v2/apps', params=params)
         apps = self._parse_response(response, MarathonApp, is_list=True, resource_name='apps')
         for k, v in kwargs.iteritems():
             apps = filter(lambda o: getattr(o, k) == v, apps)
@@ -120,7 +138,7 @@ class MarathonClient(object):
         :returns: application
         :rtype: :class:`marathon.models.app.MarathonApp`
         """
-        response = self._do_request("GET", "/v2/apps/{app_id}".format(app_id=app_id))
+        response = self._do_request('GET', '/v2/apps/{app_id}'.format(app_id=app_id))
         return self._parse_response(response, MarathonApp, resource_name='app')
 
     def update_app(self, app_id, app, force=False):
@@ -139,7 +157,7 @@ class MarathonClient(object):
         """
         params = {'force': force}
         data = app.to_json()
-        response = self._do_request("PUT", "/v2/apps/{app_id}".format(app_id=app_id), params=params, data=data)
+        response = self._do_request('PUT', '/v2/apps/{app_id}'.format(app_id=app_id), params=params, data=data)
         return response.json()
 
     def rollback_app(self, app_id, version, force=False):
@@ -154,7 +172,7 @@ class MarathonClient(object):
         """
         params = {'force': force}
         data = json.dumps({'version': version})
-        response = self._do_request("PUT", "/v2/apps/{app_id}".format(app_id=app_id), params=params, data=data)
+        response = self._do_request('PUT', '/v2/apps/{app_id}'.format(app_id=app_id), params=params, data=data)
         return response.json()
 
     def delete_app(self, app_id, force=False):
@@ -167,7 +185,7 @@ class MarathonClient(object):
         :rtype: dict
         """
         params = {'force': force}
-        response = self._do_request("DELETE", "/v2/apps/{app_id}".format(app_id=app_id), params=params)
+        response = self._do_request('DELETE', '/v2/apps/{app_id}'.format(app_id=app_id), params=params)
         return response.json()
 
     def scale_app(self, app_id, instances=None, delta=None):
@@ -187,13 +205,13 @@ class MarathonClient(object):
         :rtype: dict
         """
         if instances is None and delta is None:
-            marathon.log.error("instances or delta must be passed")
+            marathon.log.error('instances or delta must be passed')
             return
 
         try:
             app = self.get_app(app_id)
         except NotFoundError:
-            marathon.log.error("App '{app}' not found".format(app=app_id))
+            marathon.log.error('App "{app}" not found'.format(app=app_id))
             return
 
         app.instances = instances if instances is not None else (app.instances + delta)
@@ -208,7 +226,7 @@ class MarathonClient(object):
         :rtype: dict containing the version ID
         """
         data = group.to_json()
-        response = self._do_request("POST", "/v2/groups", data=data)
+        response = self._do_request('POST', '/v2/groups', data=data)
         return response.json()
 
     def list_groups(self, **kwargs):
@@ -219,7 +237,7 @@ class MarathonClient(object):
         :returns: list of groups
         :rtype: list[:class:`marathon.models.group.MarathonGroup`]
         """
-        response = self._do_request("GET", "/v2/groups")
+        response = self._do_request('GET', '/v2/groups')
         groups = self._parse_response(response, MarathonGroup, is_list=True, resource_name='groups')
         for k, v in kwargs.iteritems():
             groups = filter(lambda o: getattr(o, k) == v, groups)
@@ -233,7 +251,7 @@ class MarathonClient(object):
         :returns: group
         :rtype: :class:`marathon.models.group.MarathonGroup`
         """
-        response = self._do_request("GET", "/v2/groups/{group_id}".format(group_id=group_id))
+        response = self._do_request('GET', '/v2/groups/{group_id}'.format(group_id=group_id))
         return self._parse_response(response, MarathonGroup, resource_name='group')
 
     def update_group(self, group_id, group, force=False):
@@ -252,7 +270,7 @@ class MarathonClient(object):
         """
         params = {'force': force}
         data = group.to_json()
-        response = self._do_request("PUT", "/v2/groups/{group_id}".format(group_id=group_id), data=data, params=params)
+        response = self._do_request('PUT', '/v2/groups/{group_id}'.format(group_id=group_id), data=data, params=params)
         return response.json()
 
     def rollback_group(self, group_id, version, force=False):
@@ -266,7 +284,7 @@ class MarathonClient(object):
         :rtype: dict
         """
         params = {'force': force}
-        response = self._do_request("PUT", "/v2/groups/{group_id}/versions/{version}".format(group_id=group_id,
+        response = self._do_request('PUT', '/v2/groups/{group_id}/versions/{version}'.format(group_id=group_id,
                                                                                              version=version),
                                     params=params)
         return response.json()
@@ -281,7 +299,7 @@ class MarathonClient(object):
         :rtype: dict
         """
         params = {'force': force}
-        response = self._do_request("DELETE", "/v2/groups/{group_id}".format(group_id=group_id), params=params)
+        response = self._do_request('DELETE', '/v2/groups/{group_id}'.format(group_id=group_id), params=params)
         return response.json()
 
     def scale_group(self, group_id, scale_by):
@@ -294,7 +312,7 @@ class MarathonClient(object):
         :rtype: dict
         """
         params = {'scaleBy': scale_by}
-        response = self._do_request("PUT", "/v2/groups/{group_id}".format(group_id=group_id), params=params)
+        response = self._do_request('PUT', '/v2/groups/{group_id}'.format(group_id=group_id), params=params)
         return response.json()
 
     def list_tasks(self, app_id=None, **kwargs):
@@ -307,9 +325,9 @@ class MarathonClient(object):
         :rtype: list[:class:`marathon.models.task.MarathonTask`]
         """
         if app_id:
-            response = self._do_request("GET", "/v2/apps/{app_id}/tasks".format(app_id=app_id))
+            response = self._do_request('GET', '/v2/apps/{app_id}/tasks'.format(app_id=app_id))
         else:
-            response = self._do_request("GET", "/v2/tasks")
+            response = self._do_request('GET', '/v2/tasks')
 
         tasks = self._parse_response(response, MarathonTask, is_list=True, resource_name='tasks')
         for k, v in kwargs.iteritems():
@@ -338,7 +356,7 @@ class MarathonClient(object):
             # Terminate all at once
             params = {'scale': scale}
             if host: params['host'] = host
-            response = self._do_request("DELETE", "/v2/apps/{app_id}/tasks".format(app_id=app_id), params)
+            response = self._do_request('DELETE', '/v2/apps/{app_id}/tasks'.format(app_id=app_id), params)
             return self._parse_response(response, MarathonTask, is_list=True, resource_name='tasks')
         else:
             # Terminate in batches
@@ -376,7 +394,7 @@ class MarathonClient(object):
         :rtype: :class:`marathon.models.task.MarathonTask`
         """
         params = {'scale': scale}
-        response = self._do_request("DELETE", "/v2/apps/{app_id}/tasks/{task_id}"
+        response = self._do_request('DELETE', '/v2/apps/{app_id}/tasks/{task_id}'
                                     .format(app_id=app_id, task_id=task_id), params)
         return self._parse_response(response, MarathonTask, resource_name='task')
 
@@ -388,7 +406,7 @@ class MarathonClient(object):
         :returns: list of versions
         :rtype: list[str]
         """
-        response = self._do_request("GET", "/v2/apps/{app_id}/versions".format(app_id=app_id))
+        response = self._do_request('GET', '/v2/apps/{app_id}/versions'.format(app_id=app_id))
         return [version for version in response.json()['versions']]
 
     def get_version(self, app_id, version):
@@ -400,7 +418,7 @@ class MarathonClient(object):
         :return: application configuration
         :rtype: :class:`marathon.models.app.MarathonApp`
         """
-        response = self._do_request("GET", "/v2/apps/{app_id}/versions/{version}"
+        response = self._do_request('GET', '/v2/apps/{app_id}/versions/{version}'
                                     .format(app_id=app_id, version=version))
         return MarathonApp(response.json())
 
@@ -410,7 +428,7 @@ class MarathonClient(object):
         :returns: list of callback URLs
         :rtype: list[str]
         """
-        response = self._do_request("GET", "/v2/eventSubscriptions")
+        response = self._do_request('GET', '/v2/eventSubscriptions')
         return [url for url in response.json()['callbackUrls']]
 
     def create_event_subscription(self, url):
@@ -421,8 +439,8 @@ class MarathonClient(object):
         :returns: the created event subscription
         :rtype: dict
         """
-        params = {"callbackUrl": url}
-        response = self._do_request("POST", "/v2/eventSubscriptions", params)
+        params = {'callbackUrl': url}
+        response = self._do_request('POST', '/v2/eventSubscriptions', params)
         return response.json()
 
     def delete_event_subscription(self, url):
@@ -433,8 +451,8 @@ class MarathonClient(object):
         :returns: the deleted event subscription
         :rtype: dict
         """
-        params = {"callbackUrl": url}
-        response = self._do_request("DELETE", "/v2/eventSubscriptions", params)
+        params = {'callbackUrl': url}
+        response = self._do_request('DELETE', '/v2/eventSubscriptions', params)
         return response.json()
 
     def list_deployments(self):
@@ -443,7 +461,7 @@ class MarathonClient(object):
         :returns: list of deployments
         :rtype: list[:class:`marathon.models.deployment.MarathonDeployment`]
         """
-        response = self._do_request("GET", "/v2/deployments")
+        response = self._do_request('GET', '/v2/deployments')
         return self._parse_response(response, MarathonDeployment, is_list=True)
 
     def delete_deployment(self, deployment_id):
@@ -454,7 +472,7 @@ class MarathonClient(object):
         :returns: a dict containing the deployment id and version
         :rtype: dict
         """
-        response = self._do_request("DELETE", "/v2/deployments/{deployment}".format(deployment=deployment_id))
+        response = self._do_request('DELETE', '/v2/deployments/{deployment}'.format(deployment=deployment_id))
         return response.json()
 
     def get_info(self):
@@ -463,7 +481,7 @@ class MarathonClient(object):
         :returns: server config info
         :rtype: :class:`marathon.models.info.MarathonInfo`
         """
-        response = self._do_request("GET", "/v2/info")
+        response = self._do_request('GET', '/v2/info')
         return self._parse_response(response, MarathonInfo)
 
     def ping(self):
@@ -472,7 +490,7 @@ class MarathonClient(object):
         :returns: the text response
         :rtype: str
         """
-        response = self._do_request("GET", "/ping")
+        response = self._do_request('GET', '/ping')
         return response.text
 
     def get_metrics(self):
@@ -481,5 +499,5 @@ class MarathonClient(object):
         :returns: metrics dict
         :rtype: dict
         """
-        response = self._do_request("GET", "/metrics")
+        response = self._do_request('GET', '/metrics')
         return response.json()

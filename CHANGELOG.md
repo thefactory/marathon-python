@@ -1,3 +1,9 @@
+## 0.5.1 (2014-09-18)
+
+Changes:
+* Added support for multiple Marathon servers (if a request to one fails for network reasons, try the next)
+* Fixed a bug with HTTP 4xx response handling
+
 ## 0.5.0 (2014-09-15)
 
 Initial release compatible with Marathon 0.7.0 and Mesos 0.20.0.
