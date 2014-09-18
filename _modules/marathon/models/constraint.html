@@ -100,17 +100,13 @@
             
   <h1>Source code for marathon.models.constraint</h1><div class="highlight"><pre>
 <span class="kn">from</span> <span class="nn">..exceptions</span> <span class="kn">import</span> <span class="n">InvalidOperatorError</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">MarathonObject</span>
 
 
-<span class="n">UNIQUE_OPERATOR</span> <span class="o">=</span> <span class="s">&#39;UNIQUE&#39;</span>
-<span class="n">CLUSTER_OPERATOR</span> <span class="o">=</span> <span class="s">&#39;CLUSTER&#39;</span>
-<span class="n">GROUP_BY_OPERATOR</span> <span class="o">=</span> <span class="s">&#39;GROUP_BY&#39;</span>
-
-
-<div class="viewcode-block" id="MarathonConstraint"><a class="viewcode-back" href="../../../marathon.html#marathon.models.constraint.MarathonConstraint">[docs]</a><span class="k">class</span> <span class="nc">MarathonConstraint</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="MarathonConstraint"><a class="viewcode-back" href="../../../marathon.html#marathon.models.constraint.MarathonConstraint">[docs]</a><span class="k">class</span> <span class="nc">MarathonConstraint</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Marathon placement constraint.</span>
 
-<span class="sd">    See http://mesosphere.io/2013/11/22/marathon-a-mesos-framework-adds-placement-constraints/</span>
+<span class="sd">    See https://mesosphere.github.io/marathon/docs/constraints.html</span>
 
 <span class="sd">    :param str field: constraint operator target</span>
 <span class="sd">    :param str operator: must be one of [UNIQUE, CLUSTER, GROUP_BY]</span>
@@ -119,10 +115,12 @@
 <span class="sd">    :type value: str, int, or None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">operator</span> <span class="ow">in</span> <span class="p">[</span><span class="n">UNIQUE_OPERATOR</span><span class="p">,</span> <span class="n">CLUSTER_OPERATOR</span><span class="p">,</span> <span class="n">GROUP_BY_OPERATOR</span><span class="p">]:</span>
-            <span class="k">raise</span> <span class="n">InvalidOperatorError</span><span class="p">(</span><span class="n">operator</span><span class="p">)</span>
+    <span class="n">OPERATORS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;UNIQUE&#39;</span><span class="p">,</span> <span class="s">&#39;CLUSTER&#39;</span><span class="p">,</span> <span class="s">&#39;GROUP_BY&#39;</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;Valid operators&quot;&quot;&quot;</span>
 
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">operator</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">OPERATORS</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidOperatorError</span><span class="p">(</span><span class="n">operator</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">field</span> <span class="o">=</span> <span class="n">field</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">operator</span> <span class="o">=</span> <span class="n">operator</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>

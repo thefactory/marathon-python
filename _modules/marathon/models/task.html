@@ -100,10 +100,6 @@
             
   <h1>Source code for marathon.models.task</h1><div class="highlight"><pre>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">json</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">simplejson</span> <span class="kn">as</span> <span class="nn">json</span>
 
 <span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">MarathonResource</span>
 
@@ -115,56 +111,25 @@
 <span class="sd">    :param str host: mesos slave running the task</span>
 <span class="sd">    :param str id: task id</span>
 <span class="sd">    :param list[int] ports: allocated ports</span>
-<span class="sd">    :param datetime staged_at: when this task was staged</span>
-<span class="sd">    :param datetime started_at: when this task was started</span>
+<span class="sd">    :param staged_at: when this task was staged</span>
+<span class="sd">    :type staged_at: datetime or str</span>
+<span class="sd">    :param started_at: when this task was started</span>
+<span class="sd">    :type started_at: datetime or str</span>
+<span class="sd">    :param str version: app version with which this task was started</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c"># Example: 2014-02-12T01:49:12.293Z</span>
-    <span class="n">TIMESTAMP_FORMAT</span> <span class="o">=</span> <span class="s">&#39;%Y-%m-</span><span class="si">%d</span><span class="s">T%H:%M:%S.</span><span class="si">%f</span><span class="s">Z&#39;</span>
-    <span class="sd">&quot;&quot;&quot;Timestamp format used in Marathon responses&quot;&quot;&quot;</span>
+    <span class="n">DATETIME_FORMAT</span> <span class="o">=</span> <span class="s">&#39;%Y-%m-</span><span class="si">%d</span><span class="s">T%H:%M:%S.</span><span class="si">%f</span><span class="s">Z&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ports</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">staged_at</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">started_at</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ports</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">staged_at</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">started_at</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app_id</span> <span class="o">=</span> <span class="n">app_id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">host</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ports</span> <span class="o">=</span> <span class="n">ports</span> <span class="ow">or</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">staged_at</span> <span class="o">=</span> <span class="n">staged_at</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">started_at</span> <span class="o">=</span> <span class="n">started_at</span>
-
-    <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="MarathonTask.json_decode"><a class="viewcode-back" href="../../../marathon.html#marathon.models.task.MarathonTask.json_decode">[docs]</a>    <span class="k">def</span> <span class="nf">json_decode</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Construct a MarathonTask from a parsed response.</span>
-
-<span class="sd">        :param dict obj: object obj from parsed response</span>
-
-<span class="sd">        :rtype: :class:`MarathonApp`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">cls</span><span class="p">(</span>
-            <span class="n">app_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;appId&#39;</span><span class="p">),</span>
-            <span class="n">host</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;host&#39;</span><span class="p">),</span>
-            <span class="nb">id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">),</span>
-            <span class="n">ports</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;ports&#39;</span><span class="p">),</span>
-            <span class="n">staged_at</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;stagedAt&#39;</span><span class="p">),</span> <span class="n">cls</span><span class="o">.</span><span class="n">TIMESTAMP_FORMAT</span><span class="p">)</span> \
-                        <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;stagedAt&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="bp">None</span><span class="p">,</span>
-            <span class="n">started_at</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;startedAt&#39;</span><span class="p">),</span> <span class="n">cls</span><span class="o">.</span><span class="n">TIMESTAMP_FORMAT</span><span class="p">)</span> \
-                        <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;startedAt&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="bp">None</span><span class="p">,</span>
-        <span class="p">)</span>
-</div>
-<div class="viewcode-block" id="MarathonTask.json_encode"><a class="viewcode-back" href="../../../marathon.html#marathon.models.task.MarathonTask.json_encode">[docs]</a>    <span class="k">def</span> <span class="nf">json_encode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Construct a JSON-friendly representation of the object.</span>
-
-<span class="sd">        :rtype: dict</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="s">&#39;appId&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">app_id</span><span class="p">,</span>
-            <span class="s">&#39;host&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="p">,</span>
-            <span class="s">&#39;id&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-            <span class="s">&#39;ports&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ports</span><span class="p">,</span>
-            <span class="s">&#39;stagedAt&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">staged_at</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">TIMESTAMP_FORMAT</span><span class="p">)</span> \
-                            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">staged_at</span> <span class="k">else</span> <span class="bp">None</span><span class="p">,</span>
-            <span class="s">&#39;startedAt&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">started_at</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">TIMESTAMP_FORMAT</span><span class="p">)</span> \
-                            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">started_at</span> <span class="k">else</span> <span class="bp">None</span><span class="p">,</span>
-        <span class="p">}</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">staged_at</span> <span class="o">=</span> <span class="n">staged_at</span> <span class="k">if</span> <span class="p">(</span><span class="n">staged_at</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">staged_at</span><span class="p">,</span> <span class="n">datetime</span><span class="p">))</span> \
+            <span class="k">else</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">staged_at</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">DATETIME_FORMAT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">started_at</span> <span class="o">=</span> <span class="n">started_at</span> <span class="k">if</span> <span class="p">(</span><span class="n">started_at</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">started_at</span><span class="p">,</span> <span class="n">datetime</span><span class="p">))</span> \
+            <span class="k">else</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">started_at</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">DATETIME_FORMAT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span></div>
 </pre></div>
 
           </div>
