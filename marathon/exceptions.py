@@ -33,3 +33,9 @@ class InvalidOperatorError(MarathonError):
 
     def __init__(self, operator):
         super(InvalidOperatorError, self).__init__('Invalid operator {operator}'.format(operator=operator))
+
+
+class InvalidContainerTypeError(MarathonError):
+
+    def __init__(self, type):
+        super(InvalidContainerTypeError, self).__init__('Invalid container type {type}'.format(type=type))

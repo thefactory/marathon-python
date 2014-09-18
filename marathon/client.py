@@ -13,8 +13,8 @@ except ImportError:
 import requests
 
 import marathon
-from .models import MarathonApp, MarathonTask, MarathonEndpoint
-from .exceptions import InternalServerError, NotFoundError
+from .models import MarathonApp, MarathonDeployment, MarathonGroup, MarathonInfo, MarathonTask, MarathonEndpoint
+from .exceptions import InternalServerError, NotFoundError, MarathonHttpError
 
 
 class MarathonClient(object):
@@ -35,21 +35,14 @@ class MarathonClient(object):
     def __repr__(self):
         return "Connection:%s" % self.base_url
 
-    def _parse_response(self, response, clazz, is_list=False):
+    @staticmethod
+    def _parse_response(response, clazz, is_list=False, resource_name=None):
         """Parse a Marathon response into an object or list of objects."""
-        resource_name = None
-        if clazz is MarathonApp:
-            resource_name = 'apps' if is_list else 'app'
-        elif clazz is MarathonTask:
-            resource_name = 'tasks' if is_list else 'task'
-
-        if not resource_name:
-            return
-
+        target = response.json()[resource_name] if resource_name else response.json()
         if is_list:
-            return [clazz.json_decode(resource) for resource in response.json()[resource_name]]
+            return [clazz.from_json(resource) for resource in target]
         else:
-            return clazz.json_decode(response.json()[resource_name])
+            return clazz.from_json(target)
 
     def _do_request(self, method, path, params=None, data=None):
         """Query Marathon server."""
@@ -61,9 +54,12 @@ class MarathonClient(object):
         if response.status_code >= 500:
             marathon.log.error("Got HTTP {code}: {body}".format(code=response.status_code, body=response.text))
             raise InternalServerError(response)
-        elif response.status_code >= 400:
+        elif response.status_code == 400:
             marathon.log.error("Got HTTP {code}: {body}".format(code=response.status_code, body=response.text))
-            raise NotFoundError(response)
+            if response.status_code == 404:
+                raise NotFoundError(response)
+            else:
+                raise MarathonHttpError(response)
         elif response.status_code >= 300:
             marathon.log.warn("Got HTTP {code}: {body}".format(code=response.status_code, body=response.text))
         else:
@@ -78,22 +74,26 @@ class MarathonClient(object):
         :rtype: list[`MarathonEndpoint`]
         """
         response = self._do_request("GET", "/v1/endpoints")
-        endpoints = [MarathonEndpoint.json_decode(app) for app in response.json()]
+        endpoints = [MarathonEndpoint.from_json(app) for app in response.json()]
         # Flatten result
         return [item for sublist in endpoints for item in sublist]
 
-    def create_app(self, **kwargs):
+    def create_app(self, app_id, app):
         """Create and start an app.
 
-        :param kwargs: application properties
+        :param str app_id: application ID
+        :param :class:`marathon.models.app.MarathonApp` app: the application to create
 
-        :returns: success
-        :rtype: bool
+        :returns: the created app (on success)
+        :rtype: :class:`marathon.models.app.MarathonApp` or False
         """
-        app = MarathonApp(**kwargs)
-        data = json.dumps(app.json_encode())
+        app.id = app_id
+        data = app.to_json()
         response = self._do_request("POST", "/v2/apps", data=data)
-        return True if response.status_code is 201 else False
+        if response.status_code == 201:
+            return self._parse_response(response, MarathonApp)
+        else:
+            return False
 
     def list_apps(self, cmd=None, **kwargs):
         """List all apps, optionally filtered by `cmd`.
@@ -107,8 +107,8 @@ class MarathonClient(object):
         """
         params = {'cmd': cmd} if cmd else {}
         response = self._do_request("GET", "/v2/apps", params=params)
-        apps = self._parse_response(response, MarathonApp, is_list=True)
-        for k,v in kwargs.iteritems():
+        apps = self._parse_response(response, MarathonApp, is_list=True, resource_name='apps')
+        for k, v in kwargs.iteritems():
             apps = filter(lambda o: getattr(o, k) == v, apps)
         return apps
 
@@ -121,45 +121,54 @@ class MarathonClient(object):
         :rtype: :class:`marathon.models.app.MarathonApp`
         """
         response = self._do_request("GET", "/v2/apps/{app_id}".format(app_id=app_id))
-        return self._parse_response(response, MarathonApp)
+        return self._parse_response(response, MarathonApp, resource_name='app')
 
-    def update_app(self, app_id=None, app=None, **kwargs):
+    def update_app(self, app_id, app, force=False):
         """Update an app.
 
-        If `app` is passed, use this as a base on which `kwargs` are overlaid. The resulting configuration
-        is pushed to Marathon.
-
+        Applies writable settings in `app` to `app_id`
         Note: this method can not be used to rename apps.
 
-        :param str app_id: application ID
-        :param app: [optional] an app instance
+        :param str app_id: target application ID
+        :param app: application settings
         :type app: :class:`marathon.models.app.MarathonApp`
-        :param kwargs: application properties
+        :param bool force: apply even if a deployment is in progress
 
-        :returns: success
-        :rtype: bool
+        :returns: a dict containing the deployment id and version
+        :rtype: dict
         """
-        if app:
-            updated_app = MarathonApp(**app.__dict__)
-            for key, value in kwargs.iteritems():
-                setattr(updated_app, key, value)
-        else:
-            updated_app = MarathonApp(**kwargs)
+        params = {'force': force}
+        data = app.to_json()
+        response = self._do_request("PUT", "/v2/apps/{app_id}".format(app_id=app_id), params=params, data=data)
+        return response.json()
 
-        data = json.dumps(updated_app.json_encode())
-        response = self._do_request("PUT", "/v2/apps/{app_id}".format(app_id=app_id), data=data)
-        return True if response.status_code is 204 else False
+    def rollback_app(self, app_id, version, force=False):
+        """Roll an app back to a previous version.
 
-    def delete_app(self, app_id):
+        :param str app_id: application ID
+        :param str version: application version
+        :param bool force: apply even if a deployment is in progress
+
+        :returns: a dict containing the deployment id and version
+        :rtype: dict
+        """
+        params = {'force': force}
+        data = json.dumps({'version': version})
+        response = self._do_request("PUT", "/v2/apps/{app_id}".format(app_id=app_id), params=params, data=data)
+        return response.json()
+
+    def delete_app(self, app_id, force=False):
         """Stop and destroy an app.
 
         :param str app_id: application ID
+        :param bool force: apply even if a deployment is in progress
 
-        :returns: success
-        :rtype: bool
+        :returns: a dict containing the deployment id and version
+        :rtype: dict
         """
-        response = self._do_request("DELETE", "/v2/apps/{app_id}".format(app_id=app_id))
-        return True if response.status_code is 204 else False
+        params = {'force': force}
+        response = self._do_request("DELETE", "/v2/apps/{app_id}".format(app_id=app_id), params=params)
+        return response.json()
 
     def scale_app(self, app_id, instances=None, delta=None):
         """Scale an app.
@@ -174,8 +183,8 @@ class MarathonClient(object):
         :param int instances: [optional] the number of instances to scale to
         :param int delta: [optional] the number of instances to scale up or down by
 
-        :returns: success
-        :rtype: bool
+        :returns: a dict containing the deployment id and version
+        :rtype: dict
         """
         if instances is None and delta is None:
             marathon.log.error("instances or delta must be passed")
@@ -187,8 +196,106 @@ class MarathonClient(object):
             marathon.log.error("App '{app}' not found".format(app=app_id))
             return
 
-        new_instances = instances if instances is not None else (app.instances + delta)
-        return self.update_app(app_id, app=app, instances=new_instances)
+        app.instances = instances if instances is not None else (app.instances + delta)
+        return self.update_app(app)
+
+    def create_group(self, group):
+        """Create and start a group.
+
+        :param :class:`marathon.models.group.MarathonGroup` group: the group to create
+
+        :returns: success
+        :rtype: dict containing the version ID
+        """
+        data = group.to_json()
+        response = self._do_request("POST", "/v2/groups", data=data)
+        return response.json()
+
+    def list_groups(self, **kwargs):
+        """List all groups.
+
+        :param kwargs: arbitrary search filters
+
+        :returns: list of groups
+        :rtype: list[:class:`marathon.models.group.MarathonGroup`]
+        """
+        response = self._do_request("GET", "/v2/groups")
+        groups = self._parse_response(response, MarathonGroup, is_list=True, resource_name='groups')
+        for k, v in kwargs.iteritems():
+            groups = filter(lambda o: getattr(o, k) == v, groups)
+        return groups
+
+    def get_group(self, group_id):
+        """Get a single group.
+
+        :param str group_id: group ID
+
+        :returns: group
+        :rtype: :class:`marathon.models.group.MarathonGroup`
+        """
+        response = self._do_request("GET", "/v2/groups/{group_id}".format(group_id=group_id))
+        return self._parse_response(response, MarathonGroup, resource_name='group')
+
+    def update_group(self, group_id, group, force=False):
+        """Update a group.
+
+        Applies writable settings in `group` to `group_id`
+        Note: this method can not be used to rename groups.
+
+        :param str group_id: target group ID
+        :param group: group settings
+        :type group: :class:`marathon.models.group.MarathonGroup`
+        :param bool force: apply even if a deployment is in progress
+
+        :returns: a dict containing the deployment id and version
+        :rtype: dict
+        """
+        params = {'force': force}
+        data = group.to_json()
+        response = self._do_request("PUT", "/v2/groups/{group_id}".format(group_id=group_id), data=data, params=params)
+        return response.json()
+
+    def rollback_group(self, group_id, version, force=False):
+        """Roll a group back to a previous version.
+
+        :param str group_id: group ID
+        :param str version: group version
+        :param bool force: apply even if a deployment is in progress
+
+        :returns: a dict containing the deployment id and version
+        :rtype: dict
+        """
+        params = {'force': force}
+        response = self._do_request("PUT", "/v2/groups/{group_id}/versions/{version}".format(group_id=group_id,
+                                                                                             version=version),
+                                    params=params)
+        return response.json()
+
+    def delete_group(self, group_id, force=False):
+        """Stop and destroy a group.
+
+        :param str group_id: group ID
+        :param bool force: apply even if a deployment is in progress
+
+        :returns: a dict containing the deleted version
+        :rtype: dict
+        """
+        params = {'force': force}
+        response = self._do_request("DELETE", "/v2/groups/{group_id}".format(group_id=group_id), params=params)
+        return response.json()
+
+    def scale_group(self, group_id, scale_by):
+        """Scale a group by a factor.
+
+        :param str group_id: group ID
+        :param int scale_by: factor to scale by
+
+        :returns: a dict containing the deployment id and version
+        :rtype: dict
+        """
+        params = {'scaleBy': scale_by}
+        response = self._do_request("PUT", "/v2/groups/{group_id}".format(group_id=group_id), params=params)
+        return response.json()
 
     def list_tasks(self, app_id=None, **kwargs):
         """List running tasks, optionally filtered by app_id.
@@ -204,8 +311,8 @@ class MarathonClient(object):
         else:
             response = self._do_request("GET", "/v2/tasks")
 
-        tasks = self._parse_response(response, MarathonTask, is_list=True)
-        for k,v in kwargs.iteritems():
+        tasks = self._parse_response(response, MarathonTask, is_list=True, resource_name='tasks')
+        for k, v in kwargs.iteritems():
             tasks = filter(lambda o: getattr(o, k) == v, tasks)
         return tasks
 
@@ -216,7 +323,7 @@ class MarathonClient(object):
         :param bool scale: if true, scale down the app by the number of tasks killed
         :param str host: if provided, only terminate tasks on this Mesos slave
         :param int batch_size: if non-zero, terminate tasks in groups of this size
-        :param int batch_delay: time (in seconds) to wait in between batched kills. If zero, automatically determine delay
+        :param int batch_delay: time (in seconds) to wait in between batched kills. If zero, automatically determine
 
         :returns: list of killed tasks
         :rtype: list[:class:`marathon.models.task.MarathonTask`]
@@ -232,7 +339,7 @@ class MarathonClient(object):
             params = {'scale': scale}
             if host: params['host'] = host
             response = self._do_request("DELETE", "/v2/apps/{app_id}/tasks".format(app_id=app_id), params)
-            return self._parse_response(response, MarathonTask, is_list=True)
+            return self._parse_response(response, MarathonTask, is_list=True, resource_name='tasks')
         else:
             # Terminate in batches
             tasks = self.list_tasks(app_id, host=host) if host else self.list_tasks(app_id)
@@ -252,10 +359,9 @@ class MarathonClient(object):
                     running_instances = 0
                     while running_instances < desired_instances:
                         time.sleep(1)
-                        running_instances = sum(t.started_at != None for t in self.get_app(app_id).tasks)
+                        running_instances = sum(t.started_at is None for t in self.get_app(app_id).tasks)
                 else:
                     time.sleep(batch_delay)
-
 
             return tasks
 
@@ -263,6 +369,7 @@ class MarathonClient(object):
         """Kill a task.
 
         :param str app_id: application ID
+        :param str task_id: the task to kill
         :param bool scale: if true, scale down the app by one if the task exists
 
         :returns: the killed task
@@ -271,7 +378,7 @@ class MarathonClient(object):
         params = {'scale': scale}
         response = self._do_request("DELETE", "/v2/apps/{app_id}/tasks/{task_id}"
                                     .format(app_id=app_id, task_id=task_id), params)
-        return self._parse_response(response, MarathonTask)
+        return self._parse_response(response, MarathonTask, resource_name='task')
 
     def list_versions(self, app_id):
         """List the versions of an app.
@@ -328,4 +435,51 @@ class MarathonClient(object):
         """
         params = {"callbackUrl": url}
         response = self._do_request("DELETE", "/v2/eventSubscriptions", params)
+        return response.json()
+
+    def list_deployments(self):
+        """List all running deployments.
+
+        :returns: list of deployments
+        :rtype: list[:class:`marathon.models.deployment.MarathonDeployment`]
+        """
+        response = self._do_request("GET", "/v2/deployments")
+        return self._parse_response(response, MarathonDeployment, is_list=True)
+
+    def delete_deployment(self, deployment_id):
+        """Cancel a deployment.
+
+        :param str deployment_id: deployment id
+
+        :returns: a dict containing the deployment id and version
+        :rtype: dict
+        """
+        response = self._do_request("DELETE", "/v2/deployments/{deployment}".format(deployment=deployment_id))
+        return response.json()
+
+    def get_info(self):
+        """Get server configuration information.
+
+        :returns: server config info
+        :rtype: :class:`marathon.models.info.MarathonInfo`
+        """
+        response = self._do_request("GET", "/v2/info")
+        return self._parse_response(response, MarathonInfo)
+
+    def ping(self):
+        """Ping the Marathon server.
+
+        :returns: the text response
+        :rtype: str
+        """
+        response = self._do_request("GET", "/ping")
+        return response.text
+
+    def get_metrics(self):
+        """Get server metrics
+
+        :returns: metrics dict
+        :rtype: dict
+        """
+        response = self._do_request("GET", "/metrics")
         return response.json()

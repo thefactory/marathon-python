@@ -8,7 +8,9 @@ from .task import MarathonTask
 
 
 class MarathonEndpoint(MarathonResource):
-    """Marathon Endpoint resource.
+    """(DEPRECATED) Marathon Endpoint resource.
+
+    This was removed in Marathon 0.7.0.
 
     :param str app_id: application id
     :param str host: mesos slave running the task
@@ -16,6 +18,7 @@ class MarathonEndpoint(MarathonResource):
     :param int app_port: port seen by the application
     :param int task_port: port allocated on the slave
     """
+
     def __repr__(self):
         return "{clazz}::{app_id}::{task_id}".format(clazz=self.__class__.__name__, app_id=self.app_id, task_id=self.task_id)
 
@@ -27,7 +30,7 @@ class MarathonEndpoint(MarathonResource):
         self.task_port = task_port
 
     @classmethod
-    def json_decode(cls, obj):
+    def from_json(cls, obj):
         """Construct a list of MarathonEndpoints from a parsed endpoints response.
 
         :param dict obj: object obj from parsed response
@@ -36,9 +39,9 @@ class MarathonEndpoint(MarathonResource):
         """
         app_id = obj.get('id')
         app_ports = obj.get('ports')
-
+        f = MarathonTask()
         endpoints = []
-        tasks = [MarathonTask.json_decode(i) for i in obj['instances']]
+        tasks = [MarathonTask.from_json(i) for i in obj['instances']]
 
         for task in tasks:
             # If this fails, fundamental assumptions around port mappings are incorrect and we need to bail

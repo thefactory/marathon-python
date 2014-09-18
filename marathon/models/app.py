@@ -1,98 +1,136 @@
-try:
-    import json
-except ImportError:
-    import simplejson as json
-
-from .base import MarathonResource
+from .base import MarathonResource, MarathonObject
 from .constraint import MarathonConstraint
+from .container import MarathonContainer
+from .deployment import MarathonDeployment
 from .task import MarathonTask
 
 
 class MarathonApp(MarathonResource):
     """Marathon Application resource.
 
-    :param str cmd: cmd
+    See: https://mesosphere.github.io/marathon/docs/rest-api.html#post-/v2/apps
+
+    :param list[str] args: args form of the command to run
+    :param int backoff_factor: multiplier for subsequent backoff
+    :param int backoff_seconds: base time, in seconds, for exponential backoff
+    :param str cmd: cmd form of the command to run
     :param constraints: placement constraints
     :type constraints: list[:class:`marathon.models.constraint.MarathonConstraint`] or list[tuple]
-    :param dict container: container
+    :param container: container info
+    :type container: :class:`marathon.models.container.MarathonContainer` or dict
     :param float cpus: cpus required per instance
+    :param list[str] dependencies: services (app IDs) on which this app depends
+    :param int disk: disk required per instance
+    :param deployments: (read-only) currently running deployments that affect this app
+    :type deployments: list[:class:`marathon.models.deployment.MarathonDeployment`]
     :param dict env: env vars
     :param str executor: executor
+    :param health_checks: health checks
+    :type health_checks: list[:class:`marathon.models.MarathonHealthCheck`] or list[dict]
     :param str id: app id
     :param int instances: instances
     :param float mem: memory (in MB) required per instance
     :param list[int] ports: ports
+    :param bool require_ports: require the specified `ports` to be available in the resource offer
+    :param list[str] store_urls: store URLs
+    :param tasks: (read-only) tasks
+    :type tasks: list[:class:`marathon.models.task.MarathonTask`]
+    :param int tasks_running: (read-only) the number of running tasks
+    :param int tasks_staged: (read-only) the number of staged tasks
+    :param upgrade_strategy: strategy by which app instances are replaced during a deployment
+    :type upgrade_strategy: list[:class:`marathon.models.constraint.MarathonUpgradeStrategy`]
     :param list[str] uris: uris
+    :param str user: user
+    :param str version: version id
     """
 
-    UPDATE_OK_ATTRIBUTES = ['cmd', 'constraints', 'container', 'cpus', 'env', 'executor', 'mem', 'ports', 'uris']
+    UPDATE_OK_ATTRIBUTES = [
+        'args', 'backoff_factor', 'backoff_seconds', 'cmd', 'constraints', 'container', 'cpus', 'dependencies', 'disk',
+        'env', 'executor', 'health_checks', 'instances', 'mem', 'ports', 'require_ports', 'store_urls',
+        'upgrade_strategy', 'uris', 'user', 'version'
+    ]
     """List of attributes which may be updated/changed after app creation"""
 
     CREATE_ONLY_ATTRIBUTES = ['id']
     """List of attributes that should only be passed on creation"""
 
-    READ_ONLY_ATTRIBUTES = []
+    READ_ONLY_ATTRIBUTES = ['deployments', 'tasks', 'tasks_running', 'tasks_staging']
     """List of read-only attributes"""
 
-    def __init__(self, cmd=None, constraints=None, container=None, cpus=None, env=None, executor=None,
-                 health_checks=None, id=None, instances=None, mem=None, ports=None, tasks=None, uris=None):
+    def __init__(self, args=None, backoff_factor=None, backoff_seconds=None, cmd=None, constraints=None, container=None,
+                 cpus=None, dependencies=None, deployments=None, disk=None, env=None, executor=None, health_checks=None,
+                 id=None, instances=None, mem=None, ports=None, require_ports=None, store_urls=None, tasks=None,
+                 tasks_running=None, tasks_staged=None, upgrade_strategy=None, uris=None, user=None, version=None):
+
+
+        # self.args = args or []
+        self.args = args
+        # Marathon 0.7.0-RC1 throws a validation error if this is [] and cmd is passed:
+        # "error": "AppDefinition must either contain a 'cmd' or a 'container'."
+
+        self.backoff_factor = backoff_factor
+        self.backoff_seconds = backoff_seconds
         self.cmd = cmd
         self.constraints = [
             c if isinstance(c, MarathonConstraint) else MarathonConstraint(*c)
-            for c in (constraints or [])]
-        self.container = container
+            for c in (constraints or [])
+        ]
+        self.container = container if (isinstance(container, MarathonContainer) or container is None) \
+            else MarathonContainer.from_json(container)
         self.cpus = cpus
+        self.dependencies = dependencies or []
+        self.deployments = [
+            d if isinstance(d, MarathonDeployment) else MarathonDeployment().from_json(d)
+            for d in (deployments or [])
+        ]
+        self.disk = disk
         self.env = env
         self.executor = executor
         self.health_checks = health_checks or []
+        self.health_checks = [
+            hc if isinstance(hc, MarathonHealthCheck) else MarathonHealthCheck().from_json(hc)
+            for hc in (health_checks or [])
+        ]
         self.id = id
         self.instances = instances
         self.mem = mem
         self.ports = ports or []
-        self.tasks = tasks or []
-        self.uris = uris
+        self.require_ports = require_ports
+        self.store_urls = store_urls or []
+        self.tasks = [
+            t if isinstance(t, MarathonTask) else MarathonTask().from_json(t)
+            for t in (tasks or [])
+        ]
+        self.tasks_running = tasks_running
+        self.tasks_staged = tasks_staged
+        self.upgrade_strategy = upgrade_strategy
+        self.uris = uris or []
+        self.user = user
+        self.version = version
 
-    @classmethod
-    def json_decode(cls, obj):
-        """Construct a MarathonApp from a parsed response.
 
-        :param dict attributes: object attributes from parsed response
+class MarathonHealthCheck(MarathonObject):
+    """Marathon health check.
 
-        :rtype: :class:`MarathonApp`
-        """
-        return cls(
-            cmd=obj.get('cmd'),
-            constraints=[MarathonConstraint.json_decode(c) for c in obj.get('constraints', [])],
-            container=obj.get('container'),
-            cpus=obj.get('cpus'),
-            env=obj.get('env'),
-            executor=obj.get('executor'),
-            health_checks=obj.get('healthChecks'),
-            id=obj.get('id'),
-            instances=obj.get('instances'),
-            mem=obj.get('mem'),
-            ports=obj.get('ports'),
-            tasks=[MarathonTask.json_decode(t) for t in obj.get('tasks', [])],
-            uris=obj.get('uris')
-        )
+    See https://mesosphere.github.io/marathon/docs/health-checks.html
 
-    def json_encode(self):
-        """Construct a JSON-friendly representation of the object.
+    :param str command: health check command (if protocol == 'COMMAND')
+    :param int grace_period_seconds: how long to ignore health check failures on initial task launch (before first healthy status)
+    :param int interval_seconds: how long to wait between health checks
+    :param int max_consecutive_failures: max number of consecutive failures before the task should be killed
+    :param str path: health check target path (if protocol == 'HTTP')
+    :param int port_index: target port as indexed in app's `ports` array
+    :param str protocol: health check protocol ('HTTP', 'TCP', or 'COMMAND')
+    :param int timeout_seconds: how long before a waiting health check is considered failed
+    """
 
-        :rtype: dict
-        """
-        return {
-            'cmd': self.cmd,
-            'constraints': [c.json_encode() for c in self.constraints],
-            'container': self.container,
-            'cpus': self.cpus,
-            'env': self.env,
-            'executor': self.executor,
-            'healthChecks': self.health_checks,
-            'id': self.id,
-            'instances': self.instances,
-            'mem': self.mem,
-            'ports': self.ports,
-            'tasks': [t.json_encode() for t in self.tasks],
-            'uris': self.uris
-        }
+    def __init__(self, command=None, grace_period_seconds=None, interval_seconds=None, max_consecutive_failures=None,
+                 path=None, port_index=None, protocol=None, timeout_seconds=None):
+        self.command = command
+        self.grace_period_seconds = grace_period_seconds
+        self.interval_seconds = interval_seconds
+        self.max_consecutive_failures = max_consecutive_failures
+        self.path = path
+        self.port_index = port_index
+        self.protocol = protocol
+        self.timeout_seconds = timeout_seconds

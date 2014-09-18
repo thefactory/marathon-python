@@ -1,15 +1,11 @@
 from ..exceptions import InvalidOperatorError
+from .base import MarathonObject
 
 
-UNIQUE_OPERATOR = 'UNIQUE'
-CLUSTER_OPERATOR = 'CLUSTER'
-GROUP_BY_OPERATOR = 'GROUP_BY'
-
-
-class MarathonConstraint(object):
+class MarathonConstraint(MarathonObject):
     """Marathon placement constraint.
 
-    See http://mesosphere.io/2013/11/22/marathon-a-mesos-framework-adds-placement-constraints/
+    See https://mesosphere.github.io/marathon/docs/constraints.html
 
     :param str field: constraint operator target
     :param str operator: must be one of [UNIQUE, CLUSTER, GROUP_BY]
@@ -18,10 +14,12 @@ class MarathonConstraint(object):
     :type value: str, int, or None
     """
 
-    def __init__(self, field, operator, value=None):
-        if not operator in [UNIQUE_OPERATOR, CLUSTER_OPERATOR, GROUP_BY_OPERATOR]:
-            raise InvalidOperatorError(operator)
+    OPERATORS = ['UNIQUE', 'CLUSTER', 'GROUP_BY']
+    """Valid operators"""
 
+    def __init__(self, field, operator, value=None):
+        if not operator in self.OPERATORS:
+            raise InvalidOperatorError(operator)
         self.field = field
         self.operator = operator
         self.value = value
