@@ -31,8 +31,18 @@ class MarathonConstraint(MarathonObject):
             template = "MarathonConstraint::{field}:{operator}"
         return template.format(**self.__dict__)
 
+    def json_repr(self):
+        """Construct a JSON-friendly representation of the object.
+
+        :rtype: list
+        """
+        if self.value:
+            return [self.field, self.operator, self.value]
+        else:
+            return [self.field, self.operator]
+
     @classmethod
-    def json_decode(cls, obj):
+    def from_json(cls, obj):
         """Construct a MarathonConstraint from a parsed response.
 
         :param dict attributes: object attributes from parsed response
@@ -45,13 +55,3 @@ class MarathonConstraint(MarathonObject):
         if len(obj) > 2:
             (field, operator, value) = obj
             return cls(field, operator, value)
-
-    def json_encode(self):
-        """Construct a JSON-friendly representation of the object.
-
-        :rtype: dict
-        """
-        if self.value:
-            return [self.field, self.operator, self.value]
-        else:
-            return [self.field, self.operator]
