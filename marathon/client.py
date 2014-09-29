@@ -330,8 +330,10 @@ class MarathonClient(object):
             response = self._do_request('GET', '/v2/tasks')
 
         tasks = self._parse_response(response, MarathonTask, is_list=True, resource_name='tasks')
+        [setattr(t, 'app_id', app_id) for t in tasks if app_id and t.app_id is None]
         for k, v in kwargs.iteritems():
             tasks = filter(lambda o: getattr(o, k) == v, tasks)
+
         return tasks
 
     def kill_tasks(self, app_id, scale=False, host=None, batch_size=0, batch_delay=0):
