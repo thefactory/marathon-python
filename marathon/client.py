@@ -22,7 +22,7 @@ from .exceptions import InternalServerError, NotFoundError, MarathonHttpError, M
 class MarathonClient(object):
     """Client interface for the Marathon REST API."""
 
-    def __init__(self, servers, username=None, password=None, timeout=5):
+    def __init__(self, servers, username=None, password=None, timeout=10):
         """Create a MarathonClient instance.
 
         If multiple servers are specified, each will be tried in succession until a non-"Connection Error"-type
