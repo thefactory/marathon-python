@@ -29,13 +29,11 @@ class InternalServerError(MarathonHttpError):
     pass
 
 
-class InvalidOperatorError(MarathonError):
+class InvalidChoiceError(MarathonError):
 
-    def __init__(self, operator):
-        super(InvalidOperatorError, self).__init__('Invalid operator {operator}'.format(operator=operator))
-
-
-class InvalidContainerTypeError(MarathonError):
-
-    def __init__(self, type):
-        super(InvalidContainerTypeError, self).__init__('Invalid container type {type}'.format(type=type))
+    def __init__(self, param, value, options):
+        super(InvalidChoiceError, self).__init__(
+            'Invalid choice "{value}" for param "{param}". Must be one of {options}'.format(
+                param=param, value=value, options=options
+            )
+        )

@@ -1,4 +1,4 @@
-from ..exceptions import InvalidOperatorError
+from ..exceptions import InvalidChoiceError
 from .base import MarathonObject
 
 
@@ -19,7 +19,7 @@ class MarathonConstraint(MarathonObject):
 
     def __init__(self, field, operator, value=None):
         if not operator in self.OPERATORS:
-            raise InvalidOperatorError(operator)
+            raise InvalidChoiceError('operator', operator, self.OPERATORS)
         self.field = field
         self.operator = operator
         self.value = value

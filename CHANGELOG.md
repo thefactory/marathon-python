@@ -1,3 +1,13 @@
+## 0.6.0 (2014-09-29)
+
+Mesos 0.20.1- and Marathon 0.7.1-compatible release.
+
+Changes:
+* Added bridge networking support
+* Use common exception for all pick-from-a-list options (`InvalidChoiceError`). `InvalidOperatorError` has been removed
+* Updated `MarathonObject.__repr__` to be more useful
+* Changed default HTTP request timeout from 5s to 10s
+
 ## 0.5.1 (2014-09-18)
 
 Changes:
@@ -15,6 +25,6 @@ Changes:
 * Updated object attributes to be at parity with Marathon 0.7.0 (RC2)
 * Updated return types to be at parity with Marathon 0.7.0 (RC2)
 * Updated method signatures to be more consistent
-* HTTP 4xx errors other than 404 now through `MarathonHttpError` instead of `NotFoundError`
+* HTTP 4xx errors other than 404 now throw `MarathonHttpError` instead of `NotFoundError`
 * `json_encode()` and `json_decode()` on MarathonResource have been renamed to `to_json()` and `from_json()`, respectively
 * Refactored serialization/deserialization to reduce boilerplate
