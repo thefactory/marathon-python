@@ -1,3 +1,8 @@
+## 0.6.1 (2014-09-29)
+
+Changes:
+* Fix broken exception import
+
 ## 0.6.0 (2014-09-29)
 
 Mesos 0.20.1- and Marathon 0.7.1-compatible release.
