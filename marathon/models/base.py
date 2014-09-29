@@ -6,6 +6,9 @@ from marathon.util import to_camel_case, to_snake_case, MarathonJsonEncoder
 class MarathonObject(object):
     """Base Marathon object."""
 
+    def __repr__(self):
+        return "{clazz}::{obj}".format(clazz=self.__class__.__name__, obj=self.to_json())
+
     def json_repr(self):
         """Construct a JSON-friendly representation of the object.
 
@@ -21,6 +24,13 @@ class MarathonObject(object):
         """
         return cls(**{to_snake_case(k): v for k,v in attributes.iteritems()})
 
+    def to_json(self):
+        """Encode an object as a JSON string.
+
+        :rtype: str
+        """
+        return json.dumps(self.json_repr(), cls=MarathonJsonEncoder, sort_keys=True)
+
 
 class MarathonResource(MarathonObject):
     """Base Marathon resource."""
@@ -29,11 +39,5 @@ class MarathonResource(MarathonObject):
         if 'id' in vars(self).keys():
             return "{clazz}::{id}".format(clazz=self.__class__.__name__, id=self.id)
         else:
-            return "{clazz}::{obj}".format(clazz=self.__class__.__name__, obj=self.to_json())
+            return super(MarathonResource).__repr__()
 
-    def to_json(self):
-        """Encode an object as a JSON string.
-
-        :rtype: str
-        """
-        return json.dumps(self.json_repr(), cls=MarathonJsonEncoder, sort_keys=True)
