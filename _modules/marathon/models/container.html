@@ -99,7 +99,7 @@
           <div role="main">
             
   <h1>Source code for marathon.models.container</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">..exceptions</span> <span class="kn">import</span> <span class="n">InvalidContainerTypeError</span>
+<span class="kn">from</span> <span class="nn">..exceptions</span> <span class="kn">import</span> <span class="n">InvalidChoiceError</span>
 <span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">MarathonObject</span>
 
 
@@ -118,9 +118,9 @@
     <span class="n">TYPES</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;DOCKER&#39;</span><span class="p">]</span>
     <span class="sd">&quot;&quot;&quot;Valid container types&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docker</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">volumes</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docker</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&#39;DOCKER&#39;</span><span class="p">,</span> <span class="n">volumes</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">TYPES</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">InvalidContainerTypeError</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">InvalidChoiceError</span><span class="p">(</span><span class="s">&#39;type&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">TYPES</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">docker</span> <span class="o">=</span> <span class="n">docker</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">docker</span><span class="p">,</span> <span class="n">MarathonDockerContainer</span><span class="p">)</span> \
             <span class="k">else</span> <span class="n">MarathonDockerContainer</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">docker</span><span class="p">)</span>
@@ -136,10 +136,45 @@
 <span class="sd">    See https://mesosphere.github.io/marathon/docs/native-docker.html</span>
 
 <span class="sd">    :param str image: docker image</span>
+<span class="sd">    :param str network:</span>
+<span class="sd">    :param port_mappings:</span>
+<span class="sd">    :type port_mappings: list[:class:`marathon.models.container.MarathonContainerPortMapping`] or list[dict]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">NETWORK_MODES</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;BRIDGE&#39;</span><span class="p">,</span> <span class="s">&#39;HOST&#39;</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;Valid network modes&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">network</span><span class="o">=</span><span class="s">&#39;HOST&#39;</span><span class="p">,</span> <span class="n">port_mappings</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span>
+        <span class="k">if</span> <span class="n">network</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">network</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">NETWORK_MODES</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">InvalidChoiceError</span><span class="p">(</span><span class="s">&#39;network&#39;</span><span class="p">,</span> <span class="n">network</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">NETWORK_MODES</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">network</span> <span class="o">=</span> <span class="n">network</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port_mappings</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">pm</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pm</span><span class="p">,</span> <span class="n">MarathonContainerPortMapping</span><span class="p">)</span> <span class="k">else</span> <span class="n">MarathonContainerPortMapping</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">pm</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">pm</span> <span class="ow">in</span> <span class="p">(</span><span class="n">port_mappings</span> <span class="ow">or</span> <span class="p">[])</span>
+        <span class="p">]</span>
+
+</div>
+<div class="viewcode-block" id="MarathonContainerPortMapping"><a class="viewcode-back" href="../../../marathon.html#marathon.models.container.MarathonContainerPortMapping">[docs]</a><span class="k">class</span> <span class="nc">MarathonContainerPortMapping</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Container port mapping.</span>
+
+<span class="sd">    See https://mesosphere.github.io/marathon/docs/native-docker.html</span>
+
+<span class="sd">    :param int container_port:</span>
+<span class="sd">    :param int host_port:</span>
+<span class="sd">    :param str protocol:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">PROTOCOLS</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;tcp&#39;</span><span class="p">,</span> <span class="s">&#39;udp&#39;</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;Valid protocols&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container_port</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">host_port</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s">&#39;tcp&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">container_port</span> <span class="o">=</span> <span class="n">container_port</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">host_port</span> <span class="o">=</span> <span class="n">host_port</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">protocol</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">PROTOCOLS</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidChoiceError</span><span class="p">(</span><span class="s">&#39;protocol&#39;</span><span class="p">,</span> <span class="n">protocol</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PROTOCOLS</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span> <span class="o">=</span> <span class="n">protocol</span>
 
 </div>
 <div class="viewcode-block" id="MarathonContainerVolume"><a class="viewcode-back" href="../../../marathon.html#marathon.models.container.MarathonContainerVolume">[docs]</a><span class="k">class</span> <span class="nc">MarathonContainerVolume</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
@@ -152,9 +187,13 @@
 <span class="sd">    :param str mode: one of [&#39;RO&#39;, &#39;RW&#39;]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container_path</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">host_path</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">MODES</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;RO&#39;</span><span class="p">,</span> <span class="s">&#39;RW&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container_path</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">host_path</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;RW&#39;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">container_path</span> <span class="o">=</span> <span class="n">container_path</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">host_path</span> <span class="o">=</span> <span class="n">host_path</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">mode</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">MODES</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidChoiceError</span><span class="p">(</span><span class="s">&#39;mode&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MODES</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span></div>
 </pre></div>
 

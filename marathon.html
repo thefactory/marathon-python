@@ -223,16 +223,9 @@
 </table>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="class">
-<dt id="marathon.models.base.MarathonResource">
-<em class="property">class </em><tt class="descclassname">marathon.models.base.</tt><tt class="descname">MarathonResource</tt><a class="reference internal" href="_modules/marathon/models/base.html#MarathonResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.base.MarathonResource" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
-<p>Base Marathon resource.</p>
 <dl class="method">
-<dt id="marathon.models.base.MarathonResource.to_json">
-<tt class="descname">to_json</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/marathon/models/base.html#MarathonResource.to_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.base.MarathonResource.to_json" title="Permalink to this definition">¶</a></dt>
+<dt id="marathon.models.base.MarathonObject.to_json">
+<tt class="descname">to_json</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/marathon/models/base.html#MarathonObject.to_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.base.MarathonObject.to_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Encode an object as a JSON string.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -244,6 +237,13 @@
 </table>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="class">
+<dt id="marathon.models.base.MarathonResource">
+<em class="property">class </em><tt class="descclassname">marathon.models.base.</tt><tt class="descname">MarathonResource</tt><a class="reference internal" href="_modules/marathon/models/base.html#MarathonResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.base.MarathonResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
+<p>Base Marathon resource.</p>
 </dd></dl>
 
 <span class="target" id="module-marathon.models.constraint"></span><dl class="class">
@@ -274,8 +274,8 @@
 </dd></dl>
 
 <dl class="classmethod">
-<dt id="marathon.models.constraint.MarathonConstraint.json_decode">
-<em class="property">classmethod </em><tt class="descname">json_decode</tt><big>(</big><em>obj</em><big>)</big><a class="reference internal" href="_modules/marathon/models/constraint.html#MarathonConstraint.json_decode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.constraint.MarathonConstraint.json_decode" title="Permalink to this definition">¶</a></dt>
+<dt id="marathon.models.constraint.MarathonConstraint.from_json">
+<em class="property">classmethod </em><tt class="descname">from_json</tt><big>(</big><em>obj</em><big>)</big><a class="reference internal" href="_modules/marathon/models/constraint.html#MarathonConstraint.from_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.constraint.MarathonConstraint.from_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct a MarathonConstraint from a parsed response.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -290,14 +290,14 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="marathon.models.constraint.MarathonConstraint.json_encode">
-<tt class="descname">json_encode</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/marathon/models/constraint.html#MarathonConstraint.json_encode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.constraint.MarathonConstraint.json_encode" title="Permalink to this definition">¶</a></dt>
+<dt id="marathon.models.constraint.MarathonConstraint.json_repr">
+<tt class="descname">json_repr</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/marathon/models/constraint.html#MarathonConstraint.json_repr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.constraint.MarathonConstraint.json_repr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct a JSON-friendly representation of the object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
 </tr>
 </tbody>
 </table>
@@ -307,7 +307,7 @@
 
 <span class="target" id="module-marathon.models.container"></span><dl class="class">
 <dt id="marathon.models.container.MarathonContainer">
-<em class="property">class </em><tt class="descclassname">marathon.models.container.</tt><tt class="descname">MarathonContainer</tt><big>(</big><em>docker=None</em>, <em>type=None</em>, <em>volumes=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/container.html#MarathonContainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.container.MarathonContainer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">marathon.models.container.</tt><tt class="descname">MarathonContainer</tt><big>(</big><em>docker=None</em>, <em>type='DOCKER'</em>, <em>volumes=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/container.html#MarathonContainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.container.MarathonContainer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
 <p>Marathon health check.</p>
 <p>See <a class="reference external" href="https://mesosphere.github.io/marathon/docs/native-docker.html">https://mesosphere.github.io/marathon/docs/native-docker.html</a></p>
@@ -333,8 +333,35 @@
 </dd></dl>
 
 <dl class="class">
+<dt id="marathon.models.container.MarathonContainerPortMapping">
+<em class="property">class </em><tt class="descclassname">marathon.models.container.</tt><tt class="descname">MarathonContainerPortMapping</tt><big>(</big><em>container_port=None</em>, <em>host_port=0</em>, <em>protocol='tcp'</em><big>)</big><a class="reference internal" href="_modules/marathon/models/container.html#MarathonContainerPortMapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.container.MarathonContainerPortMapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
+<p>Container port mapping.</p>
+<p>See <a class="reference external" href="https://mesosphere.github.io/marathon/docs/native-docker.html">https://mesosphere.github.io/marathon/docs/native-docker.html</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>container_port</strong> (<em>int</em>) &#8211; </li>
+<li><strong>host_port</strong> (<em>int</em>) &#8211; </li>
+<li><strong>protocol</strong> (<em>str</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="marathon.models.container.MarathonContainerPortMapping.PROTOCOLS">
+<tt class="descname">PROTOCOLS</tt><em class="property"> = ['tcp', 'udp']</em><a class="headerlink" href="#marathon.models.container.MarathonContainerPortMapping.PROTOCOLS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Valid protocols</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="marathon.models.container.MarathonContainerVolume">
-<em class="property">class </em><tt class="descclassname">marathon.models.container.</tt><tt class="descname">MarathonContainerVolume</tt><big>(</big><em>container_path=None</em>, <em>host_path=None</em>, <em>mode=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/container.html#MarathonContainerVolume"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.container.MarathonContainerVolume" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">marathon.models.container.</tt><tt class="descname">MarathonContainerVolume</tt><big>(</big><em>container_path=None</em>, <em>host_path=None</em>, <em>mode='RW'</em><big>)</big><a class="reference internal" href="_modules/marathon/models/container.html#MarathonContainerVolume"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.container.MarathonContainerVolume" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
 <p>Volume options.</p>
 <p>See <a class="reference external" href="https://mesosphere.github.io/marathon/docs/native-docker.html">https://mesosphere.github.io/marathon/docs/native-docker.html</a></p>
@@ -351,11 +378,16 @@
 </tr>
 </tbody>
 </table>
+<dl class="attribute">
+<dt id="marathon.models.container.MarathonContainerVolume.MODES">
+<tt class="descname">MODES</tt><em class="property"> = ['RO', 'RW']</em><a class="headerlink" href="#marathon.models.container.MarathonContainerVolume.MODES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="marathon.models.container.MarathonDockerContainer">
-<em class="property">class </em><tt class="descclassname">marathon.models.container.</tt><tt class="descname">MarathonDockerContainer</tt><big>(</big><em>image=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/container.html#MarathonDockerContainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.container.MarathonDockerContainer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">marathon.models.container.</tt><tt class="descname">MarathonDockerContainer</tt><big>(</big><em>image=None</em>, <em>network='HOST'</em>, <em>port_mappings=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/container.html#MarathonDockerContainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.container.MarathonDockerContainer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
 <p>Docker options.</p>
 <p>See <a class="reference external" href="https://mesosphere.github.io/marathon/docs/native-docker.html">https://mesosphere.github.io/marathon/docs/native-docker.html</a></p>
@@ -363,10 +395,21 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> (<em>str</em>) &#8211; docker image</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>image</strong> (<em>str</em>) &#8211; docker image</li>
+<li><strong>network</strong> (<em>str</em>) &#8211; </li>
+<li><strong>port_mappings</strong> (list[<a class="reference internal" href="#marathon.models.container.MarathonContainerPortMapping" title="marathon.models.container.MarathonContainerPortMapping"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.container.MarathonContainerPortMapping</span></tt></a>] or list[dict]) &#8211; </li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
+<dl class="attribute">
+<dt id="marathon.models.container.MarathonDockerContainer.NETWORK_MODES">
+<tt class="descname">NETWORK_MODES</tt><em class="property"> = ['BRIDGE', 'HOST']</em><a class="headerlink" href="#marathon.models.container.MarathonDockerContainer.NETWORK_MODES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Valid network modes</p>
+</dd></dl>
+
 </dd></dl>
 
 <span class="target" id="module-marathon.models.deployment"></span><dl class="class">
@@ -609,7 +652,7 @@
 <span id="marathon-client"></span><h2>marathon.client<a class="headerlink" href="#module-marathon.client" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="marathon.client.MarathonClient">
-<em class="property">class </em><tt class="descclassname">marathon.client.</tt><tt class="descname">MarathonClient</tt><big>(</big><em>servers</em>, <em>username=None</em>, <em>password=None</em>, <em>timeout=5</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">marathon.client.</tt><tt class="descname">MarathonClient</tt><big>(</big><em>servers</em>, <em>username=None</em>, <em>password=None</em>, <em>timeout=10</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
 <p>Client interface for the Marathon REST API.</p>
 <dl class="method">
@@ -1218,14 +1261,8 @@ Note: this method can not be used to rename groups.</p>
 </dd></dl>
 
 <dl class="exception">
-<dt id="marathon.exceptions.InvalidContainerTypeError">
-<em class="property">exception </em><tt class="descclassname">marathon.exceptions.</tt><tt class="descname">InvalidContainerTypeError</tt><big>(</big><em>type</em><big>)</big><a class="reference internal" href="_modules/marathon/exceptions.html#InvalidContainerTypeError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.exceptions.InvalidContainerTypeError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.exceptions.MarathonError" title="marathon.exceptions.MarathonError"><tt class="xref py py-class docutils literal"><span class="pre">marathon.exceptions.MarathonError</span></tt></a></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="marathon.exceptions.InvalidOperatorError">
-<em class="property">exception </em><tt class="descclassname">marathon.exceptions.</tt><tt class="descname">InvalidOperatorError</tt><big>(</big><em>operator</em><big>)</big><a class="reference internal" href="_modules/marathon/exceptions.html#InvalidOperatorError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.exceptions.InvalidOperatorError" title="Permalink to this definition">¶</a></dt>
+<dt id="marathon.exceptions.InvalidChoiceError">
+<em class="property">exception </em><tt class="descclassname">marathon.exceptions.</tt><tt class="descname">InvalidChoiceError</tt><big>(</big><em>param</em>, <em>value</em>, <em>options</em><big>)</big><a class="reference internal" href="_modules/marathon/exceptions.html#InvalidChoiceError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.exceptions.InvalidChoiceError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#marathon.exceptions.MarathonError" title="marathon.exceptions.MarathonError"><tt class="xref py py-class docutils literal"><span class="pre">marathon.exceptions.MarathonError</span></tt></a></p>
 </dd></dl>
 

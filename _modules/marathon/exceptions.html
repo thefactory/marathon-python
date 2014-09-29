@@ -130,16 +130,14 @@
     <span class="k">pass</span>
 
 </div>
-<div class="viewcode-block" id="InvalidOperatorError"><a class="viewcode-back" href="../../marathon.html#marathon.exceptions.InvalidOperatorError">[docs]</a><span class="k">class</span> <span class="nc">InvalidOperatorError</span><span class="p">(</span><span class="n">MarathonError</span><span class="p">):</span>
+<div class="viewcode-block" id="InvalidChoiceError"><a class="viewcode-back" href="../../marathon.html#marathon.exceptions.InvalidChoiceError">[docs]</a><span class="k">class</span> <span class="nc">InvalidChoiceError</span><span class="p">(</span><span class="n">MarathonError</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">InvalidOperatorError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="s">&#39;Invalid operator {operator}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">operator</span><span class="o">=</span><span class="n">operator</span><span class="p">))</span>
-
-</div>
-<div class="viewcode-block" id="InvalidContainerTypeError"><a class="viewcode-back" href="../../marathon.html#marathon.exceptions.InvalidContainerTypeError">[docs]</a><span class="k">class</span> <span class="nc">InvalidContainerTypeError</span><span class="p">(</span><span class="n">MarathonError</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">InvalidContainerTypeError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="s">&#39;Invalid container type {type}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="nb">type</span><span class="p">))</span></div>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">InvalidChoiceError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span>
+            <span class="s">&#39;Invalid choice &quot;{value}&quot; for param &quot;{param}&quot;. Must be one of {options}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">param</span><span class="o">=</span><span class="n">param</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span>
+            <span class="p">)</span>
+        <span class="p">)</span></div>
 </pre></div>
 
           </div>

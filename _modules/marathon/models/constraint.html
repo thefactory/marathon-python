@@ -99,7 +99,7 @@
           <div role="main">
             
   <h1>Source code for marathon.models.constraint</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">..exceptions</span> <span class="kn">import</span> <span class="n">InvalidOperatorError</span>
+<span class="kn">from</span> <span class="nn">..exceptions</span> <span class="kn">import</span> <span class="n">InvalidChoiceError</span>
 <span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">MarathonObject</span>
 
 
@@ -120,7 +120,7 @@
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">operator</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">OPERATORS</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">InvalidOperatorError</span><span class="p">(</span><span class="n">operator</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">InvalidChoiceError</span><span class="p">(</span><span class="s">&#39;operator&#39;</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">OPERATORS</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">field</span> <span class="o">=</span> <span class="n">field</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">operator</span> <span class="o">=</span> <span class="n">operator</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
@@ -132,8 +132,18 @@
             <span class="n">template</span> <span class="o">=</span> <span class="s">&quot;MarathonConstraint::{field}:{operator}&quot;</span>
         <span class="k">return</span> <span class="n">template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">)</span>
 
+<div class="viewcode-block" id="MarathonConstraint.json_repr"><a class="viewcode-back" href="../../../marathon.html#marathon.models.constraint.MarathonConstraint.json_repr">[docs]</a>    <span class="k">def</span> <span class="nf">json_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Construct a JSON-friendly representation of the object.</span>
+
+<span class="sd">        :rtype: list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">field</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">operator</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">field</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">operator</span><span class="p">]</span>
+</div>
     <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="MarathonConstraint.json_decode"><a class="viewcode-back" href="../../../marathon.html#marathon.models.constraint.MarathonConstraint.json_decode">[docs]</a>    <span class="k">def</span> <span class="nf">json_decode</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+<div class="viewcode-block" id="MarathonConstraint.from_json"><a class="viewcode-back" href="../../../marathon.html#marathon.models.constraint.MarathonConstraint.from_json">[docs]</a>    <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Construct a MarathonConstraint from a parsed response.</span>
 
 <span class="sd">        :param dict attributes: object attributes from parsed response</span>
@@ -145,17 +155,7 @@
             <span class="k">return</span> <span class="n">cls</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">operator</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
             <span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">=</span> <span class="n">obj</span>
-            <span class="k">return</span> <span class="n">cls</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-</div>
-<div class="viewcode-block" id="MarathonConstraint.json_encode"><a class="viewcode-back" href="../../../marathon.html#marathon.models.constraint.MarathonConstraint.json_encode">[docs]</a>    <span class="k">def</span> <span class="nf">json_encode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Construct a JSON-friendly representation of the object.</span>
-
-<span class="sd">        :rtype: dict</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">field</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">operator</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">field</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">operator</span><span class="p">]</span></div></div>
+            <span class="k">return</span> <span class="n">cls</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div></div>
 </pre></div>
 
           </div>
