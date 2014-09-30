@@ -33,6 +33,7 @@ class MarathonApp(MarathonResource):
     :param list[int] ports: ports
     :param bool require_ports: require the specified `ports` to be available in the resource offer
     :param list[str] store_urls: store URLs
+    :param float task_rate_limit: (Removed in 0.7.0) maximum number of tasks launched per second
     :param tasks: (read-only) tasks
     :type tasks: list[:class:`marathon.models.task.MarathonTask`]
     :param int tasks_running: (read-only) the number of running tasks
@@ -47,7 +48,7 @@ class MarathonApp(MarathonResource):
     UPDATE_OK_ATTRIBUTES = [
         'args', 'backoff_factor', 'backoff_seconds', 'cmd', 'constraints', 'container', 'cpus', 'dependencies', 'disk',
         'env', 'executor', 'health_checks', 'instances', 'mem', 'ports', 'require_ports', 'store_urls',
-        'upgrade_strategy', 'uris', 'user', 'version'
+        'task_rate_limit', 'upgrade_strategy', 'uris', 'user', 'version'
     ]
     """List of attributes which may be updated/changed after app creation"""
 
@@ -59,9 +60,9 @@ class MarathonApp(MarathonResource):
 
     def __init__(self, args=None, backoff_factor=None, backoff_seconds=None, cmd=None, constraints=None, container=None,
                  cpus=None, dependencies=None, deployments=None, disk=None, env=None, executor=None, health_checks=None,
-                 id=None, instances=None, mem=None, ports=None, require_ports=None, store_urls=None, tasks=None,
-                 tasks_running=None, tasks_staged=None, upgrade_strategy=None, uris=None, user=None, version=None):
-
+                 id=None, instances=None, mem=None, ports=None, require_ports=None, store_urls=None,
+                 task_rate_limit=None, tasks=None, tasks_running=None, tasks_staged=None, upgrade_strategy=None,
+                 uris=None, user=None, version=None):
 
         # self.args = args or []
         self.args = args
@@ -97,6 +98,7 @@ class MarathonApp(MarathonResource):
         self.ports = ports or []
         self.require_ports = require_ports
         self.store_urls = store_urls or []
+        self.task_rate_limit = task_rate_limit
         self.tasks = [
             t if isinstance(t, MarathonTask) else MarathonTask().from_json(t)
             for t in (tasks or [])
