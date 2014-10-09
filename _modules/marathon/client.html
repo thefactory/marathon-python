@@ -257,7 +257,7 @@
 <span class="sd">        :rtype: dict</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;force&#39;</span><span class="p">:</span> <span class="n">force</span><span class="p">}</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">to_json</span><span class="p">()</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">minimal</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&#39;PUT&#39;</span><span class="p">,</span> <span class="s">&#39;/v2/apps/{app_id}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">app_id</span><span class="o">=</span><span class="n">app_id</span><span class="p">),</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </div>
@@ -370,7 +370,7 @@
 <span class="sd">        :rtype: dict</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;force&#39;</span><span class="p">:</span> <span class="n">force</span><span class="p">}</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">to_json</span><span class="p">()</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">minimal</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&#39;PUT&#39;</span><span class="p">,</span> <span class="s">&#39;/v2/groups/{group_id}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="n">group_id</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </div>

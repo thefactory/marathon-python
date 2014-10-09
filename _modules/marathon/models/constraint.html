@@ -109,13 +109,14 @@
 <span class="sd">    See https://mesosphere.github.io/marathon/docs/constraints.html</span>
 
 <span class="sd">    :param str field: constraint operator target</span>
-<span class="sd">    :param str operator: must be one of [UNIQUE, CLUSTER, GROUP_BY]</span>
+<span class="sd">    :param str operator: must be one of [UNIQUE, CLUSTER, GROUP_BY, LIKE, UNLIKE]</span>
 <span class="sd">    :param value: [optional] if `operator` is CLUSTER, constrain tasks to servers where `field` == `value`.</span>
-<span class="sd">    If `operator` is GROUP_BY, place at most `value` tasks per group</span>
+<span class="sd">    If `operator` is GROUP_BY, place at most `value` tasks per group. If `operator`</span>
+<span class="sd">    is `LIKE` or `UNLIKE`, filter servers using regexp.</span>
 <span class="sd">    :type value: str, int, or None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">OPERATORS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;UNIQUE&#39;</span><span class="p">,</span> <span class="s">&#39;CLUSTER&#39;</span><span class="p">,</span> <span class="s">&#39;GROUP_BY&#39;</span><span class="p">]</span>
+    <span class="n">OPERATORS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;UNIQUE&#39;</span><span class="p">,</span> <span class="s">&#39;CLUSTER&#39;</span><span class="p">,</span> <span class="s">&#39;GROUP_BY&#39;</span><span class="p">,</span> <span class="s">&#39;LIKE&#39;</span><span class="p">,</span> <span class="s">&#39;UNLIKE&#39;</span><span class="p">]</span>
     <span class="sd">&quot;&quot;&quot;Valid operators&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
@@ -132,8 +133,10 @@
             <span class="n">template</span> <span class="o">=</span> <span class="s">&quot;MarathonConstraint::{field}:{operator}&quot;</span>
         <span class="k">return</span> <span class="n">template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">)</span>
 
-<div class="viewcode-block" id="MarathonConstraint.json_repr"><a class="viewcode-back" href="../../../marathon.html#marathon.models.constraint.MarathonConstraint.json_repr">[docs]</a>    <span class="k">def</span> <span class="nf">json_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MarathonConstraint.json_repr"><a class="viewcode-back" href="../../../marathon.html#marathon.models.constraint.MarathonConstraint.json_repr">[docs]</a>    <span class="k">def</span> <span class="nf">json_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minimal</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Construct a JSON-friendly representation of the object.</span>
+
+<span class="sd">        :param bool minimal: [ignored]</span>
 
 <span class="sd">        :rtype: list</span>
 <span class="sd">        &quot;&quot;&quot;</span>

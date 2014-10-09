@@ -104,7 +104,7 @@
 <span id="marathon-models"></span><h2>marathon.models<a class="headerlink" href="#module-marathon.models.app" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="marathon.models.app.MarathonApp">
-<em class="property">class </em><tt class="descclassname">marathon.models.app.</tt><tt class="descname">MarathonApp</tt><big>(</big><em>args=None</em>, <em>backoff_factor=None</em>, <em>backoff_seconds=None</em>, <em>cmd=None</em>, <em>constraints=None</em>, <em>container=None</em>, <em>cpus=None</em>, <em>dependencies=None</em>, <em>deployments=None</em>, <em>disk=None</em>, <em>env=None</em>, <em>executor=None</em>, <em>health_checks=None</em>, <em>id=None</em>, <em>instances=None</em>, <em>mem=None</em>, <em>ports=None</em>, <em>require_ports=None</em>, <em>store_urls=None</em>, <em>tasks=None</em>, <em>tasks_running=None</em>, <em>tasks_staged=None</em>, <em>upgrade_strategy=None</em>, <em>uris=None</em>, <em>user=None</em>, <em>version=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/app.html#MarathonApp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.MarathonApp" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">marathon.models.app.</tt><tt class="descname">MarathonApp</tt><big>(</big><em>args=None</em>, <em>backoff_factor=None</em>, <em>backoff_seconds=None</em>, <em>cmd=None</em>, <em>constraints=None</em>, <em>container=None</em>, <em>cpus=None</em>, <em>dependencies=None</em>, <em>deployments=None</em>, <em>disk=None</em>, <em>env=None</em>, <em>executor=None</em>, <em>health_checks=None</em>, <em>id=None</em>, <em>instances=None</em>, <em>mem=None</em>, <em>ports=None</em>, <em>require_ports=None</em>, <em>store_urls=None</em>, <em>task_rate_limit=None</em>, <em>tasks=None</em>, <em>tasks_running=None</em>, <em>tasks_staged=None</em>, <em>upgrade_strategy=None</em>, <em>uris=None</em>, <em>user=None</em>, <em>version=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/app.html#MarathonApp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.MarathonApp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonResource" title="marathon.models.base.MarathonResource"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonResource</span></tt></a></p>
 <p>Marathon Application resource.</p>
 <p>See: <a class="reference external" href="https://mesosphere.github.io/marathon/docs/rest-api.html#post-/v2/apps">https://mesosphere.github.io/marathon/docs/rest-api.html#post-/v2/apps</a></p>
@@ -132,6 +132,7 @@
 <li><strong>ports</strong> (<em>list[int]</em>) &#8211; ports</li>
 <li><strong>require_ports</strong> (<em>bool</em>) &#8211; require the specified <cite>ports</cite> to be available in the resource offer</li>
 <li><strong>store_urls</strong> (<em>list[str]</em>) &#8211; store URLs</li>
+<li><strong>task_rate_limit</strong> (<em>float</em>) &#8211; (Removed in Marathon 0.7.0) maximum number of tasks launched per second</li>
 <li><strong>tasks</strong> (list[<a class="reference internal" href="#marathon.models.task.MarathonTask" title="marathon.models.task.MarathonTask"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.task.MarathonTask</span></tt></a>]) &#8211; (read-only) tasks</li>
 <li><strong>tasks_running</strong> (<em>int</em>) &#8211; (read-only) the number of running tasks</li>
 <li><strong>tasks_staged</strong> (<em>int</em>) &#8211; (read-only) the number of staged tasks</li>
@@ -158,7 +159,7 @@
 
 <dl class="attribute">
 <dt id="marathon.models.app.MarathonApp.UPDATE_OK_ATTRIBUTES">
-<tt class="descname">UPDATE_OK_ATTRIBUTES</tt><em class="property"> = ['args', 'backoff_factor', 'backoff_seconds', 'cmd', 'constraints', 'container', 'cpus', 'dependencies', 'disk', 'env', 'executor', 'health_checks', 'instances', 'mem', 'ports', 'require_ports', 'store_urls', 'upgrade_strategy', 'uris', 'user', 'version']</em><a class="headerlink" href="#marathon.models.app.MarathonApp.UPDATE_OK_ATTRIBUTES" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">UPDATE_OK_ATTRIBUTES</tt><em class="property"> = ['args', 'backoff_factor', 'backoff_seconds', 'cmd', 'constraints', 'container', 'cpus', 'dependencies', 'disk', 'env', 'executor', 'health_checks', 'instances', 'mem', 'ports', 'require_ports', 'store_urls', 'task_rate_limit', 'upgrade_strategy', 'uris', 'user', 'version']</em><a class="headerlink" href="#marathon.models.app.MarathonApp.UPDATE_OK_ATTRIBUTES" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of attributes which may be updated/changed after app creation</p>
 </dd></dl>
 
@@ -211,13 +212,15 @@
 
 <dl class="method">
 <dt id="marathon.models.base.MarathonObject.json_repr">
-<tt class="descname">json_repr</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/marathon/models/base.html#MarathonObject.json_repr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.base.MarathonObject.json_repr" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">json_repr</tt><big>(</big><em>minimal=False</em><big>)</big><a class="reference internal" href="_modules/marathon/models/base.html#MarathonObject.json_repr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.base.MarathonObject.json_repr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct a JSON-friendly representation of the object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>minimal</strong> (<em>bool</em>) &#8211; Construct a minimal representation of the object (ignore nulls and empty collections)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
 </tr>
 </tbody>
 </table>
@@ -225,13 +228,15 @@
 
 <dl class="method">
 <dt id="marathon.models.base.MarathonObject.to_json">
-<tt class="descname">to_json</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/marathon/models/base.html#MarathonObject.to_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.base.MarathonObject.to_json" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">to_json</tt><big>(</big><em>minimal=False</em><big>)</big><a class="reference internal" href="_modules/marathon/models/base.html#MarathonObject.to_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.base.MarathonObject.to_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Encode an object as a JSON string.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>minimal</strong> (<em>bool</em>) &#8211; Construct a minimal representation of the object (ignore nulls and empty collections)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
 </tr>
 </tbody>
 </table>
@@ -258,18 +263,19 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>field</strong> (<em>str</em>) &#8211; constraint operator target</li>
-<li><strong>operator</strong> (<em>str</em>) &#8211; must be one of [UNIQUE, CLUSTER, GROUP_BY]</li>
+<li><strong>operator</strong> (<em>str</em>) &#8211; must be one of [UNIQUE, CLUSTER, GROUP_BY, LIKE, UNLIKE]</li>
 <li><strong>value</strong> &#8211; [optional] if <cite>operator</cite> is CLUSTER, constrain tasks to servers where <cite>field</cite> == <cite>value</cite>.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>If <cite>operator</cite> is GROUP_BY, place at most <cite>value</cite> tasks per group
+<p>If <cite>operator</cite> is GROUP_BY, place at most <cite>value</cite> tasks per group. If <cite>operator</cite>
+is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 :type value: str, int, or None</p>
 <dl class="attribute">
 <dt id="marathon.models.constraint.MarathonConstraint.OPERATORS">
-<tt class="descname">OPERATORS</tt><em class="property"> = ['UNIQUE', 'CLUSTER', 'GROUP_BY']</em><a class="headerlink" href="#marathon.models.constraint.MarathonConstraint.OPERATORS" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">OPERATORS</tt><em class="property"> = ['UNIQUE', 'CLUSTER', 'GROUP_BY', 'LIKE', 'UNLIKE']</em><a class="headerlink" href="#marathon.models.constraint.MarathonConstraint.OPERATORS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Valid operators</p>
 </dd></dl>
 
@@ -291,13 +297,15 @@
 
 <dl class="method">
 <dt id="marathon.models.constraint.MarathonConstraint.json_repr">
-<tt class="descname">json_repr</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/marathon/models/constraint.html#MarathonConstraint.json_repr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.constraint.MarathonConstraint.json_repr" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">json_repr</tt><big>(</big><em>minimal=False</em><big>)</big><a class="reference internal" href="_modules/marathon/models/constraint.html#MarathonConstraint.json_repr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.constraint.MarathonConstraint.json_repr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct a JSON-friendly representation of the object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>minimal</strong> (<em>bool</em>) &#8211; [ignored]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list</td>
 </tr>
 </tbody>
 </table>
