@@ -33,7 +33,7 @@ class MarathonApp(MarathonResource):
     :param list[int] ports: ports
     :param bool require_ports: require the specified `ports` to be available in the resource offer
     :param list[str] store_urls: store URLs
-    :param float task_rate_limit: (Removed in 0.7.0) maximum number of tasks launched per second
+    :param float task_rate_limit: (Removed in Marathon 0.7.0) maximum number of tasks launched per second
     :param tasks: (read-only) tasks
     :type tasks: list[:class:`marathon.models.task.MarathonTask`]
     :param int tasks_running: (read-only) the number of running tasks

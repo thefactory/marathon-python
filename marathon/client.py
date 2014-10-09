@@ -156,7 +156,7 @@ class MarathonClient(object):
         :rtype: dict
         """
         params = {'force': force}
-        data = app.to_json()
+        data = app.to_json(minimal=True)
         response = self._do_request('PUT', '/v2/apps/{app_id}'.format(app_id=app_id), params=params, data=data)
         return response.json()
 
@@ -269,7 +269,7 @@ class MarathonClient(object):
         :rtype: dict
         """
         params = {'force': force}
-        data = group.to_json()
+        data = group.to_json(minimal=True)
         response = self._do_request('PUT', '/v2/groups/{group_id}'.format(group_id=group_id), data=data, params=params)
         return response.json()
 

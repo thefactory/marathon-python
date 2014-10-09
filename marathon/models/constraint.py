@@ -32,8 +32,10 @@ class MarathonConstraint(MarathonObject):
             template = "MarathonConstraint::{field}:{operator}"
         return template.format(**self.__dict__)
 
-    def json_repr(self):
+    def json_repr(self, minimal=False):
         """Construct a JSON-friendly representation of the object.
+
+        :param bool minimal: [ignored]
 
         :rtype: list
         """

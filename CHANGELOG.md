@@ -1,7 +1,13 @@
+## 0.6.2 (2014-10-09)
+
+Changes:
+* Added support for LIKE and UNLIKE constraint operators
+* Added support for patch-style app and group updates
+
 ## 0.6.1 (2014-09-29)
 
 Changes:
-* Fix broken exception import
+* Fixed broken exception import
 
 ## 0.6.0 (2014-09-29)
 
