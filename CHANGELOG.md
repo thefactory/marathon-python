@@ -1,6 +1,11 @@
 ## 0.6.2 (2014-10-09)
 
 Changes:
+* Added support for service port in container port mappings (Marathon 0.7.3)
+
+## 0.6.2 (2014-10-09)
+
+Changes:
 * Added support for LIKE and UNLIKE constraint operators
 * Added support for patch-style app and group updates
 
