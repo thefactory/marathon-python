@@ -8,13 +8,14 @@ class MarathonConstraint(MarathonObject):
     See https://mesosphere.github.io/marathon/docs/constraints.html
 
     :param str field: constraint operator target
-    :param str operator: must be one of [UNIQUE, CLUSTER, GROUP_BY]
+    :param str operator: must be one of [UNIQUE, CLUSTER, GROUP_BY, LIKE, UNLIKE]
     :param value: [optional] if `operator` is CLUSTER, constrain tasks to servers where `field` == `value`.
-    If `operator` is GROUP_BY, place at most `value` tasks per group
+    If `operator` is GROUP_BY, place at most `value` tasks per group. If `operator`
+    is `LIKE` or `UNLIKE`, filter servers using regexp.
     :type value: str, int, or None
     """
 
-    OPERATORS = ['UNIQUE', 'CLUSTER', 'GROUP_BY']
+    OPERATORS = ['UNIQUE', 'CLUSTER', 'GROUP_BY', 'LIKE', 'UNLIKE']
     """Valid operators"""
 
     def __init__(self, field, operator, value=None):
