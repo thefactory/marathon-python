@@ -113,32 +113,40 @@ class MarathonClient(object):
         else:
             return False
 
-    def list_apps(self, cmd=None, **kwargs):
+    def list_apps(self, cmd=None, embed_tasks=False, **kwargs):
         """List all apps, optionally filtered by `cmd`.
 
         :param str app_id: application ID
         :param str cmd: if passed, only show apps with a matching `cmd`
+        :param bool embed_tasks: embed tasks in result
         :param kwargs: arbitrary search filters
 
         :returns: list of applications
         :rtype: list[:class:`marathon.models.app.MarathonApp`]
         """
-        params = {'cmd': cmd} if cmd else {}
+        params = {}
+        if cmd:
+            params['cmd'] = cmd
+        if embed_tasks:
+            params['embed'] = 'apps.tasks'
+
         response = self._do_request('GET', '/v2/apps', params=params)
         apps = self._parse_response(response, MarathonApp, is_list=True, resource_name='apps')
         for k, v in kwargs.iteritems():
             apps = filter(lambda o: getattr(o, k) == v, apps)
         return apps
 
-    def get_app(self, app_id):
+    def get_app(self, app_id, embed_tasks=False):
         """Get a single app.
 
         :param str app_id: application ID
+        :param bool embed_tasks: embed tasks in result
 
         :returns: application
         :rtype: :class:`marathon.models.app.MarathonApp`
         """
-        response = self._do_request('GET', '/v2/apps/{app_id}'.format(app_id=app_id))
+        params = {'embed': 'apps.tasks'} if embed_tasks else {}
+        response = self._do_request('GET', '/v2/apps/{app_id}'.format(app_id=app_id), params=params)
         return self._parse_response(response, MarathonApp, resource_name='app')
 
     def update_app(self, app_id, app, force=False):

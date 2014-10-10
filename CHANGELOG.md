@@ -1,3 +1,9 @@
+## 0.6.3 (2014-10-10)
+
+Changes:
+* Added support for embedding tasks in get/list app results
+* Switched to patch-style updates for apps and groups (send partial object)
+
 ## 0.6.2 (2014-10-09)
 
 Changes:
