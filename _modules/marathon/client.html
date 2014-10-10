@@ -214,32 +214,40 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">False</span>
 </div>
-<div class="viewcode-block" id="MarathonClient.list_apps"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.list_apps">[docs]</a>    <span class="k">def</span> <span class="nf">list_apps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="MarathonClient.list_apps"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.list_apps">[docs]</a>    <span class="k">def</span> <span class="nf">list_apps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">embed_tasks</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List all apps, optionally filtered by `cmd`.</span>
 
 <span class="sd">        :param str app_id: application ID</span>
 <span class="sd">        :param str cmd: if passed, only show apps with a matching `cmd`</span>
+<span class="sd">        :param bool embed_tasks: embed tasks in result</span>
 <span class="sd">        :param kwargs: arbitrary search filters</span>
 
 <span class="sd">        :returns: list of applications</span>
 <span class="sd">        :rtype: list[:class:`marathon.models.app.MarathonApp`]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;cmd&#39;</span><span class="p">:</span> <span class="n">cmd</span><span class="p">}</span> <span class="k">if</span> <span class="n">cmd</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">cmd</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s">&#39;cmd&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cmd</span>
+        <span class="k">if</span> <span class="n">embed_tasks</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s">&#39;embed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;apps.tasks&#39;</span>
+
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&#39;GET&#39;</span><span class="p">,</span> <span class="s">&#39;/v2/apps&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
         <span class="n">apps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">MarathonApp</span><span class="p">,</span> <span class="n">is_list</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">resource_name</span><span class="o">=</span><span class="s">&#39;apps&#39;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
             <span class="n">apps</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">o</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">==</span> <span class="n">v</span><span class="p">,</span> <span class="n">apps</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">apps</span>
 </div>
-<div class="viewcode-block" id="MarathonClient.get_app"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.get_app">[docs]</a>    <span class="k">def</span> <span class="nf">get_app</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="p">):</span>
+<div class="viewcode-block" id="MarathonClient.get_app"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.get_app">[docs]</a>    <span class="k">def</span> <span class="nf">get_app</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="p">,</span> <span class="n">embed_tasks</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get a single app.</span>
 
 <span class="sd">        :param str app_id: application ID</span>
+<span class="sd">        :param bool embed_tasks: embed tasks in result</span>
 
 <span class="sd">        :returns: application</span>
 <span class="sd">        :rtype: :class:`marathon.models.app.MarathonApp`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&#39;GET&#39;</span><span class="p">,</span> <span class="s">&#39;/v2/apps/{app_id}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">app_id</span><span class="o">=</span><span class="n">app_id</span><span class="p">))</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;embed&#39;</span><span class="p">:</span> <span class="s">&#39;apps.tasks&#39;</span><span class="p">}</span> <span class="k">if</span> <span class="n">embed_tasks</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&#39;GET&#39;</span><span class="p">,</span> <span class="s">&#39;/v2/apps/{app_id}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">app_id</span><span class="o">=</span><span class="n">app_id</span><span class="p">),</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">MarathonApp</span><span class="p">,</span> <span class="n">resource_name</span><span class="o">=</span><span class="s">&#39;app&#39;</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="MarathonClient.update_app"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.update_app">[docs]</a>    <span class="k">def</span> <span class="nf">update_app</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>

@@ -342,7 +342,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="class">
 <dt id="marathon.models.container.MarathonContainerPortMapping">
-<em class="property">class </em><tt class="descclassname">marathon.models.container.</tt><tt class="descname">MarathonContainerPortMapping</tt><big>(</big><em>container_port=None</em>, <em>host_port=0</em>, <em>protocol='tcp'</em><big>)</big><a class="reference internal" href="_modules/marathon/models/container.html#MarathonContainerPortMapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.container.MarathonContainerPortMapping" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">marathon.models.container.</tt><tt class="descname">MarathonContainerPortMapping</tt><big>(</big><em>container_port=None</em>, <em>host_port=0</em>, <em>service_port=None</em>, <em>protocol='tcp'</em><big>)</big><a class="reference internal" href="_modules/marathon/models/container.html#MarathonContainerPortMapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.container.MarathonContainerPortMapping" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
 <p>Container port mapping.</p>
 <p>See <a class="reference external" href="https://mesosphere.github.io/marathon/docs/native-docker.html">https://mesosphere.github.io/marathon/docs/native-docker.html</a></p>
@@ -809,17 +809,23 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.get_app">
-<tt class="descname">get_app</tt><big>(</big><em>app_id</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.get_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.get_app" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_app</tt><big>(</big><em>app_id</em>, <em>embed_tasks=False</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.get_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.get_app" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a single app.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>app_id</strong> (<em>str</em>) &#8211; application ID</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>app_id</strong> (<em>str</em>) &#8211; application ID</li>
+<li><strong>embed_tasks</strong> (<em>bool</em>) &#8211; embed tasks in result</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">application</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">application</p>
+</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#marathon.models.app.MarathonApp" title="marathon.models.app.MarathonApp"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonApp</span></tt></a></td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#marathon.models.app.MarathonApp" title="marathon.models.app.MarathonApp"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonApp</span></tt></a></p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -953,7 +959,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.list_apps">
-<tt class="descname">list_apps</tt><big>(</big><em>cmd=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_apps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_apps" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">list_apps</tt><big>(</big><em>cmd=None</em>, <em>embed_tasks=False</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_apps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_apps" title="Permalink to this definition">¶</a></dt>
 <dd><p>List all apps, optionally filtered by <cite>cmd</cite>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -962,6 +968,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>app_id</strong> (<em>str</em>) &#8211; application ID</li>
 <li><strong>cmd</strong> (<em>str</em>) &#8211; if passed, only show apps with a matching <cite>cmd</cite></li>
+<li><strong>embed_tasks</strong> (<em>bool</em>) &#8211; embed tasks in result</li>
 <li><strong>kwargs</strong> &#8211; arbitrary search filters</li>
 </ul>
 </td>
