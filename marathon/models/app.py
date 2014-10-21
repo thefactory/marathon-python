@@ -39,7 +39,7 @@ class MarathonApp(MarathonResource):
     :param int tasks_running: (read-only) the number of running tasks
     :param int tasks_staged: (read-only) the number of staged tasks
     :param upgrade_strategy: strategy by which app instances are replaced during a deployment
-    :type upgrade_strategy: list[:class:`marathon.models.constraint.MarathonUpgradeStrategy`]
+    :type upgrade_strategy: :class:`marathon.models.app.MarathonUpgradeStrategy` or dict
     :param list[str] uris: uris
     :param str user: user
     :param str version: version id
@@ -105,7 +105,8 @@ class MarathonApp(MarathonResource):
         ]
         self.tasks_running = tasks_running
         self.tasks_staged = tasks_staged
-        self.upgrade_strategy = upgrade_strategy
+        self.upgrade_strategy = upgrade_strategy if (isinstance(upgrade_strategy, MarathonUpgradeStrategy) or upgrade_strategy is None) \
+            else MarathonUpgradeStrategy.from_json(upgrade_strategy)
         self.uris = uris or []
         self.user = user
         self.version = version
@@ -136,3 +137,15 @@ class MarathonHealthCheck(MarathonObject):
         self.port_index = port_index
         self.protocol = protocol
         self.timeout_seconds = timeout_seconds
+
+
+class MarathonUpgradeStrategy(MarathonObject):
+    """Marathon health check.
+
+    See https://mesosphere.github.io/marathon/docs/health-checks.html
+
+    :param float minimum_health_capacity: minimum % of instances kept healthy on deploy
+    """
+
+    def __init__(self, minimum_health_capacity=None):
+        self.minimum_health_capacity = minimum_health_capacity
