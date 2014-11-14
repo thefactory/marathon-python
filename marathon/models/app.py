@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from .base import MarathonResource, MarathonObject
 from .constraint import MarathonConstraint
 from .container import MarathonContainer
@@ -29,6 +31,8 @@ class MarathonApp(MarathonResource):
     :type health_checks: list[:class:`marathon.models.MarathonHealthCheck`] or list[dict]
     :param str id: app id
     :param int instances: instances
+    :param last_task_failure: last task failure
+    :type last_task_failure: :class:`marathon.models.app.MarathonTaskFailure` or dict
     :param float mem: memory (in MB) required per instance
     :param list[int] ports: ports
     :param bool require_ports: require the specified `ports` to be available in the resource offer
@@ -60,9 +64,9 @@ class MarathonApp(MarathonResource):
 
     def __init__(self, args=None, backoff_factor=None, backoff_seconds=None, cmd=None, constraints=None, container=None,
                  cpus=None, dependencies=None, deployments=None, disk=None, env=None, executor=None, health_checks=None,
-                 id=None, instances=None, mem=None, ports=None, require_ports=None, store_urls=None,
-                 task_rate_limit=None, tasks=None, tasks_running=None, tasks_staged=None, upgrade_strategy=None,
-                 uris=None, user=None, version=None):
+                 id=None, instances=None, last_task_failure=None, mem=None, ports=None, require_ports=None,
+                 store_urls=None, task_rate_limit=None, tasks=None, tasks_running=None, tasks_staged=None,
+                 upgrade_strategy=None, uris=None, user=None, version=None):
 
         # self.args = args or []
         self.args = args
@@ -94,6 +98,8 @@ class MarathonApp(MarathonResource):
         ]
         self.id = id
         self.instances = instances
+        self.last_task_failure = last_task_failure if (isinstance(last_task_failure, MarathonTaskFailure) or last_task_failure is None) \
+            else MarathonTaskFailure.from_json(last_task_failure)
         self.mem = mem
         self.ports = ports or []
         self.require_ports = require_ports
@@ -137,6 +143,32 @@ class MarathonHealthCheck(MarathonObject):
         self.port_index = port_index
         self.protocol = protocol
         self.timeout_seconds = timeout_seconds
+
+
+class MarathonTaskFailure(MarathonObject):
+    """Marathon Task Failure.
+
+    :param str app_id: application id
+    :param str host: mesos slave running the task
+    :param str message: error message
+    :param str task_id: task id
+    :param str state: task state
+    :param timestamp: when this task failed
+    :type timestamp: datetime or str
+    :param str version: app version with which this task was started
+    """
+
+    DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
+
+    def __init__(self, app_id=None, host=None, message=None, task_id=None, state=None, timestamp=None, version=None):
+        self.app_id = app_id
+        self.host = host
+        self.message = message
+        self.task_id = task_id
+        self.state = state
+        self.timestamp = timestamp if (timestamp is None or isinstance(timestamp, datetime)) \
+            else datetime.strptime(timestamp, self.DATETIME_FORMAT)
+        self.version = version
 
 
 class MarathonUpgradeStrategy(MarathonObject):

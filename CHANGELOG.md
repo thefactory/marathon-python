@@ -1,3 +1,12 @@
+## 0.6.4 (2014-11-13)
+
+Support for Marathon 0.7.5
+
+Changes:
+* Added support for app.lastTaskFailure
+* Added support for task.healthCheckResult
+* Fixed support for app.upgradeStrategy
+
 ## 0.6.3 (2014-10-10)
 
 Changes:

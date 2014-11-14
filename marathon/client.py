@@ -113,12 +113,13 @@ class MarathonClient(object):
         else:
             return False
 
-    def list_apps(self, cmd=None, embed_tasks=False, **kwargs):
-        """List all apps, optionally filtered by `cmd`.
+    def list_apps(self, cmd=None, embed_tasks=False, embed_failures=False, **kwargs):
+        """List all apps.
 
         :param str app_id: application ID
         :param str cmd: if passed, only show apps with a matching `cmd`
         :param bool embed_tasks: embed tasks in result
+        :param bool embed_failures: embed tasks and last task failure in result
         :param kwargs: arbitrary search filters
 
         :returns: list of applications
@@ -127,7 +128,10 @@ class MarathonClient(object):
         params = {}
         if cmd:
             params['cmd'] = cmd
-        if embed_tasks:
+
+        if embed_failures:
+            params['embed'] = 'apps.failures'
+        elif embed_tasks:
             params['embed'] = 'apps.tasks'
 
         response = self._do_request('GET', '/v2/apps', params=params)
