@@ -1,3 +1,8 @@
+## 0.6.5 (2014-11-14)
+
+Changes:
+* Fixed bug with `MarathonClient.scale_app()` and add `force` support
+
 ## 0.6.4 (2014-11-13)
 
 Support for Marathon 0.7.5

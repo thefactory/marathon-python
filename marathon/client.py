@@ -200,7 +200,7 @@ class MarathonClient(object):
         response = self._do_request('DELETE', '/v2/apps/{app_id}'.format(app_id=app_id), params=params)
         return response.json()
 
-    def scale_app(self, app_id, instances=None, delta=None):
+    def scale_app(self, app_id, instances=None, delta=None, force=False):
         """Scale an app.
 
         Scale an app to a target number of instances (with `instances`), or scale the number of
@@ -212,6 +212,7 @@ class MarathonClient(object):
         :param str app_id: application ID
         :param int instances: [optional] the number of instances to scale to
         :param int delta: [optional] the number of instances to scale up or down by
+        :param bool force: apply even if a deployment is in progress
 
         :returns: a dict containing the deployment id and version
         :rtype: dict
@@ -226,8 +227,8 @@ class MarathonClient(object):
             marathon.log.error('App "{app}" not found'.format(app=app_id))
             return
 
-        app.instances = instances if instances is not None else (app.instances + delta)
-        return self.update_app(app)
+        desired = instances if instances is not None else (app.instances + delta)
+        return self.update_app(app.id, MarathonApp(instances=desired), force=force)
 
     def create_group(self, group):
         """Create and start a group.
