@@ -1,3 +1,8 @@
+## 0.6.6 (2014-11-17)
+
+Changes:
+* Improved behavior of `MarathonClient.update_app()` to strip `version` from the passed `app`
+
 ## 0.6.5 (2014-11-14)
 
 Changes:
