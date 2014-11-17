@@ -14,10 +14,14 @@ class MarathonInfo(MarathonResource):
     :param str version:
     :param zookeeper_config:
     :type zookeeper_config: :class:`marathon.models.info.MarathonZooKeeperConfig` or dict
+    :param http_config:
+    :type http_config: :class:`marathon.models.info.MarathonHttpConfig` or dict
+    :param event_subscriber:
+    :type event_subscriber: :class`marathon.models.info.MarathonEventSubscriber` or dict
     """
 
     def __init__(self, framework_id=None, leader=None, marathon_config=None, name=None, version=None,
-                 zookeeper_config=None):
+                 zookeeper_config=None, http_config=None, event_subscriber=None):
         self.framework_id = framework_id
         self.leader = leader
         self.marathon_config = marathon_config if isinstance(marathon_config, MarathonConfig) \
@@ -26,12 +30,16 @@ class MarathonInfo(MarathonResource):
         self.version = version
         self.zookeeper_config = zookeeper_config if isinstance(zookeeper_config, MarathonZooKeeperConfig) \
             else MarathonZooKeeperConfig().from_json(zookeeper_config)
+        self.http_config = http_config if isinstance(http_config, MarathonHttpConfig) \
+            else MarathonHttpConfig().from_json(http_config)
+        self.event_subscriber = event_subscriber if isinstance(event_subscriber, MarathonEventSubscriber) \
+            else MarathonEventSubscriber().from_json(event_subscriber)
 
 
 class MarathonConfig(MarathonObject):
-    """Marathon Application resource.
+    """Marathon config resource.
 
-    See: https://mesosphere.github.io/marathon/docs/rest-api.html#deployments
+    See: https://mesosphere.github.io/marathon/docs/rest-api.html#get-/v2/info
 
     :param bool checkpoint:
     :param str executor:
@@ -67,9 +75,9 @@ class MarathonConfig(MarathonObject):
 
 
 class MarathonZooKeeperConfig(MarathonObject):
-    """Marathon Application resource.
+    """Marathon zookeeper config resource.
 
-    See: https://mesosphere.github.io/marathon/docs/rest-api.html#deployments
+    See: https://mesosphere.github.io/marathon/docs/rest-api.html#get-/v2/info
 
     :param str zk:
     :param dict zk_future_timeout:
@@ -86,3 +94,31 @@ class MarathonZooKeeperConfig(MarathonObject):
         self.zk_path = zk_path
         self.zk_state = zk_state
         self.zk_timeout = zk_timeout
+
+class MarathonHttpConfig(MarathonObject):
+    """Marathon http config resource.
+
+    See: https://mesosphere.github.io/marathon/docs/rest-api.html#get-/v2/info
+
+    :param str assets_path:
+    :param int http_port:
+    :param int https_port:
+    """
+
+    def __init__(self, assets_path=None, http_port=None, https_port=None):
+        self.assets_path = assets_path
+        self.http_port = http_port
+        self.https_port = https_port
+
+class MarathonEventSubscriber(MarathonObject):
+    """Marathon event subscriber resource.
+
+    See: https://mesosphere.github.io/marathon/docs/rest-api.html#get-/v2/info
+
+    :param str type:
+    :param list[str] http_endpoints:
+    """
+
+    def __init__(self, type=None, http_endpoints=None):
+        self.type = type
+        self.http_endpoints = http_endpoints
