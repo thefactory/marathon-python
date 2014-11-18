@@ -151,7 +151,7 @@
         <span class="k">if</span> <span class="s">&#39;id&#39;</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="k">return</span> <span class="s">&quot;{clazz}::{id}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clazz</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">MarathonResource</span><span class="p">)</span><span class="o">.</span><span class="n">__repr__</span><span class="p">()</span>
+            <span class="k">return</span> <span class="s">&quot;{clazz}::{obj}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clazz</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
 </pre></div></div>
 
           </div>

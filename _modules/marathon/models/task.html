@@ -101,16 +101,19 @@
   <h1>Source code for marathon.models.task</h1><div class="highlight"><pre>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
-<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">MarathonResource</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">MarathonResource</span><span class="p">,</span> <span class="n">MarathonObject</span>
 
 
 <div class="viewcode-block" id="MarathonTask"><a class="viewcode-back" href="../../../marathon.html#marathon.models.task.MarathonTask">[docs]</a><span class="k">class</span> <span class="nc">MarathonTask</span><span class="p">(</span><span class="n">MarathonResource</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Marathon Task resource.</span>
 
 <span class="sd">    :param str app_id: application id</span>
+<span class="sd">    :param health_check_results: health check results</span>
+<span class="sd">    :type health_check_results: list[:class:`marathon.models.MarathonHealthCheckResult`] or list[dict]</span>
 <span class="sd">    :param str host: mesos slave running the task</span>
 <span class="sd">    :param str id: task id</span>
 <span class="sd">    :param list[int] ports: allocated ports</span>
+<span class="sd">    :param list[int] service_ports: ports exposed for load balancing</span>
 <span class="sd">    :param staged_at: when this task was staged</span>
 <span class="sd">    :type staged_at: datetime or str</span>
 <span class="sd">    :param started_at: when this task was started</span>
@@ -120,16 +123,51 @@
 
     <span class="n">DATETIME_FORMAT</span> <span class="o">=</span> <span class="s">&#39;%Y-%m-</span><span class="si">%d</span><span class="s">T%H:%M:%S.</span><span class="si">%f</span><span class="s">Z&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ports</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">staged_at</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">started_at</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">health_check_results</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ports</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">service_ports</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">staged_at</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">started_at</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app_id</span> <span class="o">=</span> <span class="n">app_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">health_check_results</span> <span class="o">=</span> <span class="n">health_check_results</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">health_check_results</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">hcr</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hcr</span><span class="p">,</span> <span class="n">MarathonHealthCheckResult</span><span class="p">)</span> <span class="k">else</span> <span class="n">MarathonHealthCheckResult</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">hcr</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">hcr</span> <span class="ow">in</span> <span class="p">(</span><span class="n">health_check_results</span> <span class="ow">or</span> <span class="p">[])</span> <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">health_check_results</span><span class="p">)</span>
+        <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">host</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ports</span> <span class="o">=</span> <span class="n">ports</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">service_ports</span> <span class="o">=</span> <span class="n">service_ports</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">staged_at</span> <span class="o">=</span> <span class="n">staged_at</span> <span class="k">if</span> <span class="p">(</span><span class="n">staged_at</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">staged_at</span><span class="p">,</span> <span class="n">datetime</span><span class="p">))</span> \
             <span class="k">else</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">staged_at</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">DATETIME_FORMAT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">started_at</span> <span class="o">=</span> <span class="n">started_at</span> <span class="k">if</span> <span class="p">(</span><span class="n">started_at</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">started_at</span><span class="p">,</span> <span class="n">datetime</span><span class="p">))</span> \
             <span class="k">else</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">started_at</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">DATETIME_FORMAT</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
+
+</div>
+<div class="viewcode-block" id="MarathonHealthCheckResult"><a class="viewcode-back" href="../../../marathon.html#marathon.models.task.MarathonHealthCheckResult">[docs]</a><span class="k">class</span> <span class="nc">MarathonHealthCheckResult</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Marathon health check result.</span>
+
+<span class="sd">    See https://mesosphere.github.io/marathon/docs/health-checks.html</span>
+
+<span class="sd">    :param bool alive: boolean to determine task health</span>
+<span class="sd">    :param int consecutive_failures: number of failed healthchecks in a row</span>
+<span class="sd">    :param str first_success: first time when which healthcheck succeeded</span>
+<span class="sd">    :param str last_failure: last time when which healthcheck failed</span>
+<span class="sd">    :param str last_success: last time when which healthcheck succeeded</span>
+<span class="sd">    :param str task_id: task id</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">DATETIME_FORMAT</span> <span class="o">=</span> <span class="s">&#39;%Y-%m-</span><span class="si">%d</span><span class="s">T%H:%M:%S.</span><span class="si">%f</span><span class="s">Z&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alive</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">consecutive_failures</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">first_success</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">last_failure</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">last_success</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">task_id</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alive</span> <span class="o">=</span> <span class="n">alive</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">consecutive_failures</span> <span class="o">=</span> <span class="n">consecutive_failures</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_success</span> <span class="o">=</span> <span class="n">first_success</span> <span class="k">if</span> <span class="p">(</span><span class="n">first_success</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">first_success</span><span class="p">,</span> <span class="n">datetime</span><span class="p">))</span> \
+            <span class="k">else</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">first_success</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">DATETIME_FORMAT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_failure</span> <span class="o">=</span> <span class="n">last_failure</span> <span class="k">if</span> <span class="p">(</span><span class="n">last_failure</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">last_failure</span><span class="p">,</span> <span class="n">datetime</span><span class="p">))</span> \
+            <span class="k">else</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">last_failure</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">DATETIME_FORMAT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_success</span> <span class="o">=</span> <span class="n">last_success</span> <span class="k">if</span> <span class="p">(</span><span class="n">last_success</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">last_success</span><span class="p">,</span> <span class="n">datetime</span><span class="p">))</span> \
+            <span class="k">else</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">last_success</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">DATETIME_FORMAT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_id</span> <span class="o">=</span> <span class="n">task_id</span></div>
 </pre></div>
 
           </div>

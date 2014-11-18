@@ -115,11 +115,19 @@
 <span class="sd">    :param str version:</span>
 <span class="sd">    :param zookeeper_config:</span>
 <span class="sd">    :type zookeeper_config: :class:`marathon.models.info.MarathonZooKeeperConfig` or dict</span>
+<span class="sd">    :param http_config:</span>
+<span class="sd">    :type http_config: :class:`marathon.models.info.MarathonHttpConfig` or dict</span>
+<span class="sd">    :param event_subscriber:</span>
+<span class="sd">    :type event_subscriber: :class`marathon.models.info.MarathonEventSubscriber` or dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">framework_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">leader</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">marathon_config</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">zookeeper_config</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_subscriber</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">framework_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">http_config</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">leader</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">marathon_config</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">zookeeper_config</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">event_subscriber</span> <span class="o">=</span> <span class="n">event_subscriber</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">event_subscriber</span><span class="p">,</span> <span class="n">MarathonEventSubscriber</span><span class="p">)</span> \
+            <span class="k">else</span> <span class="n">MarathonEventSubscriber</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">event_subscriber</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">framework_id</span> <span class="o">=</span> <span class="n">framework_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">http_config</span> <span class="o">=</span> <span class="n">http_config</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">http_config</span><span class="p">,</span> <span class="n">MarathonHttpConfig</span><span class="p">)</span> \
+            <span class="k">else</span> <span class="n">MarathonHttpConfig</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">http_config</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">leader</span> <span class="o">=</span> <span class="n">leader</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">marathon_config</span> <span class="o">=</span> <span class="n">marathon_config</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">marathon_config</span><span class="p">,</span> <span class="n">MarathonConfig</span><span class="p">)</span> \
             <span class="k">else</span> <span class="n">MarathonConfig</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">marathon_config</span><span class="p">)</span>
@@ -130,9 +138,9 @@
 
 </div>
 <div class="viewcode-block" id="MarathonConfig"><a class="viewcode-back" href="../../../marathon.html#marathon.models.info.MarathonConfig">[docs]</a><span class="k">class</span> <span class="nc">MarathonConfig</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Marathon Application resource.</span>
+    <span class="sd">&quot;&quot;&quot;Marathon config resource.</span>
 
-<span class="sd">    See: https://mesosphere.github.io/marathon/docs/rest-api.html#deployments</span>
+<span class="sd">    See: https://mesosphere.github.io/marathon/docs/rest-api.html#get-/v2/info</span>
 
 <span class="sd">    :param bool checkpoint:</span>
 <span class="sd">    :param str executor:</span>
@@ -168,9 +176,9 @@
 
 </div>
 <div class="viewcode-block" id="MarathonZooKeeperConfig"><a class="viewcode-back" href="../../../marathon.html#marathon.models.info.MarathonZooKeeperConfig">[docs]</a><span class="k">class</span> <span class="nc">MarathonZooKeeperConfig</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Marathon Application resource.</span>
+    <span class="sd">&quot;&quot;&quot;Marathon zookeeper config resource.</span>
 
-<span class="sd">    See: https://mesosphere.github.io/marathon/docs/rest-api.html#deployments</span>
+<span class="sd">    See: https://mesosphere.github.io/marathon/docs/rest-api.html#get-/v2/info</span>
 
 <span class="sd">    :param str zk:</span>
 <span class="sd">    :param dict zk_future_timeout:</span>
@@ -186,7 +194,37 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">zk_hosts</span> <span class="o">=</span> <span class="n">zk_hosts</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">zk_path</span> <span class="o">=</span> <span class="n">zk_path</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">zk_state</span> <span class="o">=</span> <span class="n">zk_state</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">zk_timeout</span> <span class="o">=</span> <span class="n">zk_timeout</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zk_timeout</span> <span class="o">=</span> <span class="n">zk_timeout</span>
+
+</div>
+<div class="viewcode-block" id="MarathonHttpConfig"><a class="viewcode-back" href="../../../marathon.html#marathon.models.info.MarathonHttpConfig">[docs]</a><span class="k">class</span> <span class="nc">MarathonHttpConfig</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Marathon http config resource.</span>
+
+<span class="sd">    See: https://mesosphere.github.io/marathon/docs/rest-api.html#get-/v2/info</span>
+
+<span class="sd">    :param str assets_path:</span>
+<span class="sd">    :param int http_port:</span>
+<span class="sd">    :param int https_port:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assets_path</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">http_port</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">https_port</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assets_path</span> <span class="o">=</span> <span class="n">assets_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">http_port</span> <span class="o">=</span> <span class="n">http_port</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">https_port</span> <span class="o">=</span> <span class="n">https_port</span>
+
+</div>
+<div class="viewcode-block" id="MarathonEventSubscriber"><a class="viewcode-back" href="../../../marathon.html#marathon.models.info.MarathonEventSubscriber">[docs]</a><span class="k">class</span> <span class="nc">MarathonEventSubscriber</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Marathon event subscriber resource.</span>
+
+<span class="sd">    See: https://mesosphere.github.io/marathon/docs/rest-api.html#get-/v2/info</span>
+
+<span class="sd">    :param str type:</span>
+<span class="sd">    :param list[str] http_endpoints:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">http_endpoints</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">http_endpoints</span> <span class="o">=</span> <span class="n">http_endpoints</span></div>
 </pre></div>
 
           </div>

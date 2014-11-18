@@ -99,6 +99,8 @@
           <div role="main">
             
   <h1>Source code for marathon.models.app</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
 <span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">MarathonResource</span><span class="p">,</span> <span class="n">MarathonObject</span>
 <span class="kn">from</span> <span class="nn">.constraint</span> <span class="kn">import</span> <span class="n">MarathonConstraint</span>
 <span class="kn">from</span> <span class="nn">.container</span> <span class="kn">import</span> <span class="n">MarathonContainer</span>
@@ -130,6 +132,8 @@
 <span class="sd">    :type health_checks: list[:class:`marathon.models.MarathonHealthCheck`] or list[dict]</span>
 <span class="sd">    :param str id: app id</span>
 <span class="sd">    :param int instances: instances</span>
+<span class="sd">    :param last_task_failure: last task failure</span>
+<span class="sd">    :type last_task_failure: :class:`marathon.models.app.MarathonTaskFailure` or dict</span>
 <span class="sd">    :param float mem: memory (in MB) required per instance</span>
 <span class="sd">    :param list[int] ports: ports</span>
 <span class="sd">    :param bool require_ports: require the specified `ports` to be available in the resource offer</span>
@@ -140,7 +144,7 @@
 <span class="sd">    :param int tasks_running: (read-only) the number of running tasks</span>
 <span class="sd">    :param int tasks_staged: (read-only) the number of staged tasks</span>
 <span class="sd">    :param upgrade_strategy: strategy by which app instances are replaced during a deployment</span>
-<span class="sd">    :type upgrade_strategy: list[:class:`marathon.models.constraint.MarathonUpgradeStrategy`]</span>
+<span class="sd">    :type upgrade_strategy: :class:`marathon.models.app.MarathonUpgradeStrategy` or dict</span>
 <span class="sd">    :param list[str] uris: uris</span>
 <span class="sd">    :param str user: user</span>
 <span class="sd">    :param str version: version id</span>
@@ -161,9 +165,9 @@
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">backoff_factor</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">backoff_seconds</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">cmd</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">container</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
                  <span class="n">cpus</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">deployments</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">disk</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">health_checks</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="nb">id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">instances</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">mem</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ports</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">require_ports</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">store_urls</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">task_rate_limit</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tasks</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tasks_running</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tasks_staged</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">upgrade_strategy</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">uris</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+                 <span class="nb">id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">instances</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">last_task_failure</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">mem</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ports</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">require_ports</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">store_urls</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">task_rate_limit</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tasks</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tasks_running</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tasks_staged</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">upgrade_strategy</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">uris</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
 
         <span class="c"># self.args = args or []</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
@@ -195,6 +199,8 @@
         <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">instances</span> <span class="o">=</span> <span class="n">instances</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_task_failure</span> <span class="o">=</span> <span class="n">last_task_failure</span> <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">last_task_failure</span><span class="p">,</span> <span class="n">MarathonTaskFailure</span><span class="p">)</span> <span class="ow">or</span> <span class="n">last_task_failure</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">)</span> \
+            <span class="k">else</span> <span class="n">MarathonTaskFailure</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">last_task_failure</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mem</span> <span class="o">=</span> <span class="n">mem</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ports</span> <span class="o">=</span> <span class="n">ports</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">require_ports</span> <span class="o">=</span> <span class="n">require_ports</span>
@@ -206,7 +212,8 @@
         <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tasks_running</span> <span class="o">=</span> <span class="n">tasks_running</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tasks_staged</span> <span class="o">=</span> <span class="n">tasks_staged</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">upgrade_strategy</span> <span class="o">=</span> <span class="n">upgrade_strategy</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">upgrade_strategy</span> <span class="o">=</span> <span class="n">upgrade_strategy</span> <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">upgrade_strategy</span><span class="p">,</span> <span class="n">MarathonUpgradeStrategy</span><span class="p">)</span> <span class="ow">or</span> <span class="n">upgrade_strategy</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">)</span> \
+            <span class="k">else</span> <span class="n">MarathonUpgradeStrategy</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">upgrade_strategy</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">uris</span> <span class="o">=</span> <span class="n">uris</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">user</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
@@ -236,7 +243,45 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">port_index</span> <span class="o">=</span> <span class="n">port_index</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span> <span class="o">=</span> <span class="n">protocol</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">timeout_seconds</span> <span class="o">=</span> <span class="n">timeout_seconds</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout_seconds</span> <span class="o">=</span> <span class="n">timeout_seconds</span>
+
+</div>
+<div class="viewcode-block" id="MarathonTaskFailure"><a class="viewcode-back" href="../../../marathon.html#marathon.models.app.MarathonTaskFailure">[docs]</a><span class="k">class</span> <span class="nc">MarathonTaskFailure</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Marathon Task Failure.</span>
+
+<span class="sd">    :param str app_id: application id</span>
+<span class="sd">    :param str host: mesos slave running the task</span>
+<span class="sd">    :param str message: error message</span>
+<span class="sd">    :param str task_id: task id</span>
+<span class="sd">    :param str state: task state</span>
+<span class="sd">    :param timestamp: when this task failed</span>
+<span class="sd">    :type timestamp: datetime or str</span>
+<span class="sd">    :param str version: app version with which this task was started</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">DATETIME_FORMAT</span> <span class="o">=</span> <span class="s">&#39;%Y-%m-</span><span class="si">%d</span><span class="s">T%H:%M:%S.</span><span class="si">%f</span><span class="s">Z&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">task_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">timestamp</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app_id</span> <span class="o">=</span> <span class="n">app_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">host</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_id</span> <span class="o">=</span> <span class="n">task_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">timestamp</span> <span class="k">if</span> <span class="p">(</span><span class="n">timestamp</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">datetime</span><span class="p">))</span> \
+            <span class="k">else</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">timestamp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">DATETIME_FORMAT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
+
+</div>
+<div class="viewcode-block" id="MarathonUpgradeStrategy"><a class="viewcode-back" href="../../../marathon.html#marathon.models.app.MarathonUpgradeStrategy">[docs]</a><span class="k">class</span> <span class="nc">MarathonUpgradeStrategy</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Marathon health check.</span>
+
+<span class="sd">    See https://mesosphere.github.io/marathon/docs/health-checks.html</span>
+
+<span class="sd">    :param float minimum_health_capacity: minimum % of instances kept healthy on deploy</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minimum_health_capacity</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">minimum_health_capacity</span> <span class="o">=</span> <span class="n">minimum_health_capacity</span></div>
 </pre></div>
 
           </div>
