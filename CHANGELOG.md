@@ -1,3 +1,9 @@
+## 0.6.7 (2014-11-18)
+
+Changes:
+* Updated `list_tasks()` and `get_info()` to match latest Marathon response signature
+* Fixed `__repr__` for `MarathonInfo()` and other `MarathonResources` without `id
+
 ## 0.6.6 (2014-11-17)
 
 Changes:

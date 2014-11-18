@@ -6,7 +6,7 @@ if sys.version_info >= (3,):
     extra['use_2to3'] = True
 
 setup(name='marathon',
-      version='0.6.6',
+      version='0.6.7',
       description='Marathon Client Library',
       long_description="""Python interface to the Mesos Marathon REST API.""",
       author='Mike Babineau',
