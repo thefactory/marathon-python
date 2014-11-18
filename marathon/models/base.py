@@ -50,5 +50,7 @@ class MarathonResource(MarathonObject):
         if 'id' in vars(self).keys():
             return "{clazz}::{id}".format(clazz=self.__class__.__name__, id=self.id)
         else:
-            return super(MarathonResource).__repr__()
+            return "{clazz}::{obj}".format(clazz=self.__class__.__name__, obj=self.to_json())
+
+
 
