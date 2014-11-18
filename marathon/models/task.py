@@ -17,11 +17,12 @@ class MarathonTask(MarathonResource):
     :param started_at: when this task was started
     :type started_at: datetime or str
     :param str version: app version with which this task was started
+    :param list[int] service_ports: ports exposed for load balancing
     """
 
     DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
 
-    def __init__(self, app_id=None, health_check_results=None, host=None, id=None, ports=None, staged_at=None, started_at=None, version=None):
+    def __init__(self, app_id=None, health_check_results=None, host=None, id=None, ports=None, staged_at=None, started_at=None, version=None, service_ports=None):
         self.app_id = app_id
         self.health_check_results = health_check_results or []
         self.health_check_results = [
@@ -36,6 +37,7 @@ class MarathonTask(MarathonResource):
         self.started_at = started_at if (started_at is None or isinstance(started_at, datetime)) \
             else datetime.strptime(started_at, self.DATETIME_FORMAT)
         self.version = version
+        self.service_ports = service_ports or []
 
 
 class MarathonHealthCheckResult(MarathonObject):
