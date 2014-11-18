@@ -20,9 +20,13 @@ class MarathonInfo(MarathonResource):
     :type event_subscriber: :class`marathon.models.info.MarathonEventSubscriber` or dict
     """
 
-    def __init__(self, framework_id=None, leader=None, marathon_config=None, name=None, version=None,
-                 zookeeper_config=None, http_config=None, event_subscriber=None):
+    def __init__(self, event_subscriber=None, framework_id=None, http_config=None, leader=None, marathon_config=None,
+                 name=None, version=None, zookeeper_config=None):
+        self.event_subscriber = event_subscriber if isinstance(event_subscriber, MarathonEventSubscriber) \
+            else MarathonEventSubscriber().from_json(event_subscriber)
         self.framework_id = framework_id
+        self.http_config = http_config if isinstance(http_config, MarathonHttpConfig) \
+            else MarathonHttpConfig().from_json(http_config)
         self.leader = leader
         self.marathon_config = marathon_config if isinstance(marathon_config, MarathonConfig) \
             else MarathonConfig().from_json(marathon_config)
@@ -30,10 +34,6 @@ class MarathonInfo(MarathonResource):
         self.version = version
         self.zookeeper_config = zookeeper_config if isinstance(zookeeper_config, MarathonZooKeeperConfig) \
             else MarathonZooKeeperConfig().from_json(zookeeper_config)
-        self.http_config = http_config if isinstance(http_config, MarathonHttpConfig) \
-            else MarathonHttpConfig().from_json(http_config)
-        self.event_subscriber = event_subscriber if isinstance(event_subscriber, MarathonEventSubscriber) \
-            else MarathonEventSubscriber().from_json(event_subscriber)
 
 
 class MarathonConfig(MarathonObject):
@@ -95,6 +95,7 @@ class MarathonZooKeeperConfig(MarathonObject):
         self.zk_state = zk_state
         self.zk_timeout = zk_timeout
 
+
 class MarathonHttpConfig(MarathonObject):
     """Marathon http config resource.
 
@@ -109,6 +110,7 @@ class MarathonHttpConfig(MarathonObject):
         self.assets_path = assets_path
         self.http_port = http_port
         self.https_port = https_port
+
 
 class MarathonEventSubscriber(MarathonObject):
     """Marathon event subscriber resource.
