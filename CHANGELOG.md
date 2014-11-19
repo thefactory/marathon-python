@@ -1,3 +1,8 @@
+## 0.6.8 (2014-11-18)
+
+Changes:
+* (Temporarily) Add `apps` field to `DeploymentAction` (https://github.com/mesosphere/marathon/pull/802)
+
 ## 0.6.7 (2014-11-18)
 
 Changes:

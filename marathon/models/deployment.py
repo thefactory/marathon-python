@@ -41,8 +41,10 @@ class MarathonDeploymentAction(MarathonObject):
 
     :param str action: action
     :param str app: app id
+    :param str apps: app id (see https://github.com/mesosphere/marathon/pull/802)
     """
 
-    def __init__(self, action=None, app=None):
+    def __init__(self, action=None, app=None, apps=None):
         self.action = action
         self.app = app
+        self.apps = apps
