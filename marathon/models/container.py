@@ -38,12 +38,14 @@ class MarathonDockerContainer(MarathonObject):
     :param str network:
     :param port_mappings:
     :type port_mappings: list[:class:`marathon.models.container.MarathonContainerPortMapping`] or list[dict]
+    :param dict parameters:
+    :param bool privileged: run container in privileged mode
     """
 
     NETWORK_MODES=['BRIDGE', 'HOST']
     """Valid network modes"""
 
-    def __init__(self, image=None, network='HOST', port_mappings=None):
+    def __init__(self, image=None, network='HOST', port_mappings=None, parameters=None, privileged=None):
         self.image = image
         if network:
             if not network in self.NETWORK_MODES:
@@ -53,6 +55,8 @@ class MarathonDockerContainer(MarathonObject):
             pm if isinstance(pm, MarathonContainerPortMapping) else MarathonContainerPortMapping().from_json(pm)
             for pm in (port_mappings or [])
         ]
+        self.parameters = parameters or {}
+        self.privileged = privileged or False
 
 
 class MarathonContainerPortMapping(MarathonObject):
