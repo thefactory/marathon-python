@@ -441,7 +441,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="class">
 <dt id="marathon.models.container.MarathonDockerContainer">
-<em class="property">class </em><tt class="descclassname">marathon.models.container.</tt><tt class="descname">MarathonDockerContainer</tt><big>(</big><em>image=None</em>, <em>network='HOST'</em>, <em>port_mappings=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/container.html#MarathonDockerContainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.container.MarathonDockerContainer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">marathon.models.container.</tt><tt class="descname">MarathonDockerContainer</tt><big>(</big><em>image=None</em>, <em>network='HOST'</em>, <em>port_mappings=None</em>, <em>parameters=None</em>, <em>privileged=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/container.html#MarathonDockerContainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.container.MarathonDockerContainer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
 <p>Docker options.</p>
 <p>See <a class="reference external" href="https://mesosphere.github.io/marathon/docs/native-docker.html">https://mesosphere.github.io/marathon/docs/native-docker.html</a></p>
@@ -453,6 +453,8 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <li><strong>image</strong> (<em>str</em>) &#8211; docker image</li>
 <li><strong>network</strong> (<em>str</em>) &#8211; </li>
 <li><strong>port_mappings</strong> (list[<a class="reference internal" href="#marathon.models.container.MarathonContainerPortMapping" title="marathon.models.container.MarathonContainerPortMapping"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.container.MarathonContainerPortMapping</span></tt></a>] or list[dict]) &#8211; </li>
+<li><strong>parameters</strong> (<em>dict</em>) &#8211; </li>
+<li><strong>privileged</strong> (<em>bool</em>) &#8211; run container in privileged mode</li>
 </ul>
 </td>
 </tr>
@@ -493,7 +495,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="class">
 <dt id="marathon.models.deployment.MarathonDeploymentAction">
-<em class="property">class </em><tt class="descclassname">marathon.models.deployment.</tt><tt class="descname">MarathonDeploymentAction</tt><big>(</big><em>action=None</em>, <em>app=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/deployment.html#MarathonDeploymentAction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.deployment.MarathonDeploymentAction" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">marathon.models.deployment.</tt><tt class="descname">MarathonDeploymentAction</tt><big>(</big><em>action=None</em>, <em>app=None</em>, <em>apps=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/deployment.html#MarathonDeploymentAction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.deployment.MarathonDeploymentAction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
 <p>Marathon Application resource.</p>
 <p>See: <a class="reference external" href="https://mesosphere.github.io/marathon/docs/rest-api.html#deployments">https://mesosphere.github.io/marathon/docs/rest-api.html#deployments</a></p>
@@ -504,6 +506,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>action</strong> (<em>str</em>) &#8211; action</li>
 <li><strong>app</strong> (<em>str</em>) &#8211; app id</li>
+<li><strong>apps</strong> (<em>str</em>) &#8211; app id (see <a class="reference external" href="https://github.com/mesosphere/marathon/pull/802">https://github.com/mesosphere/marathon/pull/802</a>)</li>
 </ul>
 </td>
 </tr>
@@ -717,7 +720,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <span class="target" id="module-marathon.models.task"></span><dl class="class">
 <dt id="marathon.models.task.MarathonHealthCheckResult">
-<em class="property">class </em><tt class="descclassname">marathon.models.task.</tt><tt class="descname">MarathonHealthCheckResult</tt><big>(</big><em>alive=None</em>, <em>consecutive_failures=None</em>, <em>first_success=None</em>, <em>last_failure=None</em>, <em>last_success=None</em>, <em>task_id=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/task.html#MarathonHealthCheckResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.task.MarathonHealthCheckResult" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">marathon.models.task.</tt><tt class="descname">MarathonHealthCheckResult</tt><big>(</big><em>alive=None</em>, <em>consecutive_failures=None</em>, <em>first_success=None</em>, <em>last_failure=None</em>, <em>last_success=None</em>, <em>task_id=None</em>, <em>last_failure_cause=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/task.html#MarathonHealthCheckResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.task.MarathonHealthCheckResult" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
 <p>Marathon health check result.</p>
 <p>See <a class="reference external" href="https://mesosphere.github.io/marathon/docs/health-checks.html">https://mesosphere.github.io/marathon/docs/health-checks.html</a></p>
@@ -730,6 +733,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <li><strong>consecutive_failures</strong> (<em>int</em>) &#8211; number of failed healthchecks in a row</li>
 <li><strong>first_success</strong> (<em>str</em>) &#8211; first time when which healthcheck succeeded</li>
 <li><strong>last_failure</strong> (<em>str</em>) &#8211; last time when which healthcheck failed</li>
+<li><strong>last_failure_cause</strong> (<em>str</em>) &#8211; cause for last failure</li>
 <li><strong>last_success</strong> (<em>str</em>) &#8211; last time when which healthcheck succeeded</li>
 <li><strong>task_id</strong> (<em>str</em>) &#8211; task id</li>
 </ul>

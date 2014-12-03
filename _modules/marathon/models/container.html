@@ -139,12 +139,14 @@
 <span class="sd">    :param str network:</span>
 <span class="sd">    :param port_mappings:</span>
 <span class="sd">    :type port_mappings: list[:class:`marathon.models.container.MarathonContainerPortMapping`] or list[dict]</span>
+<span class="sd">    :param dict parameters:</span>
+<span class="sd">    :param bool privileged: run container in privileged mode</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">NETWORK_MODES</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;BRIDGE&#39;</span><span class="p">,</span> <span class="s">&#39;HOST&#39;</span><span class="p">]</span>
     <span class="sd">&quot;&quot;&quot;Valid network modes&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">network</span><span class="o">=</span><span class="s">&#39;HOST&#39;</span><span class="p">,</span> <span class="n">port_mappings</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">network</span><span class="o">=</span><span class="s">&#39;HOST&#39;</span><span class="p">,</span> <span class="n">port_mappings</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">privileged</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span>
         <span class="k">if</span> <span class="n">network</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">network</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">NETWORK_MODES</span><span class="p">:</span>
@@ -154,6 +156,8 @@
             <span class="n">pm</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pm</span><span class="p">,</span> <span class="n">MarathonContainerPortMapping</span><span class="p">)</span> <span class="k">else</span> <span class="n">MarathonContainerPortMapping</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">pm</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">pm</span> <span class="ow">in</span> <span class="p">(</span><span class="n">port_mappings</span> <span class="ow">or</span> <span class="p">[])</span>
         <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="n">parameters</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">privileged</span> <span class="o">=</span> <span class="n">privileged</span> <span class="ow">or</span> <span class="bp">False</span>
 
 </div>
 <div class="viewcode-block" id="MarathonContainerPortMapping"><a class="viewcode-back" href="../../../marathon.html#marathon.models.container.MarathonContainerPortMapping">[docs]</a><span class="k">class</span> <span class="nc">MarathonContainerPortMapping</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
