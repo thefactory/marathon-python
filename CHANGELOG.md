@@ -1,3 +1,8 @@
+## 0.6.10 (2014-12-17)
+
+Changes:
+* Added `force` option to `delete_deployment()`
+
 ## 0.6.9 (2014-12-03)
 
 Changes:
