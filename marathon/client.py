@@ -491,8 +491,9 @@ class MarathonClient(object):
         """Cancel a deployment.
 
         :param str deployment_id: deployment id
+        :param bool force: if true, don't create a rollback deployment to restore the previous configuration
 
-        :returns: a dict containing the deployment id and version
+        :returns: a dict containing the deployment id and version (empty dict if force=True)
         :rtype: dict
         """
         if force:
