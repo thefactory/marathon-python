@@ -47,12 +47,13 @@ class MarathonApp(MarathonResource):
     :param list[str] uris: uris
     :param str user: user
     :param str version: version id
+    :param dict labels
     """
 
     UPDATE_OK_ATTRIBUTES = [
         'args', 'backoff_factor', 'backoff_seconds', 'cmd', 'constraints', 'container', 'cpus', 'dependencies', 'disk',
-        'env', 'executor', 'health_checks', 'instances', 'mem', 'ports', 'require_ports', 'store_urls',
-        'task_rate_limit', 'upgrade_strategy', 'uris', 'user', 'version'
+        'env', 'executor', 'health_checks', 'instances', 'labels', 'max_launch_delay_seconds', 'mem', 'ports', 'require_ports',
+        'store_urls', 'task_rate_limit', 'upgrade_strategy', 'uris', 'user', 'version'
     ]
     """List of attributes which may be updated/changed after app creation"""
 
@@ -64,9 +65,9 @@ class MarathonApp(MarathonResource):
 
     def __init__(self, args=None, backoff_factor=None, backoff_seconds=None, cmd=None, constraints=None, container=None,
                  cpus=None, dependencies=None, deployments=None, disk=None, env=None, executor=None, health_checks=None,
-                 id=None, instances=None, last_task_failure=None, mem=None, ports=None, require_ports=None,
-                 store_urls=None, task_rate_limit=None, tasks=None, tasks_running=None, tasks_staged=None,
-                 upgrade_strategy=None, uris=None, user=None, version=None):
+                 id=None, instances=None, labels=None, last_task_failure=None, max_launch_delay_seconds=None, mem=None,
+                 ports=None, require_ports=None, store_urls=None, task_rate_limit=None, tasks=None, tasks_running=None,
+                 tasks_staged=None, upgrade_strategy=None, uris=None, user=None, version=None):
 
         # self.args = args or []
         self.args = args
@@ -98,8 +99,10 @@ class MarathonApp(MarathonResource):
         ]
         self.id = id
         self.instances = instances
+        self.labels = labels or {}
         self.last_task_failure = last_task_failure if (isinstance(last_task_failure, MarathonTaskFailure) or last_task_failure is None) \
             else MarathonTaskFailure.from_json(last_task_failure)
+        self.max_launch_delay_seconds = max_launch_delay_seconds
         self.mem = mem
         self.ports = ports or []
         self.require_ports = require_ports
@@ -179,5 +182,6 @@ class MarathonUpgradeStrategy(MarathonObject):
     :param float minimum_health_capacity: minimum % of instances kept healthy on deploy
     """
 
-    def __init__(self, minimum_health_capacity=None):
+    def __init__(self, maximum_over_capacity=None, minimum_health_capacity=None):
+        self.maximum_over_capacity = maximum_over_capacity
         self.minimum_health_capacity = minimum_health_capacity
