@@ -29,7 +29,7 @@ class MarathonObject(object):
         """
         return cls(**{to_snake_case(k): v for k,v in attributes.iteritems()})
 
-    def to_json(self, minimal=False):
+    def to_json(self, minimal=True):
         """Encode an object as a JSON string.
 
         :param bool minimal: Construct a minimal representation of the object (ignore nulls and empty collections)
