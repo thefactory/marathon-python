@@ -1,10 +1,14 @@
 # marathon-python
 
-This is a Python library for interfacing with [Marathon](https://github.com/mesosphere/marathon) servers via Marathon's [REST API](https://github.com/mesosphere/marathon/blob/master/REST.md).
+This is a Python library for interfacing with [Marathon](https://github.com/mesosphere/marathon) servers via Marathon's [REST API](https://mesosphere.github.io/marathon/docs/rest-api.html).
 
 #### Compatibility
 
-* marathon-python is primarily developed against Marathon 0.7.5 (see [Marathon docs](https://mesosphere.github.io/marathon/docs/rest-api.html))
+marathon-python is primarily developed against Marathon 0.8.x (see [Marathon docs](https://mesosphere.github.io/marathon/))
+
+* For Marathon 0.8.x, use the latest release
+* For Marathon 0.7.4 to 0.7.6, use marathon-python 0.6.10
+* For older versions, please see `CHANGELOG.md`
 
 ## Installation
 

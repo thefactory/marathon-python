@@ -1,3 +1,7 @@
+## 0.6.11 (2015-03-06)
+
+Support for Marathon 0.8.0. For earlier versions,
+
 ## 0.6.10 (2014-12-17)
 
 Changes:
