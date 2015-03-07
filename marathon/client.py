@@ -91,10 +91,7 @@ class MarathonClient(object):
         :returns: list of endpoints
         :rtype: list[`MarathonEndpoint`]
         """
-        response = self._do_request('GET', '/v1/endpoints')
-        endpoints = [MarathonEndpoint.from_json(app) for app in response.json()]
-        # Flatten result
-        return [item for sublist in endpoints for item in sublist]
+        return MarathonEndpoint.from_tasks(self.list_tasks())
 
     def create_app(self, app_id, app):
         """Create and start an app.

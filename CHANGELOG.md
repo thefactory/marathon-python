@@ -1,6 +1,11 @@
+## 0.6.12 (2015-03-06)
+
+Changes:
+* Replace defunct `MarathonEndpoint` resource with a working helper object
+
 ## 0.6.11 (2015-03-06)
 
-Support for Marathon 0.8.0. For earlier versions,
+Support for Marathon 0.8.0
 
 ## 0.6.10 (2014-12-17)
 
