@@ -42,6 +42,8 @@ class MarathonApp(MarathonResource):
     :type tasks: list[:class:`marathon.models.task.MarathonTask`]
     :param int tasks_running: (read-only) the number of running tasks
     :param int tasks_staged: (read-only) the number of staged tasks
+    :param int tasks_healthy: (read-only) the number of healthy tasks
+    :param int tasks_unhealthy: (read-only) the number of unhealthy tasks
     :param upgrade_strategy: strategy by which app instances are replaced during a deployment
     :type upgrade_strategy: :class:`marathon.models.app.MarathonUpgradeStrategy` or dict
     :param list[str] uris: uris
@@ -60,14 +62,15 @@ class MarathonApp(MarathonResource):
     CREATE_ONLY_ATTRIBUTES = ['id']
     """List of attributes that should only be passed on creation"""
 
-    READ_ONLY_ATTRIBUTES = ['deployments', 'tasks', 'tasks_running', 'tasks_staging']
+    READ_ONLY_ATTRIBUTES = ['deployments', 'tasks', 'tasks_running', 'tasks_staged', 'tasks_healthy', 'tasks_unhealthy']
     """List of read-only attributes"""
 
     def __init__(self, args=None, backoff_factor=None, backoff_seconds=None, cmd=None, constraints=None, container=None,
                  cpus=None, dependencies=None, deployments=None, disk=None, env=None, executor=None, health_checks=None,
                  id=None, instances=None, labels=None, last_task_failure=None, max_launch_delay_seconds=None, mem=None,
                  ports=None, require_ports=None, store_urls=None, task_rate_limit=None, tasks=None, tasks_running=None,
-                 tasks_staged=None, upgrade_strategy=None, uris=None, user=None, version=None):
+                 tasks_staged=None, tasks_healthy=None, tasks_unhealthy=None, upgrade_strategy=None, uris=None, user=None,
+                 version=None):
 
         # self.args = args or []
         self.args = args
@@ -114,6 +117,8 @@ class MarathonApp(MarathonResource):
         ]
         self.tasks_running = tasks_running
         self.tasks_staged = tasks_staged
+        self.tasks_healthy = tasks_healthy
+        self.tasks_unhealthy = tasks_unhealthy
         self.upgrade_strategy = upgrade_strategy if (isinstance(upgrade_strategy, MarathonUpgradeStrategy) or upgrade_strategy is None) \
             else MarathonUpgradeStrategy.from_json(upgrade_strategy)
         self.uris = uris or []
