@@ -150,7 +150,7 @@ class MarathonClient(object):
         response = self._do_request('GET', '/v2/apps/{app_id}'.format(app_id=app_id), params=params)
         return self._parse_response(response, MarathonApp, resource_name='app')
 
-    def update_app(self, app_id, app, force=False):
+    def update_app(self, app_id, app, force=False, minimal=True):
         """Update an app.
 
         Applies writable settings in `app` to `app_id`
@@ -160,6 +160,7 @@ class MarathonClient(object):
         :param app: application settings
         :type app: :class:`marathon.models.app.MarathonApp`
         :param bool force: apply even if a deployment is in progress
+        :param bool minimal: ignore nulls and empty collections
 
         :returns: a dict containing the deployment id and version
         :rtype: dict
@@ -168,7 +169,7 @@ class MarathonClient(object):
         app.version = None
 
         params = {'force': force}
-        data = app.to_json(minimal=True)
+        data = app.to_json(minimal=minimal)
 
         response = self._do_request('PUT', '/v2/apps/{app_id}'.format(app_id=app_id), params=params, data=data)
         return response.json()
@@ -268,7 +269,7 @@ class MarathonClient(object):
         response = self._do_request('GET', '/v2/groups/{group_id}'.format(group_id=group_id))
         return self._parse_response(response, MarathonGroup, resource_name='group')
 
-    def update_group(self, group_id, group, force=False):
+    def update_group(self, group_id, group, force=False, minimal=True):
         """Update a group.
 
         Applies writable settings in `group` to `group_id`
@@ -278,6 +279,7 @@ class MarathonClient(object):
         :param group: group settings
         :type group: :class:`marathon.models.group.MarathonGroup`
         :param bool force: apply even if a deployment is in progress
+        :param bool minimal: ignore nulls and empty collections
 
         :returns: a dict containing the deployment id and version
         :rtype: dict
@@ -286,7 +288,7 @@ class MarathonClient(object):
         group.version = None
 
         params = {'force': force}
-        data = group.to_json(minimal=True)
+        data = group.to_json(minimal=minimal)
 
         response = self._do_request('PUT', '/v2/groups/{group_id}'.format(group_id=group_id), data=data, params=params)
         return response.json()
