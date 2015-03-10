@@ -18,12 +18,17 @@ class MarathonInfo(MarathonResource):
     :type http_config: :class:`marathon.models.info.MarathonHttpConfig` or dict
     :param event_subscriber:
     :type event_subscriber: :class`marathon.models.info.MarathonEventSubscriber` or dict
+    :param bool elected:
     """
 
     def __init__(self, event_subscriber=None, framework_id=None, http_config=None, leader=None, marathon_config=None,
-                 name=None, version=None, zookeeper_config=None):
-        self.event_subscriber = event_subscriber if isinstance(event_subscriber, MarathonEventSubscriber) \
-            else MarathonEventSubscriber().from_json(event_subscriber)
+                 name=None, version=None, elected=None, zookeeper_config=None):
+        if isinstance(event_subscriber, MarathonEventSubscriber):
+            self.event_subscriber = event_subscriber
+        elif event_subscriber is not None:
+            self.event_subscriber = MarathonEventSubscriber().from_json(event_subscriber)
+        else:
+            self.event_subscriber = None
         self.framework_id = framework_id
         self.http_config = http_config if isinstance(http_config, MarathonHttpConfig) \
             else MarathonHttpConfig().from_json(http_config)
@@ -32,6 +37,7 @@ class MarathonInfo(MarathonResource):
             else MarathonConfig().from_json(marathon_config)
         self.name = name
         self.version = version
+        self.elected = elected
         self.zookeeper_config = zookeeper_config if isinstance(zookeeper_config, MarathonZooKeeperConfig) \
             else MarathonZooKeeperConfig().from_json(zookeeper_config)
 
@@ -51,14 +57,17 @@ class MarathonConfig(MarathonObject):
     :param str master:
     :param str mesos_role:
     :param str mesos_user:
+    :param str webui_url:
     :param int reconciliation_initial_delay:
     :param int reconciliation_interval:
     :param int task_launch_timeout:
+    :param int marathon_store_timeout:
     """
 
     def __init__(self, checkpoint=None, executor=None, failover_timeout=None, ha=None, hostname=None,
                  local_port_min=None, local_port_max=None, master=None, mesos_role=None, mesos_user=None,
-                 reconciliation_initial_delay=None, reconciliation_interval=None, task_launch_timeout=None):
+                 webui_url=None, reconciliation_initial_delay=None, reconciliation_interval=None,
+                 task_launch_timeout=None, marathon_store_timeout=None):
         self.checkpoint = checkpoint
         self.executor = executor
         self.failover_timeout = failover_timeout
@@ -69,9 +78,11 @@ class MarathonConfig(MarathonObject):
         self.master = master
         self.mesos_role = mesos_role
         self.mesos_user = mesos_user
+        self.webui_url = webui_url
         self.reconciliation_initial_delay = reconciliation_initial_delay
         self.reconciliation_interval = reconciliation_interval
         self.task_launch_timeout = task_launch_timeout
+        self.marathon_store_timeout = marathon_store_timeout
 
 
 class MarathonZooKeeperConfig(MarathonObject):
