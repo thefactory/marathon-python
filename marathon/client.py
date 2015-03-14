@@ -513,6 +513,24 @@ class MarathonClient(object):
         response = self._do_request('GET', '/v2/info')
         return self._parse_response(response, MarathonInfo)
 
+    def get_leader(self):
+        """Get the current marathon leader.
+
+        :returns: leader endpoint
+        :rtype: dict
+        """
+        response = self._do_request('GET', '/v2/leader')
+        return response.json()
+
+    def delete_leader(self):
+        """Causes the current leader to abdicate, triggers a new election.
+
+        :returns: message saying leader abdicated
+        :rtype: dict
+        """
+        response = self._do_request('DELETE', '/v2/leader')
+        return response.json()
+
     def ping(self):
         """Ping the Marathon server.
 
