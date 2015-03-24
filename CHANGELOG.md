@@ -1,3 +1,11 @@
+## 0.6.13 (2015-03-24)
+
+Support for Marathon 0.8.1
+
+Changes:
+* Better handling of nulls and empty collections (thanks @wndhydrnt)
+* Updated object signatures to match 0.8.1 (thanks @pradeepchhetri)
+
 ## 0.6.12 (2015-03-06)
 
 Changes:
