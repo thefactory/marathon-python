@@ -20,9 +20,9 @@ class MarathonJsonEncoder(json.JSONEncoder):
             return obj.isoformat()
 
         if isinstance(obj, collections.Iterable) and not isinstance(obj, types.StringTypes):
-            if hasattr(obj, 'iteritems'):
+            try:
                 return {k: self.default(v) for k,v in obj.iteritems()}
-            else:
+            except AttributeError:
                 return [self.default(e) for e in obj]
 
         return obj
@@ -39,9 +39,9 @@ class MarathonMinimalJsonEncoder(json.JSONEncoder):
             return obj.isoformat()
 
         if isinstance(obj, collections.Iterable) and not isinstance(obj, types.StringTypes):
-            if hasattr(obj, 'iteritems'):
+            try:
                 return {k: self.default(v) for k,v in obj.iteritems() if (v or v == False)}
-            else:
+            except AttributeError:
                 return [self.default(e) for e in obj if (e or e == False)]
 
         return obj
