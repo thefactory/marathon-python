@@ -40,12 +40,14 @@ class MarathonDockerContainer(MarathonObject):
     :type port_mappings: list[:class:`marathon.models.container.MarathonContainerPortMapping`] or list[dict]
     :param dict parameters:
     :param bool privileged: run container in privileged mode
+    :param bool force_pull_image: Force a docker pull before launching
     """
 
     NETWORK_MODES=['BRIDGE', 'HOST']
     """Valid network modes"""
 
-    def __init__(self, image=None, network='HOST', port_mappings=None, parameters=None, privileged=None, **kwargs):
+    def __init__(self, image=None, network='HOST', port_mappings=None, parameters=None, privileged=None,
+                 force_pull_image=None, **kwargs):
         self.image = image
         if network:
             if not network in self.NETWORK_MODES:
