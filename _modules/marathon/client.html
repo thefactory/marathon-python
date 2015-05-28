@@ -192,10 +192,7 @@
 <span class="sd">        :returns: list of endpoints</span>
 <span class="sd">        :rtype: list[`MarathonEndpoint`]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&#39;GET&#39;</span><span class="p">,</span> <span class="s">&#39;/v1/endpoints&#39;</span><span class="p">)</span>
-        <span class="n">endpoints</span> <span class="o">=</span> <span class="p">[</span><span class="n">MarathonEndpoint</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">app</span><span class="p">)</span> <span class="k">for</span> <span class="n">app</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()]</span>
-        <span class="c"># Flatten result</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="n">endpoints</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sublist</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">MarathonEndpoint</span><span class="o">.</span><span class="n">from_tasks</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list_tasks</span><span class="p">())</span>
 </div>
 <div class="viewcode-block" id="MarathonClient.create_app"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.create_app">[docs]</a>    <span class="k">def</span> <span class="nf">create_app</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="p">,</span> <span class="n">app</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create and start an app.</span>
@@ -254,7 +251,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&#39;GET&#39;</span><span class="p">,</span> <span class="s">&#39;/v2/apps/{app_id}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">app_id</span><span class="o">=</span><span class="n">app_id</span><span class="p">),</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">MarathonApp</span><span class="p">,</span> <span class="n">resource_name</span><span class="o">=</span><span class="s">&#39;app&#39;</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="MarathonClient.update_app"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.update_app">[docs]</a>    <span class="k">def</span> <span class="nf">update_app</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="MarathonClient.update_app"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.update_app">[docs]</a>    <span class="k">def</span> <span class="nf">update_app</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">minimal</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Update an app.</span>
 
 <span class="sd">        Applies writable settings in `app` to `app_id`</span>
@@ -264,6 +261,7 @@
 <span class="sd">        :param app: application settings</span>
 <span class="sd">        :type app: :class:`marathon.models.app.MarathonApp`</span>
 <span class="sd">        :param bool force: apply even if a deployment is in progress</span>
+<span class="sd">        :param bool minimal: ignore nulls and empty collections</span>
 
 <span class="sd">        :returns: a dict containing the deployment id and version</span>
 <span class="sd">        :rtype: dict</span>
@@ -272,7 +270,7 @@
         <span class="n">app</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="bp">None</span>
 
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;force&#39;</span><span class="p">:</span> <span class="n">force</span><span class="p">}</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">minimal</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">minimal</span><span class="o">=</span><span class="n">minimal</span><span class="p">)</span>
 
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&#39;PUT&#39;</span><span class="p">,</span> <span class="s">&#39;/v2/apps/{app_id}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">app_id</span><span class="o">=</span><span class="n">app_id</span><span class="p">),</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
@@ -372,7 +370,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&#39;GET&#39;</span><span class="p">,</span> <span class="s">&#39;/v2/groups/{group_id}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="n">group_id</span><span class="p">))</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">MarathonGroup</span><span class="p">,</span> <span class="n">resource_name</span><span class="o">=</span><span class="s">&#39;group&#39;</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="MarathonClient.update_group"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.update_group">[docs]</a>    <span class="k">def</span> <span class="nf">update_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group_id</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="MarathonClient.update_group"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.update_group">[docs]</a>    <span class="k">def</span> <span class="nf">update_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group_id</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">minimal</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Update a group.</span>
 
 <span class="sd">        Applies writable settings in `group` to `group_id`</span>
@@ -382,6 +380,7 @@
 <span class="sd">        :param group: group settings</span>
 <span class="sd">        :type group: :class:`marathon.models.group.MarathonGroup`</span>
 <span class="sd">        :param bool force: apply even if a deployment is in progress</span>
+<span class="sd">        :param bool minimal: ignore nulls and empty collections</span>
 
 <span class="sd">        :returns: a dict containing the deployment id and version</span>
 <span class="sd">        :rtype: dict</span>
@@ -390,7 +389,7 @@
         <span class="n">group</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="bp">None</span>
 
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;force&#39;</span><span class="p">:</span> <span class="n">force</span><span class="p">}</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">minimal</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">minimal</span><span class="o">=</span><span class="n">minimal</span><span class="p">)</span>
 
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&#39;PUT&#39;</span><span class="p">,</span> <span class="s">&#39;/v2/groups/{group_id}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="n">group_id</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
@@ -588,16 +587,23 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&#39;GET&#39;</span><span class="p">,</span> <span class="s">&#39;/v2/deployments&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">MarathonDeployment</span><span class="p">,</span> <span class="n">is_list</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="MarathonClient.delete_deployment"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.delete_deployment">[docs]</a>    <span class="k">def</span> <span class="nf">delete_deployment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deployment_id</span><span class="p">):</span>
+<div class="viewcode-block" id="MarathonClient.delete_deployment"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.delete_deployment">[docs]</a>    <span class="k">def</span> <span class="nf">delete_deployment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deployment_id</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Cancel a deployment.</span>
 
 <span class="sd">        :param str deployment_id: deployment id</span>
+<span class="sd">        :param bool force: if true, don&#39;t create a rollback deployment to restore the previous configuration</span>
 
-<span class="sd">        :returns: a dict containing the deployment id and version</span>
+<span class="sd">        :returns: a dict containing the deployment id and version (empty dict if force=True)</span>
 <span class="sd">        :rtype: dict</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&#39;DELETE&#39;</span><span class="p">,</span> <span class="s">&#39;/v2/deployments/{deployment}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">deployment</span><span class="o">=</span><span class="n">deployment_id</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">force</span><span class="p">:</span>
+            <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;force&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&#39;DELETE&#39;</span><span class="p">,</span> <span class="s">&#39;/v2/deployments/{deployment}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">deployment</span><span class="o">=</span><span class="n">deployment_id</span><span class="p">),</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+            <span class="c"># Successful DELETE with ?force=true returns empty text (and status code 202). Client code should poll until deployment is removed.</span>
+            <span class="k">return</span> <span class="p">{}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&#39;DELETE&#39;</span><span class="p">,</span> <span class="s">&#39;/v2/deployments/{deployment}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">deployment</span><span class="o">=</span><span class="n">deployment_id</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </div>
 <div class="viewcode-block" id="MarathonClient.get_info"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.get_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get server configuration information.</span>
@@ -607,6 +613,24 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&#39;GET&#39;</span><span class="p">,</span> <span class="s">&#39;/v2/info&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">MarathonInfo</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="MarathonClient.get_leader"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.get_leader">[docs]</a>    <span class="k">def</span> <span class="nf">get_leader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the current marathon leader.</span>
+
+<span class="sd">        :returns: leader endpoint</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&#39;GET&#39;</span><span class="p">,</span> <span class="s">&#39;/v2/leader&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="MarathonClient.delete_leader"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.delete_leader">[docs]</a>    <span class="k">def</span> <span class="nf">delete_leader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Causes the current leader to abdicate, triggers a new election.</span>
+
+<span class="sd">        :returns: message saying leader abdicated</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_request</span><span class="p">(</span><span class="s">&#39;DELETE&#39;</span><span class="p">,</span> <span class="s">&#39;/v2/leader&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </div>
 <div class="viewcode-block" id="MarathonClient.ping"><a class="viewcode-back" href="../../marathon.html#marathon.client.MarathonClient.ping">[docs]</a>    <span class="k">def</span> <span class="nf">ping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Ping the Marathon server.</span>

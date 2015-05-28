@@ -119,12 +119,17 @@
 <span class="sd">    :type http_config: :class:`marathon.models.info.MarathonHttpConfig` or dict</span>
 <span class="sd">    :param event_subscriber:</span>
 <span class="sd">    :type event_subscriber: :class`marathon.models.info.MarathonEventSubscriber` or dict</span>
+<span class="sd">    :param bool elected:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_subscriber</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">framework_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">http_config</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">leader</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">marathon_config</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">zookeeper_config</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">event_subscriber</span> <span class="o">=</span> <span class="n">event_subscriber</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">event_subscriber</span><span class="p">,</span> <span class="n">MarathonEventSubscriber</span><span class="p">)</span> \
-            <span class="k">else</span> <span class="n">MarathonEventSubscriber</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">event_subscriber</span><span class="p">)</span>
+                 <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">elected</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">zookeeper_config</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">event_subscriber</span><span class="p">,</span> <span class="n">MarathonEventSubscriber</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">event_subscriber</span> <span class="o">=</span> <span class="n">event_subscriber</span>
+        <span class="k">elif</span> <span class="n">event_subscriber</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">event_subscriber</span> <span class="o">=</span> <span class="n">MarathonEventSubscriber</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">event_subscriber</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">event_subscriber</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">framework_id</span> <span class="o">=</span> <span class="n">framework_id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">http_config</span> <span class="o">=</span> <span class="n">http_config</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">http_config</span><span class="p">,</span> <span class="n">MarathonHttpConfig</span><span class="p">)</span> \
             <span class="k">else</span> <span class="n">MarathonHttpConfig</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">http_config</span><span class="p">)</span>
@@ -133,6 +138,7 @@
             <span class="k">else</span> <span class="n">MarathonConfig</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">marathon_config</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elected</span> <span class="o">=</span> <span class="n">elected</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">zookeeper_config</span> <span class="o">=</span> <span class="n">zookeeper_config</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">zookeeper_config</span><span class="p">,</span> <span class="n">MarathonZooKeeperConfig</span><span class="p">)</span> \
             <span class="k">else</span> <span class="n">MarathonZooKeeperConfig</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">zookeeper_config</span><span class="p">)</span>
 
@@ -152,14 +158,17 @@
 <span class="sd">    :param str master:</span>
 <span class="sd">    :param str mesos_role:</span>
 <span class="sd">    :param str mesos_user:</span>
+<span class="sd">    :param str webui_url:</span>
 <span class="sd">    :param int reconciliation_initial_delay:</span>
 <span class="sd">    :param int reconciliation_interval:</span>
 <span class="sd">    :param int task_launch_timeout:</span>
+<span class="sd">    :param int marathon_store_timeout:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checkpoint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">failover_timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">hostname</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
                  <span class="n">local_port_min</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">local_port_max</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">mesos_role</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">mesos_user</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">reconciliation_initial_delay</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">reconciliation_interval</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">task_launch_timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+                 <span class="n">webui_url</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">reconciliation_initial_delay</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">reconciliation_interval</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">task_launch_timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">marathon_store_timeout</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">checkpoint</span> <span class="o">=</span> <span class="n">checkpoint</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">executor</span> <span class="o">=</span> <span class="n">executor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">failover_timeout</span> <span class="o">=</span> <span class="n">failover_timeout</span>
@@ -170,9 +179,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">master</span> <span class="o">=</span> <span class="n">master</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mesos_role</span> <span class="o">=</span> <span class="n">mesos_role</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mesos_user</span> <span class="o">=</span> <span class="n">mesos_user</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">webui_url</span> <span class="o">=</span> <span class="n">webui_url</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reconciliation_initial_delay</span> <span class="o">=</span> <span class="n">reconciliation_initial_delay</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reconciliation_interval</span> <span class="o">=</span> <span class="n">reconciliation_interval</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">task_launch_timeout</span> <span class="o">=</span> <span class="n">task_launch_timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">marathon_store_timeout</span> <span class="o">=</span> <span class="n">marathon_store_timeout</span>
 
 </div>
 <div class="viewcode-block" id="MarathonZooKeeperConfig"><a class="viewcode-back" href="../../../marathon.html#marathon.models.info.MarathonZooKeeperConfig">[docs]</a><span class="k">class</span> <span class="nc">MarathonZooKeeperConfig</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>

@@ -141,12 +141,14 @@
 <span class="sd">    :type port_mappings: list[:class:`marathon.models.container.MarathonContainerPortMapping`] or list[dict]</span>
 <span class="sd">    :param dict parameters:</span>
 <span class="sd">    :param bool privileged: run container in privileged mode</span>
+<span class="sd">    :param bool force_pull_image: Force a docker pull before launching</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">NETWORK_MODES</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;BRIDGE&#39;</span><span class="p">,</span> <span class="s">&#39;HOST&#39;</span><span class="p">]</span>
     <span class="sd">&quot;&quot;&quot;Valid network modes&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">network</span><span class="o">=</span><span class="s">&#39;HOST&#39;</span><span class="p">,</span> <span class="n">port_mappings</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">privileged</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">network</span><span class="o">=</span><span class="s">&#39;HOST&#39;</span><span class="p">,</span> <span class="n">port_mappings</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">privileged</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">force_pull_image</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span>
         <span class="k">if</span> <span class="n">network</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">network</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">NETWORK_MODES</span><span class="p">:</span>

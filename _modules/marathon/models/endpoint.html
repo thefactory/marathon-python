@@ -104,57 +104,53 @@
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">simplejson</span> <span class="kn">as</span> <span class="nn">json</span>
 
-<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">MarathonResource</span>
-<span class="kn">from</span> <span class="nn">.task</span> <span class="kn">import</span> <span class="n">MarathonTask</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">MarathonObject</span>
 
 
-<div class="viewcode-block" id="MarathonEndpoint"><a class="viewcode-back" href="../../../marathon.html#marathon.models.endpoint.MarathonEndpoint">[docs]</a><span class="k">class</span> <span class="nc">MarathonEndpoint</span><span class="p">(</span><span class="n">MarathonResource</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;(DEPRECATED) Marathon Endpoint resource.</span>
-
-<span class="sd">    This was removed in Marathon 0.7.0.</span>
+<div class="viewcode-block" id="MarathonEndpoint"><a class="viewcode-back" href="../../../marathon.html#marathon.models.endpoint.MarathonEndpoint">[docs]</a><span class="k">class</span> <span class="nc">MarathonEndpoint</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Marathon Endpoint helper object for service discovery. It describes a single port mapping for a running task.</span>
 
 <span class="sd">    :param str app_id: application id</span>
 <span class="sd">    :param str host: mesos slave running the task</span>
 <span class="sd">    :param str id: task id</span>
-<span class="sd">    :param int app_port: port seen by the application</span>
+<span class="sd">    :param int service_port: application service port</span>
 <span class="sd">    :param int task_port: port allocated on the slave</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s">&quot;{clazz}::{app_id}::{task_id}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clazz</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="n">app_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">app_id</span><span class="p">,</span> <span class="n">task_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">task_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s">&quot;{clazz}::{app_id}::{service_port}::{task_id}::{task_port}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">clazz</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
+            <span class="n">app_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">app_id</span><span class="p">,</span>
+            <span class="n">service_port</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">service_port</span><span class="p">,</span>
+            <span class="n">task_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">task_id</span><span class="p">,</span>
+            <span class="n">task_port</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">task_port</span>
+        <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">app_port</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">task_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">task_port</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">service_port</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">task_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">task_port</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app_id</span> <span class="o">=</span> <span class="n">app_id</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">app_port</span> <span class="o">=</span> <span class="n">app_port</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">service_port</span> <span class="o">=</span> <span class="n">service_port</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">host</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">task_id</span> <span class="o">=</span> <span class="n">task_id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">task_port</span> <span class="o">=</span> <span class="n">task_port</span>
 
     <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="MarathonEndpoint.from_json"><a class="viewcode-back" href="../../../marathon.html#marathon.models.endpoint.MarathonEndpoint.from_json">[docs]</a>    <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Construct a list of MarathonEndpoints from a parsed endpoints response.</span>
+<div class="viewcode-block" id="MarathonEndpoint.from_tasks"><a class="viewcode-back" href="../../../marathon.html#marathon.models.endpoint.MarathonEndpoint.from_tasks">[docs]</a>    <span class="k">def</span> <span class="nf">from_tasks</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">tasks</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Construct a list of MarathonEndpoints from a list of tasks.</span>
 
-<span class="sd">        :param dict obj: object obj from parsed response</span>
+<span class="sd">        :param list[:class:`marathon.models.MarathonTask`] tasks: list of tasks to parse</span>
 
 <span class="sd">        :rtype: list[:class:`MarathonEndpoint`]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">app_id</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">)</span>
-        <span class="n">app_ports</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;ports&#39;</span><span class="p">)</span>
-        <span class="n">f</span> <span class="o">=</span> <span class="n">MarathonTask</span><span class="p">()</span>
-        <span class="n">endpoints</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span><span class="n">MarathonTask</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">[</span><span class="s">&#39;instances&#39;</span><span class="p">]]</span>
 
-        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">:</span>
-            <span class="c"># If this fails, fundamental assumptions around port mappings are incorrect and we need to bail</span>
-            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">ports</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">app_ports</span><span class="p">),</span> <span class="s">&quot;Mismatch between app and task ports. Something&#39;s wrong.&quot;</span>
-
-            <span class="k">for</span> <span class="n">task_port</span> <span class="ow">in</span> <span class="n">task</span><span class="o">.</span><span class="n">ports</span><span class="p">:</span>
-                <span class="n">index</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">ports</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">task_port</span><span class="p">)</span>
-                <span class="n">app_port</span> <span class="o">=</span> <span class="n">app_ports</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-                <span class="n">endpoints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cls</span><span class="p">(</span><span class="n">app_id</span><span class="o">=</span><span class="n">app_id</span><span class="p">,</span> <span class="n">app_port</span><span class="o">=</span><span class="n">app_port</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="n">task</span><span class="o">.</span><span class="n">host</span><span class="p">,</span>
-                                     <span class="n">task_id</span><span class="o">=</span><span class="n">task</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">task_port</span><span class="o">=</span><span class="n">task_port</span><span class="p">))</span>
-
-        <span class="k">return</span> <span class="n">endpoints</span></div></div>
+        <span class="n">endpoints</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="n">MarathonEndpoint</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">app_id</span><span class="p">,</span> <span class="n">task</span><span class="o">.</span><span class="n">service_ports</span><span class="p">[</span><span class="n">port_index</span><span class="p">],</span> <span class="n">task</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="n">task</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">port_index</span><span class="p">,</span> <span class="n">port</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">ports</span><span class="p">)</span>
+            <span class="p">]</span>
+            <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">tasks</span>
+        <span class="p">]</span>
+        <span class="c"># Flatten result</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="n">endpoints</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sublist</span><span class="p">]</span></div></div>
 </pre></div>
 
           </div>
