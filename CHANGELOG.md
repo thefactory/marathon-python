@@ -1,3 +1,10 @@
+## 0.6.14 (2015-05-28)
+
+Changes:
+* Add `force_pull_image` field to `MarathonDockerContainer` (thanks @solarkennedy)
+* Add `kwargs` to `MarathonDockerContainer` for better forward compatibility (thanks @g----)
+* Fix issue with `use_2to3` (thanks @vitan)
+
 ## 0.6.13 (2015-03-24)
 
 Support for Marathon 0.8.1
