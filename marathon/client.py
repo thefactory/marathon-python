@@ -1,15 +1,20 @@
 import itertools
 import time
-import urlparse
+import sys
 
 try:
     import json
 except ImportError:
     import simplejson as json
-try:
-    from urllib2 import HTTPError
-except ImportError:
+
+# Support Python 2 & 3
+
+if sys.version_info[0] == 3:
+    import urllib.parse as urlparse
     from urllib.error import HTTPError
+else:
+    import urlparse
+    from urllib2 import HTTPError
 
 import requests
 import requests.exceptions
@@ -63,7 +68,7 @@ class MarathonClient(object):
                 response = requests.request(method, url, params=params, data=data, headers=headers,
                                             auth=self.auth, timeout=self.timeout)
                 marathon.log.info('Got response from %s', server)
-            except requests.exceptions.RequestException, e:
+            except requests.exceptions.RequestException as e:
                 marathon.log.error('Error while calling %s: %s', url, e.message)
 
         if response is None:
@@ -133,8 +138,8 @@ class MarathonClient(object):
 
         response = self._do_request('GET', '/v2/apps', params=params)
         apps = self._parse_response(response, MarathonApp, is_list=True, resource_name='apps')
-        for k, v in kwargs.iteritems():
-            apps = filter(lambda o: getattr(o, k) == v, apps)
+        for k, v in kwargs.items():
+            apps = [o for o in apps if getattr(o, k) == v]
         return apps
 
     def get_app(self, app_id, embed_tasks=False):
@@ -254,8 +259,8 @@ class MarathonClient(object):
         """
         response = self._do_request('GET', '/v2/groups')
         groups = self._parse_response(response, MarathonGroup, is_list=True, resource_name='groups')
-        for k, v in kwargs.iteritems():
-            groups = filter(lambda o: getattr(o, k) == v, groups)
+        for k, v in kwargs.items():
+            groups = [o for o in groups if getattr(o, k) == v]
         return groups
 
     def get_group(self, group_id):
@@ -351,8 +356,8 @@ class MarathonClient(object):
 
         tasks = self._parse_response(response, MarathonTask, is_list=True, resource_name='tasks')
         [setattr(t, 'app_id', app_id) for t in tasks if app_id and t.app_id is None]
-        for k, v in kwargs.iteritems():
-            tasks = filter(lambda o: getattr(o, k) == v, tasks)
+        for k, v in kwargs.items():
+            tasks = [o for o in tasks if getattr(o, k) == v]
 
         return tasks
 
@@ -372,7 +377,7 @@ class MarathonClient(object):
             sourceiter = iter(iterable)
             while True:
                 batchiter = itertools.islice(sourceiter, size)
-                yield itertools.chain([batchiter.next()], batchiter)
+                yield itertools.chain([next(batchiter)], batchiter)
 
         if batch_size == 0:
             # Terminate all at once
