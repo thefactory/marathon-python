@@ -28,6 +28,21 @@ git clone git@github.com:thefactory/marathon-python
 python marathon-python/setup.py install
 ```
 
+## Testing
+
+To run integration tests included you need to configure tests/config.py and specify the
+`MARATHON_SERVER` variable to point at your Marathon server. The integration test also
+assumes that you have your Mesos/Marathon cluster configured to work with Docker. See
+[Running Docker Containers on Marathon](https://mesosphere.github.io/marathon/docs/native-docker.html) 
+for more info.
+
+### Running The Tests
+```bash
+    cd marathon-python
+    python -m unittest discover -v
+```
+
+
 ## Documentation
 
 API documentation is [here](http://thefactory.github.io/marathon-python).
