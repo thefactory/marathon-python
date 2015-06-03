@@ -59,6 +59,7 @@ class MarathonDockerContainer(MarathonObject):
         ]
         self.parameters = parameters or {}
         self.privileged = privileged or False
+        self.force_pull_image = force_pull_image or False
 
 
 class MarathonContainerPortMapping(MarathonObject):
