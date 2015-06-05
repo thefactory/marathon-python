@@ -1,3 +1,8 @@
+## 0.6.15 (2015-06-05)
+
+Changes:
+* Fix `force_pull_image` on `MarathonDockerContainer` (thanks @mattrobenolt)
+
 ## 0.6.14 (2015-05-28)
 
 Changes:
