@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from .base import MarathonResource, MarathonObject
+from .base import MarathonResource, MarathonObject, assert_valid_path
 from .constraint import MarathonConstraint
 from .container import MarathonContainer
 from .deployment import MarathonDeployment
@@ -100,7 +100,7 @@ class MarathonApp(MarathonResource):
             hc if isinstance(hc, MarathonHealthCheck) else MarathonHealthCheck().from_json(hc)
             for hc in (health_checks or [])
         ]
-        self.id = id
+        self.id = assert_valid_path(id)
         self.instances = instances
         self.labels = labels or {}
         self.last_task_failure = last_task_failure if (isinstance(last_task_failure, MarathonTaskFailure) or last_task_failure is None) \

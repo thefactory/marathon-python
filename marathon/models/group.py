@@ -1,4 +1,4 @@
-from .base import MarathonResource
+from .base import MarathonResource, assert_valid_id
 from .app import MarathonApp
 
 
@@ -26,5 +26,5 @@ class MarathonGroup(MarathonResource):
             g if isinstance(g, MarathonGroup) else MarathonGroup().from_json(g)
             for g in (groups or [])
         ]
-        self.id = id
+        self.id = assert_valid_id(id)
         self.version = version
