@@ -1,3 +1,14 @@
+## 0.7.0 (2015-07-05)
+
+Support for Marathon 0.8.2
+
+Changes:
+* Tests (huge thanks @kevinschoon)
+* Added support for Marathon EventBus (thanks @kevinschoon)
+* Marathon app_id and group_id validation (thanks @mattrobenolt)
+* Fixed bug in creation of deployment.steps list (thanks @AFriemann)
+* Add `ignore_http1xx` on `MarathonHealthCheck` (thanks @mrtheb)
+
 ## 0.6.15 (2015-06-05)
 
 Changes:
