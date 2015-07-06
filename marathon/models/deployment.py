@@ -44,7 +44,36 @@ class MarathonDeploymentAction(MarathonObject):
     :param str apps: app id (see https://github.com/mesosphere/marathon/pull/802)
     """
 
-    def __init__(self, action=None, app=None, apps=None):
+    def __init__(self, action=None, app=None, apps=None, type=None):
         self.action = action
         self.app = app
         self.apps = apps
+        self.type = type  # TODO: Remove builtin shadow
+
+class MarathonDeploymentPlan(MarathonObject):
+    def __init__(self, original=None, target=None, steps=None, id=None, version=None):
+        self.original = MarathonDeploymentOriginalState.from_json(original)
+        self.target = MarathonDeploymentTargetState.from_json(target)
+        self.steps = [MarathonDeploymentStep.from_json(x) for x in steps]
+        self.id = id
+        self.version = version
+
+class MarathonDeploymentStep(MarathonObject):
+    def __init__(self, actions=None):
+        self.actions = [MarathonDeploymentAction.from_json(x) for x in actions]
+
+class MarathonDeploymentOriginalState(MarathonObject):
+    def __init__(self, dependencies=None, apps=None, id=None, version=None, groups=None):
+        self.apps = apps
+        self.groups = groups
+        self.id = id
+        self.version = version
+        self.dependencies = dependencies
+
+class MarathonDeploymentTargetState(MarathonObject):
+    def __init__(self, groups=None, apps=None, dependencies=None, id=None, version=None):
+        self.apps = apps
+        self.groups = groups
+        self.id = id
+        self.version = version
+        self.dependencies = dependencies
