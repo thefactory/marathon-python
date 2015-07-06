@@ -11,7 +11,7 @@ class MarathonEndpoint(MarathonObject):
 
     :param str app_id: application id
     :param str host: mesos slave running the task
-    :param str id: task id
+    :param str task_id: task id
     :param int service_port: application service port
     :param int task_port: port allocated on the slave
     """
