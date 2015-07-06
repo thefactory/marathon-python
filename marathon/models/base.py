@@ -54,7 +54,7 @@ class MarathonResource(MarathonObject):
 
 
 # See: https://github.com/mesosphere/marathon/blob/2a9d1d20ec2f1cfcc49fbb1c0e7348b26418ef38/src/main/scala/mesosphere/marathon/api/ModelValidation.scala#L224
-ID_PATTERN = re.compile(r'^(?:(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])\\.)*(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])$')
+ID_PATTERN = re.compile('^(([a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])\\.)*([a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])|(\\.|\\.\\.)$')
 
 
 def assert_valid_path(path):
