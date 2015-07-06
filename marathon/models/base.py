@@ -1,4 +1,5 @@
 import json
+import re
 
 from marathon.util import to_camel_case, to_snake_case, MarathonJsonEncoder, MarathonMinimalJsonEncoder
 
@@ -42,7 +43,6 @@ class MarathonObject(object):
             return json.dumps(self.json_repr(), cls=MarathonJsonEncoder, sort_keys=True)
 
 
-
 class MarathonResource(MarathonObject):
     """Base Marathon resource."""
 
@@ -53,4 +53,35 @@ class MarathonResource(MarathonObject):
             return "{clazz}::{obj}".format(clazz=self.__class__.__name__, obj=self.to_json())
 
 
+# See: https://github.com/mesosphere/marathon/blob/2a9d1d20ec2f1cfcc49fbb1c0e7348b26418ef38/src/main/scala/mesosphere/marathon/api/ModelValidation.scala#L224
+ID_PATTERN = re.compile(r'^(?:(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])\\.)*(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])$')
 
+
+def assert_valid_path(path):
+    """Checks if a path is a correct format that Marathon expects. Raises ValueError if not valid.
+
+    :param str path: The app id.
+
+    :rtype: str
+    """
+    if path is None:
+        return
+    # As seen in: https://github.com/mesosphere/marathon/blob/0c11661ca2f259f8a903d114ef79023649a6f04b/src/main/scala/mesosphere/marathon/state/PathId.scala#L71
+    for id in filter(None, path.strip('/').split('/')):
+        if not ID_PATTERN.match(id):
+            raise ValueError('invalid path (allowed: lowercase letters, digits, hyphen, "/", ".", ".."): %r' % path)
+    return path
+
+
+def assert_valid_id(id):
+    """Checks if an id is the correct format that Marathon expects. Raises ValueError if not valid.
+
+    :param str id: App or group id.
+
+    :rtype: str
+    """
+    if id is None:
+        return
+    if not ID_PATTERN.match(id.strip('/')):
+        raise ValueError('invalid id (allowed: lowercase letters, digits, hyphen, ".", ".."): %r' % id)
+    return id
