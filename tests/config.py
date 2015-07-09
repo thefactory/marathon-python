@@ -1,12 +1,13 @@
 __author__ = 'kevinschoon@gmail.com'
 
+import os
 import random
 import uuid
 
 from marathon.models.app import MarathonApp, MarathonHealthCheck
 from marathon.models.container import MarathonContainer
 
-MARATHON_SERVER = 'http://ubuntu:8080'
+MARATHON_SERVER = os.getenv('MARATHON_SERVER', 'http://ubuntu:8080')
 MARATHON_CALLBACK_URL = 'http://192.168.99.1:9999'
 TIMESTAMP = '2015-05-29T23:05:37.715Z'
 SERVICE_PORT_RANGE = range(10000, 11000)
