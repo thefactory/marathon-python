@@ -1,5 +1,7 @@
 # marathon-python
 
+[![Build Status](https://travis-ci.org/Yelp/marathon-python.svg?branch=master)](https://travis-ci.org/Yelp/marathon-python)
+
 This is a Python library for interfacing with [Marathon](https://github.com/mesosphere/marathon) servers via Marathon's [REST API](https://mesosphere.github.io/marathon/docs/rest-api.html).
 
 #### Compatibility

@@ -1,0 +1,10 @@
+language: python
+python: 2.7
+sudo: true
+install:
+  - pip install tox
+script:
+  - ./itests/install-marathon.sh
+  - /etc/init.d/zookeeper start
+  - marathon --master local --no-logger --hostname localhost &
+  - make itests
