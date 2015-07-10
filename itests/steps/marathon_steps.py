@@ -5,7 +5,7 @@ import marathon
 from behave import given, when, then
 import mock
 
-from itest_utils import get_service_connection_string
+from itest_utils import get_marathon_connection_string
 sys.path.append('../')
 
 
@@ -15,7 +15,7 @@ def working_marathon(context):
     interacting with it in the test."""
     if not hasattr(context, 'client'):
         marathon_connection_string = "http://%s" % \
-            get_service_connection_string('marathon')
+            get_marathon_connection_string()
         context.client = marathon.MarathonClient(marathon_connection_string)
 
 
