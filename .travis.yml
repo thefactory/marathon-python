@@ -1,3 +1,9 @@
+env:
+ - MARATHONVERSION: 0.8.1
+ - MARATHONVERSION: 0.8.2
+# Not supported yet
+# - MARATHONVERSION: 0.9.0
+
 language: python
 python: 2.7
 sudo: true
@@ -6,5 +12,5 @@ install:
 script:
   - ./itests/install-marathon.sh
   - /etc/init.d/zookeeper start
-  - marathon --master local --no-logger --hostname localhost &
+  - ./itests/start-marathon.sh &
   - make itests
