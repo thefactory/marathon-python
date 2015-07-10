@@ -1,0 +1,13 @@
+---
+zookeeper:
+  image: jplock/zookeeper
+  ports:
+    - 2181
+
+marathon:
+  image: mesosphere/marathon:v0.8.1
+  ports:
+    - 8080
+  links:
+    - zookeeper
+  command: '--master local --zk zk://zookeeper:2181/marathon'
