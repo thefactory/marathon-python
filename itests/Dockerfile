@@ -2,6 +2,7 @@ FROM ubuntu-debootstrap:14.04
 RUN apt-get update && apt-get -y install sudo lsb-release
 
 # Setup
+ADD ./marathon-version /root/marathon-version
 ADD ./install-marathon.sh /root/install-marathon.sh
 RUN /root/install-marathon.sh
 
