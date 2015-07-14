@@ -1,3 +1,12 @@
+## 0.7.1 (2015-07-14)
+
+Critical fixes and @solarkennedy has been addded as a contributor!
+
+Changes (all @solarkennedy - huge thanks):
+* Fixed `MarathonApp` regex issue
+* Hooked up Travis CI
+* Added integration tests
+
 ## 0.7.0 (2015-07-05)
 
 Support for Marathon 0.8.2
