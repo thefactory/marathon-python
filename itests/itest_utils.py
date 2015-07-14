@@ -35,7 +35,7 @@ def timeout(seconds=10, error_message=os.strerror(errno.ETIME)):
 @timeout(10)
 def wait_for_marathon():
     """Blocks until marathon is up"""
-    marathon_service = get_service_connection_string('marathon')
+    marathon_service = get_marathon_connection_string()
     while True:
         print 'Connecting to marathon on %s' % marathon_service
         try:
@@ -58,14 +58,13 @@ def get_compose_service(service_name):
     return project.get_service(service_name)
 
 
-def get_service_connection_string(service_name):
-    """Given a container name this function returns
-    the host and ephemeral port that you need to use to connect to. For example
-    if you are spinning up a 'web' container that inside listens on 80, this
-    function would return 0.0.0.0:23493 or whatever ephemeral forwarded port
-    it has from docker-compose"""
-    service_port = get_service_internal_port(service_name)
-    return get_compose_service(service_name).get_container().get_local_port(service_port)
+def get_marathon_connection_string():
+    # only reliable way I can detect travis..
+    if '/travis/' in os.environ.get('PATH'):
+        return 'localhost:8080'
+    else:
+        service_port = get_service_internal_port('marathon')
+        return get_compose_service('marathon').get_container().get_local_port(service_port)
 
 
 def get_service_internal_port(service_name):
