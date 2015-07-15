@@ -32,18 +32,20 @@ python marathon-python/setup.py install
 
 ## Testing
 
-To run integration tests included you need to configure tests/config.py and specify the
-`MARATHON_SERVER` variable to point at your Marathon server. The integration test also
-assumes that you have your Mesos/Marathon cluster configured to work with Docker. See
-[Running Docker Containers on Marathon](https://mesosphere.github.io/marathon/docs/native-docker.html) 
-for more info.
+`marathon-python` uses Travis to test the code against different versions of Marathon.
+You can run the tests locally on a Linux machine that has docker on it:
 
 ### Running The Tests
+
 ```bash
-    cd marathon-python
-    python -m unittest discover -v
+make itests
 ```
 
+### Running The Tests Against a Specific Version of Marathon
+
+```bash
+MARATHONVERSION=0.9.0 make itests
+```
 
 ## Documentation
 

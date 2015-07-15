@@ -1,8 +1,8 @@
 #!/bin/bash
 set -vx
 
-# Default version of marathon to test against if not
-# set already by travis
+# Default version of marathon to test against if not set by the user
+[[ -f /root/marathon-version ]] && source /root/marathon-version
 MARATHONVERSION="${MARATHONVERSION:-0.8.2}"
 
 sudo apt-get update -q
