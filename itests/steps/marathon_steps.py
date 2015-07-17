@@ -25,16 +25,16 @@ def create_trivial_new_app(context):
 
 
 @when(u'we create a complex new app')
-def create_complex_new_app(context):
+def create_complex_new_app_with_unicode(context):
     app_config = {
         'container': {
             'type': 'DOCKER',
             'docker': {
                 'portMappings': [{'protocol': 'tcp', 'containerPort': 8888, 'hostPort': 0}],
-                'image': 'localhost/fake_docker_url',
+                'image': u'localhost/fake_docker_url',
                 'network': 'BRIDGE',
             },
-            'volumes': [{'hostPath': '/etc/stuff', 'containerPath': '/etc/stuff', 'mode': 'RO'}],
+            'volumes': [{'hostPath': u'/etc/stuff', 'containerPath': u'/etc/stuff', 'mode': 'RO'}],
         },
         'instances': 1,
         'mem': 30,
@@ -44,7 +44,7 @@ def create_complex_new_app(context):
         'uris': ['file:///root/.dockercfg'],
         'backoff_seconds': 1,
         'constraints': None,
-        'cmd': '/bin/true',
+        'cmd': u'/bin/true',
         'health_checks': [
             {
                 'protocol': 'HTTP',
