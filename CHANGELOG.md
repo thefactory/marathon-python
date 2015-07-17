@@ -1,3 +1,10 @@
+## 0.7.2 (<not-yet-released>)
+
+Support for Marathon 0.9.0
+
+Changes:
+* Add `accepted_resource_role` field to `MarathonApp`
+
 ## 0.7.1 (2015-07-14)
 
 Critical fixes and @solarkennedy has been addded as a contributor!
