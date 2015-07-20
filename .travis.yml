@@ -5,7 +5,9 @@ env:
 # - MARATHONVERSION: 0.9.0
 
 language: python
-python: 2.7
+python:
+  - 2.7
+  - 3.4
 sudo: true
 install:
   - pip install tox
