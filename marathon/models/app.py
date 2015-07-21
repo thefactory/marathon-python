@@ -12,6 +12,9 @@ class MarathonApp(MarathonResource):
 
     See: https://mesosphere.github.io/marathon/docs/rest-api.html#post-/v2/apps
 
+    :param list[str] accepted_resource_roles: a list of resource roles (the resource offer
+                                              must contain at least one of these for the app
+                                              to be launched on that host)
     :param list[str] args: args form of the command to run
     :param int backoff_factor: multiplier for subsequent backoff
     :param int backoff_seconds: base time, in seconds, for exponential backoff
@@ -59,20 +62,21 @@ class MarathonApp(MarathonResource):
     ]
     """List of attributes which may be updated/changed after app creation"""
 
-    CREATE_ONLY_ATTRIBUTES = ['id']
+    CREATE_ONLY_ATTRIBUTES = ['id', 'accepted_resource_roles']
     """List of attributes that should only be passed on creation"""
 
     READ_ONLY_ATTRIBUTES = ['deployments', 'tasks', 'tasks_running', 'tasks_staged', 'tasks_healthy', 'tasks_unhealthy']
     """List of read-only attributes"""
 
-    def __init__(self, args=None, backoff_factor=None, backoff_seconds=None, cmd=None, constraints=None, container=None,
-                 cpus=None, dependencies=None, deployments=None, disk=None, env=None, executor=None, health_checks=None,
-                 id=None, instances=None, labels=None, last_task_failure=None, max_launch_delay_seconds=None, mem=None,
-                 ports=None, require_ports=None, store_urls=None, task_rate_limit=None, tasks=None, tasks_running=None,
-                 tasks_staged=None, tasks_healthy=None, tasks_unhealthy=None, upgrade_strategy=None, uris=None, user=None,
-                 version=None):
+    def __init__(self, accepted_resource_roles=None, args=None, backoff_factor=None, backoff_seconds=None, cmd=None,
+                 constraints=None, container=None, cpus=None, dependencies=None, deployments=None, disk=None, env=None,
+                 executor=None, health_checks=None, id=None, instances=None, labels=None, last_task_failure=None,
+                 max_launch_delay_seconds=None, mem=None, ports=None, require_ports=None, store_urls=None,
+                 task_rate_limit=None, tasks=None, tasks_running=None, tasks_staged=None, tasks_healthy=None,
+                 tasks_unhealthy=None, upgrade_strategy=None, uris=None, user=None, version=None):
 
         # self.args = args or []
+        self.accepted_resource_roles = accepted_resource_roles
         self.args = args
         # Marathon 0.7.0-RC1 throws a validation error if this is [] and cmd is passed:
         # "error": "AppDefinition must either contain a 'cmd' or a 'container'."
