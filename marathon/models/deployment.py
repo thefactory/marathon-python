@@ -50,6 +50,7 @@ class MarathonDeploymentAction(MarathonObject):
         self.apps = apps
         self.type = type  # TODO: Remove builtin shadow
 
+
 class MarathonDeploymentPlan(MarathonObject):
     def __init__(self, original=None, target=None, steps=None, id=None, version=None):
         self.original = MarathonDeploymentOriginalState.from_json(original)
