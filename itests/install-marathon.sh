@@ -1,5 +1,5 @@
 #!/bin/bash
-set -vx
+set -vxeu
 
 # Default version of marathon to test against if not set by the user
 [[ -f /root/marathon-version ]] && source /root/marathon-version
