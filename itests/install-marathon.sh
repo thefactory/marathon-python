@@ -15,6 +15,8 @@ CODENAME=$(lsb_release -cs)
 # Add the repository
 echo "deb http://repos.mesosphere.com/${DISTRO} ${CODENAME} main" | 
   sudo tee /etc/apt/sources.list.d/mesosphere.list
+sudo apt-get clean
+sudo rm -rf /var/lib/apt/lists/*
 sudo apt-get -y update
 
 # Install packages
