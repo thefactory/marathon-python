@@ -10,6 +10,9 @@ class MarathonObject(object):
     def __repr__(self):
         return "{clazz}::{obj}".format(clazz=self.__class__.__name__, obj=self.to_json())
 
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
+
     def json_repr(self, minimal=False):
         """Construct a JSON-friendly representation of the object.
 
@@ -52,6 +55,11 @@ class MarathonResource(MarathonObject):
         else:
             return "{clazz}::{obj}".format(clazz=self.__class__.__name__, obj=self.to_json())
 
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
+
+    def __str__(self):
+        return "{clazz}::".format(clazz=self.__class__.__name__) + str(self.__dict__)
 
 # See: https://github.com/mesosphere/marathon/blob/2a9d1d20ec2f1cfcc49fbb1c0e7348b26418ef38/src/main/scala/mesosphere/marathon/api/ModelValidation.scala#L224
 ID_PATTERN = re.compile('^(([a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])\\.)*([a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])|(\\.|\\.\\.)$')
