@@ -11,6 +11,7 @@ sudo: true
 install:
   - pip install tox
 script:
+  - make test
   - ./itests/install-marathon.sh
   - /etc/init.d/zookeeper start
   - ./itests/start-marathon.sh &
