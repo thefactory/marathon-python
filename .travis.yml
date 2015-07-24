@@ -15,3 +15,4 @@ script:
   - /etc/init.d/zookeeper start
   - ./itests/start-marathon.sh &
   - make itests
+  - make test
