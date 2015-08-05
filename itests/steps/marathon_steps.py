@@ -19,6 +19,11 @@ def working_marathon(context):
         context.client = marathon.MarathonClient(marathon_connection_string)
 
 
+@then(u'we get the marathon instance\'s info')
+def get_marathon_info(context):
+    assert context.client.get_info()
+
+
 @when(u'we create a trivial new app')
 def create_trivial_new_app(context):
     context.client.create_app('test-trivial-app', marathon.MarathonApp(cmd='sleep 100', mem=16, cpus=1))
