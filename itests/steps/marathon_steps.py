@@ -21,7 +21,22 @@ def working_marathon(context):
 
 @when(u'we create a trivial new app')
 def create_trivial_new_app(context):
-    context.client.create_app('test-trivial-app', marathon.MarathonApp(cmd='sleep 100', mem=16, cpus=1))
+    app_attr = """
+{
+    "id": "spark-history",
+    "cmd": "/mnt/lib/spark/sbin/run-history-server.sh hdfs://stanley/spark-events $PORT",
+    "cpus": 0.5,
+    "mem": 1024,
+    "healthChecks": [{"path": "/", "portIndex": 0, "protocol": "HTTP"}],
+    "ports": [5999],
+    "instances": 1
+}
+"""
+    mApp = marathon.MarathonApp.from_json(app_attr)
+    context.client.create_app('test-trivial-app', mApp)
+    #"env": {"MARATHON": "http://as-ha-1:8773,http://as-ha-2:8773,http://as-master:8773"},
+    #"upgradeStrategy": {"minimumHealthCapacity": 1},
+    #"constraints": [["hostname", "UNIQUE"]],
 
 
 @when(u'we create a complex new app')
