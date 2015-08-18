@@ -50,8 +50,11 @@ class MarathonConfig(MarathonObject):
     :param bool checkpoint:
     :param str executor:
     :param int failover_timeout:
+    :param str framework_name:
     :param bool ha:
     :param str hostname:
+    :param int leader_proxy_connection_timeout_ms:
+    :param int leader_proxy_read_timeout_ms:
     :param int local_port_min:
     :param int local_port_max:
     :param str master:
@@ -64,7 +67,8 @@ class MarathonConfig(MarathonObject):
     :param int marathon_store_timeout:
     """
 
-    def __init__(self, checkpoint=None, executor=None, failover_timeout=None, ha=None, hostname=None,
+    def __init__(self, checkpoint=None, executor=None, failover_timeout=None, framework_name=None, ha=None,
+                 hostname=None, leader_proxy_connection_timeout_ms=None, leader_proxy_read_timeout_ms=None,
                  local_port_min=None, local_port_max=None, master=None, mesos_role=None, mesos_user=None,
                  webui_url=None, reconciliation_initial_delay=None, reconciliation_interval=None,
                  task_launch_timeout=None, marathon_store_timeout=None):
@@ -93,12 +97,15 @@ class MarathonZooKeeperConfig(MarathonObject):
     :param str zk:
     :param dict zk_future_timeout:
     :param str zk_hosts:
+    :param str zk_max_versions:
     :param str zk_path:
+    :param str zk_session_timeout:
     :param str zk_state:
     :param int zk_timeout:
     """
 
-    def __init__(self, zk=None, zk_future_timeout=None, zk_hosts=None, zk_path=None, zk_state=None, zk_timeout=None):
+    def __init__(self, zk=None, zk_future_timeout=None, zk_hosts=None, zk_max_versions=None, zk_path=None,
+                 zk_session_timeout=None, zk_state=None, zk_timeout=None):
         self.zk = zk
         self.zk_future_timeout = zk_future_timeout
         self.zk_hosts = zk_hosts
