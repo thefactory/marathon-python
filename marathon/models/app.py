@@ -52,7 +52,8 @@ class MarathonApp(MarathonResource):
     :param list[str] uris: uris
     :param str user: user
     :param str version: version id
-    :param str version info: time of last scaling, last config change
+    :param version_info: time of last scaling, last config change
+    :type version_info: :class:`marathon.models.app.MarathonAppVersionInfo` or dict
     :param dict labels
     """
 

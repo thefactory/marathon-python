@@ -13,6 +13,7 @@ class MarathonTask(MarathonResource):
     :param str id: task id
     :param list[int] ports: allocated ports
     :param list[int] service_ports: ports exposed for load balancing
+    :param str slave_id: Mesos slave id
     :param staged_at: when this task was staged
     :type staged_at: datetime or str
     :param started_at: when this task was started
