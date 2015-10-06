@@ -52,6 +52,7 @@ class MarathonApp(MarathonResource):
     :param list[str] uris: uris
     :param str user: user
     :param str version: version id
+    :param str version info: time of last scaling, last config change
     :param dict labels
     """
 
@@ -73,7 +74,7 @@ class MarathonApp(MarathonResource):
                  executor=None, health_checks=None, id=None, instances=None, labels=None, last_task_failure=None,
                  max_launch_delay_seconds=None, mem=None, ports=None, require_ports=None, store_urls=None,
                  task_rate_limit=None, tasks=None, tasks_running=None, tasks_staged=None, tasks_healthy=None,
-                 tasks_unhealthy=None, upgrade_strategy=None, uris=None, user=None, version=None):
+                 tasks_unhealthy=None, upgrade_strategy=None, uris=None, user=None, version=None, version_info=None):
 
         # self.args = args or []
         self.accepted_resource_roles = accepted_resource_roles
@@ -128,6 +129,8 @@ class MarathonApp(MarathonResource):
         self.uris = uris or []
         self.user = user
         self.version = version
+        self.version_info = version_info if (isinstance(version_info, MarathonAppVersionInfo) or version_info is None) \
+            else MarathonAppVersionInfo.from_json(version_info)
 
 
 class MarathonHealthCheck(MarathonObject):
@@ -200,3 +203,26 @@ class MarathonUpgradeStrategy(MarathonObject):
     def __init__(self, maximum_over_capacity=None, minimum_health_capacity=None):
         self.maximum_over_capacity = maximum_over_capacity
         self.minimum_health_capacity = minimum_health_capacity
+
+
+class MarathonAppVersionInfo(MarathonObject):
+    """Marathon App version info.
+
+    See release notes for Marathon v0.11.0
+    https://github.com/mesosphere/marathon/releases/tag/v0.11.0
+
+    :param str app_id: application id
+    :param str host: mesos slave running the task
+    """
+
+    DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
+
+    def __init__(self, last_scaling_at=None, last_config_change_at=None):
+        self.last_scaling_at = self._to_datetime(last_scaling_at)
+        self.last_config_change_at = self._to_datetime(last_config_change_at)
+
+    def _to_datetime(self, timestamp):
+      if (timestamp is None or isinstance(timestamp, datetime)):
+          return timestamp
+      else:
+          return datetime.strptime(timestamp, self.DATETIME_FORMAT)
