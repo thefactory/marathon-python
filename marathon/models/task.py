@@ -23,7 +23,7 @@ class MarathonTask(MarathonResource):
     DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
 
     def __init__(self, app_id=None, health_check_results=None, host=None, id=None, ports=None, service_ports=None,
-                 staged_at=None, started_at=None, version=None):
+                 slave_id=None, staged_at=None, started_at=None, version=None):
         self.app_id = app_id
         self.health_check_results = health_check_results or []
         self.health_check_results = [
@@ -34,6 +34,7 @@ class MarathonTask(MarathonResource):
         self.id = id
         self.ports = ports or []
         self.service_ports = service_ports or []
+        self.slave_id = slave_id
         self.staged_at = staged_at if (staged_at is None or isinstance(staged_at, datetime)) \
             else datetime.strptime(staged_at, self.DATETIME_FORMAT)
         self.started_at = started_at if (started_at is None or isinstance(started_at, datetime)) \

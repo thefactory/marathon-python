@@ -181,11 +181,12 @@ class MarathonTaskFailure(MarathonObject):
 
     DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
 
-    def __init__(self, app_id=None, host=None, message=None, task_id=None, state=None, timestamp=None, version=None):
+    def __init__(self, app_id=None, host=None, message=None, task_id=None, slave_id=None, state=None, timestamp=None, version=None):
         self.app_id = app_id
         self.host = host
         self.message = message
         self.task_id = task_id
+        self.slave_id = slave_id
         self.state = state
         self.timestamp = timestamp if (timestamp is None or isinstance(timestamp, datetime)) \
             else datetime.strptime(timestamp, self.DATETIME_FORMAT)
