@@ -5,4 +5,3 @@ from .models import MarathonResource, MarathonApp, MarathonTask, MarathonConstra
 from .exceptions import MarathonError, MarathonHttpError, NotFoundError, InvalidChoiceError
 
 log = logging.getLogger(__name__)
-logging.basicConfig()
