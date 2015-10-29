@@ -349,12 +349,11 @@ class MarathonClient(object):
         :returns: list of tasks
         :rtype: list[:class:`marathon.models.task.MarathonTask`]
         """
-        if app_id:
-            response = self._do_request('GET', '/v2/apps/{app_id}/tasks'.format(app_id=app_id))
-        else:
-            response = self._do_request('GET', '/v2/tasks')
-
+        response = self._do_request('GET', '/v2/tasks')
         tasks = self._parse_response(response, MarathonTask, is_list=True, resource_name='tasks')
+        if app_id:
+            tasks = [task for task in tasks if task.app_id == app_id]
+
         [setattr(t, 'app_id', app_id) for t in tasks if app_id and t.app_id is None]
         for k, v in kwargs.items():
             tasks = [o for o in tasks if getattr(o, k) == v]
