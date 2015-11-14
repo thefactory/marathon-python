@@ -6,4 +6,5 @@ else
   LOGGER=""
 fi
 
-exec marathon --master local $LOGGER --hostname localhost
+java -version
+exec /usr/bin/marathon --master local $LOGGER --hostname localhost

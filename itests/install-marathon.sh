@@ -18,4 +18,14 @@ echo "deb http://repos.mesosphere.com/${DISTRO} ${CODENAME} main" |
 sudo apt-get -y update
 
 # Install packages
+sudo apt-get -y install oracle-java8-installer
+sudo apt-get -y purge oracle-java7-installer
+sudo update-java-alternatives -s java-8-oracle
+sudo apt-get install oracle-java8-set-default
+
 sudo apt-get -y --force-yes install mesos marathon=$MARATHONVERSION*
+
+# WTF MARATHON?
+# Why does the precise version have java7 hardcoded if it requires java8?
+sudo mkdir -p /usr/lib/jvm/java-7-oracle/bin/
+sudo ln -s /usr/lib/jvm/java-8-oracle/bin/java /usr/lib/jvm/java-7-oracle/bin/java
