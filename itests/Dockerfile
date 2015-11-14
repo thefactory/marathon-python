@@ -1,5 +1,9 @@
-FROM ubuntu-debootstrap:14.04
-RUN apt-get update && apt-get -y install sudo lsb-release
+FROM ubuntu:14.04
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository ppa:webupd8team/java
+RUN echo "debconf shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
+RUN echo "debconf shared/accepted-oracle-license-v1-1 seen true" | debconf-set-selections
+RUN apt-get update && apt-get -y install lsb-release oracle-java8-installer java8-runtime-headless
 
 # Setup
 ADD ./marathon-version /root/marathon-version
