@@ -4,7 +4,7 @@ from .base import MarathonObject, MarathonResource
 class MarathonInfo(MarathonResource):
     """Marathon Info.
 
-    See: https://mesosphere.github.io/marathon/docs/rest-api.html#get-/v2/info
+    See: https://mesosphere.github.io/marathon/docs/rest-api.html#get-v2-info
 
     :param str framework_id:
     :param str leader:
@@ -58,6 +58,7 @@ class MarathonConfig(MarathonObject):
     :param int local_port_min:
     :param int local_port_max:
     :param str master:
+    :param str mesos_leader_ui_url:
     :param str mesos_role:
     :param str mesos_user:
     :param str webui_url:
@@ -69,7 +70,7 @@ class MarathonConfig(MarathonObject):
 
     def __init__(self, checkpoint=None, executor=None, failover_timeout=None, framework_name=None, ha=None,
                  hostname=None, leader_proxy_connection_timeout_ms=None, leader_proxy_read_timeout_ms=None,
-                 local_port_min=None, local_port_max=None, master=None, mesos_role=None, mesos_user=None,
+                 local_port_min=None, local_port_max=None, master=None, mesos_leader_ui_url=None, mesos_role=None, mesos_user=None,
                  webui_url=None, reconciliation_initial_delay=None, reconciliation_interval=None,
                  task_launch_timeout=None, marathon_store_timeout=None):
         self.checkpoint = checkpoint
@@ -80,6 +81,7 @@ class MarathonConfig(MarathonObject):
         self.local_port_min = local_port_min
         self.local_port_max = local_port_max
         self.master = master
+        self.mesos_leader_ui_url = mesos_leader_ui_url
         self.mesos_role = mesos_role
         self.mesos_user = mesos_user
         self.webui_url = webui_url
