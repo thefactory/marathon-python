@@ -1,3 +1,7 @@
+## 0.7.4 (2015-10-20)
+
+- Marathon 11 Support [\#68](https://github.com/thefactory/marathon-python/pull/68) ([solarkennedy](https://github.com/solarkennedy))
+
 ## 0.7.2 (2015-09-17)
 
 Support for Marathon 0.9.1
