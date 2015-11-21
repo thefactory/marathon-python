@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/thefactory/marathon-python/tree/HEAD)
-
-[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.3...HEAD)
+## [0.7.4](https://github.com/thefactory/marathon-python/tree/0.7.4) (2015-11-20)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.3...0.7.4)
 
 **Merged pull requests:**
 
