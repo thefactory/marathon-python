@@ -1,153 +1,226 @@
-## 0.7.4 (2015-10-20)
+# Change Log
+
+## [Unreleased](https://github.com/thefactory/marathon-python/tree/HEAD)
+
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.3...HEAD)
+
+**Merged pull requests:**
 
 - Marathon 11 Support [\#68](https://github.com/thefactory/marathon-python/pull/68) ([solarkennedy](https://github.com/solarkennedy))
 
-## 0.7.2 (2015-09-17)
+## [0.7.3](https://github.com/thefactory/marathon-python/tree/0.7.3) (2015-11-12)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.2...0.7.3)
 
-Support for Marathon 0.9.1
+**Closed issues:**
 
-Changes:
-* Add `accepted_resource_role` field to `MarathonApp`
+- When will you guys release 0.7.2 [\#62](https://github.com/thefactory/marathon-python/issues/62)
+- 0.7.1 tag missing [\#61](https://github.com/thefactory/marathon-python/issues/61)
 
-## 0.7.1 (2015-07-14)
+**Merged pull requests:**
 
-Critical fixes and @solarkennedy has been addded as a contributor!
+- use the /v2/tasks endpoint for list\_tasks [\#65](https://github.com/thefactory/marathon-python/pull/65) ([Rob-Johnson](https://github.com/Rob-Johnson))
+- Remove call to logging.basicConfig [\#64](https://github.com/thefactory/marathon-python/pull/64) ([itamaro](https://github.com/itamaro))
 
-Changes (all @solarkennedy - huge thanks):
-* Fixed `MarathonApp` regex issue
-* Hooked up Travis CI
-* Added integration tests
+## [0.7.2](https://github.com/thefactory/marathon-python/tree/0.7.2) (2015-09-18)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.0...0.7.2)
 
-## 0.7.0 (2015-07-05)
+**Closed issues:**
 
-Support for Marathon 0.8.2
+- Marathon Json encoder can't handle unicode strings [\#50](https://github.com/thefactory/marathon-python/issues/50)
+- Marathon app name validation is broken [\#45](https://github.com/thefactory/marathon-python/issues/45)
+- New release for 8.2 compatibility [\#38](https://github.com/thefactory/marathon-python/issues/38)
+- Task.app\_id is None when using c.get\_app\("xxx"\).tasks [\#9](https://github.com/thefactory/marathon-python/issues/9)
 
-Changes:
-* Tests (huge thanks @kevinschoon)
-* Added support for Marathon EventBus (thanks @kevinschoon)
-* Marathon app_id and group_id validation (thanks @mattrobenolt)
-* Fixed bug in creation of deployment.steps list (thanks @AFriemann)
-* Add `ignore_http1xx` on `MarathonHealthCheck` (thanks @mrtheb)
+**Merged pull requests:**
 
-## 0.6.15 (2015-06-05)
+- Updated to support Marathon 0.9.1 with get\_info\(\) calls [\#59](https://github.com/thefactory/marathon-python/pull/59) ([pyronicide](https://github.com/pyronicide))
+- Add support for building with a wheel and cleanup setup.py [\#58](https://github.com/thefactory/marathon-python/pull/58) ([mattrobenolt](https://github.com/mattrobenolt))
+- travis should run unit tests [\#55](https://github.com/thefactory/marathon-python/pull/55) ([Rob-Johnson](https://github.com/Rob-Johnson))
+- implement \_\_eq\_\_ on base models + fix tests to be useful [\#54](https://github.com/thefactory/marathon-python/pull/54) ([Rob-Johnson](https://github.com/Rob-Johnson))
+- Fix deployments parsing [\#53](https://github.com/thefactory/marathon-python/pull/53) ([Rob-Johnson](https://github.com/Rob-Johnson))
+- Added failing test and fix for unicode handling [\#52](https://github.com/thefactory/marathon-python/pull/52) ([solarkennedy](https://github.com/solarkennedy))
+- Removed previously unused test framework in favor of tox + docker-compose version [\#49](https://github.com/thefactory/marathon-python/pull/49) ([solarkennedy](https://github.com/solarkennedy))
+- Add accepted\_resource\_role kwarg for Marathon 0.9.0 support [\#48](https://github.com/thefactory/marathon-python/pull/48) ([keshavdv](https://github.com/keshavdv))
+- Upstream merge - Add itest framework and fix regex [\#46](https://github.com/thefactory/marathon-python/pull/46) ([solarkennedy](https://github.com/solarkennedy))
+- First pass at adding an itest framework [\#42](https://github.com/thefactory/marathon-python/pull/42) ([solarkennedy](https://github.com/solarkennedy))
 
-Changes:
-* Fix `force_pull_image` on `MarathonDockerContainer` (thanks @mattrobenolt)
+## [0.7.0](https://github.com/thefactory/marathon-python/tree/0.7.0) (2015-07-06)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.15...0.7.0)
 
-## 0.6.14 (2015-05-28)
+**Closed issues:**
 
-Changes:
-* Add `force_pull_image` field to `MarathonDockerContainer` (thanks @solarkennedy)
-* Add `kwargs` to `MarathonDockerContainer` for better forward compatibility (thanks @g----)
-* Fix issue with `use_2to3` (thanks @vitan)
+- MarathonHealthCheck class doesn't support 0.8.2  [\#34](https://github.com/thefactory/marathon-python/issues/34)
 
-## 0.6.13 (2015-03-24)
+**Merged pull requests:**
 
-Support for Marathon 0.8.1
+- Update endpoint docstring. [\#41](https://github.com/thefactory/marathon-python/pull/41) ([Poogles](https://github.com/Poogles))
+- fixed variable name in list comprehension [\#39](https://github.com/thefactory/marathon-python/pull/39) ([AFriemann](https://github.com/AFriemann))
+- Add validation to marathon app/group ids [\#37](https://github.com/thefactory/marathon-python/pull/37) ([mattrobenolt](https://github.com/mattrobenolt))
+- adds ignore\_http1xx and forward compat kwargs to MarathonHealthCheck [\#36](https://github.com/thefactory/marathon-python/pull/36) ([mrtheb](https://github.com/mrtheb))
+- Feature/event factory [\#32](https://github.com/thefactory/marathon-python/pull/32) ([kevinschoon](https://github.com/kevinschoon))
 
-Changes:
-* Better handling of nulls and empty collections (thanks @wndhydrnt)
-* Updated object signatures to match 0.8.1 (thanks @pradeepchhetri)
+## [0.6.15](https://github.com/thefactory/marathon-python/tree/0.6.15) (2015-06-05)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.14...0.6.15)
 
-## 0.6.12 (2015-03-06)
+**Merged pull requests:**
 
-Changes:
-* Replace defunct `MarathonEndpoint` resource with a working helper object
+- Make `force\_pull\_image` actually work [\#33](https://github.com/thefactory/marathon-python/pull/33) ([mattrobenolt](https://github.com/mattrobenolt))
 
-## 0.6.11 (2015-03-06)
+## [0.6.14](https://github.com/thefactory/marathon-python/tree/0.6.14) (2015-05-28)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.13...0.6.14)
 
-Support for Marathon 0.8.0
+**Closed issues:**
 
-## 0.6.10 (2014-12-17)
+- forcePullImage not honored by marathon-python \(marathon 0.8.2 RC2\) [\#29](https://github.com/thefactory/marathon-python/issues/29)
+- create\_app\(\) not working for docker container [\#28](https://github.com/thefactory/marathon-python/issues/28)
+- Urgent BUG: to\_json\(\) is returning unexpected result under python3 version [\#26](https://github.com/thefactory/marathon-python/issues/26)
+- portMapping isn't iterable [\#25](https://github.com/thefactory/marathon-python/issues/25)
 
-Changes:
-* Added `force` option to `delete_deployment()`
+**Merged pull requests:**
 
-## 0.6.9 (2014-12-03)
+- Added forcePullImage parameter for the container model [\#31](https://github.com/thefactory/marathon-python/pull/31) ([solarkennedy](https://github.com/solarkennedy))
+- Quick fix \#29 - add kwargs to MarathonDockerContainer.\_\_init\_\_ [\#30](https://github.com/thefactory/marathon-python/pull/30) ([g----](https://github.com/g----))
+- Fixed \#26:Using try/except to get rid of use\_2to3 failing [\#27](https://github.com/thefactory/marathon-python/pull/27) ([vitan](https://github.com/vitan))
 
-Changes:
-* Added lastFailureCause field to app.lastTaskFailure
-* Added `parameters` and `privileged` fields to `MarathonContainer`
+## [0.6.13](https://github.com/thefactory/marathon-python/tree/0.6.13) (2015-03-24)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.12...0.6.13)
 
-## 0.6.8 (2014-11-18)
+**Merged pull requests:**
 
-Changes:
-* (Temporarily) Added `apps` field to `DeploymentAction` (https://github.com/mesosphere/marathon/pull/802)
+- Added get\_leader and delete\_leader functions [\#24](https://github.com/thefactory/marathon-python/pull/24) ([pradeepchhetri](https://github.com/pradeepchhetri))
+- Fixed get\_info for marathon-0.8.1-RC2 [\#23](https://github.com/thefactory/marathon-python/pull/23) ([pradeepchhetri](https://github.com/pradeepchhetri))
+- Added two app parameters - tasks\_healthy, tasks\_unhealthy \(marathon-0.8.1-RC2\) [\#21](https://github.com/thefactory/marathon-python/pull/21) ([pradeepchhetri](https://github.com/pradeepchhetri))
+- Possibility to send the full object to Marathon on update [\#20](https://github.com/thefactory/marathon-python/pull/20) ([wndhydrnt](https://github.com/wndhydrnt))
 
-## 0.6.7 (2014-11-18)
+## [0.6.12](https://github.com/thefactory/marathon-python/tree/0.6.12) (2015-03-07)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.11...0.6.12)
 
-Changes:
-* Updated `list_tasks()` and `get_info()` to match latest Marathon response signature
-* Fixed `__repr__` for `MarathonInfo()` and other `MarathonResources` without `id
+## [0.6.11](https://github.com/thefactory/marathon-python/tree/0.6.11) (2015-03-06)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.10...0.6.11)
 
-## 0.6.6 (2014-11-17)
+**Merged pull requests:**
 
-Changes:
-* Improved behavior of `MarathonClient.update_app()` to strip `version` from the passed `app`
+- Small changes to fix compatibility issues with Marathon 0.8.0 [\#19](https://github.com/thefactory/marathon-python/pull/19) ([cloudify](https://github.com/cloudify))
 
-## 0.6.5 (2014-11-14)
+## [0.6.10](https://github.com/thefactory/marathon-python/tree/0.6.10) (2014-12-17)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.8...0.6.10)
 
-Changes:
-* Fixed bug with `MarathonClient.scale_app()` and add `force` support
+**Merged pull requests:**
 
-## 0.6.4 (2014-11-13)
+- Added optional ?force=true param to MarathonClient.delete\_deployment\(\) [\#18](https://github.com/thefactory/marathon-python/pull/18) ([mattcallanan](https://github.com/mattcallanan))
+- Add parameters and privileged fields to Container model [\#17](https://github.com/thefactory/marathon-python/pull/17) ([gabrtv](https://github.com/gabrtv))
+- apparently undocumented API in Marathon [\#16](https://github.com/thefactory/marathon-python/pull/16) ([elyast](https://github.com/elyast))
 
-Support for Marathon 0.7.5
+## [0.6.8](https://github.com/thefactory/marathon-python/tree/0.6.8) (2014-11-19)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.7...0.6.8)
 
-Changes:
-* Added support for app.lastTaskFailure
-* Added support for task.healthCheckResult
-* Fixed support for app.upgradeStrategy
+## [0.6.7](https://github.com/thefactory/marathon-python/tree/0.6.7) (2014-11-18)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.6...0.6.7)
 
-## 0.6.3 (2014-10-10)
+**Closed issues:**
 
-Changes:
-* Added support for embedding tasks in get/list app results
-* Switched to patch-style updates for apps and groups (send partial object)
+- update\_app\(\) no-ops if Version is passed [\#14](https://github.com/thefactory/marathon-python/issues/14)
 
-## 0.6.2 (2014-10-09)
+**Merged pull requests:**
 
-Changes:
-* Added support for service port in container port mappings (Marathon 0.7.3)
+- fixing issues with resources /v2/tasks, v2/info [\#15](https://github.com/thefactory/marathon-python/pull/15) ([elyast](https://github.com/elyast))
 
-## 0.6.2 (2014-10-09)
+## [0.6.6](https://github.com/thefactory/marathon-python/tree/0.6.6) (2014-11-17)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.5...0.6.6)
 
-Changes:
-* Added support for LIKE and UNLIKE constraint operators
-* Added support for patch-style app and group updates
+**Closed issues:**
 
-## 0.6.1 (2014-09-29)
+- scale\_app\(...\) calls update\_app\(...\) with only 1 argument [\#13](https://github.com/thefactory/marathon-python/issues/13)
 
-Changes:
-* Fixed broken exception import
+## [0.6.5](https://github.com/thefactory/marathon-python/tree/0.6.5) (2014-11-14)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.4...0.6.5)
 
-## 0.6.0 (2014-09-29)
+## [0.6.4](https://github.com/thefactory/marathon-python/tree/0.6.4) (2014-11-14)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.3...0.6.4)
 
-Mesos 0.20.1- and Marathon 0.7.1-compatible release.
+**Merged pull requests:**
 
-Changes:
-* Added bridge networking support
-* Use common exception for all pick-from-a-list options (`InvalidChoiceError`). `InvalidOperatorError` has been removed
-* Updated `MarathonObject.__repr__` to be more useful
-* Changed default HTTP request timeout from 5s to 10s
+- Add MarathonHealthCheckResult Class to tasks File and Include it in MarathonTask [\#12](https://github.com/thefactory/marathon-python/pull/12) ([JTCunning](https://github.com/JTCunning))
 
-## 0.5.1 (2014-09-18)
+## [0.6.3](https://github.com/thefactory/marathon-python/tree/0.6.3) (2014-10-10)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.2...0.6.3)
 
-Changes:
-* Added support for multiple Marathon servers (if a request to one fails for network reasons, try the next)
-* Fixed a bug with HTTP 4xx response handling
+**Merged pull requests:**
 
-## 0.5.0 (2014-09-15)
+- add service\_port argument [\#11](https://github.com/thefactory/marathon-python/pull/11) ([danielfrg](https://github.com/danielfrg))
 
-Initial release compatible with Marathon 0.7.0 and Mesos 0.20.0.
+## [0.6.2](https://github.com/thefactory/marathon-python/tree/0.6.2) (2014-10-09)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.1...0.6.2)
 
-_Warning: this includes multiple breaking changes, both from Marathon and from this library_
+**Merged pull requests:**
 
-Changes:
-* Added support for Deployments, Groups, native Docker containers, Queue, Server Info, Server Metrics, and Ping
-* Updated object attributes to be at parity with Marathon 0.7.0 (RC2)
-* Updated return types to be at parity with Marathon 0.7.0 (RC2)
-* Updated method signatures to be more consistent
-* HTTP 4xx errors other than 404 now throw `MarathonHttpError` instead of `NotFoundError`
-* `json_encode()` and `json_decode()` on MarathonResource have been renamed to `to_json()` and `from_json()`, respectively
-* Refactored serialization/deserialization to reduce boilerplate
+- Add `LIKE` and `UNLIKE` constraint [\#10](https://github.com/thefactory/marathon-python/pull/10) ([iven](https://github.com/iven))
+
+## [0.6.1](https://github.com/thefactory/marathon-python/tree/0.6.1) (2014-09-29)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.0...0.6.1)
+
+## [0.6.0](https://github.com/thefactory/marathon-python/tree/0.6.0) (2014-09-29)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.5.1...0.6.0)
+
+**Closed issues:**
+
+- Support for HA nodes [\#8](https://github.com/thefactory/marathon-python/issues/8)
+
+## [0.5.1](https://github.com/thefactory/marathon-python/tree/0.5.1) (2014-09-18)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.5.0...0.5.1)
+
+## [0.5.0](https://github.com/thefactory/marathon-python/tree/0.5.0) (2014-09-18)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.4.0...0.5.0)
+
+**Merged pull requests:**
+
+- Bug Fix: Cannot define constraints with a tuple of strings [\#6](https://github.com/thefactory/marathon-python/pull/6) ([adgaudio](https://github.com/adgaudio))
+
+## [0.4.0](https://github.com/thefactory/marathon-python/tree/0.4.0) (2014-08-19)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.3.1...0.4.0)
+
+**Merged pull requests:**
+
+- Throwing exceptions on 400s and 500s in \_do\_request [\#5](https://github.com/thefactory/marathon-python/pull/5) ([Codeacious](https://github.com/Codeacious))
+- Fix container options not being sent to marathon [\#4](https://github.com/thefactory/marathon-python/pull/4) ([boffbowsh](https://github.com/boffbowsh))
+
+## [0.3.1](https://github.com/thefactory/marathon-python/tree/0.3.1) (2014-08-05)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.2.9...0.3.1)
+
+**Merged pull requests:**
+
+- Raise exceptions instead of swallowing them silently [\#3](https://github.com/thefactory/marathon-python/pull/3) ([StephanErb](https://github.com/StephanErb))
+
+## [0.2.9](https://github.com/thefactory/marathon-python/tree/0.2.9) (2014-08-04)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.2.7...0.2.9)
+
+## [0.2.7](https://github.com/thefactory/marathon-python/tree/0.2.7) (2014-07-24)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.2.6...0.2.7)
+
+## [0.2.6](https://github.com/thefactory/marathon-python/tree/0.2.6) (2014-07-24)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.2.5...0.2.6)
+
+**Merged pull requests:**
+
+- Updated README.md with correction to create\_app args [\#2](https://github.com/thefactory/marathon-python/pull/2) ([rasathus](https://github.com/rasathus))
+
+## [0.2.5](https://github.com/thefactory/marathon-python/tree/0.2.5) (2014-07-02)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.2.3...0.2.5)
+
+**Merged pull requests:**
+
+- allowing stagedAt and startedAt keys to be null [\#1](https://github.com/thefactory/marathon-python/pull/1) ([Codeacious](https://github.com/Codeacious))
+
+## [0.2.3](https://github.com/thefactory/marathon-python/tree/0.2.3) (2014-06-02)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.2.0...0.2.3)
+
+## [0.2.0](https://github.com/thefactory/marathon-python/tree/0.2.0) (2014-04-28)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.1.1...0.2.0)
+
+## [0.1.1](https://github.com/thefactory/marathon-python/tree/0.1.1) (2014-04-23)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.1.0...0.1.1)
+
+## [0.1.0](https://github.com/thefactory/marathon-python/tree/0.1.0) (2014-04-23)
+
+
+\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
