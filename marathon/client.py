@@ -342,7 +342,7 @@ class MarathonClient(object):
         response = self._do_request('GET', '/v2/tasks')
         tasks = self._parse_response(response, MarathonTask, is_list=True, resource_name='tasks')
         if app_id:
-            tasks = [task for task in tasks if task.app_id == app_id]
+            tasks = [task for task in tasks if task.app_id.lstrip('/') == app_id.lstrip('/')]
 
         [setattr(t, 'app_id', app_id) for t in tasks if app_id and t.app_id is None]
         for k, v in kwargs.items():
