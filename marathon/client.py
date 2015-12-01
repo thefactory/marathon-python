@@ -1,20 +1,10 @@
 import itertools
 import time
-import sys
 
 try:
     import json
 except ImportError:
     import simplejson as json
-
-# Support Python 2 & 3
-
-if sys.version_info[0] == 3:
-    import urllib.parse as urlparse
-    from urllib.error import HTTPError
-else:
-    import urlparse
-    from urllib2 import HTTPError
 
 import requests
 import requests.exceptions

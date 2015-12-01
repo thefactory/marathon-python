@@ -1,6 +1,5 @@
 import collections
 import datetime
-import types
 
 try:
     import json
@@ -8,9 +7,11 @@ except ImportError:
     import simplejson as json
 import re
 
+from ._compat import string_types
+
 
 def is_stringy(obj):
-    return isinstance(obj, str) or isinstance(obj, unicode)
+    return isinstance(obj, string_types)
 
 
 class MarathonJsonEncoder(json.JSONEncoder):
@@ -25,7 +26,7 @@ class MarathonJsonEncoder(json.JSONEncoder):
 
         if isinstance(obj, collections.Iterable) and not is_stringy(obj):
             try:
-                return {k: self.default(v) for k,v in obj.items()}
+                return {k: self.default(v) for k, v in obj.items()}
             except AttributeError:
                 return [self.default(e) for e in obj]
 
@@ -44,9 +45,9 @@ class MarathonMinimalJsonEncoder(json.JSONEncoder):
 
         if isinstance(obj, collections.Iterable) and not is_stringy(obj):
             try:
-                return {k: self.default(v) for k,v in obj.items() if (v or v == False)}
+                return {k: self.default(v) for k, v in obj.items() if (v or v is False)}
             except AttributeError:
-                return [self.default(e) for e in obj if (e or e == False)]
+                return [self.default(e) for e in obj if (e or e is False)]
 
         return obj
 
