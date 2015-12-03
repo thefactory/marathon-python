@@ -3,7 +3,6 @@ import time
 
 import marathon
 from behave import given, when, then
-import mock
 
 from itest_utils import get_marathon_connection_string
 sys.path.append('../')
@@ -27,6 +26,14 @@ def get_marathon_info(context):
 @when(u'we create a trivial new app')
 def create_trivial_new_app(context):
     context.client.create_app('test-trivial-app', marathon.MarathonApp(cmd='sleep 100', mem=16, cpus=1))
+
+
+@then(u'we should be able to kill the tasks')
+def kill_a_task(context):
+    time.sleep(5)
+    app = context.client.get_app('test-trivial-app')
+    tasks = app.tasks
+    context.client.kill_task(app_id='test-trivial-app', task_id=tasks[0].id, scale=True)
 
 
 @when(u'we create a complex new app')
