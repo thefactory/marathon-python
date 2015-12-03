@@ -373,7 +373,14 @@ class MarathonClient(object):
             params = {'scale': scale}
             if host: params['host'] = host
             response = self._do_request('DELETE', '/v2/apps/{app_id}/tasks'.format(app_id=app_id), params)
-            return self._parse_response(response, MarathonTask, is_list=True, resource_name='tasks')
+            try:
+                return self._parse_response(response, MarathonTask, is_list=True, resource_name='tasks')
+            except KeyError:
+                # Marathon is inconsistent about what type of object it returns on the multi
+                # task deletion endpoint, depending on the version of Marathon. See:
+                # https://github.com/mesosphere/marathon/blob/06a6f763a75fb6d652b4f1660685ae234bd15387/src/main/scala/mesosphere/marathon/api/v2/AppTasksResource.scala#L88-L95
+                # TODO: Parse as a deployment if scale==True when only supporting Marathon >=0.11
+                return None
         else:
             # Terminate in batches
             tasks = self.list_tasks(app_id, host=host) if host else self.list_tasks(app_id)
@@ -412,7 +419,14 @@ class MarathonClient(object):
         params = {'scale': scale}
         response = self._do_request('DELETE', '/v2/apps/{app_id}/tasks/{task_id}'
                                     .format(app_id=app_id, task_id=task_id), params)
-        return self._parse_response(response, MarathonTask, resource_name='task')
+        try:
+            return self._parse_response(response, MarathonTask, resource_name='task')
+        except KeyError:
+            # Marathon is inconsistent about what type of object it returns on the single
+            # task deletion endpoint, depending on the version of Marathon. See:
+            # https://github.com/mesosphere/marathon/blob/06a6f763a75fb6d652b4f1660685ae234bd15387/src/main/scala/mesosphere/marathon/api/v2/AppTasksResource.scala#L112-L119
+            # TODO: Parse as a deployment if scale==True when only supporting Marathon >=0.11
+            return None
 
     def list_versions(self, app_id):
         """List the versions of an app.
