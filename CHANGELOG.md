@@ -1,10 +1,20 @@
 # Change Log
 
+## [Unreleased](https://github.com/thefactory/marathon-python/tree/HEAD)
+
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.4...HEAD)
+
+**Merged pull requests:**
+
+- Added tests for killing tasks on an app [\#72](https://github.com/thefactory/marathon-python/pull/72) ([solarkennedy](https://github.com/solarkennedy))
+- Provide proper compatability support for str/unicode in py3 [\#57](https://github.com/thefactory/marathon-python/pull/57) ([mattrobenolt](https://github.com/mattrobenolt))
+
 ## [0.7.4](https://github.com/thefactory/marathon-python/tree/0.7.4) (2015-11-20)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.3...0.7.4)
 
 **Merged pull requests:**
 
+- Use automatic changelog generation [\#69](https://github.com/thefactory/marathon-python/pull/69) ([solarkennedy](https://github.com/solarkennedy))
 - Marathon 11 Support [\#68](https://github.com/thefactory/marathon-python/pull/68) ([solarkennedy](https://github.com/solarkennedy))
 
 ## [0.7.3](https://github.com/thefactory/marathon-python/tree/0.7.3) (2015-11-12)
