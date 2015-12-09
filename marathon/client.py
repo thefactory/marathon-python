@@ -373,7 +373,13 @@ class MarathonClient(object):
             params = {'scale': scale}
             if host: params['host'] = host
             response = self._do_request('DELETE', '/v2/apps/{app_id}/tasks'.format(app_id=app_id), params)
-            return self._parse_response(response, MarathonTask, is_list=True, resource_name='tasks')
+            # Marathon is inconsistent about what type of object it returns on the multi
+            # task deletion endpoint, depending on the version of Marathon. See:
+            # https://github.com/mesosphere/marathon/blob/06a6f763a75fb6d652b4f1660685ae234bd15387/src/main/scala/mesosphere/marathon/api/v2/AppTasksResource.scala#L88-L95
+            if response.json().has_key("tasks"):
+                return self._parse_response(response, MarathonTask, is_list=True, resource_name='tasks')
+            else:
+                return response.json()
         else:
             # Terminate in batches
             tasks = self.list_tasks(app_id, host=host) if host else self.list_tasks(app_id)
@@ -412,7 +418,13 @@ class MarathonClient(object):
         params = {'scale': scale}
         response = self._do_request('DELETE', '/v2/apps/{app_id}/tasks/{task_id}'
                                     .format(app_id=app_id, task_id=task_id), params)
-        return self._parse_response(response, MarathonTask, resource_name='task')
+        # Marathon is inconsistent about what type of object it returns on the multi
+        # task deletion endpoint, depending on the version of Marathon. See:
+        # https://github.com/mesosphere/marathon/blob/06a6f763a75fb6d652b4f1660685ae234bd15387/src/main/scala/mesosphere/marathon/api/v2/AppTasksResource.scala#L88-L95
+        if response.json().has_key("task"):
+            return self._parse_response(response, MarathonTask, is_list=False, resource_name='task')
+        else:
+            return response.json()
 
     def list_versions(self, app_id):
         """List the versions of an app.
