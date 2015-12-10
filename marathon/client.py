@@ -350,6 +350,20 @@ class MarathonClient(object):
 
         return tasks
 
+    def kill_given_tasks(self, task_ids, scale=False):
+        """Kill a list of given tasks.
+
+        :param list[str] task_ids: tasks to kill
+        :param bool scale: if true, scale down the app by the number of tasks killed
+
+        :return: True on success
+        :rtype: bool
+        """
+        params = {'scale': scale}
+        data = json.dumps({"ids": task_ids})
+        response = self._do_request('POST', '/v2/tasks/delete', params=params, data=data)
+        return response == 200
+
     def kill_tasks(self, app_id, scale=False, host=None, batch_size=0, batch_delay=0):
         """Kill all tasks belonging to app.
 
