@@ -25,7 +25,7 @@ def get_marathon_info(context):
 
 @when(u'we create a trivial new app')
 def create_trivial_new_app(context):
-    context.client.create_app('test-trivial-app', marathon.MarathonApp(cmd='sleep 100', mem=16, cpus=1))
+    context.client.create_app('test-trivial-app', marathon.MarathonApp(cmd='sleep 3600', mem=16, cpus=1, instances=5))
 
 
 @then(u'we should be able to kill the tasks')
@@ -76,3 +76,22 @@ def create_complex_new_app_with_unicode(context):
 def see_complext_app_running(context, which):
     print(context.client.list_apps())
     assert context.client.get_app('test-%s-app' % which)
+
+
+@when(u'we wait the {which} app deployment finish')
+def wait_deployment_finish(context, which):
+    while True:
+        time.sleep(1)
+        app = context.client.get_app('test-%s-app' % which, embed_tasks=True)
+        if not app.deployments:
+            break
+
+
+@then(u'we should be able to kill the #{to_kill} tasks of the {which} app')
+def kill_tasks(context, to_kill, which):
+    app_tasks = context.client.get_app('test-%s-app' % which, embed_tasks=True).tasks
+
+    index_to_kill = eval("[" + to_kill + "]")
+    task_to_kill = [app_tasks[index].id for index in index_to_kill]
+
+    context.client.kill_given_tasks(task_to_kill)
