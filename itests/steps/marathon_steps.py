@@ -95,3 +95,10 @@ def kill_tasks(context, to_kill, which):
     task_to_kill = [app_tasks[index].id for index in index_to_kill]
 
     context.client.kill_given_tasks(task_to_kill)
+
+
+@then(u'we should be able to list tasks of the {which} app')
+def list_tasks(context, which):
+    app = context.client.get_app('test-%s-app' % which)
+    tasks = context.client.list_tasks('test-%s-app' % which)
+    assert len(tasks) == app.instances
