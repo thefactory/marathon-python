@@ -75,7 +75,8 @@ class MarathonApp(MarathonResource):
                  executor=None, health_checks=None, id=None, instances=None, labels=None, last_task_failure=None,
                  max_launch_delay_seconds=None, mem=None, ports=None, require_ports=None, store_urls=None,
                  task_rate_limit=None, tasks=None, tasks_running=None, tasks_staged=None, tasks_healthy=None,
-                 tasks_unhealthy=None, upgrade_strategy=None, uris=None, user=None, version=None, version_info=None):
+                 tasks_unhealthy=None, upgrade_strategy=None, uris=None, user=None, version=None, version_info=None,
+                 ip_address=None):
 
         # self.args = args or []
         self.accepted_resource_roles = accepted_resource_roles
