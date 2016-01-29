@@ -20,3 +20,10 @@ script:
   - /etc/init.d/zookeeper start
   - ./itests/start-marathon.sh &
   - make itests
+
+# Work around travis-ci/travis-ci#5227
+before_install:
+  - cat /etc/hosts # optionally check the content *before*
+  - sudo hostname "$(hostname | cut -c1-63)"
+  - sed -e "s/^\\(127\\.0\\.0\\.1.*\\)/\\1 $(hostname | cut -c1-63)/" /etc/hosts | sudo tee /etc/hosts
+  - cat /etc/hosts # optionally check the content *after*
