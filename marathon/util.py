@@ -45,9 +45,9 @@ class MarathonMinimalJsonEncoder(json.JSONEncoder):
 
         if isinstance(obj, collections.Iterable) and not is_stringy(obj):
             try:
-                return {k: self.default(v) for k, v in obj.items() if (v or v is False)}
+                return {k: self.default(v) for k, v in obj.items() if (v or v is False or v is 0)}
             except AttributeError:
-                return [self.default(e) for e in obj if (e or e is False)]
+                return [self.default(e) for e in obj if (e or e is False or e is 0)]
 
         return obj
 
