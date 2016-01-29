@@ -28,6 +28,6 @@ before_install:
   - cat /etc/hosts # optionally check the content *after*
 
 # Work around and avoid travis on gce as it is dog slow
-sudo: true
+sudo: required
 dist: precise
 group: legacy
