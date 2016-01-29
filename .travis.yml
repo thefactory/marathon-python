@@ -11,7 +11,6 @@ language: python
 python:
   - 2.7
   - 3.4
-sudo: true
 install:
   - pip install tox
 script:
@@ -27,3 +26,8 @@ before_install:
   - sudo hostname "$(hostname | cut -c1-63)"
   - sed -e "s/^\\(127\\.0\\.0\\.1.*\\)/\\1 $(hostname | cut -c1-63)/" /etc/hosts | sudo tee /etc/hosts
   - cat /etc/hosts # optionally check the content *after*
+
+# Work around and avoid travis on gce as it is dog slow
+sudo: true
+dist: precise
+group: legacy
