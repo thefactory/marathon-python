@@ -38,7 +38,7 @@ class MarathonDockerContainer(MarathonObject):
     :param str network:
     :param port_mappings:
     :type port_mappings: list[:class:`marathon.models.container.MarathonContainerPortMapping`] or list[dict]
-    :param dict parameters:
+    :param list[dict] parameters:
     :param bool privileged: run container in privileged mode
     :param bool force_pull_image: Force a docker pull before launching
     """
@@ -57,7 +57,7 @@ class MarathonDockerContainer(MarathonObject):
             pm if isinstance(pm, MarathonContainerPortMapping) else MarathonContainerPortMapping().from_json(pm)
             for pm in (port_mappings or [])
         ]
-        self.parameters = parameters or {}
+        self.parameters = parameters or []
         self.privileged = privileged or False
         self.force_pull_image = force_pull_image or False
 
