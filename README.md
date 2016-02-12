@@ -8,7 +8,7 @@ This is a Python library for interfacing with [Marathon](https://github.com/meso
 
 marathon-python is primarily developed against Marathon 0.8.x (see [Marathon docs](https://mesosphere.github.io/marathon/))
 
-* For Marathon greater than 0.11.x: Not supported yet. Please submit a patch!
+* For Marathon greater than 0.14.x: Experimental support in 0.7.6
 * For Marathon 0.8.x-0.11.x, use marathon-python 0.7.5
 * For Marathon 0.8.x-0.9.x, use marathon-python 0.6.11 - 0.7.4
 * For Marathon 0.7.x, use marathon-python 0.6.10

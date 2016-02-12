@@ -1,5 +1,24 @@
 # Change Log
 
+## [0.7.6](https://github.com/thefactory/marathon-python/tree/0.7.6) (2016-02-11)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.5...0.7.6)
+
+**Closed issues:**
+
+- MarathonClient is not compatible with marathon 0.14.1-1.0.455.ubuntu1404 [\#81](https://github.com/thefactory/marathon-python/issues/81)
+- Zero values in apps/groups doesnt work [\#75](https://github.com/thefactory/marathon-python/issues/75)
+- does marathon-python supports marathon Version 0.11.1?  [\#66](https://github.com/thefactory/marathon-python/issues/66)
+- Why MarathonDockerContainer.parameters is defined as dict? [\#47](https://github.com/thefactory/marathon-python/issues/47)
+
+**Merged pull requests:**
+
+- 0.14 support [\#85](https://github.com/thefactory/marathon-python/pull/85) ([itamaro](https://github.com/itamaro))
+- Change MarathonDockerContainer.parameters to type list [\#83](https://github.com/thefactory/marathon-python/pull/83) ([fengyehong](https://github.com/fengyehong))
+- Don't drop 0s when transforming to JSON [\#79](https://github.com/thefactory/marathon-python/pull/79) ([iksaif](https://github.com/iksaif))
+- Itest fixes and stick to legacy travis infrastructure for now. [\#78](https://github.com/thefactory/marathon-python/pull/78) ([solarkennedy](https://github.com/solarkennedy))
+- Modify list\_apps so user can input app\_id without the starting slash [\#71](https://github.com/thefactory/marathon-python/pull/71) ([fengyehong](https://github.com/fengyehong))
+- Use the /v2/tasks/delete endpoint for taskkill [\#67](https://github.com/thefactory/marathon-python/pull/67) ([fengyehong](https://github.com/fengyehong))
+
 ## [0.7.5](https://github.com/thefactory/marathon-python/tree/0.7.5) (2015-12-09)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.4...0.7.5)
 
