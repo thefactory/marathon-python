@@ -24,7 +24,7 @@ class MarathonTask(MarathonResource):
     DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
 
     def __init__(self, app_id=None, health_check_results=None, host=None, id=None, ports=None, service_ports=None,
-                 slave_id=None, staged_at=None, started_at=None, version=None):
+                 slave_id=None, staged_at=None, started_at=None, version=None, ip_addresses=[] ):
         self.app_id = app_id
         self.health_check_results = health_check_results or []
         self.health_check_results = [
