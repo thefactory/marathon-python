@@ -154,7 +154,7 @@ class MarathonClient(object):
         :rtype: dict
         """
         params = {'force': force}
-        response = self._do_request('POST', '/v2/apps/{appId}/restart'.format(app_id=app_id), params=params)
+        response = self._do_request('POST', '/v2/apps/{app_id}/restart'.format(app_id=app_id), params=params)
         return response.json()
 
     def update_app(self, app_id, app, force=False, minimal=True):
