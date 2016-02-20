@@ -145,6 +145,18 @@ class MarathonClient(object):
         response = self._do_request('GET', '/v2/apps/{app_id}'.format(app_id=app_id), params=params)
         return self._parse_response(response, MarathonApp, resource_name='app')
 
+    def restart_app(self, app_id, force=False):
+        """
+        Restarts given application by app_id
+        :param str app_id: application ID
+        :param bool force: apply even if a deployment is in progress
+        :returns: a dict containing the deployment id and version
+        :rtype: dict
+        """
+        params = {'force': force}
+        response = self._do_request('POST', '/v2/apps/{app_id}/restart'.format(app_id=app_id), params=params)
+        return response.json()
+
     def update_app(self, app_id, app, force=False, minimal=True):
         """Update an app.
 
