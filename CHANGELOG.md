@@ -1,6 +1,14 @@
 # Change Log
 
-## [0.7.6](https://github.com/thefactory/marathon-python/tree/0.7.6) (2016-02-11)
+## [0.7.7](https://github.com/thefactory/marathon-python/tree/0.7.7) (2016-02-29)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.6...0.7.7)
+
+**Merged pull requests:**
+
+- restart endpoint [\#88](https://github.com/thefactory/marathon-python/pull/88) ([burakbostancioglu](https://github.com/burakbostancioglu))
+- a small fix for fetching apps for marathon v0.15 [\#87](https://github.com/thefactory/marathon-python/pull/87) ([burakbostancioglu](https://github.com/burakbostancioglu))
+
+## [0.7.6](https://github.com/thefactory/marathon-python/tree/0.7.6) (2016-02-12)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.5...0.7.6)
 
 **Closed issues:**
