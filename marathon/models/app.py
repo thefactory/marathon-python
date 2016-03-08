@@ -54,6 +54,8 @@ class MarathonApp(MarathonResource):
     :param str version: version id
     :param version_info: time of last scaling, last config change
     :type version_info: :class:`marathon.models.app.MarathonAppVersionInfo` or dict
+    :param task_stats: task statistics
+    :type task_stats: :class:`marathon.models.app.MarathonTaskStats` or dict
     :param dict labels
     """
 
@@ -76,7 +78,7 @@ class MarathonApp(MarathonResource):
                  max_launch_delay_seconds=None, mem=None, ports=None, require_ports=None, store_urls=None,
                  task_rate_limit=None, tasks=None, tasks_running=None, tasks_staged=None, tasks_healthy=None,
                  tasks_unhealthy=None, upgrade_strategy=None, uris=None, user=None, version=None, version_info=None,
-                 ip_address=None, fetch=None):
+                 ip_address=None, fetch=None, task_stats=None):
 
         # self.args = args or []
         self.accepted_resource_roles = accepted_resource_roles
@@ -133,6 +135,8 @@ class MarathonApp(MarathonResource):
         self.version = version
         self.version_info = version_info if (isinstance(version_info, MarathonAppVersionInfo) or version_info is None) \
             else MarathonAppVersionInfo.from_json(version_info)
+        self.task_stats = version_info if (isinstance(task_stats, MarathonTaskStats) or task_stats is None) \
+            else MarathonTaskStats.from_json(task_stats)
 
 
 class MarathonHealthCheck(MarathonObject):
@@ -229,3 +233,92 @@ class MarathonAppVersionInfo(MarathonObject):
           return timestamp
       else:
           return datetime.strptime(timestamp, self.DATETIME_FORMAT)
+
+
+class MarathonTaskStats(MarathonObject):
+    """Marathon task statistics
+
+    See https://mesosphere.github.io/marathon/docs/rest-api.html#taskstats-object-v0-11
+
+    :param started_after_last_scaling: contains statistics about all tasks that were started after the last scaling or restart operation.
+    :type started_after_last_scaling: :class:`marathon.models.app.MarathonTaskStatsType` or dict
+    :param with_latest_config: contains statistics about all tasks that run with the same config as the latest app version.
+    :type with_latest_config: :class:`marathon.models.app.MarathonTaskStatsType` or dict
+    :param with_outdated_config: contains statistics about all tasks that were started before the last config change which was not simply a restart or scaling operation.
+    :type with_outdated_config: :class:`marathon.models.app.MarathonTaskStatsType` or dict
+    :param total_summary: contains statistics about all tasks.
+    :type total_summary: :class:`marathon.models.app.MarathonTaskStatsType` or dict
+    """
+
+    def __init__(self, started_after_last_scaling=None, with_latest_config=None, with_outdated_config=None, total_summary=None):
+        self.started_after_last_scaling = started_after_last_scaling if \
+            (isinstance(started_after_last_scaling, MarathonTaskStatsType) or started_after_last_scaling is None) \
+            else MarathonTaskStatsType.from_json(started_after_last_scaling)
+        self.with_latest_config = with_latest_config if \
+            (isinstance(with_latest_config , MarathonTaskStatsType) or with_latest_config is None) \
+            else MarathonTaskStatsType.from_json(with_latest_config )
+        self.with_outdated_config = with_outdated_config if \
+            (isinstance(with_outdated_config, MarathonTaskStatsType) or with_outdated_config is None) \
+            else MarathonTaskStatsType.from_json(with_outdated_config)
+        self.total_summary = total_summary if \
+            (isinstance(total_summary, MarathonTaskStatsType) or total_summary is None) \
+            else MarathonTaskStatsType.from_json(total_summary)
+
+
+class MarathonTaskStatsType(MarathonObject):
+    """Marathon app task stats
+
+    :param stats: stast about app tasks
+    :type stats: :class:`marathon.models.app.MarathonTaskStatsStats` or dict
+    """
+
+    def __init__(self, stats=None):
+        self.stats = stats if (isinstance(stats, MarathonTaskStatsStats) or stats is None)\
+            else MarathonTaskStatsStats.from_json(stats)
+
+
+class MarathonTaskStatsStats(MarathonObject):
+    """Marathon app task stats
+
+    :param counts: app task count breakdown
+    :type counts: :class:`marathon.models.app.MarathonTaskStatsCounts` or dict
+    :param life_time: app task life time stats
+    :type life_time: :class:`marathon.models.app.MarathonTaskStatsLifeTime` or dict
+    """
+
+    def __init__(self, counts=None, life_time=None):
+        self.counts = counts if (isinstance(counts, MarathonTaskStatsCounts) or counts is None)\
+            else MarathonTaskStatsCounts.from_json(counts)
+        self.life_time = life_time if (isinstance(life_time, MarathonTaskStatsLifeTime) or life_time is None)\
+            else MarathonTaskStatsLifeTime.from_json(life_time)
+
+
+class MarathonTaskStatsCounts(MarathonObject):
+    """Marathon app task counts
+
+    Equivalent to tasksStaged, tasksRunning, tasksHealthy, tasksUnhealthy.
+
+    :param int staged: Staged task count
+    :param int running: Running task count
+    :param int healthy: Healthy task count
+    :param int unhealthy: unhealthy task count
+    """
+
+    def __init__(self, staged=None, running=None, healthy=None, unhealthy=None):
+	self.staged = staged
+        self.running = running
+        self.healthy = healthy
+        self.unhealthy = unhealthy
+
+class MarathonTaskStatsLifeTime(MarathonObject):
+    """Marathon app life time statistics
+
+    Measured from `"startedAt"` (timestamp of the Mesos TASK_RUNNING status update) of each running task until now
+
+    :param float average_seconds: Average seconds
+    :param float median_seconds: Median seconds
+    """
+
+    def __init__(self, average_seconds=None,  median_seconds=None):
+        self.average_seconds = average_seconds
+        self.median_seconds = median_seconds
