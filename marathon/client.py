@@ -10,7 +10,7 @@ import requests
 import requests.exceptions
 
 import marathon
-from .models import MarathonApp, MarathonDeployment, MarathonGroup, MarathonInfo, MarathonTask, MarathonEndpoint
+from .models import MarathonApp, MarathonDeployment, MarathonGroup, MarathonInfo, MarathonTask, MarathonEndpoint, MarathonQueueItem
 from .exceptions import InternalServerError, NotFoundError, MarathonHttpError, MarathonError
 
 
@@ -105,13 +105,14 @@ class MarathonClient(object):
         else:
             return False
 
-    def list_apps(self, cmd=None, embed_tasks=False, embed_failures=False, **kwargs):
+    def list_apps(self, cmd=None, embed_tasks=False, embed_failures=False, embed_task_stats=False, **kwargs):
         """List all apps.
 
         :param str app_id: application ID
         :param str cmd: if passed, only show apps with a matching `cmd`
         :param bool embed_tasks: embed tasks in result
         :param bool embed_failures: embed tasks and last task failure in result
+        :param bool embed_task_stats: embed task stats in result
         :param kwargs: arbitrary search filters
 
         :returns: list of applications
@@ -125,6 +126,8 @@ class MarathonClient(object):
             params['embed'] = 'apps.failures'
         elif embed_tasks:
             params['embed'] = 'apps.tasks'
+        elif embed_task_stats:
+            params['embed'] = 'apps.taskStats'
 
         response = self._do_request('GET', '/v2/apps', params=params)
         apps = self._parse_response(response, MarathonApp, is_list=True, resource_name='apps')
@@ -517,6 +520,15 @@ class MarathonClient(object):
         """
         response = self._do_request('GET', '/v2/deployments')
         return self._parse_response(response, MarathonDeployment, is_list=True)
+
+    def list_queue(self):
+        """List all the tasks queued up or waiting to be scheduled.
+
+        :returns: list of queue items
+        :rtype: list[:class:`marathon.models.queue.MarathonQueueItem`]
+        """
+        response = self._do_request('GET', '/v2/queue')
+        return self._parse_response(response, MarathonQueueItem, is_list=True, resource_name='queue')
 
     def delete_deployment(self, deployment_id, force=False):
         """Cancel a deployment.
