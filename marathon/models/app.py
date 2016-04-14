@@ -256,7 +256,7 @@ class MarathonTaskStats(MarathonObject):
             else MarathonTaskStatsType.from_json(started_after_last_scaling)
         self.with_latest_config = with_latest_config if \
             (isinstance(with_latest_config , MarathonTaskStatsType) or with_latest_config is None) \
-            else MarathonTaskStatsType.from_json(with_latest_config )
+            else MarathonTaskStatsType.from_json(with_latest_config)
         self.with_outdated_config = with_outdated_config if \
             (isinstance(with_outdated_config, MarathonTaskStatsType) or with_outdated_config is None) \
             else MarathonTaskStatsType.from_json(with_outdated_config)
@@ -305,7 +305,7 @@ class MarathonTaskStatsCounts(MarathonObject):
     """
 
     def __init__(self, staged=None, running=None, healthy=None, unhealthy=None):
-	self.staged = staged
+        self.staged = staged
         self.running = running
         self.healthy = healthy
         self.unhealthy = unhealthy
