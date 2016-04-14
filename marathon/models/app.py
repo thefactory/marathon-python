@@ -58,6 +58,7 @@ class MarathonApp(MarathonResource):
     :param task_stats: task statistics
     :type task_stats: :class:`marathon.models.app.MarathonTaskStats` or dict
     :param dict labels
+    :type readiness_checks:  list[:class:`marathon.models.app.ReadinessChecks`] or list[dict]
     """
 
     UPDATE_OK_ATTRIBUTES = [
@@ -81,7 +82,7 @@ class MarathonApp(MarathonResource):
                  max_launch_delay_seconds=None, mem=None, ports=None, require_ports=None, store_urls=None,
                  task_rate_limit=None, tasks=None, tasks_running=None, tasks_staged=None, tasks_healthy=None,
                  tasks_unhealthy=None, upgrade_strategy=None, uris=None, user=None, version=None, version_info=None,
-                 ip_address=None, fetch=None, task_stats=None):
+                 ip_address=None, fetch=None, task_stats=None, readiness_checks=None):
 
         # self.args = args or []
         self.accepted_resource_roles = accepted_resource_roles
@@ -122,6 +123,7 @@ class MarathonApp(MarathonResource):
         self.max_launch_delay_seconds = max_launch_delay_seconds
         self.mem = mem
         self.ports = ports or []
+        self.readiness_checks = readiness_checks or []
         self.require_ports = require_ports
         self.store_urls = store_urls or []
         self.task_rate_limit = task_rate_limit
@@ -342,3 +344,27 @@ class MarathonTaskStatsLifeTime(MarathonObject):
     def __init__(self, average_seconds=None, median_seconds=None):
         self.average_seconds = average_seconds
         self.median_seconds = median_seconds
+
+class ReadinessCheck(MarathonObject):
+    """Marathon readiness check: https://mesosphere.github.io/marathon/docs/readiness-checks.html
+
+    :param string name (Optional. Default: "readinessCheck"): The name used to identify this readiness check.
+    :param string protocol (Optional. Default: "HTTP"): Protocol of the requests to be performed. Either HTTP or HTTPS.
+    :param string path (Optional. Default: "/"): Path to the endpoint the task exposes to provide readiness status. Example: /path/to/readiness.
+    :param string port_name (Optional. Default: "http-api"): Name of the port to query as described in the portDefinitions. Example: http-api.
+    :param int interval_seconds (Optional. Default: 30 seconds): Number of seconds to wait between readiness checks.
+    :param int timeout_seconds (Optional. Default: 10 seconds): Number of seconds after which a readiness check times out, regardless of the response. This value must be smaller than interval_seconds.
+    :param list http_status_codes_for_ready (Optional. Default: [200]): The HTTP/HTTPS status code to treat as ready.
+    :param bool preserve_last_response (Optional. Default: false): If true, the last readiness check response will be preserved and exposed in the API as part of a deployment.
+
+    """
+
+    def __init__(self, name=None, protocol=None, path=None, port_name=None, interval_seconds=None,
+                 http_status_codes_for_ready=None, preserve_last_response=None):
+        self.name = name
+        self.protocol = protocol
+        self.path = path
+        self.port_name = port_name
+        self.interval_seconds = interval_seconds
+        self.http_status_codes_for_ready = http_status_codes_for_ready
+        self.preserve_last_response = preserve_last_response
