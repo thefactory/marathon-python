@@ -85,6 +85,11 @@ class MarathonDeploymentStepSuccess(MarathonEvent):
 class MarathonDeploymentStepFailure(MarathonEvent):
     KNOWN_ATTRIBUTES = ['plan']
 
+class MarathonEventStreamAttached(MarathonEvent):
+    KNOWN_ATTRIBUTES = ['remote_address']
+
+class MarathonEventStreamDetached(MarathonEvent):
+    KNOWN_ATTRIBUTES = ['remote_address']
 
 class EventFactory:
     """
@@ -111,7 +116,9 @@ class EventFactory:
         'deployment_failed': MarathonDeploymentFailed,
         'deployment_info': MarathonDeploymentInfo,
         'deployment_step_success': MarathonDeploymentStepSuccess,
-        'deployment_step_failure': MarathonDeploymentStepFailure
+        'deployment_step_failure': MarathonDeploymentStepFailure,
+        'event_stream_attached': MarathonEventStreamAttached,
+        'event_stream_detached': MarathonEventStreamDetached,
     }
 
     def process(self, event):
