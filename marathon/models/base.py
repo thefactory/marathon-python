@@ -21,9 +21,9 @@ class MarathonObject(object):
         :rtype: dict
         """
         if minimal:
-            return {to_camel_case(k):v for k,v in vars(self).items() if (v or v == False or v == 0)}
+            return {to_camel_case(k): v for k, v in vars(self).items() if (v or v == False or v == 0)}
         else:
-            return {to_camel_case(k):v for k,v in vars(self).items()}
+            return {to_camel_case(k): v for k, v in vars(self).items()}
 
     @classmethod
     def from_json(cls, attributes):
@@ -31,7 +31,7 @@ class MarathonObject(object):
 
         :param dict attributes: object attributes from parsed response
         """
-        return cls(**{to_snake_case(k): v for k,v in attributes.items()})
+        return cls(**{to_snake_case(k): v for k, v in attributes.items()})
 
     def to_json(self, minimal=True):
         """Encode an object as a JSON string.

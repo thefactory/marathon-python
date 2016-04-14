@@ -229,10 +229,10 @@ class MarathonAppVersionInfo(MarathonObject):
         self.last_config_change_at = self._to_datetime(last_config_change_at)
 
     def _to_datetime(self, timestamp):
-      if (timestamp is None or isinstance(timestamp, datetime)):
-          return timestamp
-      else:
-          return datetime.strptime(timestamp, self.DATETIME_FORMAT)
+        if (timestamp is None or isinstance(timestamp, datetime)):
+            return timestamp
+        else:
+            return datetime.strptime(timestamp, self.DATETIME_FORMAT)
 
 
 class MarathonTaskStats(MarathonObject):
@@ -319,6 +319,6 @@ class MarathonTaskStatsLifeTime(MarathonObject):
     :param float median_seconds: Median seconds
     """
 
-    def __init__(self, average_seconds=None,  median_seconds=None):
+    def __init__(self, average_seconds=None, median_seconds=None):
         self.average_seconds = average_seconds
         self.median_seconds = median_seconds

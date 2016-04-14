@@ -43,7 +43,7 @@ class MarathonDockerContainer(MarathonObject):
     :param bool force_pull_image: Force a docker pull before launching
     """
 
-    NETWORK_MODES=['BRIDGE', 'HOST']
+    NETWORK_MODES = ['BRIDGE', 'HOST']
     """Valid network modes"""
 
     def __init__(self, image=None, network='HOST', port_mappings=None, parameters=None, privileged=None,
@@ -72,7 +72,7 @@ class MarathonContainerPortMapping(MarathonObject):
     :param str protocol:
     """
 
-    PROTOCOLS=['tcp', 'udp']
+    PROTOCOLS = ['tcp', 'udp']
     """Valid protocols"""
 
     def __init__(self, container_port=None, host_port=0, service_port=None, protocol='tcp'):
@@ -94,7 +94,7 @@ class MarathonContainerVolume(MarathonObject):
     :param str mode: one of ['RO', 'RW']
     """
 
-    MODES=['RO', 'RW']
+    MODES = ['RO', 'RW']
 
     def __init__(self, container_path=None, host_path=None, mode='RW'):
         self.container_path = container_path
