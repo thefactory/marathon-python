@@ -6,13 +6,22 @@ This is a Python library for interfacing with [Marathon](https://github.com/meso
 
 #### Compatibility
 
-marathon-python is primarily developed against Marathon 0.8.x (see [Marathon docs](https://mesosphere.github.io/marathon/))
-
-* For Marathon greater than 0.14.x: Experimental support in 0.7.6
-* For Marathon 0.8.x-0.11.x, use marathon-python 0.7.5
-* For Marathon 0.8.x-0.9.x, use marathon-python 0.6.11 - 0.7.4
-* For Marathon 0.7.x, use marathon-python 0.6.10
+* For Marathon 1.1.1 and 0.15.x, use at least 0.7.8
+* For Marathon 0.14.x, use at least 0.7.6
+* For Marathon 0.8.x-0.11.x, use at least marathon-python 0.7.5
+* For Marathon 0.8.x-0.9.x, use as least marathon-python 0.6.11 - 0.7.4
+* For Marathon 0.7.x, use at least marathon-python 0.6.10
 * For all version changes, please see `CHANGELOG.md`
+
+Note: Not all versions of Python are tested against every version of Marathon.
+
+If you find a feature that is broken, please submit a PR that adds a test for
+it so it will be fixed and will continue to stay fixed as Marathon changes over
+time.
+
+Just because this library is tested against a specific version of Marathon,
+doesn't necessarily mean that it supports every feature and API Marathon
+provides.
 
 ## Installation
 
