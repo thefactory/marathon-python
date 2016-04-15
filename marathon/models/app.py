@@ -60,6 +60,7 @@ class MarathonApp(MarathonResource):
     :type task_stats: :class:`marathon.models.app.MarathonTaskStats` or dict
     :param dict labels
     :type readiness_checks: list[:class:`marathon.models.app.ReadinessChecks`] or list[dict]
+    :type residency: :class:`marathon.models.app.Residency` or dict
     """
 
     UPDATE_OK_ATTRIBUTES = [
@@ -83,7 +84,7 @@ class MarathonApp(MarathonResource):
                  max_launch_delay_seconds=None, mem=None, ports=None, require_ports=None, store_urls=None,
                  task_rate_limit=None, tasks=None, tasks_running=None, tasks_staged=None, tasks_healthy=None,
                  tasks_unhealthy=None, upgrade_strategy=None, uris=None, user=None, version=None, version_info=None,
-                 ip_address=None, fetch=None, task_stats=None, readiness_checks=None, port_definitions=None):
+                 ip_address=None, fetch=None, task_stats=None, readiness_checks=None, port_definitions=None, residency=None):
 
         # self.args = args or []
         self.accepted_resource_roles = accepted_resource_roles
@@ -126,6 +127,7 @@ class MarathonApp(MarathonResource):
         self.ports = ports or []
         self.port_definitions = port_definitions or []
         self.readiness_checks = readiness_checks or []
+        self.residency = residency
         self.require_ports = require_ports
         self.store_urls = store_urls or []
         self.task_rate_limit = task_rate_limit
@@ -146,6 +148,7 @@ class MarathonApp(MarathonResource):
             else MarathonAppVersionInfo.from_json(version_info)
         self.task_stats = version_info if (isinstance(task_stats, MarathonTaskStats) or task_stats is None) \
             else MarathonTaskStats.from_json(task_stats)
+
 
 
 class MarathonHealthCheck(MarathonObject):
@@ -385,3 +388,15 @@ class PortDefinition(MarathonObject):
         self.protocol = protocol
         self.name = name
         self.labels = labels
+
+class Residency(MarathonObject):
+    """Declares how "resident" an app is: https://mesosphere.github.io/marathon/docs/persistent-volumes.html
+
+    :param int relaunch_escalation_timeout_seconds: How long marathon will try to relaunch where the volumes is, defaults to 3600
+    :param string task_lost_behavior: What to do after a TASK_LOST. See the official Marathon docs for options
+
+    """
+
+    def __init__(self, relaunch_escalation_timeout_seconds=None, task_lost_behavior=None):
+        self.relaunch_escalation_timeout_seconds = relaunch_escalation_timeout_seconds
+        self.task_lost_behavior = task_lost_behavior
