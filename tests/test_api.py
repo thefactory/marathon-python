@@ -12,8 +12,11 @@ def test_get_deployments(m):
     actual_deployments = mock_client.list_deployments()
     expected_deployments = [models.MarathonDeployment(
         id=u"fakeid",
-        steps=[[models.MarathonDeploymentAction(action="ScaleApplication", app="/test")]],
-        current_actions=[models.MarathonDeploymentAction(action="ScaleApplication", app="/test")],
+        steps=[
+            [models.MarathonDeploymentAction(
+                action="ScaleApplication", app="/test")]],
+        current_actions=[models.MarathonDeploymentAction(
+            action="ScaleApplication", app="/test")],
         current_step=1,
         total_steps=1,
         affected_apps=[u"/test"],
@@ -62,48 +65,48 @@ def test_list_tasks_without_app_id(m):
     mock_client = MarathonClient(servers='http://fake_server')
     actual_deployments = mock_client.list_tasks()
     expected_deployments = [
-    models.task.MarathonTask(
-        app_id="/anapp",
-        health_check_results=[
-            models.task.MarathonHealthCheckResult(
-                alive=True,
-                consecutive_failures=0,
-                first_success="2014-10-03T22:57:02.246Z",
-                last_failure=None,
-                last_success="2014-10-03T22:57:41.643Z",
-                task_id="bridged-webapp.eb76c51f-4b4a-11e4-ae49-56847afe9799"
-            )
-        ],
-        host="10.141.141.10",
-        id="bridged-webapp.eb76c51f-4b4a-11e4-ae49-56847afe9799",
-        ports=[
-            31000
-        ],
-        service_ports=[
-            9000
-        ],
-        staged_at="2014-10-03T22:16:27.811Z",
-        started_at="2014-10-03T22:57:41.587Z",
-        version="2014-10-03T22:16:23.634Z"
-    ),
-    models.task.MarathonTask(
-        app_id="/anotherapp",
-        health_check_results=[
-            models.task.MarathonHealthCheckResult(
-                alive=True,
-                consecutive_failures=0,
-                first_success="2014-10-03T22:57:02.246Z",
-                last_failure=None,
-                last_success="2014-10-03T22:57:41.649Z",
-                task_id="bridged-webapp.ef0b5d91-4b4a-11e4-ae49-56847afe9799"
-            )
-        ],
-        host="10.141.141.10",
-        id="bridged-webapp.ef0b5d91-4b4a-11e4-ae49-56847afe9799",
-        ports=[31001],
-        service_ports=[9000],
-        staged_at="2014-10-03T22:16:33.814Z",
-        started_at="2014-10-03T22:57:41.593Z",
-        version="2014-10-03T22:16:23.634Z"
-    )]
+        models.task.MarathonTask(
+            app_id="/anapp",
+            health_check_results=[
+                models.task.MarathonHealthCheckResult(
+                    alive=True,
+                    consecutive_failures=0,
+                    first_success="2014-10-03T22:57:02.246Z",
+                    last_failure=None,
+                    last_success="2014-10-03T22:57:41.643Z",
+                    task_id="bridged-webapp.eb76c51f-4b4a-11e4-ae49-56847afe9799"
+                )
+            ],
+            host="10.141.141.10",
+            id="bridged-webapp.eb76c51f-4b4a-11e4-ae49-56847afe9799",
+            ports=[
+                31000
+            ],
+            service_ports=[
+                9000
+            ],
+            staged_at="2014-10-03T22:16:27.811Z",
+            started_at="2014-10-03T22:57:41.587Z",
+            version="2014-10-03T22:16:23.634Z"
+        ),
+        models.task.MarathonTask(
+            app_id="/anotherapp",
+            health_check_results=[
+                models.task.MarathonHealthCheckResult(
+                    alive=True,
+                    consecutive_failures=0,
+                    first_success="2014-10-03T22:57:02.246Z",
+                    last_failure=None,
+                    last_success="2014-10-03T22:57:41.649Z",
+                    task_id="bridged-webapp.ef0b5d91-4b4a-11e4-ae49-56847afe9799"
+                )
+            ],
+            host="10.141.141.10",
+            id="bridged-webapp.ef0b5d91-4b4a-11e4-ae49-56847afe9799",
+            ports=[31001],
+            service_ports=[9000],
+            staged_at="2014-10-03T22:16:33.814Z",
+            started_at="2014-10-03T22:57:41.593Z",
+            version="2014-10-03T22:16:23.634Z"
+        )]
     assert actual_deployments == expected_deployments

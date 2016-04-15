@@ -3,6 +3,7 @@ from .base import MarathonObject
 
 
 class MarathonContainer(MarathonObject):
+
     """Marathon health check.
 
     See https://mesosphere.github.io/marathon/docs/native-docker.html
@@ -24,12 +25,14 @@ class MarathonContainer(MarathonObject):
         self.docker = docker if isinstance(docker, MarathonDockerContainer) \
             else MarathonDockerContainer().from_json(docker)
         self.volumes = [
-            v if isinstance(v, MarathonContainerVolume) else MarathonContainerVolume().from_json(v)
+            v if isinstance(
+                v, MarathonContainerVolume) else MarathonContainerVolume().from_json(v)
             for v in (volumes or [])
         ]
 
 
 class MarathonDockerContainer(MarathonObject):
+
     """Docker options.
 
     See https://mesosphere.github.io/marathon/docs/native-docker.html
@@ -46,15 +49,18 @@ class MarathonDockerContainer(MarathonObject):
     NETWORK_MODES = ['BRIDGE', 'HOST']
     """Valid network modes"""
 
-    def __init__(self, image=None, network='HOST', port_mappings=None, parameters=None, privileged=None,
+    def __init__(
+        self, image=None, network='HOST', port_mappings=None, parameters=None, privileged=None,
                  force_pull_image=None, **kwargs):
         self.image = image
         if network:
             if not network in self.NETWORK_MODES:
-                raise InvalidChoiceError('network', network, self.NETWORK_MODES)
+                raise InvalidChoiceError(
+                    'network', network, self.NETWORK_MODES)
             self.network = network
         self.port_mappings = [
-            pm if isinstance(pm, MarathonContainerPortMapping) else MarathonContainerPortMapping().from_json(pm)
+            pm if isinstance(
+                pm, MarathonContainerPortMapping) else MarathonContainerPortMapping().from_json(pm)
             for pm in (port_mappings or [])
         ]
         self.parameters = parameters or []
@@ -63,6 +69,7 @@ class MarathonDockerContainer(MarathonObject):
 
 
 class MarathonContainerPortMapping(MarathonObject):
+
     """Container port mapping.
 
     See https://mesosphere.github.io/marathon/docs/native-docker.html
@@ -75,7 +82,8 @@ class MarathonContainerPortMapping(MarathonObject):
     PROTOCOLS = ['tcp', 'udp']
     """Valid protocols"""
 
-    def __init__(self, container_port=None, host_port=0, service_port=None, protocol='tcp'):
+    def __init__(self, container_port=None,
+                 host_port=0, service_port=None, protocol='tcp'):
         self.container_port = container_port
         self.host_port = host_port
         self.service_port = service_port
@@ -85,6 +93,7 @@ class MarathonContainerPortMapping(MarathonObject):
 
 
 class MarathonContainerVolume(MarathonObject):
+
     """Volume options.
 
     See https://mesosphere.github.io/marathon/docs/native-docker.html

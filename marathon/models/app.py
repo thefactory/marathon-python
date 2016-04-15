@@ -8,6 +8,7 @@ from .task import MarathonTask
 
 
 class MarathonApp(MarathonResource):
+
     """Marathon Application resource.
 
     See: https://mesosphere.github.io/marathon/docs/rest-api.html#post-/v2/apps
@@ -69,10 +70,12 @@ class MarathonApp(MarathonResource):
     CREATE_ONLY_ATTRIBUTES = ['id', 'accepted_resource_roles']
     """List of attributes that should only be passed on creation"""
 
-    READ_ONLY_ATTRIBUTES = ['deployments', 'tasks', 'tasks_running', 'tasks_staged', 'tasks_healthy', 'tasks_unhealthy']
+    READ_ONLY_ATTRIBUTES = [
+        'deployments', 'tasks', 'tasks_running', 'tasks_staged', 'tasks_healthy', 'tasks_unhealthy']
     """List of read-only attributes"""
 
-    def __init__(self, accepted_resource_roles=None, args=None, backoff_factor=None, backoff_seconds=None, cmd=None,
+    def __init__(
+        self, accepted_resource_roles=None, args=None, backoff_factor=None, backoff_seconds=None, cmd=None,
                  constraints=None, container=None, cpus=None, dependencies=None, deployments=None, disk=None, env=None,
                  executor=None, health_checks=None, id=None, instances=None, labels=None, last_task_failure=None,
                  max_launch_delay_seconds=None, mem=None, ports=None, require_ports=None, store_urls=None,
@@ -98,7 +101,8 @@ class MarathonApp(MarathonResource):
         self.cpus = cpus
         self.dependencies = dependencies or []
         self.deployments = [
-            d if isinstance(d, MarathonDeployment) else MarathonDeployment().from_json(d)
+            d if isinstance(
+                d, MarathonDeployment) else MarathonDeployment().from_json(d)
             for d in (deployments or [])
         ]
         self.disk = disk
@@ -106,7 +110,8 @@ class MarathonApp(MarathonResource):
         self.executor = executor
         self.health_checks = health_checks or []
         self.health_checks = [
-            hc if isinstance(hc, MarathonHealthCheck) else MarathonHealthCheck().from_json(hc)
+            hc if isinstance(
+                hc, MarathonHealthCheck) else MarathonHealthCheck().from_json(hc)
             for hc in (health_checks or [])
         ]
         self.id = assert_valid_path(id)
@@ -140,6 +145,7 @@ class MarathonApp(MarathonResource):
 
 
 class MarathonHealthCheck(MarathonObject):
+
     """Marathon health check.
 
     See https://mesosphere.github.io/marathon/docs/health-checks.html
@@ -156,7 +162,8 @@ class MarathonHealthCheck(MarathonObject):
     :param dict kwargs: additional arguments for forward compatibility
     """
 
-    def __init__(self, command=None, grace_period_seconds=None, interval_seconds=None, max_consecutive_failures=None,
+    def __init__(
+        self, command=None, grace_period_seconds=None, interval_seconds=None, max_consecutive_failures=None,
                  path=None, port_index=None, protocol=None, timeout_seconds=None, ignore_http1xx=None, **kwargs):
         self.command = command
         self.grace_period_seconds = grace_period_seconds
@@ -173,6 +180,7 @@ class MarathonHealthCheck(MarathonObject):
 
 
 class MarathonTaskFailure(MarathonObject):
+
     """Marathon Task Failure.
 
     :param str app_id: application id
@@ -187,7 +195,8 @@ class MarathonTaskFailure(MarathonObject):
 
     DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
 
-    def __init__(self, app_id=None, host=None, message=None, task_id=None, slave_id=None, state=None, timestamp=None, version=None):
+    def __init__(self, app_id=None, host=None, message=None, task_id=None,
+                 slave_id=None, state=None, timestamp=None, version=None):
         self.app_id = app_id
         self.host = host
         self.message = message
@@ -200,6 +209,7 @@ class MarathonTaskFailure(MarathonObject):
 
 
 class MarathonUpgradeStrategy(MarathonObject):
+
     """Marathon health check.
 
     See https://mesosphere.github.io/marathon/docs/health-checks.html
@@ -207,12 +217,14 @@ class MarathonUpgradeStrategy(MarathonObject):
     :param float minimum_health_capacity: minimum % of instances kept healthy on deploy
     """
 
-    def __init__(self, maximum_over_capacity=None, minimum_health_capacity=None):
+    def __init__(self, maximum_over_capacity=None,
+                 minimum_health_capacity=None):
         self.maximum_over_capacity = maximum_over_capacity
         self.minimum_health_capacity = minimum_health_capacity
 
 
 class MarathonAppVersionInfo(MarathonObject):
+
     """Marathon App version info.
 
     See release notes for Marathon v0.11.0
@@ -236,6 +248,7 @@ class MarathonAppVersionInfo(MarathonObject):
 
 
 class MarathonTaskStats(MarathonObject):
+
     """Marathon task statistics
 
     See https://mesosphere.github.io/marathon/docs/rest-api.html#taskstats-object-v0-11
@@ -250,12 +263,13 @@ class MarathonTaskStats(MarathonObject):
     :type total_summary: :class:`marathon.models.app.MarathonTaskStatsType` or dict
     """
 
-    def __init__(self, started_after_last_scaling=None, with_latest_config=None, with_outdated_config=None, total_summary=None):
+    def __init__(self, started_after_last_scaling=None,
+                 with_latest_config=None, with_outdated_config=None, total_summary=None):
         self.started_after_last_scaling = started_after_last_scaling if \
             (isinstance(started_after_last_scaling, MarathonTaskStatsType) or started_after_last_scaling is None) \
             else MarathonTaskStatsType.from_json(started_after_last_scaling)
         self.with_latest_config = with_latest_config if \
-            (isinstance(with_latest_config , MarathonTaskStatsType) or with_latest_config is None) \
+            (isinstance(with_latest_config, MarathonTaskStatsType) or with_latest_config is None) \
             else MarathonTaskStatsType.from_json(with_latest_config)
         self.with_outdated_config = with_outdated_config if \
             (isinstance(with_outdated_config, MarathonTaskStatsType) or with_outdated_config is None) \
@@ -266,6 +280,7 @@ class MarathonTaskStats(MarathonObject):
 
 
 class MarathonTaskStatsType(MarathonObject):
+
     """Marathon app task stats
 
     :param stats: stast about app tasks
@@ -278,6 +293,7 @@ class MarathonTaskStatsType(MarathonObject):
 
 
 class MarathonTaskStatsStats(MarathonObject):
+
     """Marathon app task stats
 
     :param counts: app task count breakdown
@@ -294,6 +310,7 @@ class MarathonTaskStatsStats(MarathonObject):
 
 
 class MarathonTaskStatsCounts(MarathonObject):
+
     """Marathon app task counts
 
     Equivalent to tasksStaged, tasksRunning, tasksHealthy, tasksUnhealthy.
@@ -304,13 +321,16 @@ class MarathonTaskStatsCounts(MarathonObject):
     :param int unhealthy: unhealthy task count
     """
 
-    def __init__(self, staged=None, running=None, healthy=None, unhealthy=None):
+    def __init__(self, staged=None,
+                 running=None, healthy=None, unhealthy=None):
         self.staged = staged
         self.running = running
         self.healthy = healthy
         self.unhealthy = unhealthy
 
+
 class MarathonTaskStatsLifeTime(MarathonObject):
+
     """Marathon app life time statistics
 
     Measured from `"startedAt"` (timestamp of the Mesos TASK_RUNNING status update) of each running task until now

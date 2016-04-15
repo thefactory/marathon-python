@@ -3,6 +3,7 @@ from .app import MarathonApp
 
 
 class MarathonQueueItem(MarathonResource):
+
     """Marathon queue item.
 
     See: https://mesosphere.github.io/marathon/docs/rest-api.html#queue
@@ -25,13 +26,16 @@ class MarathonQueueItem(MarathonResource):
     """
 
     def __init__(self, app=None, overdue=None, count=None, delay=None):
-        self.app = app if isinstance(app, MarathonApp) else MarathonApp().from_json(app)
+        self.app = app if isinstance(
+            app, MarathonApp) else MarathonApp().from_json(app)
         self.overdue = overdue
         self.count = count
-        self.delay = delay if isinstance(delay, MarathonQueueItemDelay) else MarathonQueueItemDelay().from_json(delay)
+        self.delay = delay if isinstance(
+            delay, MarathonQueueItemDelay) else MarathonQueueItemDelay().from_json(delay)
 
 
 class MarathonQueueItemDelay(MarathonResource):
+
     """Marathon queue item delay.
 
     :param int time_left_seconds: Seconds to wait before the next launch will be tried.

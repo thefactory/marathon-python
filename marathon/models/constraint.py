@@ -3,6 +3,7 @@ from .base import MarathonObject
 
 
 class MarathonConstraint(MarathonObject):
+
     """Marathon placement constraint.
 
     See https://mesosphere.github.io/marathon/docs/constraints.html

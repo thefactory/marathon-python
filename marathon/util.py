@@ -15,6 +15,7 @@ def is_stringy(obj):
 
 
 class MarathonJsonEncoder(json.JSONEncoder):
+
     """Custom JSON encoder for Marathon object serialization."""
 
     def default(self, obj):
@@ -34,6 +35,7 @@ class MarathonJsonEncoder(json.JSONEncoder):
 
 
 class MarathonMinimalJsonEncoder(json.JSONEncoder):
+
     """Custom JSON encoder for Marathon object serialization."""
 
     def default(self, obj):
