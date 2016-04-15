@@ -25,7 +25,7 @@ def get_marathon_info(context):
 
 @when(u'we create a trivial new app')
 def create_trivial_new_app(context):
-    context.client.create_app('test-trivial-app', marathon.MarathonApp(cmd='sleep 3600', mem=16, cpus=1, instances=5))
+    context.client.create_app('test-trivial-app', marathon.MarathonApp(cmd='sleep 3600', mem=16, cpus=0.1, instances=5))
 
 
 @then(u'we should be able to kill the tasks')

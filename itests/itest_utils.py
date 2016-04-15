@@ -33,7 +33,7 @@ def timeout(seconds=10, error_message=os.strerror(errno.ETIME)):
     return decorator
 
 
-@timeout(10)
+@timeout(30)
 def wait_for_marathon():
     """Blocks until marathon is up"""
     marathon_service = get_marathon_connection_string()
