@@ -5,6 +5,7 @@ from marathon.util import to_camel_case, to_snake_case, MarathonJsonEncoder, Mar
 
 
 class MarathonObject(object):
+
     """Base Marathon object."""
 
     def __repr__(self):
@@ -21,9 +22,9 @@ class MarathonObject(object):
         :rtype: dict
         """
         if minimal:
-            return {to_camel_case(k):v for k,v in vars(self).items() if (v or v == False or v == 0 )}
+            return {to_camel_case(k): v for k, v in vars(self).items() if (v or v is False or v == 0)}
         else:
-            return {to_camel_case(k):v for k,v in vars(self).items()}
+            return {to_camel_case(k): v for k, v in vars(self).items()}
 
     @classmethod
     def from_json(cls, attributes):
@@ -31,7 +32,7 @@ class MarathonObject(object):
 
         :param dict attributes: object attributes from parsed response
         """
-        return cls(**{to_snake_case(k): v for k,v in attributes.items()})
+        return cls(**{to_snake_case(k): v for k, v in attributes.items()})
 
     def to_json(self, minimal=True):
         """Encode an object as a JSON string.
@@ -47,6 +48,7 @@ class MarathonObject(object):
 
 
 class MarathonResource(MarathonObject):
+
     """Base Marathon resource."""
 
     def __repr__(self):
@@ -61,8 +63,10 @@ class MarathonResource(MarathonObject):
     def __str__(self):
         return "{clazz}::".format(clazz=self.__class__.__name__) + str(self.__dict__)
 
-# See: https://github.com/mesosphere/marathon/blob/2a9d1d20ec2f1cfcc49fbb1c0e7348b26418ef38/src/main/scala/mesosphere/marathon/api/ModelValidation.scala#L224
-ID_PATTERN = re.compile('^(([a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])\\.)*([a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])|(\\.|\\.\\.)$')
+# See:
+# https://github.com/mesosphere/marathon/blob/2a9d1d20ec2f1cfcc49fbb1c0e7348b26418ef38/src/main/scala/mesosphere/marathon/api/ModelValidation.scala#L224
+ID_PATTERN = re.compile(
+    '^(([a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])\\.)*([a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])|(\\.|\\.\\.)$')
 
 
 def assert_valid_path(path):
@@ -74,10 +78,12 @@ def assert_valid_path(path):
     """
     if path is None:
         return
-    # As seen in: https://github.com/mesosphere/marathon/blob/0c11661ca2f259f8a903d114ef79023649a6f04b/src/main/scala/mesosphere/marathon/state/PathId.scala#L71
+    # As seen in:
+    # https://github.com/mesosphere/marathon/blob/0c11661ca2f259f8a903d114ef79023649a6f04b/src/main/scala/mesosphere/marathon/state/PathId.scala#L71
     for id in filter(None, path.strip('/').split('/')):
         if not ID_PATTERN.match(id):
-            raise ValueError('invalid path (allowed: lowercase letters, digits, hyphen, "/", ".", ".."): %r' % path)
+            raise ValueError(
+                'invalid path (allowed: lowercase letters, digits, hyphen, "/", ".", ".."): %r' % path)
     return path
 
 
@@ -91,5 +97,6 @@ def assert_valid_id(id):
     if id is None:
         return
     if not ID_PATTERN.match(id.strip('/')):
-        raise ValueError('invalid id (allowed: lowercase letters, digits, hyphen, ".", ".."): %r' % id)
+        raise ValueError(
+            'invalid id (allowed: lowercase letters, digits, hyphen, ".", ".."): %r' % id)
     return id

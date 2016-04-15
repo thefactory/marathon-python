@@ -1,12 +1,8 @@
-try:
-    import json
-except ImportError:
-    import simplejson as json
-
 from .base import MarathonObject
 
 
 class MarathonEndpoint(MarathonObject):
+
     """Marathon Endpoint helper object for service discovery. It describes a single port mapping for a running task.
 
     :param str app_id: application id
@@ -25,7 +21,8 @@ class MarathonEndpoint(MarathonObject):
             task_port=self.task_port
         )
 
-    def __init__(self, app_id=None, service_port=None, host=None, task_id=None, task_port=None):
+    def __init__(self, app_id=None, service_port=None,
+                 host=None, task_id=None, task_port=None):
         self.app_id = app_id
         self.service_port = service_port
         self.host = host
@@ -43,7 +40,8 @@ class MarathonEndpoint(MarathonObject):
 
         endpoints = [
             [
-                MarathonEndpoint(task.app_id, task.service_ports[port_index], task.host, task.id, port)
+                MarathonEndpoint(task.app_id, task.service_ports[
+                                 port_index], task.host, task.id, port)
                 for port_index, port in enumerate(task.ports)
             ]
             for task in tasks

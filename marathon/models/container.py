@@ -3,6 +3,7 @@ from .base import MarathonObject
 
 
 class MarathonContainer(MarathonObject):
+
     """Marathon health check.
 
     See https://mesosphere.github.io/marathon/docs/native-docker.html
@@ -18,18 +19,20 @@ class MarathonContainer(MarathonObject):
     """Valid container types"""
 
     def __init__(self, docker=None, type='DOCKER', volumes=None):
-        if not type in self.TYPES:
+        if type not in self.TYPES:
             raise InvalidChoiceError('type', type, self.TYPES)
         self.type = type
         self.docker = docker if isinstance(docker, MarathonDockerContainer) \
             else MarathonDockerContainer().from_json(docker)
         self.volumes = [
-            v if isinstance(v, MarathonContainerVolume) else MarathonContainerVolume().from_json(v)
+            v if isinstance(
+                v, MarathonContainerVolume) else MarathonContainerVolume().from_json(v)
             for v in (volumes or [])
         ]
 
 
 class MarathonDockerContainer(MarathonObject):
+
     """Docker options.
 
     See https://mesosphere.github.io/marathon/docs/native-docker.html
@@ -43,18 +46,21 @@ class MarathonDockerContainer(MarathonObject):
     :param bool force_pull_image: Force a docker pull before launching
     """
 
-    NETWORK_MODES=['BRIDGE', 'HOST']
+    NETWORK_MODES = ['BRIDGE', 'HOST']
     """Valid network modes"""
 
-    def __init__(self, image=None, network='HOST', port_mappings=None, parameters=None, privileged=None,
+    def __init__(
+        self, image=None, network='HOST', port_mappings=None, parameters=None, privileged=None,
                  force_pull_image=None, **kwargs):
         self.image = image
         if network:
-            if not network in self.NETWORK_MODES:
-                raise InvalidChoiceError('network', network, self.NETWORK_MODES)
+            if network not in self.NETWORK_MODES:
+                raise InvalidChoiceError(
+                    'network', network, self.NETWORK_MODES)
             self.network = network
         self.port_mappings = [
-            pm if isinstance(pm, MarathonContainerPortMapping) else MarathonContainerPortMapping().from_json(pm)
+            pm if isinstance(
+                pm, MarathonContainerPortMapping) else MarathonContainerPortMapping().from_json(pm)
             for pm in (port_mappings or [])
         ]
         self.parameters = parameters or []
@@ -63,6 +69,7 @@ class MarathonDockerContainer(MarathonObject):
 
 
 class MarathonContainerPortMapping(MarathonObject):
+
     """Container port mapping.
 
     See https://mesosphere.github.io/marathon/docs/native-docker.html
@@ -72,19 +79,21 @@ class MarathonContainerPortMapping(MarathonObject):
     :param str protocol:
     """
 
-    PROTOCOLS=['tcp', 'udp']
+    PROTOCOLS = ['tcp', 'udp']
     """Valid protocols"""
 
-    def __init__(self, container_port=None, host_port=0, service_port=None, protocol='tcp'):
+    def __init__(self, container_port=None,
+                 host_port=0, service_port=None, protocol='tcp'):
         self.container_port = container_port
         self.host_port = host_port
         self.service_port = service_port
-        if not protocol in self.PROTOCOLS:
+        if protocol not in self.PROTOCOLS:
             raise InvalidChoiceError('protocol', protocol, self.PROTOCOLS)
         self.protocol = protocol
 
 
 class MarathonContainerVolume(MarathonObject):
+
     """Volume options.
 
     See https://mesosphere.github.io/marathon/docs/native-docker.html
@@ -94,11 +103,11 @@ class MarathonContainerVolume(MarathonObject):
     :param str mode: one of ['RO', 'RW']
     """
 
-    MODES=['RO', 'RW']
+    MODES = ['RO', 'RW']
 
     def __init__(self, container_path=None, host_path=None, mode='RW'):
         self.container_path = container_path
         self.host_path = host_path
-        if not mode in self.MODES:
+        if mode not in self.MODES:
             raise InvalidChoiceError('mode', mode, self.MODES)
         self.mode = mode

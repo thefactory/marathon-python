@@ -2,8 +2,6 @@ import errno
 from functools import wraps
 import os
 import signal
-import sys
-import threading
 import time
 
 import requests
@@ -12,6 +10,7 @@ from compose.cli import command
 
 class TimeoutError(Exception):
     pass
+
 
 def timeout(seconds=10, error_message=os.strerror(errno.ETIME)):
     def decorator(func):
@@ -39,7 +38,8 @@ def wait_for_marathon():
     while True:
         print 'Connecting to marathon on %s' % marathon_service
         try:
-            response = requests.get('http://%s/ping' % marathon_service, timeout=2)
+            response = requests.get(
+                'http://%s/ping' % marathon_service, timeout=2)
         except (
             requests.exceptions.ConnectionError,
             requests.exceptions.Timeout,

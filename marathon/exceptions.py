@@ -10,8 +10,8 @@ class MarathonHttpError(MarathonError):
         """
         content = response.json()
         self.status_code = response.status_code
-        self.error_message  = content['message']
-        super(MarathonHttpError, self).__init__(self.__str__() )
+        self.error_message = content['message']
+        super(MarathonHttpError, self).__init__(self.__str__())
 
     def __repr__(self):
         return 'MarathonHttpError: HTTP %s returned with message, "%s"' % \

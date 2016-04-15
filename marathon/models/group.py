@@ -3,6 +3,7 @@ from .app import MarathonApp
 
 
 class MarathonGroup(MarathonResource):
+
     """Marathon group resource.
 
     See: https://mesosphere.github.io/marathon/docs/rest-api.html#groups
@@ -16,7 +17,8 @@ class MarathonGroup(MarathonResource):
     :param str version:
     """
 
-    def __init__(self, apps=None, dependencies=None, groups=None, id=None, version=None):
+    def __init__(self, apps=None, dependencies=None,
+                 groups=None, id=None, version=None):
         self.apps = [
             a if isinstance(a, MarathonApp) else MarathonApp().from_json(a)
             for a in (apps or [])

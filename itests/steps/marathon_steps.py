@@ -25,7 +25,8 @@ def get_marathon_info(context):
 
 @when(u'we create a trivial new app')
 def create_trivial_new_app(context):
-    context.client.create_app('test-trivial-app', marathon.MarathonApp(cmd='sleep 3600', mem=16, cpus=1, instances=5))
+    context.client.create_app('test-trivial-app', marathon.MarathonApp(
+        cmd='sleep 3600', mem=16, cpus=1, instances=5))
 
 
 @then(u'we should be able to kill the tasks')
@@ -33,7 +34,8 @@ def kill_a_task(context):
     time.sleep(5)
     app = context.client.get_app('test-trivial-app')
     tasks = app.tasks
-    context.client.kill_task(app_id='test-trivial-app', task_id=tasks[0].id, scale=True)
+    context.client.kill_task(
+        app_id='test-trivial-app', task_id=tasks[0].id, scale=True)
 
 
 @when(u'we create a complex new app')
@@ -42,14 +44,18 @@ def create_complex_new_app_with_unicode(context):
         'container': {
             'type': 'DOCKER',
             'docker': {
-                'portMappings': [{'protocol': 'tcp', 'containerPort': 8888, 'hostPort': 0}],
+                'portMappings':
+                    [{'protocol': 'tcp',
+                      'containerPort': 8888,
+                      'hostPort': 0}],
                 'image': u'localhost/fake_docker_url',
                 'network': 'BRIDGE',
-                'parameters': [
-                    {'key': 'add-host', 'value': 'google-public-dns-a.google.com:8.8.8.8'},
-                ],
+                'parameters': [{'key': 'add-host', 'value': 'google-public-dns-a.google.com:8.8.8.8'}],
             },
-            'volumes': [{'hostPath': u'/etc/stuff', 'containerPath': u'/etc/stuff', 'mode': 'RO'}],
+            'volumes':
+                [{'hostPath': u'/etc/stuff',
+                 'containerPath': u'/etc/stuff',
+                  'mode': 'RO'}],
         },
         'instances': 1,
         'mem': 30,
@@ -72,7 +78,8 @@ def create_complex_new_app_with_unicode(context):
             },
         ],
     }
-    context.client.create_app('test-complex-app', marathon.MarathonApp(**app_config))
+    context.client.create_app(
+        'test-complex-app', marathon.MarathonApp(**app_config))
 
 
 @then(u'we should see the {which} app running via the marathon api')
@@ -92,7 +99,8 @@ def wait_deployment_finish(context, which):
 
 @then(u'we should be able to kill the #{to_kill} tasks of the {which} app')
 def kill_tasks(context, to_kill, which):
-    app_tasks = context.client.get_app('test-%s-app' % which, embed_tasks=True).tasks
+    app_tasks = context.client.get_app(
+        'test-%s-app' % which, embed_tasks=True).tasks
 
     index_to_kill = eval("[" + to_kill + "]")
     task_to_kill = [app_tasks[index].id for index in index_to_kill]
