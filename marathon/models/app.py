@@ -38,6 +38,7 @@ class MarathonApp(MarathonResource):
     :param last_task_failure: last task failure
     :type last_task_failure: :class:`marathon.models.app.MarathonTaskFailure` or dict
     :param float mem: memory (in MB) required per instance
+    :type port_definitions: list[:class:`marathon.models.app.PortDefinitions`] or list[dict]
     :param list[int] ports: ports
     :param bool require_ports: require the specified `ports` to be available in the resource offer
     :param list[str] store_urls: store URLs
@@ -58,7 +59,7 @@ class MarathonApp(MarathonResource):
     :param task_stats: task statistics
     :type task_stats: :class:`marathon.models.app.MarathonTaskStats` or dict
     :param dict labels
-    :type readiness_checks:  list[:class:`marathon.models.app.ReadinessChecks`] or list[dict]
+    :type readiness_checks: list[:class:`marathon.models.app.ReadinessChecks`] or list[dict]
     """
 
     UPDATE_OK_ATTRIBUTES = [
@@ -82,7 +83,7 @@ class MarathonApp(MarathonResource):
                  max_launch_delay_seconds=None, mem=None, ports=None, require_ports=None, store_urls=None,
                  task_rate_limit=None, tasks=None, tasks_running=None, tasks_staged=None, tasks_healthy=None,
                  tasks_unhealthy=None, upgrade_strategy=None, uris=None, user=None, version=None, version_info=None,
-                 ip_address=None, fetch=None, task_stats=None, readiness_checks=None):
+                 ip_address=None, fetch=None, task_stats=None, readiness_checks=None, port_definitions=None):
 
         # self.args = args or []
         self.accepted_resource_roles = accepted_resource_roles
@@ -123,6 +124,7 @@ class MarathonApp(MarathonResource):
         self.max_launch_delay_seconds = max_launch_delay_seconds
         self.mem = mem
         self.ports = ports or []
+        self.port_definitions = port_definitions or []
         self.readiness_checks = readiness_checks or []
         self.require_ports = require_ports
         self.store_urls = store_urls or []
@@ -368,3 +370,18 @@ class ReadinessCheck(MarathonObject):
         self.interval_seconds = interval_seconds
         self.http_status_codes_for_ready = http_status_codes_for_ready
         self.preserve_last_response = preserve_last_response
+
+class PortDefinition(MarathonObject):
+    """Marathon port definitions: https://mesosphere.github.io/marathon/docs/ports.html
+
+    :param int port: The port
+    :param string protocol: tcp or udp
+    :param string name: (optional) the name of the port
+    :param dict labels: undocumented
+    """
+
+    def __init__(self, port=None, protocol=None, name=None, labels=None):
+        self.port = port
+        self.protocol = protocol
+        self.name = name
+        self.labels = labels
