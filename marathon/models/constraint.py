@@ -20,7 +20,7 @@ class MarathonConstraint(MarathonObject):
     """Valid operators"""
 
     def __init__(self, field, operator, value=None):
-        if not operator in self.OPERATORS:
+        if operator not in self.OPERATORS:
             raise InvalidChoiceError('operator', operator, self.OPERATORS)
         self.field = field
         self.operator = operator

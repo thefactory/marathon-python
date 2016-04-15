@@ -2,8 +2,6 @@ import errno
 from functools import wraps
 import os
 import signal
-import sys
-import threading
 import time
 
 import requests

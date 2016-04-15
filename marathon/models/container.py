@@ -19,7 +19,7 @@ class MarathonContainer(MarathonObject):
     """Valid container types"""
 
     def __init__(self, docker=None, type='DOCKER', volumes=None):
-        if not type in self.TYPES:
+        if type not in self.TYPES:
             raise InvalidChoiceError('type', type, self.TYPES)
         self.type = type
         self.docker = docker if isinstance(docker, MarathonDockerContainer) \
@@ -54,7 +54,7 @@ class MarathonDockerContainer(MarathonObject):
                  force_pull_image=None, **kwargs):
         self.image = image
         if network:
-            if not network in self.NETWORK_MODES:
+            if network not in self.NETWORK_MODES:
                 raise InvalidChoiceError(
                     'network', network, self.NETWORK_MODES)
             self.network = network
@@ -87,7 +87,7 @@ class MarathonContainerPortMapping(MarathonObject):
         self.container_port = container_port
         self.host_port = host_port
         self.service_port = service_port
-        if not protocol in self.PROTOCOLS:
+        if protocol not in self.PROTOCOLS:
             raise InvalidChoiceError('protocol', protocol, self.PROTOCOLS)
         self.protocol = protocol
 
@@ -108,6 +108,6 @@ class MarathonContainerVolume(MarathonObject):
     def __init__(self, container_path=None, host_path=None, mode='RW'):
         self.container_path = container_path
         self.host_path = host_path
-        if not mode in self.MODES:
+        if mode not in self.MODES:
             raise InvalidChoiceError('mode', mode, self.MODES)
         self.mode = mode

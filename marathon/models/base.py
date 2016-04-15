@@ -22,7 +22,7 @@ class MarathonObject(object):
         :rtype: dict
         """
         if minimal:
-            return {to_camel_case(k): v for k, v in vars(self).items() if (v or v == False or v == 0)}
+            return {to_camel_case(k): v for k, v in vars(self).items() if (v or v is False or v == 0)}
         else:
             return {to_camel_case(k): v for k, v in vars(self).items()}
 

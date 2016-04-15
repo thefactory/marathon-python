@@ -1,4 +1,3 @@
-import mock
 import requests_mock
 from marathon import MarathonClient
 from marathon import models

@@ -50,10 +50,7 @@ def create_complex_new_app_with_unicode(context):
                       'hostPort': 0}],
                 'image': u'localhost/fake_docker_url',
                 'network': 'BRIDGE',
-                'parameters': [
-                    {'key': 'add-host', 'value':
-                        'google-public-dns-a.google.com:8.8.8.8'},
-                ],
+                'parameters': [{'key': 'add-host', 'value': 'google-public-dns-a.google.com:8.8.8.8'}],
             },
             'volumes':
                 [{'hostPath': u'/etc/stuff',

@@ -31,7 +31,7 @@ class MarathonDeployment(MarathonResource):
         self.id = id
         self.steps = [
             [step if isinstance(step, MarathonDeploymentAction) else MarathonDeploymentAction().from_json(step)
-                     for step in s]
+                for step in s]
             for s in (steps or [])
         ]
         self.total_steps = total_steps
