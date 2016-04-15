@@ -150,7 +150,6 @@ class MarathonApp(MarathonResource):
             else MarathonTaskStats.from_json(task_stats)
 
 
-
 class MarathonHealthCheck(MarathonObject):
 
     """Marathon health check.
