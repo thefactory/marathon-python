@@ -138,12 +138,12 @@ def stop_listening_stream(context):
     filtered_events = [e for e in context.events if e.event_type == "status_update_event" and e.task_status == "TASK_RUNNING"]
     assert len(filtered_events) == 5
 
-    # and 1 status_update_event with taskStatus == TASK_KILLED
-    filtered_events = [e for e in context.events if e.event_type == "status_update_event" and e.task_status == "TASK_KILLED"]
-    assert len(filtered_events) == 1
-
     # and 1 deployment_step_success events with target instances == 5
     filtered_events = [e for e in context.events if e.event_type == "deployment_step_success" and e.plan.target.apps[0]['instances'] == 5]
+    assert len(filtered_events) == 1
+
+    # and 1 status_update_event with taskStatus == TASK_KILLED
+    filtered_events = [e for e in context.events if e.event_type == "status_update_event" and e.task_status == "TASK_KILLED"]
     assert len(filtered_events) == 1
 
     # and 1 deployment_step_success events with target instances == 4
