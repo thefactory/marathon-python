@@ -100,8 +100,8 @@ class MarathonClient(object):
             server = servers.pop(0)
             url = ''.join([server.rstrip('/'), path])
             try:
-                messages = SSEClient(url,params=params, data=data, headers=headers,
-                                            auth=self.auth)
+                messages = SSEClient(url, params=params, data=data, headers=headers,
+                                     auth=self.auth)
             except Exception as e:
                 marathon.log.error('Error while calling %s: %s', url, e.message)
 

@@ -3,7 +3,6 @@ from functools import wraps
 import os
 import signal
 import sys
-import threading
 import re
 import time
 

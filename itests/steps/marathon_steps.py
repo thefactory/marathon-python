@@ -1,7 +1,7 @@
 import sys
 import time
 import multiprocessing
-from distutils.version import LooseVersion, StrictVersion
+from distutils.version import StrictVersion
 
 import marathon
 from behave import given, when, then
