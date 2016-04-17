@@ -20,7 +20,7 @@ Feature: marathon-python can operate marathon app tasks
 
   Scenario: Events can be listened in stream
     Given a working marathon instance
-	 When marathon version is greater than 0.9.0
+	 When marathon version is greater than 0.11.0
 	  And we start listening for events
       And we create a trivial new app
       And we wait the trivial app deployment finish
