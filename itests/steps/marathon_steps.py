@@ -142,6 +142,8 @@ def stop_listening_stream(context):
     time.sleep(10)
     context.p.terminate()
 
+    print(context.events)
+
     # event list should contain 5 status_update_event with taskStatus == TASK_RUNNING
     filtered_events = [e for e in context.events if e.event_type == "status_update_event" and e.task_status == "TASK_RUNNING"]
     assert len(filtered_events) == 5
