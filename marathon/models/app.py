@@ -38,6 +38,7 @@ class MarathonApp(MarathonResource):
     :param last_task_failure: last task failure
     :type last_task_failure: :class:`marathon.models.app.MarathonTaskFailure` or dict
     :param float mem: memory (in MB) required per instance
+    :type port_definitions: list[:class:`marathon.models.app.PortDefinitions`] or list[dict]
     :param list[int] ports: ports
     :param bool require_ports: require the specified `ports` to be available in the resource offer
     :param list[str] store_urls: store URLs
@@ -58,6 +59,8 @@ class MarathonApp(MarathonResource):
     :param task_stats: task statistics
     :type task_stats: :class:`marathon.models.app.MarathonTaskStats` or dict
     :param dict labels
+    :type readiness_checks: list[:class:`marathon.models.app.ReadinessChecks`] or list[dict]
+    :type residency: :class:`marathon.models.app.Residency` or dict
     """
 
     UPDATE_OK_ATTRIBUTES = [
@@ -81,7 +84,7 @@ class MarathonApp(MarathonResource):
                  max_launch_delay_seconds=None, mem=None, ports=None, require_ports=None, store_urls=None,
                  task_rate_limit=None, tasks=None, tasks_running=None, tasks_staged=None, tasks_healthy=None,
                  tasks_unhealthy=None, upgrade_strategy=None, uris=None, user=None, version=None, version_info=None,
-                 ip_address=None, fetch=None, task_stats=None):
+                 ip_address=None, fetch=None, task_stats=None, readiness_checks=None, port_definitions=None, residency=None):
 
         # self.args = args or []
         self.accepted_resource_roles = accepted_resource_roles
@@ -122,6 +125,9 @@ class MarathonApp(MarathonResource):
         self.max_launch_delay_seconds = max_launch_delay_seconds
         self.mem = mem
         self.ports = ports or []
+        self.port_definitions = port_definitions or []
+        self.readiness_checks = readiness_checks or []
+        self.residency = residency
         self.require_ports = require_ports
         self.store_urls = store_urls or []
         self.task_rate_limit = task_rate_limit
@@ -342,3 +348,54 @@ class MarathonTaskStatsLifeTime(MarathonObject):
     def __init__(self, average_seconds=None, median_seconds=None):
         self.average_seconds = average_seconds
         self.median_seconds = median_seconds
+
+class ReadinessCheck(MarathonObject):
+    """Marathon readiness check: https://mesosphere.github.io/marathon/docs/readiness-checks.html
+
+    :param string name (Optional. Default: "readinessCheck"): The name used to identify this readiness check.
+    :param string protocol (Optional. Default: "HTTP"): Protocol of the requests to be performed. Either HTTP or HTTPS.
+    :param string path (Optional. Default: "/"): Path to the endpoint the task exposes to provide readiness status. Example: /path/to/readiness.
+    :param string port_name (Optional. Default: "http-api"): Name of the port to query as described in the portDefinitions. Example: http-api.
+    :param int interval_seconds (Optional. Default: 30 seconds): Number of seconds to wait between readiness checks.
+    :param int timeout_seconds (Optional. Default: 10 seconds): Number of seconds after which a readiness check times out, regardless of the response. This value must be smaller than interval_seconds.
+    :param list http_status_codes_for_ready (Optional. Default: [200]): The HTTP/HTTPS status code to treat as ready.
+    :param bool preserve_last_response (Optional. Default: false): If true, the last readiness check response will be preserved and exposed in the API as part of a deployment.
+
+    """
+
+    def __init__(self, name=None, protocol=None, path=None, port_name=None, interval_seconds=None,
+                 http_status_codes_for_ready=None, preserve_last_response=None):
+        self.name = name
+        self.protocol = protocol
+        self.path = path
+        self.port_name = port_name
+        self.interval_seconds = interval_seconds
+        self.http_status_codes_for_ready = http_status_codes_for_ready
+        self.preserve_last_response = preserve_last_response
+
+class PortDefinition(MarathonObject):
+    """Marathon port definitions: https://mesosphere.github.io/marathon/docs/ports.html
+
+    :param int port: The port
+    :param string protocol: tcp or udp
+    :param string name: (optional) the name of the port
+    :param dict labels: undocumented
+    """
+
+    def __init__(self, port=None, protocol=None, name=None, labels=None):
+        self.port = port
+        self.protocol = protocol
+        self.name = name
+        self.labels = labels
+
+class Residency(MarathonObject):
+    """Declares how "resident" an app is: https://mesosphere.github.io/marathon/docs/persistent-volumes.html
+
+    :param int relaunch_escalation_timeout_seconds: How long marathon will try to relaunch where the volumes is, defaults to 3600
+    :param string task_lost_behavior: What to do after a TASK_LOST. See the official Marathon docs for options
+
+    """
+
+    def __init__(self, relaunch_escalation_timeout_seconds=None, task_lost_behavior=None):
+        self.relaunch_escalation_timeout_seconds = relaunch_escalation_timeout_seconds
+        self.task_lost_behavior = task_lost_behavior

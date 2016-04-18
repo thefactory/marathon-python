@@ -5,7 +5,8 @@ class MarathonInfo(MarathonResource):
 
     """Marathon Info.
 
-    See: https://mesosphere.github.io/marathon/docs/rest-api.html#get-v2-info
+    See:  https://mesosphere.github.io/marathon/docs/rest-api.html#get-v2-info
+    Also: https://mesosphere.github.io/marathon/docs/generated/api.html#v2_info_get
 
     :param str framework_id:
     :param str leader:
@@ -54,6 +55,7 @@ class MarathonConfig(MarathonObject):
     :param bool checkpoint:
     :param str executor:
     :param int failover_timeout:
+    :param type features: Undocumented object
     :param str framework_name:
     :param bool ha:
     :param str hostname:
@@ -69,6 +71,7 @@ class MarathonConfig(MarathonObject):
     :param int reconciliation_initial_delay:
     :param int reconciliation_interval:
     :param int task_launch_timeout:
+    :param int task_reservation_timeout:
     :param int marathon_store_timeout:
     """
 
@@ -77,10 +80,11 @@ class MarathonConfig(MarathonObject):
                  hostname=None, leader_proxy_connection_timeout_ms=None, leader_proxy_read_timeout_ms=None,
                  local_port_min=None, local_port_max=None, master=None, mesos_leader_ui_url=None, mesos_role=None, mesos_user=None,
                  webui_url=None, reconciliation_initial_delay=None, reconciliation_interval=None,
-                 task_launch_timeout=None, marathon_store_timeout=None):
+                 task_launch_timeout=None, marathon_store_timeout=None, task_reservation_timeout=None, features=None):
         self.checkpoint = checkpoint
         self.executor = executor
         self.failover_timeout = failover_timeout
+        self.features = features
         self.ha = ha
         self.hostname = hostname
         self.local_port_min = local_port_min
@@ -93,6 +97,7 @@ class MarathonConfig(MarathonObject):
         self.reconciliation_initial_delay = reconciliation_initial_delay
         self.reconciliation_interval = reconciliation_interval
         self.task_launch_timeout = task_launch_timeout
+        self.task_reservation_timeout = task_reservation_timeout
         self.marathon_store_timeout = marathon_store_timeout
 
 
