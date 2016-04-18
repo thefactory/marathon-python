@@ -2,6 +2,8 @@ import errno
 from functools import wraps
 import os
 import signal
+import sys
+import re
 import time
 
 import requests
@@ -31,7 +33,7 @@ def timeout(seconds=10, error_message=os.strerror(errno.ETIME)):
     return decorator
 
 
-@timeout(10)
+@timeout(30)
 def wait_for_marathon():
     """Blocks until marathon is up"""
     marathon_service = get_marathon_connection_string()
@@ -64,7 +66,14 @@ def get_marathon_connection_string():
         return 'localhost:8080'
     else:
         service_port = get_service_internal_port('marathon')
-        return get_compose_service('marathon').get_container().get_local_port(service_port)
+        local_port = get_compose_service('marathon').get_container().get_local_port(service_port)
+
+        # Check if we're at OSX. Use ip from DOCKER_HOST
+        if sys.platform == 'darwin':
+            m = re.match("(.*?)://(.*?):(\d+)", os.environ["DOCKER_HOST"])
+            local_port = "{}:{}".format(m.group(2), local_port.split(":")[1])
+
+        return local_port
 
 
 def get_service_internal_port(service_name):

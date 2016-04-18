@@ -12,6 +12,7 @@ import requests.exceptions
 import marathon
 from .models import MarathonApp, MarathonDeployment, MarathonGroup, MarathonInfo, MarathonTask, MarathonEndpoint, MarathonQueueItem
 from .exceptions import InternalServerError, NotFoundError, MarathonHttpError, MarathonError
+from .models.events import EventFactory
 
 
 class MarathonClient(object):
@@ -88,6 +89,26 @@ class MarathonClient(object):
                 code=response.status_code, body=response.text))
 
         return response
+
+    def _do_sse_request(self, path, params=None, data=None):
+        from sseclient import SSEClient
+
+        headers = {'Accept': 'text/event-stream'}
+        messages = None
+        servers = list(self.servers)
+        while servers and messages is None:
+            server = servers.pop(0)
+            url = ''.join([server.rstrip('/'), path])
+            try:
+                messages = SSEClient(url, params=params, data=data, headers=headers,
+                                     auth=self.auth)
+            except Exception as e:
+                marathon.log.error('Error while calling %s: %s', url, e.message)
+
+        if messages is None:
+            raise MarathonError('No remaining Marathon servers to try')
+
+        return messages
 
     def list_endpoints(self):
         """List the current endpoints for all applications
@@ -631,3 +652,19 @@ class MarathonClient(object):
         """
         response = self._do_request('GET', '/metrics')
         return response.json()
+
+    def event_stream(self):
+        """Polls event bus using /v2/events
+
+        :returns: iterator with events
+        :rtype: iterator
+        """
+
+        messages = self._do_sse_request('/v2/events')
+
+        ef = EventFactory()
+        for message in messages:
+            if not message.data:
+                continue
+            data = json.loads(message.data)
+            yield ef.process(data)

@@ -1,5 +1,7 @@
 import sys
 import time
+import multiprocessing
+from distutils.version import StrictVersion
 
 import marathon
 from behave import given, when, then
@@ -26,7 +28,7 @@ def get_marathon_info(context):
 @when(u'we create a trivial new app')
 def create_trivial_new_app(context):
     context.client.create_app('test-trivial-app', marathon.MarathonApp(
-        cmd='sleep 3600', mem=16, cpus=1, instances=5))
+        cmd='sleep 3600', mem=16, cpus=0.1, instances=5))
 
 
 @then(u'we should be able to kill the tasks')
@@ -113,3 +115,43 @@ def list_tasks(context, which):
     app = context.client.get_app('test-%s-app' % which)
     tasks = context.client.list_tasks('test-%s-app' % which)
     assert len(tasks) == app.instances
+
+
+def listen_for_events(client, events):
+    for msg in client.event_stream():
+        events.append(msg)
+
+@when(u'marathon version is greater than {version}')
+def marathon_version_chech(context, version):
+    info = context.client.get_info()
+    if StrictVersion(info.version) < StrictVersion(version):
+        context.scenario.skip(reason='Marathon version is too low for this scenario')
+
+@when(u'we start listening for events')
+def start_listening_stream(context):
+    manager = multiprocessing.Manager()
+    mlist = manager.list()
+    context.manager = manager
+    context.events = mlist
+    p = multiprocessing.Process(target=listen_for_events, args=(context.client, mlist))
+    p.start()
+    context.p = p
+
+@then(u'we should see list of events')
+def stop_listening_stream(context):
+    time.sleep(10)
+    context.p.terminate()
+
+    print(context.events)
+
+    # event list should contain 5 status_update_event with taskStatus == TASK_RUNNING
+    filtered_events = [e for e in context.events if e.event_type == "status_update_event" and e.task_status == "TASK_RUNNING"]
+    assert len(filtered_events) == 5
+
+    # and 1 status_update_event with taskStatus == TASK_KILLED
+    filtered_events = [e for e in context.events if e.event_type == "status_update_event" and e.task_status == "TASK_KILLED"]
+    assert len(filtered_events) == 1
+
+    # and 2 deployment_step_success events
+    filtered_events = [e for e in context.events if e.event_type == "deployment_success"]
+    assert len(filtered_events) == 2
