@@ -6,6 +6,7 @@ class MarathonDeployment(MarathonResource):
     """Marathon Application resource.
 
     See: https://mesosphere.github.io/marathon/docs/rest-api.html#deployments
+         https://mesosphere.github.io/marathon/docs/generated/api.html#v2_deployments_get
 
     :param list[str] affected_apps: list of affected app ids
     :param current_actions: current actions
@@ -29,14 +30,19 @@ class MarathonDeployment(MarathonResource):
         ]
         self.current_step = current_step
         self.id = id
-        self.steps = [
-            [step if isinstance(step, MarathonDeploymentAction) else MarathonDeploymentAction().from_json(step)
-                for step in s]
-            for s in (steps or [])
-        ]
+        self.steps = [self.parse_deployment_step(step) for step in (steps or [])]
         self.total_steps = total_steps
         self.version = version
 
+    def parse_deployment_step(self, step):
+        if step.__class__ == dict:
+            # This is what Marathon 1.0.0 returns: steps
+            return MarathonDeploymentStep().from_json(step)
+        elif step.__class__ == list:
+            # This is Marathon < 1.0.0 style, a list of actions
+            return [MarathonDeploymentAction().from_json(s) for s in step]
+        else:
+            return step
 
 class MarathonDeploymentAction(MarathonObject):
 
@@ -47,13 +53,15 @@ class MarathonDeploymentAction(MarathonObject):
     :param str action: action
     :param str app: app id
     :param str apps: app id (see https://github.com/mesosphere/marathon/pull/802)
+    :param type readiness_check_results: Undocumented
     """
 
-    def __init__(self, action=None, app=None, apps=None, type=None):
+    def __init__(self, action=None, app=None, apps=None, type=None, readiness_check_results=None):
         self.action = action
         self.app = app
         self.apps = apps
         self.type = type  # TODO: Remove builtin shadow
+        self.readiness_check_results = readiness_check_results  # TODO: The docs say this is called just "readinessChecks?"
 
 
 class MarathonDeploymentPlan(MarathonObject):
@@ -70,7 +78,7 @@ class MarathonDeploymentPlan(MarathonObject):
 class MarathonDeploymentStep(MarathonObject):
 
     def __init__(self, actions=None):
-        self.actions = [MarathonDeploymentAction.from_json(x) for x in actions]
+        self.actions = [MarathonDeploymentAction.from_json(x) for x in (actions or [])]
 
 
 class MarathonDeploymentOriginalState(MarathonObject):
