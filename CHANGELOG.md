@@ -1,5 +1,19 @@
 # Change Log
 
+## [0.8.0](https://github.com/thefactory/marathon-python/tree/0.8.0) (2016-04-18)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.7...0.8.0)
+
+**Closed issues:**
+
+- 0.7.7 release [\#90](https://github.com/thefactory/marathon-python/issues/90)
+
+**Merged pull requests:**
+
+- Comply with pep8 betterer [\#93](https://github.com/thefactory/marathon-python/pull/93) ([solarkennedy](https://github.com/solarkennedy))
+- Support marathon .15 and 1.1 [\#92](https://github.com/thefactory/marathon-python/pull/92) ([solarkennedy](https://github.com/solarkennedy))
+- Add support for /v2/events stream [\#91](https://github.com/thefactory/marathon-python/pull/91) ([nuclon](https://github.com/nuclon))
+- update for v2/queue and v2/apps?embed=apps.taskStats [\#89](https://github.com/thefactory/marathon-python/pull/89) ([bergerx](https://github.com/bergerx))
+
 ## [0.7.7](https://github.com/thefactory/marathon-python/tree/0.7.7) (2016-02-29)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.6...0.7.7)
 
