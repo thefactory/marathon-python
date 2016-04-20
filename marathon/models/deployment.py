@@ -40,7 +40,7 @@ class MarathonDeployment(MarathonResource):
             return MarathonDeploymentStep().from_json(step)
         elif step.__class__ == list:
             # This is Marathon < 1.0.0 style, a list of actions
-            return [MarathonDeploymentAction().from_json(s) for s in step]
+            return [s if isinstance(s, MarathonDeploymentAction) else MarathonDeploymentAction().from_json(s) for s in step]
         else:
             return step
 
@@ -78,7 +78,7 @@ class MarathonDeploymentPlan(MarathonObject):
 class MarathonDeploymentStep(MarathonObject):
 
     def __init__(self, actions=None):
-        self.actions = [MarathonDeploymentAction.from_json(x) for x in (actions or [])]
+        self.actions = [a if isinstance(a, MarathonDeploymentAction) else MarathonDeploymentAction.from_json(a) for a in (actions or [])]
 
 
 class MarathonDeploymentOriginalState(MarathonObject):
