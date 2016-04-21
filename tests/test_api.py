@@ -4,8 +4,32 @@ from marathon import models
 
 
 @requests_mock.mock()
-def test_get_deployments(m):
-    fake_response = '[ { "affectedApps": [ "/test" ], "id": "fakeid", "steps": [ [ { "action": "ScaleApplication", "app": "/test" } ] ], "currentActions": [ { "action": "ScaleApplication", "app": "/test" } ], "version": "fakeversion", "currentStep": 1, "totalSteps": 1 } ]'
+def test_get_deployments_pre_1_0(m):
+    fake_response = """[
+      {
+        "affectedApps": [
+          "/test"
+        ],
+        "id": "fakeid",
+        "steps": [
+          [
+            {
+              "action": "ScaleApplication",
+              "app": "/test"
+            }
+          ]
+        ],
+        "currentActions": [
+          {
+            "action": "ScaleApplication",
+            "app": "/test"
+          }
+        ],
+        "version": "fakeversion",
+        "currentStep": 1,
+        "totalSteps": 1
+      }
+    ]"""
     m.get('http://fake_server/v2/deployments', text=fake_response)
     mock_client = MarathonClient(servers='http://fake_server')
     actual_deployments = mock_client.list_deployments()
@@ -21,6 +45,72 @@ def test_get_deployments(m):
         affected_apps=[u"/test"],
         version=u"fakeversion"
     )]
+    assert expected_deployments == actual_deployments
+
+
+@requests_mock.mock()
+def test_get_deployments_post_1_0(m):
+    fake_response = """[
+      {
+        "id": "4d2ff4d8-fbe5-4239-a886-f0831ed68d20",
+        "version": "2016-04-20T18:00:20.084Z",
+        "affectedApps": [
+          "/test-trivial-app"
+        ],
+        "steps": [
+          {
+            "actions": [
+              {
+                "type": "StartApplication",
+                "app": "/test-trivial-app"
+              }
+            ]
+          },
+          {
+            "actions": [
+              {
+                "type": "ScaleApplication",
+                "app": "/test-trivial-app"
+              }
+            ]
+          }
+        ],
+        "currentActions": [
+          {
+            "action": "ScaleApplication",
+            "app": "/test-trivial-app",
+            "readinessCheckResults": []
+          }
+        ],
+        "currentStep": 2,
+        "totalSteps": 2
+      }
+    ]"""
+    m.get('http://fake_server/v2/deployments', text=fake_response)
+    mock_client = MarathonClient(servers='http://fake_server')
+    actual_deployments = mock_client.list_deployments()
+    expected_deployments = [models.MarathonDeployment(
+        id=u"4d2ff4d8-fbe5-4239-a886-f0831ed68d20",
+        steps=[
+            models.MarathonDeploymentStep(
+                actions=[models.MarathonDeploymentAction(
+                    type="StartApplication", app="/test-trivial-app")],
+            ),
+            models.MarathonDeploymentStep(
+                actions=[models.MarathonDeploymentAction(
+                    type="ScaleApplication", app="/test-trivial-app")],
+            ),
+        ],
+        current_actions=[models.MarathonDeploymentAction(
+            action="ScaleApplication", app="/test-trivial-app", readiness_check_results=[])
+        ],
+        current_step=2,
+        total_steps=2,
+        affected_apps=[u"/test-trivial-app"],
+        version=u"2016-04-20T18:00:20.084Z"
+    )]
+    # Helpful for tox to see the diff
+    assert expected_deployments[0].__dict__ == actual_deployments[0].__dict__
     assert expected_deployments == actual_deployments
 
 

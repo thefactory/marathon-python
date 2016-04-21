@@ -9,7 +9,7 @@ class MarathonObject(object):
     """Base Marathon object."""
 
     def __repr__(self):
-        return "{clazz}::{obj}".format(clazz=self.__class__.__name__, obj=self.to_json())
+        return "{clazz}::{obj}".format(clazz=self.__class__.__name__, obj=self.to_json(minimal=False))
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
