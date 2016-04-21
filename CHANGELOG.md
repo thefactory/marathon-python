@@ -1,5 +1,19 @@
 # Change Log
 
+## [0.8.1](https://github.com/thefactory/marathon-python/tree/0.8.1) (2016-04-21)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.0...0.8.1)
+
+**Closed issues:**
+
+- Does not understand readiness\_check\_results [\#94](https://github.com/thefactory/marathon-python/issues/94)
+- Generate marathon-python from raml [\#86](https://github.com/thefactory/marathon-python/issues/86)
+- Support Marathon 0.15.1 [\#84](https://github.com/thefactory/marathon-python/issues/84)
+
+**Merged pull requests:**
+
+- Added force option for kill\_given\_tasks [\#96](https://github.com/thefactory/marathon-python/pull/96) ([solarkennedy](https://github.com/solarkennedy))
+- Support the deployments endpoint correctly in marathon 1.1.1 [\#95](https://github.com/thefactory/marathon-python/pull/95) ([solarkennedy](https://github.com/solarkennedy))
+
 ## [0.8.0](https://github.com/thefactory/marathon-python/tree/0.8.0) (2016-04-18)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.7...0.8.0)
 
