@@ -74,6 +74,7 @@ class MarathonContainerPortMapping(MarathonObject):
 
     See https://mesosphere.github.io/marathon/docs/native-docker.html
 
+    :param str name:
     :param int container_port:
     :param int host_port:
     :param str protocol:
@@ -83,7 +84,8 @@ class MarathonContainerPortMapping(MarathonObject):
     PROTOCOLS = ['tcp', 'udp']
     """Valid protocols"""
 
-    def __init__(self, container_port=None, host_port=0, service_port=None, protocol='tcp', labels=None):
+    def __init__(self, name=None, container_port=None, host_port=0, service_port=None, protocol='tcp', labels=None):
+        self.name = name
         self.container_port = container_port
         self.host_port = host_port
         self.service_port = service_port
