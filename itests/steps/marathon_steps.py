@@ -48,6 +48,7 @@ def create_complex_new_app_with_unicode(context):
             'docker': {
                 'portMappings':
                     [{'protocol': 'tcp',
+                      'name': 'myport',
                       'containerPort': 8888,
                       'hostPort': 0}],
                 'image': u'localhost/fake_docker_url',
