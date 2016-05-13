@@ -112,7 +112,7 @@ MarathonApp::myapp3
 ```python
 >>> c.get_app('myapp3').instances
 1
->>> c.scale_app('myapp3', 2)
+>>> c.scale_app('myapp3', instances=3)
 {'deploymentId': '611b89e3-99f2-4d8a-afe1-ec0b83fdbb88', 'version': '2014-08-26T07:40:20.121Z'}
 >>> c.get_app('myapp3').instances
 3
