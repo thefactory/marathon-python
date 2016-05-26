@@ -23,7 +23,7 @@ class MarathonJsonEncoder(json.JSONEncoder):
             return self.default(obj.json_repr())
 
         if isinstance(obj, datetime.datetime):
-            return obj.isoformat()
+            return obj.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
 
         if isinstance(obj, collections.Iterable) and not is_stringy(obj):
             try:
@@ -43,7 +43,7 @@ class MarathonMinimalJsonEncoder(json.JSONEncoder):
             return self.default(obj.json_repr(minimal=True))
 
         if isinstance(obj, datetime.datetime):
-            return obj.isoformat()
+            return obj.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
 
         if isinstance(obj, collections.Iterable) and not is_stringy(obj):
             try:
