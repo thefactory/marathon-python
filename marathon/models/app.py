@@ -84,7 +84,8 @@ class MarathonApp(MarathonResource):
                  max_launch_delay_seconds=None, mem=None, ports=None, require_ports=None, store_urls=None,
                  task_rate_limit=None, tasks=None, tasks_running=None, tasks_staged=None, tasks_healthy=None,
                  tasks_unhealthy=None, upgrade_strategy=None, uris=None, user=None, version=None, version_info=None,
-                 ip_address=None, fetch=None, task_stats=None, readiness_checks=None, port_definitions=None, residency=None):
+                 ip_address=None, fetch=None, task_stats=None, readiness_checks=None,
+                 readiness_check_results=None, port_definitions=None, residency=None):
 
         # self.args = args or []
         self.accepted_resource_roles = accepted_resource_roles
@@ -127,6 +128,7 @@ class MarathonApp(MarathonResource):
         self.ports = ports or []
         self.port_definitions = port_definitions or []
         self.readiness_checks = readiness_checks or []
+        self.readiness_check_results = readiness_check_results or []
         self.residency = residency
         self.require_ports = require_ports
         self.store_urls = store_urls or []
@@ -146,7 +148,7 @@ class MarathonApp(MarathonResource):
         self.version = version
         self.version_info = version_info if (isinstance(version_info, MarathonAppVersionInfo) or version_info is None) \
             else MarathonAppVersionInfo.from_json(version_info)
-        self.task_stats = version_info if (isinstance(task_stats, MarathonTaskStats) or task_stats is None) \
+        self.task_stats = task_stats if (isinstance(task_stats, MarathonTaskStats) or task_stats is None) \
             else MarathonTaskStats.from_json(task_stats)
 
 
