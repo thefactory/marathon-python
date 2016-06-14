@@ -463,7 +463,7 @@ class MarathonClient(object):
             'POST', '/v2/tasks/delete', params=params, data=data)
         return response == 200
 
-    def kill_tasks(self, app_id, scale=False,
+    def kill_tasks(self, app_id, scale=False, wipe=False,
                    host=None, batch_size=0, batch_delay=0):
         """Kill all tasks belonging to app.
 
@@ -484,7 +484,7 @@ class MarathonClient(object):
 
         if batch_size == 0:
             # Terminate all at once
-            params = {'scale': scale}
+            params = {'scale': scale, 'wipe': wipe}
             if host:
                 params['host'] = host
             response = self._do_request(
@@ -501,7 +501,7 @@ class MarathonClient(object):
             tasks = self.list_tasks(
                 app_id, host=host) if host else self.list_tasks(app_id)
             for tbatch in batch(tasks, batch_size):
-                killed_tasks = [self.kill_task(app_id, t.id, scale=scale)
+                killed_tasks = [self.kill_task(app_id, t.id, scale=scale, wipe=wipe)
                                 for t in tbatch]
 
                 # Pause until the tasks have been killed to avoid race
@@ -526,7 +526,7 @@ class MarathonClient(object):
 
             return tasks
 
-    def kill_task(self, app_id, task_id, scale=False):
+    def kill_task(self, app_id, task_id, scale=False, wipe=False):
         """Kill a task.
 
         :param str app_id: application ID
@@ -536,7 +536,7 @@ class MarathonClient(object):
         :returns: the killed task
         :rtype: :class:`marathon.models.task.MarathonTask`
         """
-        params = {'scale': scale}
+        params = {'scale': scale, 'wipe': wipe}
         response = self._do_request('DELETE', '/v2/apps/{app_id}/tasks/{task_id}'
                                     .format(app_id=app_id, task_id=task_id), params)
         # Marathon is inconsistent about what type of object it returns on the multi
