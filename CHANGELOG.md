@@ -1,5 +1,24 @@
 # Change Log
 
+## [0.8.2](https://github.com/thefactory/marathon-python/tree/0.8.2) (2016-06-14)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.1...0.8.2)
+
+**Closed issues:**
+
+- AttributeError on connection issues [\#106](https://github.com/thefactory/marathon-python/issues/106)
+- Wrongly use version\_info as task\_stats [\#104](https://github.com/thefactory/marathon-python/issues/104)
+- c.scale\_app\('myapp3', 2\) [\#102](https://github.com/thefactory/marathon-python/issues/102)
+- AttributeError: module 'marathon' has no attribute 'MarathonClient' [\#100](https://github.com/thefactory/marathon-python/issues/100)
+- when run list\_apps ,has  errors [\#99](https://github.com/thefactory/marathon-python/issues/99)
+
+**Merged pull requests:**
+
+- Make exception handling work with py3k [\#108](https://github.com/thefactory/marathon-python/pull/108) ([jimbobhickville](https://github.com/jimbobhickville))
+- Add 'wipe' option to kill\_task methods [\#107](https://github.com/thefactory/marathon-python/pull/107) ([jimbobhickville](https://github.com/jimbobhickville))
+- task\_stats bugfix and query improvements. [\#105](https://github.com/thefactory/marathon-python/pull/105) ([oilbeater](https://github.com/oilbeater))
+- Change to\_json\(\) datatime format [\#103](https://github.com/thefactory/marathon-python/pull/103) ([oilbeater](https://github.com/oilbeater))
+- add name attribute to port mapping [\#101](https://github.com/thefactory/marathon-python/pull/101) ([Rob-Johnson](https://github.com/Rob-Johnson))
+
 ## [0.8.1](https://github.com/thefactory/marathon-python/tree/0.8.1) (2016-04-21)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.0...0.8.1)
 
