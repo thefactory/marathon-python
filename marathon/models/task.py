@@ -44,7 +44,18 @@ class MarathonTask(MarathonResource):
         self.started_at = started_at if (started_at is None or isinstance(started_at, datetime)) \
             else datetime.strptime(started_at, self.DATETIME_FORMAT)
         self.version = version
+        self.ip_addresses = [
+            ipaddr if isinstance(
+                ip_addresses, MarathonIpAddress) else MarathonIpAddress().from_json(ipaddr)
+            for ipaddr in (ip_addresses or [])]
 
+
+class MarathonIpAddress(MarathonObject):
+    """
+    """
+    def __init__(self, ip_address=None, protocol=None):
+        self.ip_address = ip_address
+        self.protocol = protocol
 
 class MarathonHealthCheckResult(MarathonObject):
 
