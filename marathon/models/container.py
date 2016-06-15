@@ -104,13 +104,15 @@ class MarathonContainerVolume(MarathonObject):
     :param str container_path: container path
     :param str host_path: host path
     :param str mode: one of ['RO', 'RW']
+    :param object persistent: persistent volume options, should be of the form {'size': 1000}
     """
 
     MODES = ['RO', 'RW']
 
-    def __init__(self, container_path=None, host_path=None, mode='RW'):
+    def __init__(self, container_path=None, host_path=None, mode='RW', persistent=None):
         self.container_path = container_path
         self.host_path = host_path
         if mode not in self.MODES:
             raise InvalidChoiceError('mode', mode, self.MODES)
         self.mode = mode
+        self.persistent = persistent
