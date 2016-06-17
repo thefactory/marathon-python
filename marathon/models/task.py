@@ -14,6 +14,7 @@ class MarathonTask(MarathonResource):
     :param str id: task id
     :param list[int] ports: allocated ports
     :param list[int] service_ports: ports exposed for load balancing
+    :param str state: State of the task e.g. TASK_RUNNING
     :param str slave_id: Mesos slave id
     :param staged_at: when this task was staged
     :type staged_at: datetime or str
@@ -26,7 +27,7 @@ class MarathonTask(MarathonResource):
 
     def __init__(
         self, app_id=None, health_check_results=None, host=None, id=None, ports=None, service_ports=None,
-                 slave_id=None, staged_at=None, started_at=None, version=None, ip_addresses=[]):
+                 slave_id=None, staged_at=None, started_at=None, version=None, ip_addresses=[], state=None):
         self.app_id = app_id
         self.health_check_results = health_check_results or []
         self.health_check_results = [
@@ -43,6 +44,7 @@ class MarathonTask(MarathonResource):
             else datetime.strptime(staged_at, self.DATETIME_FORMAT)
         self.started_at = started_at if (started_at is None or isinstance(started_at, datetime)) \
             else datetime.strptime(started_at, self.DATETIME_FORMAT)
+        self.state = state
         self.version = version
         self.ip_addresses = [
             ipaddr if isinstance(
