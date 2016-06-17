@@ -144,6 +144,7 @@ class MarathonApp(MarathonResource):
         self.upgrade_strategy = upgrade_strategy if (isinstance(upgrade_strategy, MarathonUpgradeStrategy) or upgrade_strategy is None) \
             else MarathonUpgradeStrategy.from_json(upgrade_strategy)
         self.uris = uris or []
+        self.fetch = fetch or []
         self.user = user
         self.version = version
         self.version_info = version_info if (isinstance(version_info, MarathonAppVersionInfo) or version_info is None) \
