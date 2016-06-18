@@ -8,8 +8,6 @@ from marathon.models.app import MarathonHealthCheck
 from marathon.models.deployment import MarathonDeploymentPlan
 from marathon.exceptions import MarathonError
 
-import marathon
-
 
 class MarathonEvent(MarathonObject):
 
@@ -28,13 +26,11 @@ class MarathonEvent(MarathonObject):
         self.event_type = event_type  # All events have these two attributes
         self.timestamp = timestamp
         for attribute in self.KNOWN_ATTRIBUTES:
-            try:
-                self._set(attribute, kwargs[attribute])
-            except KeyError:
-                marathon.log.warn(
-                    'Unknown event attribute processing event {}: {}'.format(event_type, attribute))
+            self._set(attribute, kwargs.get(attribute))
 
     def _set(self, attribute_name, attribute):
+        if not attribute:
+            return
         if attribute_name in self.attribute_name_to_marathon_object:
             clazz = self.attribute_name_to_marathon_object[attribute_name]
             attribute = clazz.from_json(
@@ -48,7 +44,7 @@ class MarathonApiPostEvent(MarathonEvent):
 
 class MarathonStatusUpdateEvent(MarathonEvent):
     KNOWN_ATTRIBUTES = [
-        'slave_id', 'task_id', 'task_status', 'app_id', 'host', 'ports', 'version']
+        'slave_id', 'task_id', 'task_status', 'app_id', 'host', 'ports', 'version', 'message']
 
 
 class MarathonFrameworkMessageEvent(MarathonEvent):
