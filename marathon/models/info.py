@@ -23,8 +23,7 @@ class MarathonInfo(MarathonResource):
     :param bool elected:
     """
 
-    def __init__(
-        self, event_subscriber=None, framework_id=None, http_config=None, leader=None, marathon_config=None,
+    def __init__(self, event_subscriber=None, framework_id=None, http_config=None, leader=None, marathon_config=None,
                  name=None, version=None, elected=None, zookeeper_config=None):
         if isinstance(event_subscriber, MarathonEventSubscriber):
             self.event_subscriber = event_subscriber
@@ -75,8 +74,7 @@ class MarathonConfig(MarathonObject):
     :param int marathon_store_timeout:
     """
 
-    def __init__(
-        self, checkpoint=None, executor=None, failover_timeout=None, framework_name=None, ha=None,
+    def __init__(self, checkpoint=None, executor=None, failover_timeout=None, framework_name=None, ha=None,
                  hostname=None, leader_proxy_connection_timeout_ms=None, leader_proxy_read_timeout_ms=None,
                  local_port_min=None, local_port_max=None, master=None, mesos_leader_ui_url=None, mesos_role=None, mesos_user=None,
                  webui_url=None, reconciliation_initial_delay=None, reconciliation_interval=None,
@@ -117,8 +115,7 @@ class MarathonZooKeeperConfig(MarathonObject):
     :param int zk_timeout:
     """
 
-    def __init__(
-        self, zk=None, zk_future_timeout=None, zk_hosts=None, zk_max_versions=None, zk_path=None,
+    def __init__(self, zk=None, zk_future_timeout=None, zk_hosts=None, zk_max_versions=None, zk_path=None,
                  zk_session_timeout=None, zk_state=None, zk_timeout=None):
         self.zk = zk
         self.zk_future_timeout = zk_future_timeout

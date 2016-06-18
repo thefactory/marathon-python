@@ -59,8 +59,7 @@ class MarathonClient(object):
             server = servers.pop(0)
             url = ''.join([server.rstrip('/'), path])
             try:
-                response = requests.request(
-                    method, url, params=params, data=data, headers=headers,
+                response = requests.request(method, url, params=params, data=data, headers=headers,
                                             auth=self.auth, timeout=self.timeout)
                 marathon.log.info('Got response from %s', server)
             except requests.exceptions.RequestException as e:
@@ -389,9 +388,9 @@ class MarathonClient(object):
         """
         params = {'force': force}
         response = self._do_request(
-            'PUT', '/v2/groups/{group_id}/versions/{version}'.format(group_id=group_id,
-                                                                     version=version),
-                                    params=params)
+            'PUT',
+            '/v2/groups/{group_id}/versions/{version}'.format(group_id=group_id, version=version),
+            params=params)
         return response.json()
 
     def delete_group(self, group_id, force=False):

@@ -49,8 +49,7 @@ class MarathonDockerContainer(MarathonObject):
     NETWORK_MODES = ['BRIDGE', 'HOST']
     """Valid network modes"""
 
-    def __init__(
-        self, image=None, network='HOST', port_mappings=None, parameters=None, privileged=None,
+    def __init__(self, image=None, network='HOST', port_mappings=None, parameters=None, privileged=None,
                  force_pull_image=None, **kwargs):
         self.image = image
         if network:
