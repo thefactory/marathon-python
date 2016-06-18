@@ -106,11 +106,14 @@ class MarathonDeploymentStepSuccess(MarathonEvent):
 class MarathonDeploymentStepFailure(MarathonEvent):
     KNOWN_ATTRIBUTES = ['plan']
 
+
 class MarathonEventStreamAttached(MarathonEvent):
     KNOWN_ATTRIBUTES = ['remote_address']
 
+
 class MarathonEventStreamDetached(MarathonEvent):
     KNOWN_ATTRIBUTES = ['remote_address']
+
 
 class EventFactory:
 

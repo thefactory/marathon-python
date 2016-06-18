@@ -122,11 +122,13 @@ def listen_for_events(client, events):
     for msg in client.event_stream():
         events.append(msg)
 
+
 @when(u'marathon version is greater than {version}')
 def marathon_version_chech(context, version):
     info = context.client.get_info()
     if StrictVersion(info.version) < StrictVersion(version):
         context.scenario.skip(reason='Marathon version is too low for this scenario')
+
 
 @when(u'we start listening for events')
 def start_listening_stream(context):
@@ -137,6 +139,7 @@ def start_listening_stream(context):
     p = multiprocessing.Process(target=listen_for_events, args=(context.client, mlist))
     p.start()
     context.p = p
+
 
 @then(u'we should see list of events')
 def stop_listening_stream(context):
@@ -156,6 +159,7 @@ def stop_listening_stream(context):
     # and 2 deployment_step_success events
     filtered_events = [e for e in context.events if e.event_type == "deployment_success"]
     assert len(filtered_events) == 2
+
 
 @then('we should be able to see a deployment')
 def see_a_deployment(context):

@@ -19,8 +19,7 @@ class MarathonDeployment(MarathonResource):
     :param str version: version id
     """
 
-    def __init__(
-        self, affected_apps=None, current_actions=None, current_step=None, id=None, steps=None,
+    def __init__(self, affected_apps=None, current_actions=None, current_step=None, id=None, steps=None,
                  total_steps=None, version=None):
         self.affected_apps = affected_apps
         self.current_actions = [
@@ -43,6 +42,7 @@ class MarathonDeployment(MarathonResource):
             return [s if isinstance(s, MarathonDeploymentAction) else MarathonDeploymentAction().from_json(s) for s in step]
         else:
             return step
+
 
 class MarathonDeploymentAction(MarathonObject):
 

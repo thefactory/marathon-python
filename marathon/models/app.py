@@ -77,8 +77,7 @@ class MarathonApp(MarathonResource):
         'deployments', 'tasks', 'tasks_running', 'tasks_staged', 'tasks_healthy', 'tasks_unhealthy']
     """List of read-only attributes"""
 
-    def __init__(
-        self, accepted_resource_roles=None, args=None, backoff_factor=None, backoff_seconds=None, cmd=None,
+    def __init__(self, accepted_resource_roles=None, args=None, backoff_factor=None, backoff_seconds=None, cmd=None,
                  constraints=None, container=None, cpus=None, dependencies=None, deployments=None, disk=None, env=None,
                  executor=None, health_checks=None, id=None, instances=None, labels=None, last_task_failure=None,
                  max_launch_delay_seconds=None, mem=None, ports=None, require_ports=None, store_urls=None,
@@ -171,8 +170,7 @@ class MarathonHealthCheck(MarathonObject):
     :param dict kwargs: additional arguments for forward compatibility
     """
 
-    def __init__(
-        self, command=None, grace_period_seconds=None, interval_seconds=None, max_consecutive_failures=None,
+    def __init__(self, command=None, grace_period_seconds=None, interval_seconds=None, max_consecutive_failures=None,
                  path=None, port_index=None, protocol=None, timeout_seconds=None, ignore_http1xx=None, **kwargs):
         self.command = command
         self.grace_period_seconds = grace_period_seconds
@@ -266,7 +264,8 @@ class MarathonTaskStats(MarathonObject):
     :type started_after_last_scaling: :class:`marathon.models.app.MarathonTaskStatsType` or dict
     :param with_latest_config: contains statistics about all tasks that run with the same config as the latest app version.
     :type with_latest_config: :class:`marathon.models.app.MarathonTaskStatsType` or dict
-    :param with_outdated_config: contains statistics about all tasks that were started before the last config change which was not simply a restart or scaling operation.
+    :param with_outdated_config: contains statistics about all tasks that were started before the last config change
+           which was not simply a restart or scaling operation.
     :type with_outdated_config: :class:`marathon.models.app.MarathonTaskStatsType` or dict
     :param total_summary: contains statistics about all tasks.
     :type total_summary: :class:`marathon.models.app.MarathonTaskStatsType` or dict
@@ -352,17 +351,22 @@ class MarathonTaskStatsLifeTime(MarathonObject):
         self.average_seconds = average_seconds
         self.median_seconds = median_seconds
 
+
 class ReadinessCheck(MarathonObject):
     """Marathon readiness check: https://mesosphere.github.io/marathon/docs/readiness-checks.html
 
     :param string name (Optional. Default: "readinessCheck"): The name used to identify this readiness check.
     :param string protocol (Optional. Default: "HTTP"): Protocol of the requests to be performed. Either HTTP or HTTPS.
-    :param string path (Optional. Default: "/"): Path to the endpoint the task exposes to provide readiness status. Example: /path/to/readiness.
-    :param string port_name (Optional. Default: "http-api"): Name of the port to query as described in the portDefinitions. Example: http-api.
+    :param string path (Optional. Default: "/"): Path to the endpoint the task exposes to provide readiness status.
+           Example: /path/to/readiness.
+    :param string port_name (Optional. Default: "http-api"): Name of the port to query as described in the
+           portDefinitions. Example: http-api.
     :param int interval_seconds (Optional. Default: 30 seconds): Number of seconds to wait between readiness checks.
-    :param int timeout_seconds (Optional. Default: 10 seconds): Number of seconds after which a readiness check times out, regardless of the response. This value must be smaller than interval_seconds.
+    :param int timeout_seconds (Optional. Default: 10 seconds): Number of seconds after which a readiness check
+           times out, regardless of the response. This value must be smaller than interval_seconds.
     :param list http_status_codes_for_ready (Optional. Default: [200]): The HTTP/HTTPS status code to treat as ready.
-    :param bool preserve_last_response (Optional. Default: false): If true, the last readiness check response will be preserved and exposed in the API as part of a deployment.
+    :param bool preserve_last_response (Optional. Default: false): If true, the last readiness check response will be
+           preserved and exposed in the API as part of a deployment.
 
     """
 
@@ -375,6 +379,7 @@ class ReadinessCheck(MarathonObject):
         self.interval_seconds = interval_seconds
         self.http_status_codes_for_ready = http_status_codes_for_ready
         self.preserve_last_response = preserve_last_response
+
 
 class PortDefinition(MarathonObject):
     """Marathon port definitions: https://mesosphere.github.io/marathon/docs/ports.html
@@ -390,6 +395,7 @@ class PortDefinition(MarathonObject):
         self.protocol = protocol
         self.name = name
         self.labels = labels
+
 
 class Residency(MarathonObject):
     """Declares how "resident" an app is: https://mesosphere.github.io/marathon/docs/persistent-volumes.html

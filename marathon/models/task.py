@@ -25,8 +25,7 @@ class MarathonTask(MarathonResource):
 
     DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
 
-    def __init__(
-        self, app_id=None, health_check_results=None, host=None, id=None, ports=None, service_ports=None,
+    def __init__(self, app_id=None, health_check_results=None, host=None, id=None, ports=None, service_ports=None,
                  slave_id=None, staged_at=None, started_at=None, version=None, ip_addresses=[], state=None):
         self.app_id = app_id
         self.health_check_results = health_check_results or []
@@ -59,6 +58,7 @@ class MarathonIpAddress(MarathonObject):
         self.ip_address = ip_address
         self.protocol = protocol
 
+
 class MarathonHealthCheckResult(MarathonObject):
 
     """Marathon health check result.
@@ -76,8 +76,7 @@ class MarathonHealthCheckResult(MarathonObject):
 
     DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
 
-    def __init__(
-        self, alive=None, consecutive_failures=None, first_success=None,
+    def __init__(self, alive=None, consecutive_failures=None, first_success=None,
                  last_failure=None, last_success=None, task_id=None, last_failure_cause=None):
         self.alive = alive
         self.consecutive_failures = consecutive_failures
