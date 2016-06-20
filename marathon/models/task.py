@@ -26,7 +26,7 @@ class MarathonTask(MarathonResource):
     DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
 
     def __init__(self, app_id=None, health_check_results=None, host=None, id=None, ports=None, service_ports=None,
-                 slave_id=None, staged_at=None, started_at=None, version=None, ip_addresses=[], state=None):
+                 slave_id=None, staged_at=None, started_at=None, version=None, ip_addresses=[], state=None, local_volumes=None):
         self.app_id = app_id
         self.health_check_results = health_check_results or []
         self.health_check_results = [
@@ -49,6 +49,7 @@ class MarathonTask(MarathonResource):
             ipaddr if isinstance(
                 ip_addresses, MarathonIpAddress) else MarathonIpAddress().from_json(ipaddr)
             for ipaddr in (ip_addresses or [])]
+        self.local_volumes = local_volumes or []
 
 
 class MarathonIpAddress(MarathonObject):
