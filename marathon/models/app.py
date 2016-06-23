@@ -125,7 +125,11 @@ class MarathonApp(MarathonResource):
         self.max_launch_delay_seconds = max_launch_delay_seconds
         self.mem = mem
         self.ports = ports or []
-        self.port_definitions = port_definitions or []
+        self.port_definitions = [
+            pd if isinstance(
+                pd, PortDefinition) else PortDefinition.from_json(pd)
+            for pd in (port_definitions or [])
+        ]
         self.readiness_checks = readiness_checks or []
         self.readiness_check_results = readiness_check_results or []
         self.residency = residency
