@@ -8,9 +8,11 @@ class MarathonHttpError(MarathonError):
         """
         :param :class:`requests.Response` response: HTTP response
         """
-        content = response.json()
+        self.error_message = response.reason or ''
+        if response.content:
+            content = response.json()
+            self.error_message = content.get('message', self.error_message)
         self.status_code = response.status_code
-        self.error_message = content.get('message')
         super(MarathonHttpError, self).__init__(self.__str__())
 
     def __repr__(self):
