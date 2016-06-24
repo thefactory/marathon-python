@@ -32,6 +32,7 @@ class MarathonClient(object):
         :param str password: Basic auth password
         :param int timeout: Timeout (in seconds) for requests to Marathon
         """
+        self.session = requests.Session()
         self.servers = servers if isinstance(servers, list) else [servers]
         self.auth = (username, password) if username and password else None
         self.timeout = timeout
@@ -59,8 +60,9 @@ class MarathonClient(object):
             server = servers.pop(0)
             url = ''.join([server.rstrip('/'), path])
             try:
-                response = requests.request(method, url, params=params, data=data, headers=headers,
-                                            auth=self.auth, timeout=self.timeout)
+                response = self.session.request(
+                    method, url, params=params, data=data, headers=headers,
+                    auth=self.auth, timeout=self.timeout)
                 marathon.log.info('Got response from %s', server)
             except requests.exceptions.RequestException as e:
                 marathon.log.error(
