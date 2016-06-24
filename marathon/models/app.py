@@ -59,7 +59,7 @@ class MarathonApp(MarathonResource):
     :param task_stats: task statistics
     :type task_stats: :class:`marathon.models.app.MarathonTaskStats` or dict
     :param dict labels
-    :type readiness_checks: list[:class:`marathon.models.app.ReadinessChecks`] or list[dict]
+    :type readiness_checks: list[:class:`marathon.models.app.ReadinessCheck`] or list[dict]
     :type residency: :class:`marathon.models.app.Residency` or dict
     """
 
@@ -130,7 +130,11 @@ class MarathonApp(MarathonResource):
                 pd, PortDefinition) else PortDefinition.from_json(pd)
             for pd in (port_definitions or [])
         ]
-        self.readiness_checks = readiness_checks or []
+        self.readiness_checks = [
+            rc if isinstance(
+                rc, ReadinessCheck) else ReadinessCheck().from_json(rc)
+            for rc in (readiness_checks or [])
+        ]
         self.readiness_check_results = readiness_check_results or []
         self.residency = residency
         self.require_ports = require_ports
