@@ -569,7 +569,7 @@ class MarathonClient(object):
         """
         response = self._do_request('GET', '/v2/apps/{app_id}/versions/{version}'
                                     .format(app_id=app_id, version=version))
-        return MarathonApp(response.json())
+        return MarathonApp.from_json(response.json())
 
     def list_event_subscriptions(self):
         """List the event subscriber callback URLs.
