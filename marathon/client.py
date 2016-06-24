@@ -351,7 +351,7 @@ class MarathonClient(object):
         """
         response = self._do_request(
             'GET', '/v2/groups/{group_id}'.format(group_id=group_id))
-        return self._parse_response(response, MarathonGroup, resource_name='group')
+        return self._parse_response(response, MarathonGroup)
 
     def update_group(self, group_id, group, force=False, minimal=True):
         """Update a group.
