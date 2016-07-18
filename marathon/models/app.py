@@ -38,6 +38,7 @@ class MarathonApp(MarathonResource):
     :param last_task_failure: last task failure
     :type last_task_failure: :class:`marathon.models.app.MarathonTaskFailure` or dict
     :param float mem: memory (in MB) required per instance
+    :param dict secrets: A map with named secret declarations.
     :type port_definitions: list[:class:`marathon.models.app.PortDefinitions`] or list[dict]
     :param list[int] ports: ports
     :param bool require_ports: require the specified `ports` to be available in the resource offer
@@ -61,6 +62,7 @@ class MarathonApp(MarathonResource):
     :param dict labels
     :type readiness_checks: list[:class:`marathon.models.app.ReadinessCheck`] or list[dict]
     :type residency: :class:`marathon.models.app.Residency` or dict
+    :param int task_kill_grace_period_seconds: Configures the termination signal escalation behavior of executors when stopping tasks.
     """
 
     UPDATE_OK_ATTRIBUTES = [
@@ -82,9 +84,10 @@ class MarathonApp(MarathonResource):
                  executor=None, health_checks=None, id=None, instances=None, labels=None, last_task_failure=None,
                  max_launch_delay_seconds=None, mem=None, ports=None, require_ports=None, store_urls=None,
                  task_rate_limit=None, tasks=None, tasks_running=None, tasks_staged=None, tasks_healthy=None,
-                 tasks_unhealthy=None, upgrade_strategy=None, uris=None, user=None, version=None, version_info=None,
+                 task_kill_grace_period_seconds=None, tasks_unhealthy=None, upgrade_strategy=None,
+                 uris=None, user=None, version=None, version_info=None,
                  ip_address=None, fetch=None, task_stats=None, readiness_checks=None,
-                 readiness_check_results=None, port_definitions=None, residency=None):
+                 readiness_check_results=None, secrets=None, port_definitions=None, residency=None,):
 
         # self.args = args or []
         self.accepted_resource_roles = accepted_resource_roles
@@ -138,6 +141,12 @@ class MarathonApp(MarathonResource):
         self.readiness_check_results = readiness_check_results or []
         self.residency = residency
         self.require_ports = require_ports
+
+        self.secrets = secrets or {}
+        for k, s in self.secrets.iteritems():
+            if not isinstance(s, Secret):
+                self.secrets[k] = Secret().from_json(s)
+
         self.store_urls = store_urls or []
         self.task_rate_limit = task_rate_limit
         self.tasks = [
@@ -147,6 +156,7 @@ class MarathonApp(MarathonResource):
         self.tasks_running = tasks_running
         self.tasks_staged = tasks_staged
         self.tasks_healthy = tasks_healthy
+        self.task_kill_grace_period_seconds = task_kill_grace_period_seconds
         self.tasks_unhealthy = tasks_unhealthy
         self.upgrade_strategy = upgrade_strategy if (isinstance(upgrade_strategy, MarathonUpgradeStrategy) or upgrade_strategy is None) \
             else MarathonUpgradeStrategy.from_json(upgrade_strategy)
@@ -416,3 +426,13 @@ class Residency(MarathonObject):
     def __init__(self, relaunch_escalation_timeout_seconds=None, task_lost_behavior=None):
         self.relaunch_escalation_timeout_seconds = relaunch_escalation_timeout_seconds
         self.task_lost_behavior = task_lost_behavior
+
+
+class Secret(MarathonObject):
+    """Declares marathon secret object.
+    :param str source: The source of the secret's value. The format depends on the secret store used by Mesos.
+
+    """
+
+    def __init__(self, source=None):
+        self.source = source
