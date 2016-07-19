@@ -1,5 +1,34 @@
 # Change Log
 
+## [0.8.3](https://github.com/thefactory/marathon-python/tree/0.8.3) (2016-07-19)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.2...0.8.3)
+
+**Closed issues:**
+
+- New marathon application structure field [\#126](https://github.com/thefactory/marathon-python/issues/126)
+- MarathonReadinessCheck class is absent [\#122](https://github.com/thefactory/marathon-python/issues/122)
+- Supporting creating applications with a json file \(or json-formatted string, or json object\) [\#112](https://github.com/thefactory/marathon-python/issues/112)
+- Task.ip\_addresses are not set properly [\#110](https://github.com/thefactory/marathon-python/issues/110)
+- RuntimeError: maximum recursion depth exceeded in cmp when calling create\_app [\#60](https://github.com/thefactory/marathon-python/issues/60)
+
+**Merged pull requests:**
+
+- Try to fix java hostname issues [\#128](https://github.com/thefactory/marathon-python/pull/128) ([solarkennedy](https://github.com/solarkennedy))
+- Issue126: secrets and taskKillGracePeriodSeconds Marathon.App fields … [\#127](https://github.com/thefactory/marathon-python/pull/127) ([dmajere](https://github.com/dmajere))
+- Issue \#70: Remove resource\_name from get\_group [\#124](https://github.com/thefactory/marathon-python/pull/124) ([stj](https://github.com/stj))
+- Type assertion for ReadinessCheck in MarathonApp.\_\_init\_\_ method added [\#123](https://github.com/thefactory/marathon-python/pull/123) ([dmajere](https://github.com/dmajere))
+- Use requests.Session while communicating with Marathon. [\#121](https://github.com/thefactory/marathon-python/pull/121) ([Nihn](https://github.com/Nihn))
+- Fix `Client.get\_version` method. [\#120](https://github.com/thefactory/marathon-python/pull/120) ([Nihn](https://github.com/Nihn))
+- Handle HTTP errors without content graceful [\#119](https://github.com/thefactory/marathon-python/pull/119) ([stj](https://github.com/stj))
+- Add local\_volumes to MarathonTask [\#118](https://github.com/thefactory/marathon-python/pull/118) ([usmanm](https://github.com/usmanm))
+- Fix pep8 issues and strict flake8 check. [\#117](https://github.com/thefactory/marathon-python/pull/117) ([oilbeater](https://github.com/oilbeater))
+- Don't die if no JSON found in response [\#116](https://github.com/thefactory/marathon-python/pull/116) ([usmanm](https://github.com/usmanm))
+- Set fetch in MarathonApp. [\#115](https://github.com/thefactory/marathon-python/pull/115) ([oilbeater](https://github.com/oilbeater))
+- Add in state to the task model [\#114](https://github.com/thefactory/marathon-python/pull/114) ([chuckwired](https://github.com/chuckwired))
+- Add 'persistent' volume option [\#113](https://github.com/thefactory/marathon-python/pull/113) ([jimbobhickville](https://github.com/jimbobhickville))
+- Issue110: MarathonTask.ip\_addresses attribute is set properly [\#111](https://github.com/thefactory/marathon-python/pull/111) ([dmajere](https://github.com/dmajere))
+- Add message field for MarathonStatusUpdateEvent. [\#109](https://github.com/thefactory/marathon-python/pull/109) ([oilbeater](https://github.com/oilbeater))
+
 ## [0.8.2](https://github.com/thefactory/marathon-python/tree/0.8.2) (2016-06-14)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.1...0.8.2)
 
