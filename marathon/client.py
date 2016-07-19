@@ -139,7 +139,7 @@ class MarathonClient(object):
     def list_apps(self, cmd=None, embed_tasks=False, embed_counts=False,
                   embed_deployments=False, embed_readiness=False,
                   embed_last_task_failure=False, embed_failures=False,
-                  embed_task_stats=False, **kwargs):
+                  embed_task_stats=False, app_id=None, **kwargs):
         """List all apps.
 
         :param str cmd: if passed, only show apps with a matching `cmd`
@@ -150,6 +150,7 @@ class MarathonClient(object):
         :param bool embed_last_task_failure: embeds the last task failure
         :param bool embed_failures: shorthand for embed_last_task_failure
         :param bool embed_task_stats: embed task stats in result
+        :param bool app_id: if passed, only show apps with with an 'id' that matches or contains this value
         :param kwargs: arbitrary search filters
 
         :returns: list of applications
@@ -158,6 +159,8 @@ class MarathonClient(object):
         params = {}
         if cmd:
             params['cmd'] = cmd
+        if app_id:
+            params['id'] = app_id
 
         embed_params = {
             'app.tasks': embed_tasks,
