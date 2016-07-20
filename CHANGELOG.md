@@ -1,5 +1,17 @@
 # Change Log
 
+## [0.8.4](https://github.com/thefactory/marathon-python/tree/0.8.4) (2016-07-20)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.3...0.8.4)
+
+**Closed issues:**
+
+- Can we get another Pypi release? [\#130](https://github.com/thefactory/marathon-python/issues/130)
+
+**Merged pull requests:**
+
+- Fix py3k regression in 0.8.3 [\#131](https://github.com/thefactory/marathon-python/pull/131) ([jimbobhickville](https://github.com/jimbobhickville))
+- Expose id query param in list\_apps [\#129](https://github.com/thefactory/marathon-python/pull/129) ([moonkev](https://github.com/moonkev))
+
 ## [0.8.3](https://github.com/thefactory/marathon-python/tree/0.8.3) (2016-07-19)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.2...0.8.3)
 
