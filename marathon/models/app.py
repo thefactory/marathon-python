@@ -143,7 +143,7 @@ class MarathonApp(MarathonResource):
         self.require_ports = require_ports
 
         self.secrets = secrets or {}
-        for k, s in self.secrets.iteritems():
+        for k, s in self.secrets.items():
             if not isinstance(s, Secret):
                 self.secrets[k] = Secret().from_json(s)
 
