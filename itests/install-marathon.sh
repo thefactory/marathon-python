@@ -5,23 +5,21 @@ set -vxeu
 [[ -f /root/marathon-version ]] && source /root/marathon-version
 MARATHONVERSION="${MARATHONVERSION:-0.8.2}"
 
-sudo apt-get update -q
-
 # Setup
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 81026D0004C44CF7EF55ADF8DF7D54CBE56151BF
 DISTRO=$(lsb_release -is | tr '[:upper:]' '[:lower:]')
 CODENAME=$(lsb_release -cs)
 
 # Add the repository
 echo "deb http://repos.mesosphere.com/${DISTRO} ${CODENAME} main" | 
   sudo tee /etc/apt/sources.list.d/mesosphere.list
-sudo apt-get -y update
+sudo apt-get update
 
 # Install packages
-sudo apt-get -y install oracle-java8-installer
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install oracle-java8-installer
 sudo apt-get -y purge oracle-java7-installer
 sudo update-java-alternatives -s java-8-oracle
-sudo apt-get install oracle-java8-set-default
+sudo DEBIAN_FRONTEND=noninteractive apt-get install oracle-java8-set-default
 
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes install mesos=1.0.* marathon=$MARATHONVERSION*
 
