@@ -7,4 +7,6 @@ else
 fi
 
 java -version
+export MESOS_WORK_DIR='/tmp/mesos'
+mkdir -p "$MESOS_WORK_DIR"
 exec /usr/bin/marathon --master local $LOGGER --hostname localhost
