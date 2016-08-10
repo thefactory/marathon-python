@@ -19,7 +19,7 @@ class MarathonClient(object):
 
     """Client interface for the Marathon REST API."""
 
-    def __init__(self, servers, username=None, password=None, timeout=10):
+    def __init__(self, servers, username=None, password=None, timeout=10, session=None):
         """Create a MarathonClient instance.
 
         If multiple servers are specified, each will be tried in succession until a non-"Connection Error"-type
@@ -32,7 +32,10 @@ class MarathonClient(object):
         :param str password: Basic auth password
         :param int timeout: Timeout (in seconds) for requests to Marathon
         """
-        self.session = requests.Session()
+        if session is None:
+            self.session = requests.Session()
+        else:
+            self.session = session
         self.servers = servers if isinstance(servers, list) else [servers]
         self.auth = (username, password) if username and password else None
         self.timeout = timeout
