@@ -1,5 +1,19 @@
 # Change Log
 
+## [0.8.5](https://github.com/thefactory/marathon-python/tree/0.8.5) (2016-08-10)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.4...0.8.5)
+
+**Closed issues:**
+
+- HTTP 400 returned with message, "Invalid JSON" [\#133](https://github.com/thefactory/marathon-python/issues/133)
+- \[Question\] Passing parameters to request.get  [\#132](https://github.com/thefactory/marathon-python/issues/132)
+
+**Merged pull requests:**
+
+- Add update\_apps method to client [\#136](https://github.com/thefactory/marathon-python/pull/136) ([moonkev](https://github.com/moonkev))
+- Allow setting of a custom requests session [\#135](https://github.com/thefactory/marathon-python/pull/135) ([ammaraskar](https://github.com/ammaraskar))
+- Marathon 1.1.2 and Mesos 1.0.\* [\#134](https://github.com/thefactory/marathon-python/pull/134) ([nhandler](https://github.com/nhandler))
+
 ## [0.8.4](https://github.com/thefactory/marathon-python/tree/0.8.4) (2016-07-20)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.3...0.8.4)
 
@@ -29,8 +43,8 @@
 - Issue126: secrets and taskKillGracePeriodSeconds Marathon.App fields … [\#127](https://github.com/thefactory/marathon-python/pull/127) ([dmajere](https://github.com/dmajere))
 - Issue \#70: Remove resource\_name from get\_group [\#124](https://github.com/thefactory/marathon-python/pull/124) ([stj](https://github.com/stj))
 - Type assertion for ReadinessCheck in MarathonApp.\_\_init\_\_ method added [\#123](https://github.com/thefactory/marathon-python/pull/123) ([dmajere](https://github.com/dmajere))
-- Use requests.Session while communicating with Marathon. [\#121](https://github.com/thefactory/marathon-python/pull/121) ([Nihn](https://github.com/Nihn))
-- Fix `Client.get\_version` method. [\#120](https://github.com/thefactory/marathon-python/pull/120) ([Nihn](https://github.com/Nihn))
+- Use requests.Session while communicating with Marathon. [\#121](https://github.com/thefactory/marathon-python/pull/121) ([nihn](https://github.com/nihn))
+- Fix `Client.get\_version` method. [\#120](https://github.com/thefactory/marathon-python/pull/120) ([nihn](https://github.com/nihn))
 - Handle HTTP errors without content graceful [\#119](https://github.com/thefactory/marathon-python/pull/119) ([stj](https://github.com/stj))
 - Add local\_volumes to MarathonTask [\#118](https://github.com/thefactory/marathon-python/pull/118) ([usmanm](https://github.com/usmanm))
 - Fix pep8 issues and strict flake8 check. [\#117](https://github.com/thefactory/marathon-python/pull/117) ([oilbeater](https://github.com/oilbeater))
