@@ -148,4 +148,4 @@ class EventFactory:
             clazz = self.event_to_class[event_type]
             return clazz.from_json(event)
         else:
-            raise MarathonError('Unknown event_type: {}'.format(event_type))
+            raise MarathonError('Unknown event_type: {}, data: {}'.format(event_type, event))
