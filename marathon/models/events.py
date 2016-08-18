@@ -111,6 +111,10 @@ class MarathonEventStreamDetached(MarathonEvent):
     KNOWN_ATTRIBUTES = ['remote_address']
 
 
+class MarathonUnhealthyTaskKillEvent(MarathonEvent):
+    KNOWN_ATTRIBUTES = ['app_id', 'task_id', 'version', 'reason']
+
+
 class EventFactory:
 
     """
@@ -131,6 +135,7 @@ class EventFactory:
         'remove_health_check_event': MarathonRemoveHealthCheckEvent,
         'failed_health_check_event': MarathonFailedHealthCheckEvent,
         'health_status_changed_event': MarathonHealthStatusChangedEvent,
+        'unhealthy_task_kill_event': MarathonUnhealthyTaskKillEvent,
         'group_change_success': MarathonGroupChangeSuccess,
         'group_change_failed': MarathonGroupChangeFailed,
         'deployment_success': MarathonDeploymentSuccess,
@@ -148,4 +153,4 @@ class EventFactory:
             clazz = self.event_to_class[event_type]
             return clazz.from_json(event)
         else:
-            raise MarathonError('Unknown event_type: {}'.format(event_type))
+            raise MarathonError('Unknown event_type: {}, data: {}'.format(event_type, event))
