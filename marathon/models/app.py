@@ -31,6 +31,7 @@ class MarathonApp(MarathonResource):
     :type deployments: list[:class:`marathon.models.deployment.MarathonDeployment`]
     :param dict env: env vars
     :param str executor: executor
+    :param int gpus: gpus required per instance
     :param health_checks: health checks
     :type health_checks: list[:class:`marathon.models.MarathonHealthCheck`] or list[dict]
     :param str id: app id
@@ -67,8 +68,8 @@ class MarathonApp(MarathonResource):
 
     UPDATE_OK_ATTRIBUTES = [
         'args', 'backoff_factor', 'backoff_seconds', 'cmd', 'constraints', 'container', 'cpus', 'dependencies', 'disk',
-        'env', 'executor', 'health_checks', 'instances', 'labels', 'max_launch_delay_seconds', 'mem', 'ports', 'require_ports',
-        'store_urls', 'task_rate_limit', 'upgrade_strategy', 'uris', 'user', 'version'
+        'env', 'executor', 'gpus', 'health_checks', 'instances', 'labels', 'max_launch_delay_seconds', 'mem', 'ports',
+        'require_ports', 'store_urls', 'task_rate_limit', 'upgrade_strategy', 'uris', 'user', 'version'
     ]
     """List of attributes which may be updated/changed after app creation"""
 
@@ -87,7 +88,7 @@ class MarathonApp(MarathonResource):
                  task_kill_grace_period_seconds=None, tasks_unhealthy=None, upgrade_strategy=None,
                  uris=None, user=None, version=None, version_info=None,
                  ip_address=None, fetch=None, task_stats=None, readiness_checks=None,
-                 readiness_check_results=None, secrets=None, port_definitions=None, residency=None,):
+                 readiness_check_results=None, secrets=None, port_definitions=None, residency=None, gpus=None):
 
         # self.args = args or []
         self.accepted_resource_roles = accepted_resource_roles
@@ -114,6 +115,7 @@ class MarathonApp(MarathonResource):
         self.disk = disk
         self.env = env
         self.executor = executor
+        self.gpus = gpus
         self.health_checks = health_checks or []
         self.health_checks = [
             hc if isinstance(
