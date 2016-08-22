@@ -96,8 +96,6 @@ class MarathonClient(object):
         return response
 
     def _do_sse_request(self, path, params=None, data=None):
-        headers = {'Accept': 'text/event-stream'}
-        messages = None
         servers = list(self.servers)
 
         while servers and messages is None:
@@ -743,5 +741,5 @@ class MarathonClient(object):
                     if not 'eventType' in event_data:
                         raise MarathonError('Invalid event data received.')
                     yield ef.process(event_data)
-            except ValueError as e:
+            except ValueError:
                 raise MarathonError('Invalid event data received.')
