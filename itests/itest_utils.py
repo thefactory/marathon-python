@@ -38,7 +38,7 @@ def wait_for_marathon():
     """Blocks until marathon is up"""
     marathon_service = get_marathon_connection_string()
     while True:
-        print 'Connecting to marathon on %s' % marathon_service
+        print('Connecting to marathon on %s' % marathon_service)
         try:
             response = requests.get(
                 'http://%s/ping' % marathon_service, timeout=2)
@@ -49,7 +49,7 @@ def wait_for_marathon():
             time.sleep(2)
             continue
         if response.status_code == 200:
-            print "Marathon is up and running!"
+            print("Marathon is up and running!")
             break
 
 
