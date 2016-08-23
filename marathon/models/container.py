@@ -46,7 +46,7 @@ class MarathonDockerContainer(MarathonObject):
     :param bool force_pull_image: Force a docker pull before launching
     """
 
-    NETWORK_MODES = ['BRIDGE', 'HOST']
+    NETWORK_MODES = ['BRIDGE', 'HOST', 'NONE']
     """Valid network modes"""
 
     def __init__(self, image=None, network='HOST', port_mappings=None, parameters=None, privileged=None,
