@@ -96,8 +96,7 @@ class MarathonClient(object):
         return response
 
     def _do_sse_request(self, path):
-        while list(self.servers) is None:
-            server = servers.pop(0)
+        for server in list(self.servers):
             url = ''.join([server.rstrip('/'), path])
             try:
                 response = requests.get(
