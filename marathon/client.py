@@ -738,7 +738,7 @@ class MarathonClient(object):
 
                 if _data[0] == 'data':
                     event_data = json.loads(_data[1].strip())
-                    if not 'eventType' in event_data:
+                    if 'eventType' not in event_data:
                         raise MarathonError('Invalid event data received.')
                     yield ef.process(event_data)
             except ValueError:
