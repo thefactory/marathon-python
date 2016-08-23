@@ -2,7 +2,7 @@ itests:
 	tox -e itest-py27,itest-py33
 
 test:
-	tox -e test-py27,test-py33
+	tox -e pep8,test-py27,test-py33
 
 clean:
 	rm -rf dist/ build/
