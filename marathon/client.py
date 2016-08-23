@@ -95,17 +95,16 @@ class MarathonClient(object):
 
         return response
 
-    def _do_sse_request(self, path, params=None, data=None):
-        servers = list(self.servers)
-
-        while servers and messages is None:
+    def _do_sse_request(self, path):
+        while list(self.servers) is None:
             server = servers.pop(0)
             url = ''.join([server.rstrip('/'), path])
             try:
                 response = requests.get(
                     url,
                     stream=True,
-                    headers={'Accept': 'text/event-stream'}
+                    headers={'Accept': 'text/event-stream'},
+                    auth=self.auth
                 )
             except Exception as e:
                 marathon.log.error('Error while calling %s: %s', url, e.message)
