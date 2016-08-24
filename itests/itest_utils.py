@@ -2,12 +2,10 @@ import errno
 from functools import wraps
 import os
 import signal
-import sys
-import re
 import time
 
 import requests
-from compose.cli import command
+import compose.cli.command
 
 
 class TimeoutError(Exception):
@@ -38,7 +36,7 @@ def wait_for_marathon():
     """Blocks until marathon is up"""
     marathon_service = get_marathon_connection_string()
     while True:
-        print 'Connecting to marathon on %s' % marathon_service
+        print('Connecting to marathon on %s' % marathon_service)
         try:
             response = requests.get(
                 'http://%s/ping' % marathon_service, timeout=2)
@@ -49,14 +47,13 @@ def wait_for_marathon():
             time.sleep(2)
             continue
         if response.status_code == 200:
-            print "Marathon is up and running!"
+            print("Marathon is up and running!")
             break
 
 
 def get_compose_service(service_name):
     """Returns a compose object for the service"""
-    cmd = command.Command()
-    project = cmd.get_project(cmd.get_config_path())
+    project = compose.cli.command.get_project(os.path.dirname(os.path.realpath(__file__)))
     return project.get_service(service_name)
 
 
@@ -67,12 +64,6 @@ def get_marathon_connection_string():
     else:
         service_port = get_service_internal_port('marathon')
         local_port = get_compose_service('marathon').get_container().get_local_port(service_port)
-
-        # Check if we're at OSX. Use ip from DOCKER_HOST
-        if sys.platform == 'darwin':
-            m = re.match("(.*?)://(.*?):(\d+)", os.environ["DOCKER_HOST"])
-            local_port = "{}:{}".format(m.group(2), local_port.split(":")[1])
-
         return local_port
 
 
