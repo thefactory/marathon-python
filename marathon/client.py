@@ -108,10 +108,10 @@ class MarathonClient(object):
             except Exception as e:
                 marathon.log.error('Error while calling %s: %s', url, e.message)
 
-        if not response.ok:
-            raise MarathonError('No remaining Marathon servers to try')
+            if esponse.ok:
+                return response.iter_lines()
 
-        return response.iter_lines()
+        raise MarathonError('No remaining Marathon servers to try')
 
     def list_endpoints(self):
         """List the current endpoints for all applications
