@@ -96,6 +96,7 @@ class MarathonClient(object):
         return response
 
     def _do_sse_request(self, path):
+        """Query Marathon server for events."""
         for server in list(self.servers):
             url = ''.join([server.rstrip('/'), path])
             try:
@@ -108,7 +109,7 @@ class MarathonClient(object):
             except Exception as e:
                 marathon.log.error('Error while calling %s: %s', url, e.message)
 
-            if esponse.ok:
+            if response.ok:
                 return response.iter_lines()
 
         raise MarathonError('No remaining Marathon servers to try')
