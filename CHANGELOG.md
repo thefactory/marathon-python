@@ -1,5 +1,22 @@
 # Change Log
 
+## [0.8.6](https://github.com/thefactory/marathon-python/tree/0.8.6) (2016-08-29)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.5...0.8.6)
+
+**Closed issues:**
+
+- Unexpected keyword argument:  gpus [\#140](https://github.com/thefactory/marathon-python/issues/140)
+- \[Profiling\] Humongous CPU with event\_stream [\#139](https://github.com/thefactory/marathon-python/issues/139)
+- Python 3 test not running [\#80](https://github.com/thefactory/marathon-python/issues/80)
+
+**Merged pull requests:**
+
+- Add NONE as valid docker network mode [\#144](https://github.com/thefactory/marathon-python/pull/144) ([fengyehong](https://github.com/fengyehong))
+- Removed sseclient dependency + major enhancements on event\_stream\(\) [\#143](https://github.com/thefactory/marathon-python/pull/143) ([migueleliasweb](https://github.com/migueleliasweb))
+- run tox against multiple python versions [\#142](https://github.com/thefactory/marathon-python/pull/142) ([Rob-Johnson](https://github.com/Rob-Johnson))
+- Fix \#140 - Resolve gpus TypeError [\#141](https://github.com/thefactory/marathon-python/pull/141) ([mbeacom](https://github.com/mbeacom))
+- Add support for unhealthy\_task\_kill\_event [\#137](https://github.com/thefactory/marathon-python/pull/137) ([nuclon](https://github.com/nuclon))
+
 ## [0.8.5](https://github.com/thefactory/marathon-python/tree/0.8.5) (2016-08-10)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.4...0.8.5)
 
