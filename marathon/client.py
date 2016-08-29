@@ -95,25 +95,24 @@ class MarathonClient(object):
 
         return response
 
-    def _do_sse_request(self, path, params=None, data=None):
-        from sseclient import SSEClient
-
-        headers = {'Accept': 'text/event-stream'}
-        messages = None
-        servers = list(self.servers)
-        while servers and messages is None:
-            server = servers.pop(0)
+    def _do_sse_request(self, path):
+        """Query Marathon server for events."""
+        for server in list(self.servers):
             url = ''.join([server.rstrip('/'), path])
             try:
-                messages = SSEClient(url, params=params, data=data, headers=headers,
-                                     auth=self.auth)
+                response = requests.get(
+                    url,
+                    stream=True,
+                    headers={'Accept': 'text/event-stream'},
+                    auth=self.auth
+                )
             except Exception as e:
                 marathon.log.error('Error while calling %s: %s', url, e.message)
 
-        if messages is None:
-            raise MarathonError('No remaining Marathon servers to try')
+            if response.ok:
+                return response.iter_lines()
 
-        return messages
+        raise MarathonError('No remaining Marathon servers to try')
 
     def list_endpoints(self):
         """List the current endpoints for all applications
@@ -730,11 +729,16 @@ class MarathonClient(object):
         :rtype: iterator
         """
 
-        messages = self._do_sse_request('/v2/events')
-
         ef = EventFactory()
-        for message in messages:
-            if not message.data:
-                continue
-            data = json.loads(message.data)
-            yield ef.process(data)
+
+        for raw_message in self._do_sse_request('/v2/events'):
+            try:
+                _data = raw_message.decode('utf8').split(':', 1)
+
+                if _data[0] == 'data':
+                    event_data = json.loads(_data[1].strip())
+                    if 'eventType' not in event_data:
+                        raise MarathonError('Invalid event data received.')
+                    yield ef.process(event_data)
+            except ValueError:
+                raise MarathonError('Invalid event data received.')
