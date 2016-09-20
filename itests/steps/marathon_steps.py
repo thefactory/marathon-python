@@ -150,4 +150,4 @@ def stop_listening_stream(context):
 
 @then('we should be able to see a deployment')
 def see_a_deployment(context):
-    assert len(context.client.list_deployments()) == 1
+    assert len(context.client.list_deployments()) == 1, "We had %d deployments: %s" % (len(context.client.list_deployments()), context.client.list_deployments())
