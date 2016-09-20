@@ -1,4 +1,7 @@
 #!/bin/bash
+
+set -e
+
 [[ -n $TRAVIS ]] || echo MARATHONVERSION=$MARATHONVERSION > marathon-version
 [[ -n $TRAVIS ]] || docker-compose build
 [[ -n $TRAVIS ]] || docker-compose pull
