@@ -21,10 +21,11 @@ class MarathonInfo(MarathonResource):
     :param event_subscriber:
     :type event_subscriber: :class`marathon.models.info.MarathonEventSubscriber` or dict
     :param bool elected:
+    :param str buildref:
     """
 
     def __init__(self, event_subscriber=None, framework_id=None, http_config=None, leader=None, marathon_config=None,
-                 name=None, version=None, elected=None, zookeeper_config=None):
+                 name=None, version=None, elected=None, zookeeper_config=None, buildref=None):
         if isinstance(event_subscriber, MarathonEventSubscriber):
             self.event_subscriber = event_subscriber
         elif event_subscriber is not None:
@@ -43,6 +44,7 @@ class MarathonInfo(MarathonResource):
         self.elected = elected
         self.zookeeper_config = zookeeper_config if isinstance(zookeeper_config, MarathonZooKeeperConfig) \
             else MarathonZooKeeperConfig().from_json(zookeeper_config)
+        self.buildref = buildref
 
 
 class MarathonConfig(MarathonObject):
