@@ -158,7 +158,7 @@ def stop_listening_stream(context):
 
     # and 2 deployment_step_success events
     filtered_events = [e for e in context.events if e.event_type == "deployment_success"]
-    assert len(filtered_events) >= 2
+    assert len(filtered_events) == 1
 
 
 @then('we should be able to see a deployment')
