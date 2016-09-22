@@ -20,7 +20,8 @@ class MarathonClient(object):
 
     """Client interface for the Marathon REST API."""
 
-    def __init__(self, servers, username=None, password=None, timeout=10, session=None):
+    def __init__(self, servers, username=None, password=None, timeout=10, session=None,
+                 auth_token=None):
         """Create a MarathonClient instance.
 
         If multiple servers are specified, each will be tried in succession until a non-"Connection Error"-type
@@ -32,6 +33,7 @@ class MarathonClient(object):
         :param str username: Basic auth username
         :param str password: Basic auth password
         :param int timeout: Timeout (in seconds) for requests to Marathon
+        :param str auth_token: Token-based auth token, used with DCOS + Oauth
         """
         if session is None:
             self.session = requests.Session()
@@ -40,6 +42,11 @@ class MarathonClient(object):
         self.servers = servers if isinstance(servers, list) else [servers]
         self.auth = (username, password) if username and password else None
         self.timeout = timeout
+
+        self.auth_token = auth_token
+        if self.auth and self.auth_token:
+            raise ValueError("Can't specify both auth token and username/password. Must select "
+                             "one type of authentication.")
 
     def __repr__(self):
         return 'Connection:%s' % self.servers
@@ -58,6 +65,10 @@ class MarathonClient(object):
         """Query Marathon server."""
         headers = {
             'Content-Type': 'application/json', 'Accept': 'application/json'}
+
+        if self.auth_token:
+            headers['Authorization'] = "token={}".format(self.auth_token)
+
         response = None
         servers = list(self.servers)
         while servers and response is None:
