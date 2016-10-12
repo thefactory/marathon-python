@@ -391,7 +391,7 @@ class ReadinessCheck(MarathonObject):
     """
 
     def __init__(self, name=None, protocol=None, path=None, port_name=None, interval_seconds=None,
-                 http_status_codes_for_ready=None, preserve_last_response=None):
+                 http_status_codes_for_ready=None, preserve_last_response=None, timeout_seconds=None):
         self.name = name
         self.protocol = protocol
         self.path = path
@@ -399,6 +399,7 @@ class ReadinessCheck(MarathonObject):
         self.interval_seconds = interval_seconds
         self.http_status_codes_for_ready = http_status_codes_for_ready
         self.preserve_last_response = preserve_last_response
+        self.timeout_seconds = timeout_seconds
 
 
 class PortDefinition(MarathonObject):
