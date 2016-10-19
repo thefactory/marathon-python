@@ -15,7 +15,7 @@ class MarathonContainer(MarathonObject):
     :type volumes: list[:class:`marathon.models.container.MarathonContainerVolume`] or list[dict]
     """
 
-    TYPES = ['DOCKER']
+    TYPES = ['DOCKER', 'MESOS']
     """Valid container types"""
 
     def __init__(self, docker=None, type='DOCKER', volumes=None):
