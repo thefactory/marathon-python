@@ -22,8 +22,11 @@ class MarathonContainer(MarathonObject):
         if type not in self.TYPES:
             raise InvalidChoiceError('type', type, self.TYPES)
         self.type = type
-        self.docker = docker if isinstance(docker, MarathonDockerContainer) \
-            else MarathonDockerContainer().from_json(docker)
+        
+        if docker:
+            self.docker = docker if isinstance(docker, MarathonDockerContainer) \
+                else MarathonDockerContainer().from_json(docker)
+
         self.volumes = [
             v if isinstance(
                 v, MarathonContainerVolume) else MarathonContainerVolume().from_json(v)
