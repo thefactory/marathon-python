@@ -11,9 +11,10 @@ DISTRO=$(lsb_release -is | tr '[:upper:]' '[:lower:]')
 CODENAME=$(lsb_release -cs)
 
 # Add the repository
-echo "deb http://repos.mesosphere.com/${DISTRO} ${CODENAME} main" | 
-  sudo tee /etc/apt/sources.list.d/mesosphere.list
-sudo apt-get update
+echo "deb http://repos.mesosphere.com/${DISTRO} ${CODENAME} main" | sudo tee /etc/apt/sources.list.d/mesosphere.list
+# Temporary repo to get marathon 1.4
+echo "deb https://dl.bintray.com/yelp/paasta trusty main" | sudo tee /etc/apt/sources.list.d/paasta.list
+sudo apt-get -y install apt-transport-https && sudo apt-get update
 
 # Install packages
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install oracle-java8-installer
