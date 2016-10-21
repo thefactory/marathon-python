@@ -3,7 +3,7 @@ set -vxeu
 
 # Default version of marathon to test against if not set by the user
 [[ -f /root/marathon-version ]] && source /root/marathon-version
-MARATHONVERSION="${MARATHONVERSION:-0.8.2}"
+MARATHONVERSION="${MARATHONVERSION:-1.4.0}"
 
 # Setup
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 81026D0004C44CF7EF55ADF8DF7D54CBE56151BF
