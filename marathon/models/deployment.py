@@ -17,10 +17,11 @@ class MarathonDeployment(MarathonResource):
     :type steps: list[:class:`marathon.models.deployment.MarathonDeploymentAction`] or list[dict]
     :param int total_steps: total number of steps
     :param str version: version id
+    :param str affected_pods: list of strings
     """
 
     def __init__(self, affected_apps=None, current_actions=None, current_step=None, id=None, steps=None,
-                 total_steps=None, version=None):
+                 total_steps=None, version=None, affected_pods=None):
         self.affected_apps = affected_apps
         self.current_actions = [
             a if isinstance(
@@ -32,6 +33,7 @@ class MarathonDeployment(MarathonResource):
         self.steps = [self.parse_deployment_step(step) for step in (steps or [])]
         self.total_steps = total_steps
         self.version = version
+        self.affected_pods = affected_pods
 
     def parse_deployment_step(self, step):
         if step.__class__ == dict:

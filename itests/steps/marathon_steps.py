@@ -1,7 +1,7 @@
 import sys
 import time
 import multiprocessing
-from distutils.version import StrictVersion
+from distutils.version import LooseVersion
 
 import marathon
 from behave import given, when, then
@@ -126,7 +126,7 @@ def listen_for_events(client, events):
 @when(u'marathon version is greater than {version}')
 def marathon_version_chech(context, version):
     info = context.client.get_info()
-    if StrictVersion(info.version) < StrictVersion(version):
+    if LooseVersion(info.version) < LooseVersion(version):
         context.scenario.skip(reason='Marathon version is too low for this scenario')
 
 
