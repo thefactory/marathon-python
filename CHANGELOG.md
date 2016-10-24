@@ -1,5 +1,22 @@
 # Change Log
 
+## [0.8.7](https://github.com/thefactory/marathon-python/tree/0.8.7) (2016-10-24)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.6...0.8.7)
+
+**Closed issues:**
+
+- Need to support Oauth tokens for use with DCOS + adminrouter [\#148](https://github.com/thefactory/marathon-python/issues/148)
+- Not yet compatible with marathon 1.1.1 external volumes [\#98](https://github.com/thefactory/marathon-python/issues/98)
+
+**Merged pull requests:**
+
+- Preliminary Marathon 1.4 Support [\#155](https://github.com/thefactory/marathon-python/pull/155) ([solarkennedy](https://github.com/solarkennedy))
+- Mesos container support [\#154](https://github.com/thefactory/marathon-python/pull/154) ([tanderegg](https://github.com/tanderegg))
+- Add missing 'timeout\_seconds' parameter in ReadinessCheck class [\#152](https://github.com/thefactory/marathon-python/pull/152) ([mmelcot](https://github.com/mmelcot))
+- Add support for token-based Auth [\#149](https://github.com/thefactory/marathon-python/pull/149) ([jimbobhickville](https://github.com/jimbobhickville))
+- \[WIP\] Add support for marathon 1.3.0 [\#147](https://github.com/thefactory/marathon-python/pull/147) ([nhandler](https://github.com/nhandler))
+- Add external volume support [\#146](https://github.com/thefactory/marathon-python/pull/146) ([drewrobb](https://github.com/drewrobb))
+
 ## [0.8.6](https://github.com/thefactory/marathon-python/tree/0.8.6) (2016-08-29)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.5...0.8.6)
 
