@@ -12,6 +12,7 @@ class MarathonHttpError(MarathonError):
         if response.content:
             content = response.json()
             self.error_message = content.get('message', self.error_message)
+            self.error_details = content.get('details')
         self.status_code = response.status_code
         super(MarathonHttpError, self).__init__(self.__str__())
 
