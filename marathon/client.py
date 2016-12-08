@@ -21,7 +21,7 @@ class MarathonClient(object):
     """Client interface for the Marathon REST API."""
 
     def __init__(self, servers, username=None, password=None, timeout=10, session=None,
-                 auth_token=None):
+                 auth_token=None, verify=True):
         """Create a MarathonClient instance.
 
         If multiple servers are specified, each will be tried in succession until a non-"Connection Error"-type
@@ -34,6 +34,7 @@ class MarathonClient(object):
         :param str password: Basic auth password
         :param int timeout: Timeout (in seconds) for requests to Marathon
         :param str auth_token: Token-based auth token, used with DCOS + Oauth
+        :param bool verify: Enable SSL certificate verification
         """
         if session is None:
             self.session = requests.Session()
@@ -41,6 +42,7 @@ class MarathonClient(object):
             self.session = session
         self.servers = servers if isinstance(servers, list) else [servers]
         self.auth = (username, password) if username and password else None
+        self.verify = verify
         self.timeout = timeout
 
         self.auth_token = auth_token
@@ -77,7 +79,7 @@ class MarathonClient(object):
             try:
                 response = self.session.request(
                     method, url, params=params, data=data, headers=headers,
-                    auth=self.auth, timeout=self.timeout)
+                    auth=self.auth, timeout=self.timeout, verify=self.verify)
                 marathon.log.info('Got response from %s', server)
             except requests.exceptions.RequestException as e:
                 marathon.log.error(
