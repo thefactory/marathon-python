@@ -1,5 +1,17 @@
 # Change Log
 
+## [0.8.8](https://github.com/thefactory/marathon-python/tree/0.8.8) (2016-12-09)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.7...0.8.8)
+
+**Closed issues:**
+
+- Can we include the license file in the source release tarball ? [\#156](https://github.com/thefactory/marathon-python/issues/156)
+
+**Merged pull requests:**
+
+- Allow to disable SSL certificate validation [\#159](https://github.com/thefactory/marathon-python/pull/159) ([Djailla](https://github.com/Djailla))
+- Expose error details from response object MarathonHttpError [\#157](https://github.com/thefactory/marathon-python/pull/157) ([moonkev](https://github.com/moonkev))
+
 ## [0.8.7](https://github.com/thefactory/marathon-python/tree/0.8.7) (2016-10-24)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.6...0.8.7)
 
