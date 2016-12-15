@@ -64,6 +64,8 @@ class MarathonApp(MarathonResource):
     :type readiness_checks: list[:class:`marathon.models.app.ReadinessCheck`] or list[dict]
     :type residency: :class:`marathon.models.app.Residency` or dict
     :param int task_kill_grace_period_seconds: Configures the termination signal escalation behavior of executors when stopping tasks.
+    :param str kill_selection
+    :param dict unreachable_strategy
     """
 
     UPDATE_OK_ATTRIBUTES = [
@@ -88,7 +90,8 @@ class MarathonApp(MarathonResource):
                  task_kill_grace_period_seconds=None, tasks_unhealthy=None, upgrade_strategy=None,
                  uris=None, user=None, version=None, version_info=None,
                  ip_address=None, fetch=None, task_stats=None, readiness_checks=None,
-                 readiness_check_results=None, secrets=None, port_definitions=None, residency=None, gpus=None):
+                 readiness_check_results=None, secrets=None, port_definitions=None, residency=None, gpus=None,
+                 kill_selection=None, unreachable_strategy=None):
 
         # self.args = args or []
         self.accepted_resource_roles = accepted_resource_roles
@@ -124,6 +127,7 @@ class MarathonApp(MarathonResource):
         ]
         self.id = assert_valid_path(id)
         self.instances = instances
+        self.kill_selection = kill_selection
         self.labels = labels or {}
         self.last_task_failure = last_task_failure if (isinstance(last_task_failure, MarathonTaskFailure) or last_task_failure is None) \
             else MarathonTaskFailure.from_json(last_task_failure)
@@ -165,6 +169,7 @@ class MarathonApp(MarathonResource):
         self.uris = uris or []
         self.fetch = fetch or []
         self.user = user
+        self.unreachable_strategy = unreachable_strategy
         self.version = version
         self.version_info = version_info if (isinstance(version_info, MarathonAppVersionInfo) or version_info is None) \
             else MarathonAppVersionInfo.from_json(version_info)
