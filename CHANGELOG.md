@@ -1,5 +1,16 @@
 # Change Log
 
+## [0.8.9](https://github.com/thefactory/marathon-python/tree/0.8.9) (2016-12-14)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.8...0.8.9)
+
+**Closed issues:**
+
+- 0.8.8 on PyPi [\#160](https://github.com/thefactory/marathon-python/issues/160)
+
+**Merged pull requests:**
+
+- Added more unimplemented Marathon 1.4 API keywords [\#161](https://github.com/thefactory/marathon-python/pull/161) ([solarkennedy](https://github.com/solarkennedy))
+
 ## [0.8.8](https://github.com/thefactory/marathon-python/tree/0.8.8) (2016-12-09)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.7...0.8.8)
 
