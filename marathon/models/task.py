@@ -73,12 +73,14 @@ class MarathonHealthCheckResult(MarathonObject):
     :param str last_failure_cause: cause for last failure
     :param str last_success: last time when which healthcheck succeeded
     :param str task_id: task id
+    :param str instance_id: instance id
     """
 
     DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
 
     def __init__(self, alive=None, consecutive_failures=None, first_success=None,
-                 last_failure=None, last_success=None, task_id=None, last_failure_cause=None):
+                 last_failure=None, last_success=None, task_id=None,
+                 last_failure_cause=None, instance_id=None):
         self.alive = alive
         self.consecutive_failures = consecutive_failures
         self.first_success = first_success if (first_success is None or isinstance(first_success, datetime)) \
@@ -89,3 +91,4 @@ class MarathonHealthCheckResult(MarathonObject):
             else datetime.strptime(last_success, self.DATETIME_FORMAT)
         self.task_id = task_id
         self.last_failure_cause = last_failure_cause
+        self.instance_id = instance_id
