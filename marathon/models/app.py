@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from ..exceptions import InvalidChoiceError
 from .base import MarathonResource, MarathonObject, assert_valid_path
 from .constraint import MarathonConstraint
 from .container import MarathonContainer
@@ -64,14 +65,15 @@ class MarathonApp(MarathonResource):
     :type readiness_checks: list[:class:`marathon.models.app.ReadinessCheck`] or list[dict]
     :type residency: :class:`marathon.models.app.Residency` or dict
     :param int task_kill_grace_period_seconds: Configures the termination signal escalation behavior of executors when stopping tasks.
-    :param str kill_selection
-    :param dict unreachable_strategy
+    :param list[dict] unreachable_strategy: Handling for unreachable instances.
+    :param str kill_selection: Defines which instance should be killed first in case of e.g. rescaling.
     """
 
     UPDATE_OK_ATTRIBUTES = [
         'args', 'backoff_factor', 'backoff_seconds', 'cmd', 'constraints', 'container', 'cpus', 'dependencies', 'disk',
-        'env', 'executor', 'gpus', 'health_checks', 'instances', 'labels', 'max_launch_delay_seconds', 'mem', 'ports',
-        'require_ports', 'store_urls', 'task_rate_limit', 'upgrade_strategy', 'uris', 'user', 'version'
+        'env', 'executor', 'gpus', 'health_checks', 'instances', 'kill_selection', 'labels', 'max_launch_delay_seconds',
+        'mem', 'ports', 'require_ports', 'store_urls', 'task_rate_limit', 'upgrade_strategy', 'unreachable_strategy',
+        'uris', 'user', 'version'
     ]
     """List of attributes which may be updated/changed after app creation"""
 
@@ -82,16 +84,17 @@ class MarathonApp(MarathonResource):
         'deployments', 'tasks', 'tasks_running', 'tasks_staged', 'tasks_healthy', 'tasks_unhealthy']
     """List of read-only attributes"""
 
+    KILL_SELECTIONS = ["YoungestFirst", "OldestFirst"]
+
     def __init__(self, accepted_resource_roles=None, args=None, backoff_factor=None, backoff_seconds=None, cmd=None,
                  constraints=None, container=None, cpus=None, dependencies=None, deployments=None, disk=None, env=None,
-                 executor=None, health_checks=None, id=None, instances=None, labels=None, last_task_failure=None,
-                 max_launch_delay_seconds=None, mem=None, ports=None, require_ports=None, store_urls=None,
-                 task_rate_limit=None, tasks=None, tasks_running=None, tasks_staged=None, tasks_healthy=None,
-                 task_kill_grace_period_seconds=None, tasks_unhealthy=None, upgrade_strategy=None,
-                 uris=None, user=None, version=None, version_info=None,
+                 executor=None, health_checks=None, id=None, instances=None, kill_selection=None, labels=None,
+                 last_task_failure=None, max_launch_delay_seconds=None, mem=None, ports=None, require_ports=None,
+                 store_urls=None, task_rate_limit=None, tasks=None, tasks_running=None, tasks_staged=None,
+                 tasks_healthy=None, task_kill_grace_period_seconds=None, tasks_unhealthy=None, upgrade_strategy=None,
+                 unreachable_strategy=None, uris=None, user=None, version=None, version_info=None,
                  ip_address=None, fetch=None, task_stats=None, readiness_checks=None,
-                 readiness_check_results=None, secrets=None, port_definitions=None, residency=None, gpus=None,
-                 kill_selection=None, unreachable_strategy=None):
+                 readiness_check_results=None, secrets=None, port_definitions=None, residency=None, gpus=None):
 
         # self.args = args or []
         self.accepted_resource_roles = accepted_resource_roles
@@ -127,6 +130,9 @@ class MarathonApp(MarathonResource):
         ]
         self.id = assert_valid_path(id)
         self.instances = instances
+        if kill_selection and kill_selection not in self.KILL_SELECTIONS:
+            raise InvalidChoiceError(
+                'kill_selection', kill_selection, self.KILL_SELECTIONS)
         self.kill_selection = kill_selection
         self.labels = labels or {}
         self.last_task_failure = last_task_failure if (isinstance(last_task_failure, MarathonTaskFailure) or last_task_failure is None) \
@@ -166,10 +172,13 @@ class MarathonApp(MarathonResource):
         self.tasks_unhealthy = tasks_unhealthy
         self.upgrade_strategy = upgrade_strategy if (isinstance(upgrade_strategy, MarathonUpgradeStrategy) or upgrade_strategy is None) \
             else MarathonUpgradeStrategy.from_json(upgrade_strategy)
+        self.unreachable_strategy = unreachable_strategy \
+            if (isinstance(unreachable_strategy, MarathonUnreachableStrategy)
+                or unreachable_strategy is None) \
+            else MarathonUnreachableStrategy.from_json(unreachable_strategy)
         self.uris = uris or []
         self.fetch = fetch or []
         self.user = user
-        self.unreachable_strategy = unreachable_strategy
         self.version = version
         self.version_info = version_info if (isinstance(version_info, MarathonAppVersionInfo) or version_info is None) \
             else MarathonAppVersionInfo.from_json(version_info)
@@ -253,6 +262,32 @@ class MarathonUpgradeStrategy(MarathonObject):
                  minimum_health_capacity=None):
         self.maximum_over_capacity = maximum_over_capacity
         self.minimum_health_capacity = minimum_health_capacity
+
+
+class MarathonUnreachableStrategy(MarathonObject):
+
+    """Marathon unreachable Strategy.
+
+    Define handling for unreachable instances. Given
+    `unreachable_inactive_after_seconds = 60` and
+    `unreachable_expunge_after = 120`, an instance will be expunged if it has
+    been unreachable for more than 120 seconds or a second instance is started
+    if it has been unreachable for more than 60 seconds.",
+
+    See https://mesosphere.github.io/marathon/docs/?
+
+    :param int unreachable_inactive_after_seconds: time an instance is
+        unreachable for in seconds before marked as inactive.
+    :param int unreachable_expunge_after_seconds: time an instance is
+        unreachable for in seconds before expunged.
+    """
+
+    def __init__(self, unreachable_inactive_after_seconds=None,
+                 unreachable_expunge_after_seconds=None):
+        self.unreachable_inactive_after_seconds = \
+            unreachable_inactive_after_seconds
+        self.unreachable_expunge_after_seconds = \
+            unreachable_expunge_after_seconds
 
 
 class MarathonAppVersionInfo(MarathonObject):
