@@ -13,7 +13,7 @@ setup(
     long_description="""Python interface to the Mesos Marathon REST API.""",
     author='Mike Babineau',
     author_email='michael.babineau@gmail.com',
-    install_requires=['requests>=2.0.0', 'sseclient'],
+    install_requires=['requests>=2.0.0'],
     url='https://github.com/thefactory/marathon-python',
     packages=['marathon', 'marathon.models'],
     license='MIT',
