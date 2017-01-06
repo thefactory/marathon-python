@@ -282,14 +282,17 @@ class MarathonUnreachableStrategy(MarathonObject):
         unreachable for in seconds before marked as inactive.
     :param int unreachable_expunge_after_seconds: time an instance is
         unreachable for in seconds before expunged.
+    :param int inactive_after_seconds
+    :param int expunge_after_seconds
     """
 
     def __init__(self, unreachable_inactive_after_seconds=None,
-                 unreachable_expunge_after_seconds=None):
-        self.unreachable_inactive_after_seconds = \
-            unreachable_inactive_after_seconds
-        self.unreachable_expunge_after_seconds = \
-            unreachable_expunge_after_seconds
+                 unreachable_expunge_after_seconds=None,
+                 inactive_after_seconds=None, expunge_after_seconds=None):
+        self.unreachable_inactive_after_seconds = unreachable_inactive_after_seconds
+        self.unreachable_expunge_after_seconds = unreachable_expunge_after_seconds
+        self.inactive_after_seconds = inactive_after_seconds
+        self.expunge_after_seconds = expunge_after_seconds
 
 
 class MarathonAppVersionInfo(MarathonObject):
