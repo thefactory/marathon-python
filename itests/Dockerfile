@@ -5,7 +5,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
 RUN add-apt-repository ppa:webupd8team/java
 RUN echo "debconf shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
 RUN echo "debconf shared/accepted-oracle-license-v1-1 seen true" | debconf-set-selections
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y -q install \
 	lsb-release \
 	oracle-java8-installer
 

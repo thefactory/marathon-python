@@ -228,6 +228,7 @@ class MarathonTaskFailure(MarathonObject):
     :param str host: mesos slave running the task
     :param str message: error message
     :param str task_id: task id
+    :param str instance_id: instance id
     :param str state: task state
     :param timestamp: when this task failed
     :type timestamp: datetime or str
@@ -236,12 +237,13 @@ class MarathonTaskFailure(MarathonObject):
 
     DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
 
-    def __init__(self, app_id=None, host=None, message=None, task_id=None,
+    def __init__(self, app_id=None, host=None, message=None, task_id=None, instance_id=None,
                  slave_id=None, state=None, timestamp=None, version=None):
         self.app_id = app_id
         self.host = host
         self.message = message
         self.task_id = task_id
+        self.instance_id = instance_id
         self.slave_id = slave_id
         self.state = state
         self.timestamp = timestamp if (timestamp is None or isinstance(timestamp, datetime)) \
@@ -280,14 +282,17 @@ class MarathonUnreachableStrategy(MarathonObject):
         unreachable for in seconds before marked as inactive.
     :param int unreachable_expunge_after_seconds: time an instance is
         unreachable for in seconds before expunged.
+    :param int inactive_after_seconds
+    :param int expunge_after_seconds
     """
 
     def __init__(self, unreachable_inactive_after_seconds=None,
-                 unreachable_expunge_after_seconds=None):
-        self.unreachable_inactive_after_seconds = \
-            unreachable_inactive_after_seconds
-        self.unreachable_expunge_after_seconds = \
-            unreachable_expunge_after_seconds
+                 unreachable_expunge_after_seconds=None,
+                 inactive_after_seconds=None, expunge_after_seconds=None):
+        self.unreachable_inactive_after_seconds = unreachable_inactive_after_seconds
+        self.unreachable_expunge_after_seconds = unreachable_expunge_after_seconds
+        self.inactive_after_seconds = inactive_after_seconds
+        self.expunge_after_seconds = expunge_after_seconds
 
 
 class MarathonAppVersionInfo(MarathonObject):
