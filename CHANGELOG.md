@@ -1,6 +1,19 @@
 # Change Log
 
-## [0.8.9](https://github.com/thefactory/marathon-python/tree/0.8.9) (2016-12-14)
+## [0.8.10](https://github.com/thefactory/marathon-python/tree/0.8.10) (2017-01-06)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.9...0.8.10)
+
+**Closed issues:**
+
+- InvalidChoiceError when container type is "MESOS" [\#153](https://github.com/thefactory/marathon-python/issues/153)
+
+**Merged pull requests:**
+
+- Marathon 1.4 instance [\#165](https://github.com/thefactory/marathon-python/pull/165) ([solarkennedy](https://github.com/solarkennedy))
+- Removed unused sseclient depencency [\#164](https://github.com/thefactory/marathon-python/pull/164) ([migueleliasweb](https://github.com/migueleliasweb))
+- Add new Marathon 1.4 API keywords [\#162](https://github.com/thefactory/marathon-python/pull/162) ([stj](https://github.com/stj))
+
+## [0.8.9](https://github.com/thefactory/marathon-python/tree/0.8.9) (2016-12-15)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.8...0.8.9)
 
 **Closed issues:**
