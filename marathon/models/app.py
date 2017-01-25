@@ -119,7 +119,7 @@ class MarathonApp(MarathonResource):
             for d in (deployments or [])
         ]
         self.disk = disk
-        self.env = env
+        self.env = env or dict()
         self.executor = executor
         self.gpus = gpus
         self.health_checks = health_checks or []
@@ -184,6 +184,9 @@ class MarathonApp(MarathonResource):
             else MarathonAppVersionInfo.from_json(version_info)
         self.task_stats = task_stats if (isinstance(task_stats, MarathonTaskStats) or task_stats is None) \
             else MarathonTaskStats.from_json(task_stats)
+
+    def add_env(self, key, value):
+        self.env[key] = value
 
 
 class MarathonHealthCheck(MarathonObject):
