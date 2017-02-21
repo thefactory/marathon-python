@@ -20,7 +20,7 @@ sudo apt-get -y purge oracle-java7-installer
 sudo update-java-alternatives -s java-8-oracle
 sudo DEBIAN_FRONTEND=noninteractive apt-get install oracle-java8-set-default
 
-sudo DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes install mesos=1.0.* marathon=$MARATHONVERSION*
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes install mesos=1.1.* marathon=$MARATHONVERSION*
 
 # WTF MARATHON?
 # Why does the precise version have java7 hardcoded if it requires java8?
