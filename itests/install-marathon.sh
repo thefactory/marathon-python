@@ -12,9 +12,7 @@ CODENAME=$(lsb_release -cs)
 
 # Add the repository
 echo "deb http://repos.mesosphere.com/${DISTRO} ${CODENAME} main" | sudo tee /etc/apt/sources.list.d/mesosphere.list
-# Temporary repo to get marathon 1.4
-echo "deb https://dl.bintray.com/yelp/paasta trusty main" | sudo tee /etc/apt/sources.list.d/paasta.list
-sudo apt-get -y install apt-transport-https && sudo apt-get update
+sudo apt-get update
 
 # Install packages
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install oracle-java8-installer
@@ -22,7 +20,7 @@ sudo apt-get -y purge oracle-java7-installer
 sudo update-java-alternatives -s java-8-oracle
 sudo DEBIAN_FRONTEND=noninteractive apt-get install oracle-java8-set-default
 
-sudo DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes install mesos=1.0.* marathon=$MARATHONVERSION*
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes install mesos=1.1.* marathon=$MARATHONVERSION*
 
 # WTF MARATHON?
 # Why does the precise version have java7 hardcoded if it requires java8?

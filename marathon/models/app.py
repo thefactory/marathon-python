@@ -84,7 +84,7 @@ class MarathonApp(MarathonResource):
         'deployments', 'tasks', 'tasks_running', 'tasks_staged', 'tasks_healthy', 'tasks_unhealthy']
     """List of read-only attributes"""
 
-    KILL_SELECTIONS = ["YoungestFirst", "OldestFirst"]
+    KILL_SELECTIONS = ["YOUNGEST_FIRST", "OLDEST_FIRST"]
 
     def __init__(self, accepted_resource_roles=None, args=None, backoff_factor=None, backoff_seconds=None, cmd=None,
                  constraints=None, container=None, cpus=None, dependencies=None, deployments=None, disk=None, env=None,
