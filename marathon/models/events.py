@@ -115,6 +115,10 @@ class MarathonUnhealthyTaskKillEvent(MarathonEvent):
     KNOWN_ATTRIBUTES = ['app_id', 'task_id', 'version', 'reason']
 
 
+class MarathonAppTerminatedEvent(MarathonEvent):
+    KNOWN_ATTRIBUTES = ['app_id']
+
+
 class EventFactory:
 
     """
@@ -145,6 +149,7 @@ class EventFactory:
         'deployment_step_failure': MarathonDeploymentStepFailure,
         'event_stream_attached': MarathonEventStreamAttached,
         'event_stream_detached': MarathonEventStreamDetached,
+        'app_terminated_event': MarathonAppTerminatedEvent,
     }
 
     def process(self, event):
