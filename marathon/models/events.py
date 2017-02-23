@@ -114,8 +114,10 @@ class MarathonEventStreamDetached(MarathonEvent):
 class MarathonUnhealthyTaskKillEvent(MarathonEvent):
     KNOWN_ATTRIBUTES = ['app_id', 'task_id', 'version', 'reason']
 
+
 class MarathonAppTerminatedEvent(MarathonEvent):
     KNOWN_ATTRIBUTES = ['app_id']
+
 
 class EventFactory:
 
