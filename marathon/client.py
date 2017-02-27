@@ -166,7 +166,7 @@ class MarathonClient(object):
         :param bool embed_last_task_failure: embeds the last task failure
         :param bool embed_failures: shorthand for embed_last_task_failure
         :param bool embed_task_stats: embed task stats in result
-        :param bool app_id: if passed, only show apps with with an 'id' that matches or contains this value
+        :param str app_id: if passed, only show apps with an 'id' that matches or contains this value
         :param kwargs: arbitrary search filters
 
         :returns: list of applications
