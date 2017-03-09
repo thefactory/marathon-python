@@ -120,14 +120,9 @@ def test_list_tasks_with_app_id():
                     '"lastFailure": null, "lastSuccess": "2014-10-03T22:57:41.643Z", "taskId": "bridged-webapp.eb76c51f-4b4a-11e4-ae49-56847afe9799" } ],' \
                     ' "host": "10.141.141.10", "id": "bridged-webapp.eb76c51f-4b4a-11e4-ae49-56847afe9799", "ports": [ 31000 ], ' \
                     '"servicePorts": [ 9000 ], "stagedAt": "2014-10-03T22:16:27.811Z", "startedAt": "2014-10-03T22:57:41.587Z", ' \
-                    '"version": "2014-10-03T22:16:23.634Z" }, { "appId": "/anotherapp", ' \
-                    '"healthCheckResults": [ { "alive": true, "consecutiveFailures": 0, "firstSuccess": "2014-10-03T22:57:02.246Z", "lastFailure": null, ' \
-                    '"lastSuccess": "2014-10-03T22:57:41.649Z", "taskId": "bridged-webapp.ef0b5d91-4b4a-11e4-ae49-56847afe9799" } ], ' \
-                    '"host": "10.141.141.10", "id": "bridged-webapp.ef0b5d91-4b4a-11e4-ae49-56847afe9799", "ports": [ 31001 ], ' \
-                    '"servicePorts": [ 9000 ], "stagedAt": "2014-10-03T22:16:33.814Z", "startedAt": "2014-10-03T22:57:41.593Z", ' \
-                    '"version": "2014-10-03T22:16:23.634Z" } ] }'
+                    '"version": "2014-10-03T22:16:23.634Z" }]}'
     with requests_mock.mock() as m:
-        m.get('http://fake_server/v2/tasks', text=fake_response)
+        m.get('http://fake_server/v2/apps//anapp/tasks', text=fake_response)
         mock_client = MarathonClient(servers='http://fake_server')
         actual_deployments = mock_client.list_tasks(app_id='/anapp')
         expected_deployments = [models.task.MarathonTask(
