@@ -25,7 +25,8 @@ class MarathonQueueItem(MarathonResource):
     :param bool overdue:
     """
 
-    def __init__(self, app=None, overdue=None, count=None, delay=None, since=None):
+    def __init__(self, app=None, overdue=None, count=None, delay=None, since=None,
+                 processed_offers_summary=None):
         self.app = app if isinstance(
             app, MarathonApp) else MarathonApp().from_json(app)
         self.overdue = overdue
@@ -33,6 +34,7 @@ class MarathonQueueItem(MarathonResource):
         self.delay = delay if isinstance(
             delay, MarathonQueueItemDelay) else MarathonQueueItemDelay().from_json(delay)
         self.since = since
+        self.processed_offers_summary = processed_offers_summary
 
 
 class MarathonQueueItemDelay(MarathonResource):
