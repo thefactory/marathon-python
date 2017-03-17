@@ -1,6 +1,29 @@
 # Change Log
 
-## [0.8.10](https://github.com/thefactory/marathon-python/tree/0.8.10) (2017-01-06)
+## [0.8.12](https://github.com/thefactory/marathon-python/tree/0.8.12) (2017-03-17)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.11...0.8.12)
+
+**Closed issues:**
+
+- Unknown event\_type app\_terminated\_event [\#151](https://github.com/thefactory/marathon-python/issues/151)
+
+**Merged pull requests:**
+
+- Add support for 'since' in /v2/queue [\#176](https://github.com/thefactory/marathon-python/pull/176) ([nhandler](https://github.com/nhandler))
+- Use Marathon /v2/apps/\<app\_id\>/tasks endpoint to get tasks by id. [\#175](https://github.com/thefactory/marathon-python/pull/175) ([nihn](https://github.com/nihn))
+- Update list\_apps docs for param app\_id [\#172](https://github.com/thefactory/marathon-python/pull/172) ([baopham](https://github.com/baopham))
+- Updated event.py to handle app\_terminated\_event. [\#171](https://github.com/thefactory/marathon-python/pull/171) ([Jbrownstone](https://github.com/Jbrownstone))
+
+## [0.8.11](https://github.com/thefactory/marathon-python/tree/0.8.11) (2017-02-22)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.10...0.8.11)
+
+**Merged pull requests:**
+
+- Update to work with Marathon 1.4.0 [\#169](https://github.com/thefactory/marathon-python/pull/169) ([nhandler](https://github.com/nhandler))
+- Change location [\#168](https://github.com/thefactory/marathon-python/pull/168) ([tsukaby](https://github.com/tsukaby))
+- Adds MarathonApp.add\_env\(\) method [\#166](https://github.com/thefactory/marathon-python/pull/166) ([daltonmatos](https://github.com/daltonmatos))
+
+## [0.8.10](https://github.com/thefactory/marathon-python/tree/0.8.10) (2017-01-07)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.9...0.8.10)
 
 **Closed issues:**
