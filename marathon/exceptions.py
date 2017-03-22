@@ -9,7 +9,7 @@ class MarathonHttpError(MarathonError):
         :param :class:`requests.Response` response: HTTP response
         """
         self.error_message = response.reason or ''
-        if response.content:
+        if response.content and 'application/json' in response.headers.get('content-type', ''):
             content = response.json()
             self.error_message = content.get('message', self.error_message)
             self.error_details = content.get('details')
