@@ -56,7 +56,7 @@ class MarathonMinimalJsonEncoder(json.JSONEncoder):
 
 def to_camel_case(snake_str):
     words = snake_str.split('_')
-    return words[0] + ''.join(w.title() for w in words[1:])
+    return words[0] + ''.join(w.capitalize() for w in words[1:])
 
 
 def to_snake_case(camel_str):
