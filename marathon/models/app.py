@@ -288,6 +288,7 @@ class MarathonUnreachableStrategy(MarathonObject):
     :param int inactive_after_seconds
     :param int expunge_after_seconds
     """
+    DISABLED = 'disabled'
 
     def __init__(self, unreachable_inactive_after_seconds=None,
                  unreachable_expunge_after_seconds=None,
@@ -296,6 +297,12 @@ class MarathonUnreachableStrategy(MarathonObject):
         self.unreachable_expunge_after_seconds = unreachable_expunge_after_seconds
         self.inactive_after_seconds = inactive_after_seconds
         self.expunge_after_seconds = expunge_after_seconds
+
+    @classmethod
+    def from_json(cls, attributes):
+        if attributes == cls.DISABLED:
+            return cls.DISABLED
+        return super(MarathonUnreachableStrategy, cls).from_json(attributes)
 
 
 class MarathonAppVersionInfo(MarathonObject):
