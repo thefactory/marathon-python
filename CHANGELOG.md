@@ -1,5 +1,29 @@
 # Change Log
 
+## [0.8.14](https://github.com/thefactory/marathon-python/tree/0.8.14) (2017-03-24)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.13...0.8.14)
+
+**Closed issues:**
+
+- Pypi need update to marathon 0.8.13 [\#185](https://github.com/thefactory/marathon-python/issues/185)
+- Tests fail on master branch [\#180](https://github.com/thefactory/marathon-python/issues/180)
+- ignoreHttp1xx or ignoreHttp1Xx [\#125](https://github.com/thefactory/marathon-python/issues/125)
+- ValueError when 401 Unauthorized is received [\#22](https://github.com/thefactory/marathon-python/issues/22)
+
+**Merged pull requests:**
+
+- \[fix\] util.to\_camel\_case doesn't handle digits [\#184](https://github.com/thefactory/marathon-python/pull/184) ([hlerebours](https://github.com/hlerebours))
+- \[fix\] broken build: glibc++ not found [\#183](https://github.com/thefactory/marathon-python/pull/183) ([hlerebours](https://github.com/hlerebours))
+- Support for "disabled" unreachableStrategy. [\#182](https://github.com/thefactory/marathon-python/pull/182) ([nihn](https://github.com/nihn))
+- \[fix\] Handle non-JSON errors from Marathon [\#178](https://github.com/thefactory/marathon-python/pull/178) ([hlerebours](https://github.com/hlerebours))
+
+## [0.8.13](https://github.com/thefactory/marathon-python/tree/0.8.13) (2017-03-17)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.12...0.8.13)
+
+**Merged pull requests:**
+
+- Support processed\_offers\_summary attribute [\#177](https://github.com/thefactory/marathon-python/pull/177) ([nhandler](https://github.com/nhandler))
+
 ## [0.8.12](https://github.com/thefactory/marathon-python/tree/0.8.12) (2017-03-17)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.11...0.8.12)
 
