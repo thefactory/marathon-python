@@ -90,21 +90,21 @@ class MarathonClient(object):
 
         if response.status_code >= 500:
             marathon.log.error('Got HTTP {code}: {body}'.format(
-                code=response.status_code, body=response.text))
+                code=response.status_code, body=response.text.encode('utf-8')))
             raise InternalServerError(response)
         elif response.status_code >= 400:
             marathon.log.error('Got HTTP {code}: {body}'.format(
-                code=response.status_code, body=response.text))
+                code=response.status_code, body=response.text.encode('utf-8')))
             if response.status_code == 404:
                 raise NotFoundError(response)
             else:
                 raise MarathonHttpError(response)
         elif response.status_code >= 300:
             marathon.log.warn('Got HTTP {code}: {body}'.format(
-                code=response.status_code, body=response.text))
+                code=response.status_code, body=response.text.encode('utf-8')))
         else:
             marathon.log.debug('Got HTTP {code}: {body}'.format(
-                code=response.status_code, body=response.text))
+                code=response.status_code, body=response.text.encode('utf-8')))
 
         return response
 
@@ -721,7 +721,7 @@ class MarathonClient(object):
         :rtype: str
         """
         response = self._do_request('GET', '/ping')
-        return response.text
+        return response.text.encode('utf-8')
 
     def get_metrics(self):
         """Get server metrics
