@@ -16,12 +16,9 @@ class MarathonConstraint(MarathonObject):
     :type value: str, int, or None
     """
 
-    OPERATORS = ['UNIQUE', 'CLUSTER', 'GROUP_BY', 'LIKE', 'UNLIKE']
     """Valid operators"""
 
     def __init__(self, field, operator, value=None):
-        if operator not in self.OPERATORS:
-            raise InvalidChoiceError('operator', operator, self.OPERATORS)
         self.field = field
         self.operator = operator
         self.value = value
