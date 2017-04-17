@@ -94,7 +94,7 @@ class MarathonApp(MarathonResource):
                  tasks_healthy=None, task_kill_grace_period_seconds=None, tasks_unhealthy=None, upgrade_strategy=None,
                  unreachable_strategy=None, uris=None, user=None, version=None, version_info=None,
                  ip_address=None, fetch=None, task_stats=None, readiness_checks=None,
-                 readiness_check_results=None, secrets=None, port_definitions=None, residency=None, gpus=None):
+                 readiness_check_results=None, secrets=None, port_definitions=None, residency=None, gpus=None, networks=None):
 
         # self.args = args or []
         self.accepted_resource_roles = accepted_resource_roles
@@ -184,6 +184,8 @@ class MarathonApp(MarathonResource):
             else MarathonAppVersionInfo.from_json(version_info)
         self.task_stats = task_stats if (isinstance(task_stats, MarathonTaskStats) or task_stats is None) \
             else MarathonTaskStats.from_json(task_stats)
+        self.networks = networks
+            
 
     def add_env(self, key, value):
         self.env[key] = value
