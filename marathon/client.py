@@ -732,9 +732,10 @@ class MarathonClient(object):
         response = self._do_request('GET', '/metrics')
         return response.json()
 
-    def event_stream(self):
+    def event_stream(self, raw=False):
         """Polls event bus using /v2/events
 
+        :param bool raw: if true, yield raw event text, else yield MarathonEvent object
         :returns: iterator with events
         :rtype: iterator
         """
@@ -746,9 +747,12 @@ class MarathonClient(object):
                 _data = raw_message.decode('utf8').split(':', 1)
 
                 if _data[0] == 'data':
-                    event_data = json.loads(_data[1].strip())
-                    if 'eventType' not in event_data:
-                        raise MarathonError('Invalid event data received.')
-                    yield ef.process(event_data)
+                    if raw:
+                        yield _data[1]
+                    else:
+                        event_data = json.loads(_data[1].strip())
+                        if 'eventType' not in event_data:
+                            raise MarathonError('Invalid event data received.')
+                        yield ef.process(event_data)
             except ValueError:
                 raise MarathonError('Invalid event data received.')
