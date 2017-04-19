@@ -1,5 +1,22 @@
 # Change Log
 
+## [Unreleased](https://github.com/thefactory/marathon-python/tree/HEAD)
+
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.14...HEAD)
+
+**Closed issues:**
+
+- Adding the key "networks" in the JSON received of marathon \( list apps \) [\#192](https://github.com/thefactory/marathon-python/issues/192)
+- logs cause exception with non-ascii characters [\#187](https://github.com/thefactory/marathon-python/issues/187)
+- Add new Yelp Contributors [\#181](https://github.com/thefactory/marathon-python/issues/181)
+
+**Merged pull requests:**
+
+- Adding the key "networks" in the JSON received of marathon [\#193](https://github.com/thefactory/marathon-python/pull/193) ([joaoleite](https://github.com/joaoleite))
+- Remove out of date constraint validation of operator. [\#190](https://github.com/thefactory/marathon-python/pull/190) ([akatrevorjay](https://github.com/akatrevorjay))
+- Add raw\_data option for event\_stream method [\#189](https://github.com/thefactory/marathon-python/pull/189) ([fengyehong](https://github.com/fengyehong))
+- handle case when non-ascii char are logged [\#188](https://github.com/thefactory/marathon-python/pull/188) ([tgermain](https://github.com/tgermain))
+
 ## [0.8.14](https://github.com/thefactory/marathon-python/tree/0.8.14) (2017-03-24)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.13...0.8.14)
 
