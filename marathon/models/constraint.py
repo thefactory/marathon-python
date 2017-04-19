@@ -1,4 +1,3 @@
-from ..exceptions import InvalidChoiceError
 from .base import MarathonObject
 
 
