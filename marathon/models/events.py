@@ -119,6 +119,30 @@ class MarathonAppTerminatedEvent(MarathonEvent):
     KNOWN_ATTRIBUTES = ['app_id']
 
 
+class MarathonInstanceChangedEvent(MarathonEvent):
+    KNOWN_ATTRIBUTES = ['instance_id', 'slave_id', 'condition', 'host', 'run_spec_id',  'run_spec_version']
+
+
+class MarathonUnknownInstanceTerminated(MarathonEvent):
+    KNOWN_ATTRIBUTES = ['instance_id', 'run_spec_id', 'condition']
+
+
+class MarathonInstanceHealthChanged(MarathonEvent):
+    KNOWN_ATTRIBUTES = ['instance_id', 'run_spec_id', 'run_spec_version', 'healthy']
+
+
+class MarathonPodCreatedEvent(MarathonEvent):
+    KNOWN_ATTRIBUTES = ['client_ip', 'uri']
+
+
+class MarathonPodUpdatedEvent(MarathonEvent):
+    KNOWN_ATTRIBUTES = ['client_ip', 'uri']
+
+
+class MarathonPodDeletedEvent(MarathonEvent):
+    KNOWN_ATTRIBUTES = ['client_ip', 'uri']
+
+
 class EventFactory:
 
     """
@@ -150,6 +174,12 @@ class EventFactory:
         'event_stream_attached': MarathonEventStreamAttached,
         'event_stream_detached': MarathonEventStreamDetached,
         'app_terminated_event': MarathonAppTerminatedEvent,
+        'instance_changed_event': MarathonInstanceChangedEvent,
+        'unknown_instance_terminated_event': MarathonUnknownInstanceTerminated,
+        'instance_health_changed_event': MarathonInstanceChangedEvent,
+        'pod_created_event': MarathonPodCreatedEvent,
+        'pod_updated_event': MarathonPodUpdatedEvent,
+        'pod_deleted_event': MarathonPodDeletedEvent,
     }
 
     def process(self, event):
