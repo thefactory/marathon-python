@@ -143,6 +143,10 @@ class MarathonPodDeletedEvent(MarathonEvent):
     KNOWN_ATTRIBUTES = ['client_ip', 'uri']
 
 
+class MarathonUnhealthyInstanceKillEvent(MarathonEvent):
+    KNOWN_ATTRIBUTES = ['app_id', 'task_id', 'instance_id', 'version', 'reason', 'host', 'slave_id']
+
+
 class EventFactory:
 
     """
@@ -176,6 +180,7 @@ class EventFactory:
         'app_terminated_event': MarathonAppTerminatedEvent,
         'instance_changed_event': MarathonInstanceChangedEvent,
         'unknown_instance_terminated_event': MarathonUnknownInstanceTerminated,
+        'unhealthy_instance_kill_event': MarathonUnhealthyInstanceKillEvent,
         'instance_health_changed_event': MarathonInstanceChangedEvent,
         'pod_created_event': MarathonPodCreatedEvent,
         'pod_updated_event': MarathonPodUpdatedEvent,
