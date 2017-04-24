@@ -58,10 +58,11 @@ class MarathonDeploymentAction(MarathonObject):
     :param type readiness_check_results: Undocumented
     """
 
-    def __init__(self, action=None, app=None, apps=None, type=None, readiness_check_results=None):
+    def __init__(self, action=None, app=None, apps=None, type=None, readiness_check_results=None, pod=None):
         self.action = action
         self.app = app
         self.apps = apps
+        self.pod = pod
         self.type = type  # TODO: Remove builtin shadow
         self.readiness_check_results = readiness_check_results  # TODO: The docs say this is called just "readinessChecks?"
 
@@ -86,20 +87,22 @@ class MarathonDeploymentStep(MarathonObject):
 class MarathonDeploymentOriginalState(MarathonObject):
 
     def __init__(self, dependencies=None,
-                 apps=None, id=None, version=None, groups=None):
+                 apps=None, id=None, version=None, groups=None, pods=None):
         self.apps = apps
         self.groups = groups
         self.id = id
         self.version = version
         self.dependencies = dependencies
+        self.pods = pods
 
 
 class MarathonDeploymentTargetState(MarathonObject):
 
     def __init__(self, groups=None, apps=None,
-                 dependencies=None, id=None, version=None):
+                 dependencies=None, id=None, version=None, pods=None):
         self.apps = apps
         self.groups = groups
         self.id = id
         self.version = version
         self.dependencies = dependencies
+        self.pods = pods
