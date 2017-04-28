@@ -121,9 +121,9 @@ class MarathonClient(object):
                 )
             except Exception as e:
                 marathon.log.error('Error while calling %s: %s', url, e.message)
-
-            if response.ok:
-                return response.iter_lines()
+            else:
+                if response.ok:
+                    return response.iter_lines()
 
         raise MarathonError('No remaining Marathon servers to try')
 
