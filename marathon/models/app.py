@@ -185,7 +185,6 @@ class MarathonApp(MarathonResource):
         self.task_stats = task_stats if (isinstance(task_stats, MarathonTaskStats) or task_stats is None) \
             else MarathonTaskStats.from_json(task_stats)
         self.networks = networks
-            
 
     def add_env(self, key, value):
         self.env[key] = value
