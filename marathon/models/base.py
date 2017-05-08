@@ -12,7 +12,10 @@ class MarathonObject(object):
         return "{clazz}::{obj}".format(clazz=self.__class__.__name__, obj=self.to_json(minimal=False))
 
     def __eq__(self, other):
-        return self.__dict__ == other.__dict__
+        try:
+            return self.__dict__ == other.__dict__
+        except:
+            return False
 
     def json_repr(self, minimal=False):
         """Construct a JSON-friendly representation of the object.
@@ -58,7 +61,10 @@ class MarathonResource(MarathonObject):
             return "{clazz}::{obj}".format(clazz=self.__class__.__name__, obj=self.to_json())
 
     def __eq__(self, other):
-        return self.__dict__ == other.__dict__
+        try:
+            return self.__dict__ == other.__dict__
+        except:
+            return False
 
     def __str__(self):
         return "{clazz}::".format(clazz=self.__class__.__name__) + str(self.__dict__)
