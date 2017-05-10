@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>marathon.models.app &mdash; marathon-python  documentation</title>
@@ -12,9 +13,10 @@
 
   
   
+  
+  
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   
   
@@ -28,91 +30,146 @@
   
 
   
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
     <link rel="top" title="marathon-python  documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        <a href="../../../index.html" class="fa fa-home"> marathon-python</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> marathon-python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-      </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
-        
-            <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../marathon.html">marathon package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon.models.app">marathon.models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon.client">marathon.client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon.exceptions">marathon.exceptions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon">Module contents</a></li>
-</ul>
-</li>
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../marathon.html">marathon package</a></li>
 </ul>
 
-        
+            
+          
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../index.html">marathon-python</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">marathon-python</a>
+        
       </nav>
 
 
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../../index.html">Module code</a> &raquo;</li>
-      
-    <li>marathon.models.app</li>
+        
+      <li>marathon.models.app</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
+            
+        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for marathon.models.app</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span>
 
-<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">MarathonResource</span><span class="p">,</span> <span class="n">MarathonObject</span>
-<span class="kn">from</span> <span class="nn">.constraint</span> <span class="kn">import</span> <span class="n">MarathonConstraint</span>
-<span class="kn">from</span> <span class="nn">.container</span> <span class="kn">import</span> <span class="n">MarathonContainer</span>
-<span class="kn">from</span> <span class="nn">.deployment</span> <span class="kn">import</span> <span class="n">MarathonDeployment</span>
-<span class="kn">from</span> <span class="nn">.task</span> <span class="kn">import</span> <span class="n">MarathonTask</span>
+<span class="kn">from</span> <span class="nn">..exceptions</span> <span class="k">import</span> <span class="n">InvalidChoiceError</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="k">import</span> <span class="n">MarathonResource</span><span class="p">,</span> <span class="n">MarathonObject</span><span class="p">,</span> <span class="n">assert_valid_path</span>
+<span class="kn">from</span> <span class="nn">.constraint</span> <span class="k">import</span> <span class="n">MarathonConstraint</span>
+<span class="kn">from</span> <span class="nn">.container</span> <span class="k">import</span> <span class="n">MarathonContainer</span>
+<span class="kn">from</span> <span class="nn">.deployment</span> <span class="k">import</span> <span class="n">MarathonDeployment</span>
+<span class="kn">from</span> <span class="nn">.task</span> <span class="k">import</span> <span class="n">MarathonTask</span>
 
 
 <div class="viewcode-block" id="MarathonApp"><a class="viewcode-back" href="../../../marathon.html#marathon.models.app.MarathonApp">[docs]</a><span class="k">class</span> <span class="nc">MarathonApp</span><span class="p">(</span><span class="n">MarathonResource</span><span class="p">):</span>
+
     <span class="sd">&quot;&quot;&quot;Marathon Application resource.</span>
 
 <span class="sd">    See: https://mesosphere.github.io/marathon/docs/rest-api.html#post-/v2/apps</span>
 
+<span class="sd">    :param list[str] accepted_resource_roles: a list of resource roles (the resource offer</span>
+<span class="sd">                                              must contain at least one of these for the app</span>
+<span class="sd">                                              to be launched on that host)</span>
 <span class="sd">    :param list[str] args: args form of the command to run</span>
 <span class="sd">    :param int backoff_factor: multiplier for subsequent backoff</span>
 <span class="sd">    :param int backoff_seconds: base time, in seconds, for exponential backoff</span>
@@ -128,6 +185,7 @@
 <span class="sd">    :type deployments: list[:class:`marathon.models.deployment.MarathonDeployment`]</span>
 <span class="sd">    :param dict env: env vars</span>
 <span class="sd">    :param str executor: executor</span>
+<span class="sd">    :param int gpus: gpus required per instance</span>
 <span class="sd">    :param health_checks: health checks</span>
 <span class="sd">    :type health_checks: list[:class:`marathon.models.MarathonHealthCheck`] or list[dict]</span>
 <span class="sd">    :param str id: app id</span>
@@ -135,6 +193,8 @@
 <span class="sd">    :param last_task_failure: last task failure</span>
 <span class="sd">    :type last_task_failure: :class:`marathon.models.app.MarathonTaskFailure` or dict</span>
 <span class="sd">    :param float mem: memory (in MB) required per instance</span>
+<span class="sd">    :param dict secrets: A map with named secret declarations.</span>
+<span class="sd">    :type port_definitions: list[:class:`marathon.models.app.PortDefinitions`] or list[dict]</span>
 <span class="sd">    :param list[int] ports: ports</span>
 <span class="sd">    :param bool require_ports: require the specified `ports` to be available in the resource offer</span>
 <span class="sd">    :param list[str] store_urls: store URLs</span>
@@ -150,33 +210,50 @@
 <span class="sd">    :param list[str] uris: uris</span>
 <span class="sd">    :param str user: user</span>
 <span class="sd">    :param str version: version id</span>
+<span class="sd">    :param version_info: time of last scaling, last config change</span>
+<span class="sd">    :type version_info: :class:`marathon.models.app.MarathonAppVersionInfo` or dict</span>
+<span class="sd">    :param task_stats: task statistics</span>
+<span class="sd">    :type task_stats: :class:`marathon.models.app.MarathonTaskStats` or dict</span>
 <span class="sd">    :param dict labels</span>
+<span class="sd">    :type readiness_checks: list[:class:`marathon.models.app.ReadinessCheck`] or list[dict]</span>
+<span class="sd">    :type residency: :class:`marathon.models.app.Residency` or dict</span>
+<span class="sd">    :param int task_kill_grace_period_seconds: Configures the termination signal escalation behavior of executors when stopping tasks.</span>
+<span class="sd">    :param list[dict] unreachable_strategy: Handling for unreachable instances.</span>
+<span class="sd">    :param str kill_selection: Defines which instance should be killed first in case of e.g. rescaling.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">UPDATE_OK_ATTRIBUTES</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s">&#39;args&#39;</span><span class="p">,</span> <span class="s">&#39;backoff_factor&#39;</span><span class="p">,</span> <span class="s">&#39;backoff_seconds&#39;</span><span class="p">,</span> <span class="s">&#39;cmd&#39;</span><span class="p">,</span> <span class="s">&#39;constraints&#39;</span><span class="p">,</span> <span class="s">&#39;container&#39;</span><span class="p">,</span> <span class="s">&#39;cpus&#39;</span><span class="p">,</span> <span class="s">&#39;dependencies&#39;</span><span class="p">,</span> <span class="s">&#39;disk&#39;</span><span class="p">,</span>
-        <span class="s">&#39;env&#39;</span><span class="p">,</span> <span class="s">&#39;executor&#39;</span><span class="p">,</span> <span class="s">&#39;health_checks&#39;</span><span class="p">,</span> <span class="s">&#39;instances&#39;</span><span class="p">,</span> <span class="s">&#39;labels&#39;</span><span class="p">,</span> <span class="s">&#39;max_launch_delay_seconds&#39;</span><span class="p">,</span> <span class="s">&#39;mem&#39;</span><span class="p">,</span> <span class="s">&#39;ports&#39;</span><span class="p">,</span> <span class="s">&#39;require_ports&#39;</span><span class="p">,</span>
-        <span class="s">&#39;store_urls&#39;</span><span class="p">,</span> <span class="s">&#39;task_rate_limit&#39;</span><span class="p">,</span> <span class="s">&#39;upgrade_strategy&#39;</span><span class="p">,</span> <span class="s">&#39;uris&#39;</span><span class="p">,</span> <span class="s">&#39;user&#39;</span><span class="p">,</span> <span class="s">&#39;version&#39;</span>
+        <span class="s1">&#39;args&#39;</span><span class="p">,</span> <span class="s1">&#39;backoff_factor&#39;</span><span class="p">,</span> <span class="s1">&#39;backoff_seconds&#39;</span><span class="p">,</span> <span class="s1">&#39;cmd&#39;</span><span class="p">,</span> <span class="s1">&#39;constraints&#39;</span><span class="p">,</span> <span class="s1">&#39;container&#39;</span><span class="p">,</span> <span class="s1">&#39;cpus&#39;</span><span class="p">,</span> <span class="s1">&#39;dependencies&#39;</span><span class="p">,</span> <span class="s1">&#39;disk&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;env&#39;</span><span class="p">,</span> <span class="s1">&#39;executor&#39;</span><span class="p">,</span> <span class="s1">&#39;gpus&#39;</span><span class="p">,</span> <span class="s1">&#39;health_checks&#39;</span><span class="p">,</span> <span class="s1">&#39;instances&#39;</span><span class="p">,</span> <span class="s1">&#39;kill_selection&#39;</span><span class="p">,</span> <span class="s1">&#39;labels&#39;</span><span class="p">,</span> <span class="s1">&#39;max_launch_delay_seconds&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;mem&#39;</span><span class="p">,</span> <span class="s1">&#39;ports&#39;</span><span class="p">,</span> <span class="s1">&#39;require_ports&#39;</span><span class="p">,</span> <span class="s1">&#39;store_urls&#39;</span><span class="p">,</span> <span class="s1">&#39;task_rate_limit&#39;</span><span class="p">,</span> <span class="s1">&#39;upgrade_strategy&#39;</span><span class="p">,</span> <span class="s1">&#39;unreachable_strategy&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;uris&#39;</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span>
     <span class="p">]</span>
     <span class="sd">&quot;&quot;&quot;List of attributes which may be updated/changed after app creation&quot;&quot;&quot;</span>
 
-    <span class="n">CREATE_ONLY_ATTRIBUTES</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">]</span>
+    <span class="n">CREATE_ONLY_ATTRIBUTES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;accepted_resource_roles&#39;</span><span class="p">]</span>
     <span class="sd">&quot;&quot;&quot;List of attributes that should only be passed on creation&quot;&quot;&quot;</span>
 
-    <span class="n">READ_ONLY_ATTRIBUTES</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;deployments&#39;</span><span class="p">,</span> <span class="s">&#39;tasks&#39;</span><span class="p">,</span> <span class="s">&#39;tasks_running&#39;</span><span class="p">,</span> <span class="s">&#39;tasks_staged&#39;</span><span class="p">,</span> <span class="s">&#39;tasks_healthy&#39;</span><span class="p">,</span> <span class="s">&#39;tasks_unhealthy&#39;</span><span class="p">]</span>
+    <span class="n">READ_ONLY_ATTRIBUTES</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;deployments&#39;</span><span class="p">,</span> <span class="s1">&#39;tasks&#39;</span><span class="p">,</span> <span class="s1">&#39;tasks_running&#39;</span><span class="p">,</span> <span class="s1">&#39;tasks_staged&#39;</span><span class="p">,</span> <span class="s1">&#39;tasks_healthy&#39;</span><span class="p">,</span> <span class="s1">&#39;tasks_unhealthy&#39;</span><span class="p">]</span>
     <span class="sd">&quot;&quot;&quot;List of read-only attributes&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">backoff_factor</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">backoff_seconds</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">cmd</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">container</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">cpus</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">deployments</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">disk</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">health_checks</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="nb">id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">instances</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">last_task_failure</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">max_launch_delay_seconds</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">mem</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">ports</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">require_ports</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">store_urls</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">task_rate_limit</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tasks</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tasks_running</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">tasks_staged</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tasks_healthy</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tasks_unhealthy</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">upgrade_strategy</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">uris</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">version</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">KILL_SELECTIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;YOUNGEST_FIRST&quot;</span><span class="p">,</span> <span class="s2">&quot;OLDEST_FIRST&quot;</span><span class="p">]</span>
 
-        <span class="c"># self.args = args or []</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accepted_resource_roles</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">backoff_factor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">backoff_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">container</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cpus</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">deployments</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">disk</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">executor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">health_checks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">instances</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kill_selection</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">last_task_failure</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_launch_delay_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mem</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ports</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">require_ports</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">store_urls</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">task_rate_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tasks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tasks_running</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tasks_staged</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">tasks_healthy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">task_kill_grace_period_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tasks_unhealthy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">upgrade_strategy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">unreachable_strategy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">uris</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">version_info</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">ip_address</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fetch</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">task_stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">readiness_checks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">readiness_check_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">secrets</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">port_definitions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">residency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gpus</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">networks</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="c1"># self.args = args or []</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accepted_resource_roles</span> <span class="o">=</span> <span class="n">accepted_resource_roles</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
-        <span class="c"># Marathon 0.7.0-RC1 throws a validation error if this is [] and cmd is passed:</span>
-        <span class="c"># &quot;error&quot;: &quot;AppDefinition must either contain a &#39;cmd&#39; or a &#39;container&#39;.&quot;</span>
+        <span class="c1"># Marathon 0.7.0-RC1 throws a validation error if this is [] and cmd is passed:</span>
+        <span class="c1"># &quot;error&quot;: &quot;AppDefinition must either contain a &#39;cmd&#39; or a &#39;container&#39;.&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">backoff_factor</span> <span class="o">=</span> <span class="n">backoff_factor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">backoff_seconds</span> <span class="o">=</span> <span class="n">backoff_seconds</span>
@@ -185,31 +262,56 @@
             <span class="n">c</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">MarathonConstraint</span><span class="p">)</span> <span class="k">else</span> <span class="n">MarathonConstraint</span><span class="p">(</span><span class="o">*</span><span class="n">c</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">(</span><span class="n">constraints</span> <span class="ow">or</span> <span class="p">[])</span>
         <span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">container</span> <span class="o">=</span> <span class="n">container</span> <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">MarathonContainer</span><span class="p">)</span> <span class="ow">or</span> <span class="n">container</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">)</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">container</span> <span class="o">=</span> <span class="n">container</span> <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">MarathonContainer</span><span class="p">)</span> <span class="ow">or</span> <span class="n">container</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> \
             <span class="k">else</span> <span class="n">MarathonContainer</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">container</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cpus</span> <span class="o">=</span> <span class="n">cpus</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dependencies</span> <span class="o">=</span> <span class="n">dependencies</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">deployments</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">d</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">MarathonDeployment</span><span class="p">)</span> <span class="k">else</span> <span class="n">MarathonDeployment</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+            <span class="n">d</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span>
+                <span class="n">d</span><span class="p">,</span> <span class="n">MarathonDeployment</span><span class="p">)</span> <span class="k">else</span> <span class="n">MarathonDeployment</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="p">(</span><span class="n">deployments</span> <span class="ow">or</span> <span class="p">[])</span>
         <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">disk</span> <span class="o">=</span> <span class="n">disk</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span> <span class="ow">or</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">executor</span> <span class="o">=</span> <span class="n">executor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gpus</span> <span class="o">=</span> <span class="n">gpus</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">health_checks</span> <span class="o">=</span> <span class="n">health_checks</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">health_checks</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">hc</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hc</span><span class="p">,</span> <span class="n">MarathonHealthCheck</span><span class="p">)</span> <span class="k">else</span> <span class="n">MarathonHealthCheck</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">hc</span><span class="p">)</span>
+            <span class="n">hc</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span>
+                <span class="n">hc</span><span class="p">,</span> <span class="n">MarathonHealthCheck</span><span class="p">)</span> <span class="k">else</span> <span class="n">MarathonHealthCheck</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">hc</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">hc</span> <span class="ow">in</span> <span class="p">(</span><span class="n">health_checks</span> <span class="ow">or</span> <span class="p">[])</span>
         <span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">assert_valid_path</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">instances</span> <span class="o">=</span> <span class="n">instances</span>
+        <span class="k">if</span> <span class="n">kill_selection</span> <span class="ow">and</span> <span class="n">kill_selection</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">KILL_SELECTIONS</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidChoiceError</span><span class="p">(</span>
+                <span class="s1">&#39;kill_selection&#39;</span><span class="p">,</span> <span class="n">kill_selection</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">KILL_SELECTIONS</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kill_selection</span> <span class="o">=</span> <span class="n">kill_selection</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span> <span class="ow">or</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">last_task_failure</span> <span class="o">=</span> <span class="n">last_task_failure</span> <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">last_task_failure</span><span class="p">,</span> <span class="n">MarathonTaskFailure</span><span class="p">)</span> <span class="ow">or</span> <span class="n">last_task_failure</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">)</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_task_failure</span> <span class="o">=</span> <span class="n">last_task_failure</span> <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">last_task_failure</span><span class="p">,</span> <span class="n">MarathonTaskFailure</span><span class="p">)</span> <span class="ow">or</span> <span class="n">last_task_failure</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> \
             <span class="k">else</span> <span class="n">MarathonTaskFailure</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">last_task_failure</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_launch_delay_seconds</span> <span class="o">=</span> <span class="n">max_launch_delay_seconds</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mem</span> <span class="o">=</span> <span class="n">mem</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ports</span> <span class="o">=</span> <span class="n">ports</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port_definitions</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">pd</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span>
+                <span class="n">pd</span><span class="p">,</span> <span class="n">PortDefinition</span><span class="p">)</span> <span class="k">else</span> <span class="n">PortDefinition</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">pd</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">pd</span> <span class="ow">in</span> <span class="p">(</span><span class="n">port_definitions</span> <span class="ow">or</span> <span class="p">[])</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">readiness_checks</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">rc</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span>
+                <span class="n">rc</span><span class="p">,</span> <span class="n">ReadinessCheck</span><span class="p">)</span> <span class="k">else</span> <span class="n">ReadinessCheck</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">rc</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">rc</span> <span class="ow">in</span> <span class="p">(</span><span class="n">readiness_checks</span> <span class="ow">or</span> <span class="p">[])</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">readiness_check_results</span> <span class="o">=</span> <span class="n">readiness_check_results</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">residency</span> <span class="o">=</span> <span class="n">residency</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">require_ports</span> <span class="o">=</span> <span class="n">require_ports</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">secrets</span> <span class="o">=</span> <span class="n">secrets</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">secrets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">Secret</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">secrets</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">Secret</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">store_urls</span> <span class="o">=</span> <span class="n">store_urls</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">task_rate_limit</span> <span class="o">=</span> <span class="n">task_rate_limit</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span>
@@ -219,15 +321,30 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">tasks_running</span> <span class="o">=</span> <span class="n">tasks_running</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tasks_staged</span> <span class="o">=</span> <span class="n">tasks_staged</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tasks_healthy</span> <span class="o">=</span> <span class="n">tasks_healthy</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_kill_grace_period_seconds</span> <span class="o">=</span> <span class="n">task_kill_grace_period_seconds</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tasks_unhealthy</span> <span class="o">=</span> <span class="n">tasks_unhealthy</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">upgrade_strategy</span> <span class="o">=</span> <span class="n">upgrade_strategy</span> <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">upgrade_strategy</span><span class="p">,</span> <span class="n">MarathonUpgradeStrategy</span><span class="p">)</span> <span class="ow">or</span> <span class="n">upgrade_strategy</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">)</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">upgrade_strategy</span> <span class="o">=</span> <span class="n">upgrade_strategy</span> <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">upgrade_strategy</span><span class="p">,</span> <span class="n">MarathonUpgradeStrategy</span><span class="p">)</span> <span class="ow">or</span> <span class="n">upgrade_strategy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> \
             <span class="k">else</span> <span class="n">MarathonUpgradeStrategy</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">upgrade_strategy</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unreachable_strategy</span> <span class="o">=</span> <span class="n">unreachable_strategy</span> \
+            <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">unreachable_strategy</span><span class="p">,</span> <span class="n">MarathonUnreachableStrategy</span><span class="p">)</span>
+                <span class="ow">or</span> <span class="n">unreachable_strategy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> \
+            <span class="k">else</span> <span class="n">MarathonUnreachableStrategy</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">unreachable_strategy</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">uris</span> <span class="o">=</span> <span class="n">uris</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fetch</span> <span class="o">=</span> <span class="n">fetch</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">user</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version_info</span> <span class="o">=</span> <span class="n">version_info</span> <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">version_info</span><span class="p">,</span> <span class="n">MarathonAppVersionInfo</span><span class="p">)</span> <span class="ow">or</span> <span class="n">version_info</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> \
+            <span class="k">else</span> <span class="n">MarathonAppVersionInfo</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">version_info</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_stats</span> <span class="o">=</span> <span class="n">task_stats</span> <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">task_stats</span><span class="p">,</span> <span class="n">MarathonTaskStats</span><span class="p">)</span> <span class="ow">or</span> <span class="n">task_stats</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> \
+            <span class="k">else</span> <span class="n">MarathonTaskStats</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">task_stats</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">networks</span> <span class="o">=</span> <span class="n">networks</span>
 
-</div>
+<div class="viewcode-block" id="MarathonApp.add_env"><a class="viewcode-back" href="../../../marathon.html#marathon.models.app.MarathonApp.add_env">[docs]</a>    <span class="k">def</span> <span class="nf">add_env</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div></div>
+
+
 <div class="viewcode-block" id="MarathonHealthCheck"><a class="viewcode-back" href="../../../marathon.html#marathon.models.app.MarathonHealthCheck">[docs]</a><span class="k">class</span> <span class="nc">MarathonHealthCheck</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
     <span class="sd">&quot;&quot;&quot;Marathon health check.</span>
 
 <span class="sd">    See https://mesosphere.github.io/marathon/docs/health-checks.html</span>
@@ -240,10 +357,12 @@
 <span class="sd">    :param int port_index: target port as indexed in app&#39;s `ports` array</span>
 <span class="sd">    :param str protocol: health check protocol (&#39;HTTP&#39;, &#39;TCP&#39;, or &#39;COMMAND&#39;)</span>
 <span class="sd">    :param int timeout_seconds: how long before a waiting health check is considered failed</span>
+<span class="sd">    :param bool ignore_http1xx: Ignore HTTP informational status codes 100 to 199.</span>
+<span class="sd">    :param dict kwargs: additional arguments for forward compatibility</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">grace_period_seconds</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">interval_seconds</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">max_consecutive_failures</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">path</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">port_index</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">timeout_seconds</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">grace_period_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">interval_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_consecutive_failures</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">port_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ignore_http1xx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">command</span> <span class="o">=</span> <span class="n">command</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grace_period_seconds</span> <span class="o">=</span> <span class="n">grace_period_seconds</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">interval_seconds</span> <span class="o">=</span> <span class="n">interval_seconds</span>
@@ -252,35 +371,45 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">port_index</span> <span class="o">=</span> <span class="n">port_index</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span> <span class="o">=</span> <span class="n">protocol</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">timeout_seconds</span> <span class="o">=</span> <span class="n">timeout_seconds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ignore_http1xx</span> <span class="o">=</span> <span class="n">ignore_http1xx</span>
+        <span class="c1"># additional not previously known healthcheck attributes</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span></div>
 
-</div>
+
 <div class="viewcode-block" id="MarathonTaskFailure"><a class="viewcode-back" href="../../../marathon.html#marathon.models.app.MarathonTaskFailure">[docs]</a><span class="k">class</span> <span class="nc">MarathonTaskFailure</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
     <span class="sd">&quot;&quot;&quot;Marathon Task Failure.</span>
 
 <span class="sd">    :param str app_id: application id</span>
 <span class="sd">    :param str host: mesos slave running the task</span>
 <span class="sd">    :param str message: error message</span>
 <span class="sd">    :param str task_id: task id</span>
+<span class="sd">    :param str instance_id: instance id</span>
 <span class="sd">    :param str state: task state</span>
 <span class="sd">    :param timestamp: when this task failed</span>
 <span class="sd">    :type timestamp: datetime or str</span>
 <span class="sd">    :param str version: app version with which this task was started</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">DATETIME_FORMAT</span> <span class="o">=</span> <span class="s">&#39;%Y-%m-</span><span class="si">%d</span><span class="s">T%H:%M:%S.</span><span class="si">%f</span><span class="s">Z&#39;</span>
+    <span class="n">DATETIME_FORMAT</span> <span class="o">=</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%f</span><span class="s1">Z&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">task_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">timestamp</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">task_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">instance_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">slave_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timestamp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app_id</span> <span class="o">=</span> <span class="n">app_id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">host</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">task_id</span> <span class="o">=</span> <span class="n">task_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instance_id</span> <span class="o">=</span> <span class="n">instance_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">slave_id</span> <span class="o">=</span> <span class="n">slave_id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">state</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">timestamp</span> <span class="k">if</span> <span class="p">(</span><span class="n">timestamp</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">datetime</span><span class="p">))</span> \
+        <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">timestamp</span> <span class="k">if</span> <span class="p">(</span><span class="n">timestamp</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">datetime</span><span class="p">))</span> \
             <span class="k">else</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">timestamp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">DATETIME_FORMAT</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span></div>
 
-</div>
+
 <div class="viewcode-block" id="MarathonUpgradeStrategy"><a class="viewcode-back" href="../../../marathon.html#marathon.models.app.MarathonUpgradeStrategy">[docs]</a><span class="k">class</span> <span class="nc">MarathonUpgradeStrategy</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
     <span class="sd">&quot;&quot;&quot;Marathon health check.</span>
 
 <span class="sd">    See https://mesosphere.github.io/marathon/docs/health-checks.html</span>
@@ -288,11 +417,243 @@
 <span class="sd">    :param float minimum_health_capacity: minimum % of instances kept healthy on deploy</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maximum_over_capacity</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">minimum_health_capacity</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maximum_over_capacity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">minimum_health_capacity</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">maximum_over_capacity</span> <span class="o">=</span> <span class="n">maximum_over_capacity</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">minimum_health_capacity</span> <span class="o">=</span> <span class="n">minimum_health_capacity</span></div>
+
+
+<div class="viewcode-block" id="MarathonUnreachableStrategy"><a class="viewcode-back" href="../../../marathon.html#marathon.models.app.MarathonUnreachableStrategy">[docs]</a><span class="k">class</span> <span class="nc">MarathonUnreachableStrategy</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Marathon unreachable Strategy.</span>
+
+<span class="sd">    Define handling for unreachable instances. Given</span>
+<span class="sd">    `unreachable_inactive_after_seconds = 60` and</span>
+<span class="sd">    `unreachable_expunge_after = 120`, an instance will be expunged if it has</span>
+<span class="sd">    been unreachable for more than 120 seconds or a second instance is started</span>
+<span class="sd">    if it has been unreachable for more than 60 seconds.&quot;,</span>
+
+<span class="sd">    See https://mesosphere.github.io/marathon/docs/?</span>
+
+<span class="sd">    :param int unreachable_inactive_after_seconds: time an instance is</span>
+<span class="sd">        unreachable for in seconds before marked as inactive.</span>
+<span class="sd">    :param int unreachable_expunge_after_seconds: time an instance is</span>
+<span class="sd">        unreachable for in seconds before expunged.</span>
+<span class="sd">    :param int inactive_after_seconds</span>
+<span class="sd">    :param int expunge_after_seconds</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">DISABLED</span> <span class="o">=</span> <span class="s1">&#39;disabled&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unreachable_inactive_after_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">unreachable_expunge_after_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">inactive_after_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">expunge_after_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unreachable_inactive_after_seconds</span> <span class="o">=</span> <span class="n">unreachable_inactive_after_seconds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unreachable_expunge_after_seconds</span> <span class="o">=</span> <span class="n">unreachable_expunge_after_seconds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inactive_after_seconds</span> <span class="o">=</span> <span class="n">inactive_after_seconds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expunge_after_seconds</span> <span class="o">=</span> <span class="n">expunge_after_seconds</span>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="MarathonUnreachableStrategy.from_json"><a class="viewcode-back" href="../../../marathon.html#marathon.models.app.MarathonUnreachableStrategy.from_json">[docs]</a>    <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">attributes</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">attributes</span> <span class="o">==</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DISABLED</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DISABLED</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">MarathonUnreachableStrategy</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="MarathonAppVersionInfo"><a class="viewcode-back" href="../../../marathon.html#marathon.models.app.MarathonAppVersionInfo">[docs]</a><span class="k">class</span> <span class="nc">MarathonAppVersionInfo</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Marathon App version info.</span>
+
+<span class="sd">    See release notes for Marathon v0.11.0</span>
+<span class="sd">    https://github.com/mesosphere/marathon/releases/tag/v0.11.0</span>
+
+<span class="sd">    :param str app_id: application id</span>
+<span class="sd">    :param str host: mesos slave running the task</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">DATETIME_FORMAT</span> <span class="o">=</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%f</span><span class="s1">Z&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">last_scaling_at</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">last_config_change_at</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_scaling_at</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_datetime</span><span class="p">(</span><span class="n">last_scaling_at</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_config_change_at</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_datetime</span><span class="p">(</span><span class="n">last_config_change_at</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_to_datetime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">timestamp</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">datetime</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="n">timestamp</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">timestamp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">DATETIME_FORMAT</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MarathonTaskStats"><a class="viewcode-back" href="../../../marathon.html#marathon.models.app.MarathonTaskStats">[docs]</a><span class="k">class</span> <span class="nc">MarathonTaskStats</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Marathon task statistics</span>
+
+<span class="sd">    See https://mesosphere.github.io/marathon/docs/rest-api.html#taskstats-object-v0-11</span>
+
+<span class="sd">    :param started_after_last_scaling: contains statistics about all tasks that were started after the last scaling or restart operation.</span>
+<span class="sd">    :type started_after_last_scaling: :class:`marathon.models.app.MarathonTaskStatsType` or dict</span>
+<span class="sd">    :param with_latest_config: contains statistics about all tasks that run with the same config as the latest app version.</span>
+<span class="sd">    :type with_latest_config: :class:`marathon.models.app.MarathonTaskStatsType` or dict</span>
+<span class="sd">    :param with_outdated_config: contains statistics about all tasks that were started before the last config change</span>
+<span class="sd">           which was not simply a restart or scaling operation.</span>
+<span class="sd">    :type with_outdated_config: :class:`marathon.models.app.MarathonTaskStatsType` or dict</span>
+<span class="sd">    :param total_summary: contains statistics about all tasks.</span>
+<span class="sd">    :type total_summary: :class:`marathon.models.app.MarathonTaskStatsType` or dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">started_after_last_scaling</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">with_latest_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">with_outdated_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">total_summary</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">started_after_last_scaling</span> <span class="o">=</span> <span class="n">started_after_last_scaling</span> <span class="k">if</span> \
+            <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">started_after_last_scaling</span><span class="p">,</span> <span class="n">MarathonTaskStatsType</span><span class="p">)</span> <span class="ow">or</span> <span class="n">started_after_last_scaling</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> \
+            <span class="k">else</span> <span class="n">MarathonTaskStatsType</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">started_after_last_scaling</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">with_latest_config</span> <span class="o">=</span> <span class="n">with_latest_config</span> <span class="k">if</span> \
+            <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">with_latest_config</span><span class="p">,</span> <span class="n">MarathonTaskStatsType</span><span class="p">)</span> <span class="ow">or</span> <span class="n">with_latest_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> \
+            <span class="k">else</span> <span class="n">MarathonTaskStatsType</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">with_latest_config</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">with_outdated_config</span> <span class="o">=</span> <span class="n">with_outdated_config</span> <span class="k">if</span> \
+            <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">with_outdated_config</span><span class="p">,</span> <span class="n">MarathonTaskStatsType</span><span class="p">)</span> <span class="ow">or</span> <span class="n">with_outdated_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> \
+            <span class="k">else</span> <span class="n">MarathonTaskStatsType</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">with_outdated_config</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_summary</span> <span class="o">=</span> <span class="n">total_summary</span> <span class="k">if</span> \
+            <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">total_summary</span><span class="p">,</span> <span class="n">MarathonTaskStatsType</span><span class="p">)</span> <span class="ow">or</span> <span class="n">total_summary</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> \
+            <span class="k">else</span> <span class="n">MarathonTaskStatsType</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">total_summary</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MarathonTaskStatsType"><a class="viewcode-back" href="../../../marathon.html#marathon.models.app.MarathonTaskStatsType">[docs]</a><span class="k">class</span> <span class="nc">MarathonTaskStatsType</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Marathon app task stats</span>
+
+<span class="sd">    :param stats: stast about app tasks</span>
+<span class="sd">    :type stats: :class:`marathon.models.app.MarathonTaskStatsStats` or dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span> <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">stats</span><span class="p">,</span> <span class="n">MarathonTaskStatsStats</span><span class="p">)</span> <span class="ow">or</span> <span class="n">stats</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span>\
+            <span class="k">else</span> <span class="n">MarathonTaskStatsStats</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MarathonTaskStatsStats"><a class="viewcode-back" href="../../../marathon.html#marathon.models.app.MarathonTaskStatsStats">[docs]</a><span class="k">class</span> <span class="nc">MarathonTaskStatsStats</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Marathon app task stats</span>
+
+<span class="sd">    :param counts: app task count breakdown</span>
+<span class="sd">    :type counts: :class:`marathon.models.app.MarathonTaskStatsCounts` or dict</span>
+<span class="sd">    :param life_time: app task life time stats</span>
+<span class="sd">    :type life_time: :class:`marathon.models.app.MarathonTaskStatsLifeTime` or dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">counts</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">life_time</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="n">counts</span> <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">MarathonTaskStatsCounts</span><span class="p">)</span> <span class="ow">or</span> <span class="n">counts</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span>\
+            <span class="k">else</span> <span class="n">MarathonTaskStatsCounts</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">life_time</span> <span class="o">=</span> <span class="n">life_time</span> <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">life_time</span><span class="p">,</span> <span class="n">MarathonTaskStatsLifeTime</span><span class="p">)</span> <span class="ow">or</span> <span class="n">life_time</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span>\
+            <span class="k">else</span> <span class="n">MarathonTaskStatsLifeTime</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">life_time</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MarathonTaskStatsCounts"><a class="viewcode-back" href="../../../marathon.html#marathon.models.app.MarathonTaskStatsCounts">[docs]</a><span class="k">class</span> <span class="nc">MarathonTaskStatsCounts</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Marathon app task counts</span>
+
+<span class="sd">    Equivalent to tasksStaged, tasksRunning, tasksHealthy, tasksUnhealthy.</span>
+
+<span class="sd">    :param int staged: Staged task count</span>
+<span class="sd">    :param int running: Running task count</span>
+<span class="sd">    :param int healthy: Healthy task count</span>
+<span class="sd">    :param int unhealthy: unhealthy task count</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">staged</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">running</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">healthy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unhealthy</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">staged</span> <span class="o">=</span> <span class="n">staged</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">running</span> <span class="o">=</span> <span class="n">running</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">healthy</span> <span class="o">=</span> <span class="n">healthy</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unhealthy</span> <span class="o">=</span> <span class="n">unhealthy</span></div>
+
+
+<div class="viewcode-block" id="MarathonTaskStatsLifeTime"><a class="viewcode-back" href="../../../marathon.html#marathon.models.app.MarathonTaskStatsLifeTime">[docs]</a><span class="k">class</span> <span class="nc">MarathonTaskStatsLifeTime</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Marathon app life time statistics</span>
+
+<span class="sd">    Measured from `&quot;startedAt&quot;` (timestamp of the Mesos TASK_RUNNING status update) of each running task until now</span>
+
+<span class="sd">    :param float average_seconds: Average seconds</span>
+<span class="sd">    :param float median_seconds: Median seconds</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">average_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">median_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">average_seconds</span> <span class="o">=</span> <span class="n">average_seconds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">median_seconds</span> <span class="o">=</span> <span class="n">median_seconds</span></div>
+
+
+<div class="viewcode-block" id="ReadinessCheck"><a class="viewcode-back" href="../../../marathon.html#marathon.models.app.ReadinessCheck">[docs]</a><span class="k">class</span> <span class="nc">ReadinessCheck</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Marathon readiness check: https://mesosphere.github.io/marathon/docs/readiness-checks.html</span>
+
+<span class="sd">    :param string name (Optional. Default: &quot;readinessCheck&quot;): The name used to identify this readiness check.</span>
+<span class="sd">    :param string protocol (Optional. Default: &quot;HTTP&quot;): Protocol of the requests to be performed. Either HTTP or HTTPS.</span>
+<span class="sd">    :param string path (Optional. Default: &quot;/&quot;): Path to the endpoint the task exposes to provide readiness status.</span>
+<span class="sd">           Example: /path/to/readiness.</span>
+<span class="sd">    :param string port_name (Optional. Default: &quot;http-api&quot;): Name of the port to query as described in the</span>
+<span class="sd">           portDefinitions. Example: http-api.</span>
+<span class="sd">    :param int interval_seconds (Optional. Default: 30 seconds): Number of seconds to wait between readiness checks.</span>
+<span class="sd">    :param int timeout_seconds (Optional. Default: 10 seconds): Number of seconds after which a readiness check</span>
+<span class="sd">           times out, regardless of the response. This value must be smaller than interval_seconds.</span>
+<span class="sd">    :param list http_status_codes_for_ready (Optional. Default: [200]): The HTTP/HTTPS status code to treat as ready.</span>
+<span class="sd">    :param bool preserve_last_response (Optional. Default: false): If true, the last readiness check response will be</span>
+<span class="sd">           preserved and exposed in the API as part of a deployment.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">port_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">interval_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">http_status_codes_for_ready</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">preserve_last_response</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span> <span class="o">=</span> <span class="n">protocol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port_name</span> <span class="o">=</span> <span class="n">port_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interval_seconds</span> <span class="o">=</span> <span class="n">interval_seconds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">http_status_codes_for_ready</span> <span class="o">=</span> <span class="n">http_status_codes_for_ready</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preserve_last_response</span> <span class="o">=</span> <span class="n">preserve_last_response</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout_seconds</span> <span class="o">=</span> <span class="n">timeout_seconds</span></div>
+
+
+<div class="viewcode-block" id="PortDefinition"><a class="viewcode-back" href="../../../marathon.html#marathon.models.app.PortDefinition">[docs]</a><span class="k">class</span> <span class="nc">PortDefinition</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Marathon port definitions: https://mesosphere.github.io/marathon/docs/ports.html</span>
+
+<span class="sd">    :param int port: The port</span>
+<span class="sd">    :param string protocol: tcp or udp</span>
+<span class="sd">    :param string name: (optional) the name of the port</span>
+<span class="sd">    :param dict labels: undocumented</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span> <span class="o">=</span> <span class="n">protocol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span></div>
+
+
+<div class="viewcode-block" id="Residency"><a class="viewcode-back" href="../../../marathon.html#marathon.models.app.Residency">[docs]</a><span class="k">class</span> <span class="nc">Residency</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Declares how &quot;resident&quot; an app is: https://mesosphere.github.io/marathon/docs/persistent-volumes.html</span>
+
+<span class="sd">    :param int relaunch_escalation_timeout_seconds: How long marathon will try to relaunch where the volumes is, defaults to 3600</span>
+<span class="sd">    :param string task_lost_behavior: What to do after a TASK_LOST. See the official Marathon docs for options</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">relaunch_escalation_timeout_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">task_lost_behavior</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relaunch_escalation_timeout_seconds</span> <span class="o">=</span> <span class="n">relaunch_escalation_timeout_seconds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_lost_behavior</span> <span class="o">=</span> <span class="n">task_lost_behavior</span></div>
+
+
+<div class="viewcode-block" id="Secret"><a class="viewcode-back" href="../../../marathon.html#marathon.models.app.Secret">[docs]</a><span class="k">class</span> <span class="nc">Secret</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Declares marathon secret object.</span>
+<span class="sd">    :param str source: The source of the secret&#39;s value. The format depends on the secret store used by Mesos.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">source</span></div>
 </pre></div>
 
+           </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -302,11 +663,13 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014, The Factory.
+
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
 </footer>
+
         </div>
       </div>
 
@@ -324,7 +687,8 @@
             VERSION:'',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

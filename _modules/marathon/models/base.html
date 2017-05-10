@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>marathon.models.base &mdash; marathon-python  documentation</title>
@@ -12,9 +13,10 @@
 
   
   
+  
+  
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   
   
@@ -28,89 +30,147 @@
   
 
   
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
     <link rel="top" title="marathon-python  documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        <a href="../../../index.html" class="fa fa-home"> marathon-python</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> marathon-python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-      </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
-        
-            <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../marathon.html">marathon package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon.models.app">marathon.models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon.client">marathon.client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon.exceptions">marathon.exceptions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon">Module contents</a></li>
-</ul>
-</li>
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../marathon.html">marathon package</a></li>
 </ul>
 
-        
+            
+          
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../index.html">marathon-python</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">marathon-python</a>
+        
       </nav>
 
 
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../../index.html">Module code</a> &raquo;</li>
-      
-    <li>marathon.models.base</li>
+        
+      <li>marathon.models.base</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
+            
+        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for marathon.models.base</h1><div class="highlight"><pre>
-<span class="kn">import</span> <span class="nn">json</span>
+<span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">re</span>
 
-<span class="kn">from</span> <span class="nn">marathon.util</span> <span class="kn">import</span> <span class="n">to_camel_case</span><span class="p">,</span> <span class="n">to_snake_case</span><span class="p">,</span> <span class="n">MarathonJsonEncoder</span><span class="p">,</span> <span class="n">MarathonMinimalJsonEncoder</span>
+<span class="kn">from</span> <span class="nn">marathon.util</span> <span class="k">import</span> <span class="n">to_camel_case</span><span class="p">,</span> <span class="n">to_snake_case</span><span class="p">,</span> <span class="n">MarathonJsonEncoder</span><span class="p">,</span> <span class="n">MarathonMinimalJsonEncoder</span>
 
 
 <div class="viewcode-block" id="MarathonObject"><a class="viewcode-back" href="../../../marathon.html#marathon.models.base.MarathonObject">[docs]</a><span class="k">class</span> <span class="nc">MarathonObject</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
     <span class="sd">&quot;&quot;&quot;Base Marathon object.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s">&quot;{clazz}::{obj}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clazz</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{clazz}</span><span class="s2">::</span><span class="si">{obj}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clazz</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">minimal</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 
-<div class="viewcode-block" id="MarathonObject.json_repr"><a class="viewcode-back" href="../../../marathon.html#marathon.models.base.MarathonObject.json_repr">[docs]</a>    <span class="k">def</span> <span class="nf">json_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minimal</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="MarathonObject.json_repr"><a class="viewcode-back" href="../../../marathon.html#marathon.models.base.MarathonObject.json_repr">[docs]</a>    <span class="k">def</span> <span class="nf">json_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minimal</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Construct a JSON-friendly representation of the object.</span>
 
 <span class="sd">        :param bool minimal: Construct a minimal representation of the object (ignore nulls and empty collections)</span>
@@ -118,19 +178,19 @@
 <span class="sd">        :rtype: dict</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">minimal</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">{</span><span class="n">to_camel_case</span><span class="p">(</span><span class="n">k</span><span class="p">):</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()</span> <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="ow">or</span> <span class="n">v</span> <span class="o">==</span> <span class="bp">False</span><span class="p">)}</span>
+            <span class="k">return</span> <span class="p">{</span><span class="n">to_camel_case</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="ow">or</span> <span class="n">v</span> <span class="ow">is</span> <span class="kc">False</span> <span class="ow">or</span> <span class="n">v</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)}</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">{</span><span class="n">to_camel_case</span><span class="p">(</span><span class="n">k</span><span class="p">):</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()}</span>
-</div>
+            <span class="k">return</span> <span class="p">{</span><span class="n">to_camel_case</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span></div>
+
     <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="MarathonObject.from_json"><a class="viewcode-back" href="../../../marathon.html#marathon.models.base.MarathonObject.from_json">[docs]</a>    <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">attributes</span><span class="p">):</span>
+<div class="viewcode-block" id="MarathonObject.from_json"><a class="viewcode-back" href="../../../marathon.html#marathon.models.base.MarathonObject.from_json">[docs]</a>    <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">attributes</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Construct an object from a parsed response.</span>
 
 <span class="sd">        :param dict attributes: object attributes from parsed response</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">cls</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">to_snake_case</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">attributes</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()})</span>
-</div>
-<div class="viewcode-block" id="MarathonObject.to_json"><a class="viewcode-back" href="../../../marathon.html#marathon.models.base.MarathonObject.to_json">[docs]</a>    <span class="k">def</span> <span class="nf">to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minimal</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">to_snake_case</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">attributes</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span></div>
+
+<div class="viewcode-block" id="MarathonObject.to_json"><a class="viewcode-back" href="../../../marathon.html#marathon.models.base.MarathonObject.to_json">[docs]</a>    <span class="k">def</span> <span class="nf">to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minimal</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Encode an object as a JSON string.</span>
 
 <span class="sd">        :param bool minimal: Construct a minimal representation of the object (ignore nulls and empty collections)</span>
@@ -138,22 +198,74 @@
 <span class="sd">        :rtype: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">minimal</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">json_repr</span><span class="p">(</span><span class="n">minimal</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span> <span class="n">cls</span><span class="o">=</span><span class="n">MarathonMinimalJsonEncoder</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">json_repr</span><span class="p">(</span><span class="n">minimal</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="bp">cls</span><span class="o">=</span><span class="n">MarathonMinimalJsonEncoder</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">json_repr</span><span class="p">(),</span> <span class="n">cls</span><span class="o">=</span><span class="n">MarathonJsonEncoder</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">json_repr</span><span class="p">(),</span> <span class="bp">cls</span><span class="o">=</span><span class="n">MarathonJsonEncoder</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div></div>
 
 
-</div></div>
 <div class="viewcode-block" id="MarathonResource"><a class="viewcode-back" href="../../../marathon.html#marathon.models.base.MarathonResource">[docs]</a><span class="k">class</span> <span class="nc">MarathonResource</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
     <span class="sd">&quot;&quot;&quot;Base Marathon resource.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="s">&#39;id&#39;</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">return</span> <span class="s">&quot;{clazz}::{id}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clazz</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;id&#39;</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{clazz}</span><span class="s2">::</span><span class="si">{id}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clazz</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s">&quot;{clazz}::{obj}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clazz</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
-</pre></div></div>
+            <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{clazz}</span><span class="s2">::</span><span class="si">{obj}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clazz</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
 
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{clazz}</span><span class="s2">::&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clazz</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span></div>
+
+
+<span class="c1"># See:</span>
+<span class="c1"># https://github.com/mesosphere/marathon/blob/2a9d1d20ec2f1cfcc49fbb1c0e7348b26418ef38/src/main/scala/mesosphere/marathon/api/ModelValidation.scala#L224</span>
+<span class="n">ID_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="s1">&#39;^(([a-z0-9]|[a-z0-9][a-z0-9</span><span class="se">\\</span><span class="s1">-]*[a-z0-9])</span><span class="se">\\</span><span class="s1">.)*([a-z0-9]|[a-z0-9][a-z0-9</span><span class="se">\\</span><span class="s1">-]*[a-z0-9])|(</span><span class="se">\\</span><span class="s1">.|</span><span class="se">\\</span><span class="s1">.</span><span class="se">\\</span><span class="s1">.)$&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="assert_valid_path"><a class="viewcode-back" href="../../../marathon.html#marathon.models.base.assert_valid_path">[docs]</a><span class="k">def</span> <span class="nf">assert_valid_path</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Checks if a path is a correct format that Marathon expects. Raises ValueError if not valid.</span>
+
+<span class="sd">    :param str path: The app id.</span>
+
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="c1"># As seen in:</span>
+    <span class="c1"># https://github.com/mesosphere/marathon/blob/0c11661ca2f259f8a903d114ef79023649a6f04b/src/main/scala/mesosphere/marathon/state/PathId.scala#L71</span>
+    <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="nb">filter</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ID_PATTERN</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s1">&#39;invalid path (allowed: lowercase letters, digits, hyphen, &quot;/&quot;, &quot;.&quot;, &quot;..&quot;): </span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">path</span></div>
+
+
+<div class="viewcode-block" id="assert_valid_id"><a class="viewcode-back" href="../../../marathon.html#marathon.models.base.assert_valid_id">[docs]</a><span class="k">def</span> <span class="nf">assert_valid_id</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Checks if an id is the correct format that Marathon expects. Raises ValueError if not valid.</span>
+
+<span class="sd">    :param str id: App or group id.</span>
+
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ID_PATTERN</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="nb">id</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s1">&#39;invalid id (allowed: lowercase letters, digits, hyphen, &quot;.&quot;, &quot;..&quot;): </span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">id</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">id</span></div>
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -163,11 +275,13 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014, The Factory.
+
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
 </footer>
+
         </div>
       </div>
 
@@ -185,7 +299,8 @@
             VERSION:'',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

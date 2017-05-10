@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>marathon.models.constraint &mdash; marathon-python  documentation</title>
@@ -12,9 +13,10 @@
 
   
   
+  
+  
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   
   
@@ -28,82 +30,132 @@
   
 
   
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
     <link rel="top" title="marathon-python  documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        <a href="../../../index.html" class="fa fa-home"> marathon-python</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> marathon-python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-      </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
-        
-            <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../marathon.html">marathon package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon.models.app">marathon.models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon.client">marathon.client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon.exceptions">marathon.exceptions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon">Module contents</a></li>
-</ul>
-</li>
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../marathon.html">marathon package</a></li>
 </ul>
 
-        
+            
+          
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../index.html">marathon-python</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">marathon-python</a>
+        
       </nav>
 
 
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../../index.html">Module code</a> &raquo;</li>
-      
-    <li>marathon.models.constraint</li>
+        
+      <li>marathon.models.constraint</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
+            
+        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for marathon.models.constraint</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">..exceptions</span> <span class="kn">import</span> <span class="n">InvalidChoiceError</span>
-<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">MarathonObject</span>
+<span></span><span class="kn">from</span> <span class="nn">.base</span> <span class="k">import</span> <span class="n">MarathonObject</span>
 
 
 <div class="viewcode-block" id="MarathonConstraint"><a class="viewcode-back" href="../../../marathon.html#marathon.models.constraint.MarathonConstraint">[docs]</a><span class="k">class</span> <span class="nc">MarathonConstraint</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
     <span class="sd">&quot;&quot;&quot;Marathon placement constraint.</span>
 
 <span class="sd">    See https://mesosphere.github.io/marathon/docs/constraints.html</span>
@@ -116,24 +168,21 @@
 <span class="sd">    :type value: str, int, or None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">OPERATORS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;UNIQUE&#39;</span><span class="p">,</span> <span class="s">&#39;CLUSTER&#39;</span><span class="p">,</span> <span class="s">&#39;GROUP_BY&#39;</span><span class="p">,</span> <span class="s">&#39;LIKE&#39;</span><span class="p">,</span> <span class="s">&#39;UNLIKE&#39;</span><span class="p">]</span>
     <span class="sd">&quot;&quot;&quot;Valid operators&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">operator</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">OPERATORS</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">InvalidChoiceError</span><span class="p">(</span><span class="s">&#39;operator&#39;</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">OPERATORS</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">field</span> <span class="o">=</span> <span class="n">field</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">operator</span> <span class="o">=</span> <span class="n">operator</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
-            <span class="n">template</span> <span class="o">=</span> <span class="s">&quot;MarathonConstraint::{field}:{operator}:{value}&quot;</span>
+            <span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;MarathonConstraint::</span><span class="si">{field}</span><span class="s2">:</span><span class="si">{operator}</span><span class="s2">:</span><span class="si">{value}</span><span class="s2">&quot;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">template</span> <span class="o">=</span> <span class="s">&quot;MarathonConstraint::{field}:{operator}&quot;</span>
-        <span class="k">return</span> <span class="n">template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">)</span>
+            <span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;MarathonConstraint::</span><span class="si">{field}</span><span class="s2">:</span><span class="si">{operator}</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="n">template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
 
-<div class="viewcode-block" id="MarathonConstraint.json_repr"><a class="viewcode-back" href="../../../marathon.html#marathon.models.constraint.MarathonConstraint.json_repr">[docs]</a>    <span class="k">def</span> <span class="nf">json_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minimal</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="MarathonConstraint.json_repr"><a class="viewcode-back" href="../../../marathon.html#marathon.models.constraint.MarathonConstraint.json_repr">[docs]</a>    <span class="k">def</span> <span class="nf">json_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minimal</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Construct a JSON-friendly representation of the object.</span>
 
 <span class="sd">        :param bool minimal: [ignored]</span>
@@ -143,10 +192,10 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">field</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">operator</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">field</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">operator</span><span class="p">]</span>
-</div>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">field</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">operator</span><span class="p">]</span></div>
+
     <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="MarathonConstraint.from_json"><a class="viewcode-back" href="../../../marathon.html#marathon.models.constraint.MarathonConstraint.from_json">[docs]</a>    <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+<div class="viewcode-block" id="MarathonConstraint.from_json"><a class="viewcode-back" href="../../../marathon.html#marathon.models.constraint.MarathonConstraint.from_json">[docs]</a>    <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Construct a MarathonConstraint from a parsed response.</span>
 
 <span class="sd">        :param dict attributes: object attributes from parsed response</span>
@@ -155,12 +204,16 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">operator</span><span class="p">)</span> <span class="o">=</span> <span class="n">obj</span>
-            <span class="k">return</span> <span class="n">cls</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">operator</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">operator</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
             <span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">=</span> <span class="n">obj</span>
-            <span class="k">return</span> <span class="n">cls</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div></div>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div></div>
 </pre></div>
 
+           </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -170,11 +223,13 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014, The Factory.
+
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
 </footer>
+
         </div>
       </div>
 
@@ -192,7 +247,8 @@
             VERSION:'',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

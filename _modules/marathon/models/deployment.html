@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>marathon.models.deployment &mdash; marathon-python  documentation</title>
@@ -12,9 +13,10 @@
 
   
   
+  
+  
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   
   
@@ -28,84 +30,136 @@
   
 
   
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
     <link rel="top" title="marathon-python  documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        <a href="../../../index.html" class="fa fa-home"> marathon-python</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> marathon-python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-      </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
-        
-            <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../marathon.html">marathon package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon.models.app">marathon.models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon.client">marathon.client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon.exceptions">marathon.exceptions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon">Module contents</a></li>
-</ul>
-</li>
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../marathon.html">marathon package</a></li>
 </ul>
 
-        
+            
+          
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../index.html">marathon-python</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">marathon-python</a>
+        
       </nav>
 
 
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../../index.html">Module code</a> &raquo;</li>
-      
-    <li>marathon.models.deployment</li>
+        
+      <li>marathon.models.deployment</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
+            
+        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for marathon.models.deployment</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">MarathonObject</span><span class="p">,</span> <span class="n">MarathonResource</span>
+<span></span><span class="kn">from</span> <span class="nn">.base</span> <span class="k">import</span> <span class="n">MarathonObject</span><span class="p">,</span> <span class="n">MarathonResource</span>
 
 
 <div class="viewcode-block" id="MarathonDeployment"><a class="viewcode-back" href="../../../marathon.html#marathon.models.deployment.MarathonDeployment">[docs]</a><span class="k">class</span> <span class="nc">MarathonDeployment</span><span class="p">(</span><span class="n">MarathonResource</span><span class="p">):</span>
+
     <span class="sd">&quot;&quot;&quot;Marathon Application resource.</span>
 
 <span class="sd">    See: https://mesosphere.github.io/marathon/docs/rest-api.html#deployments</span>
+<span class="sd">         https://mesosphere.github.io/marathon/docs/generated/api.html#v2_deployments_get</span>
 
 <span class="sd">    :param list[str] affected_apps: list of affected app ids</span>
 <span class="sd">    :param current_actions: current actions</span>
@@ -116,26 +170,37 @@
 <span class="sd">    :type steps: list[:class:`marathon.models.deployment.MarathonDeploymentAction`] or list[dict]</span>
 <span class="sd">    :param int total_steps: total number of steps</span>
 <span class="sd">    :param str version: version id</span>
+<span class="sd">    :param str affected_pods: list of strings</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">affected_apps</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">current_actions</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">current_step</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">total_steps</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">affected_apps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">current_actions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">current_step</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">total_steps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">affected_pods</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">affected_apps</span> <span class="o">=</span> <span class="n">affected_apps</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_actions</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">a</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">MarathonDeploymentAction</span><span class="p">)</span> <span class="k">else</span> <span class="n">MarathonDeploymentAction</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+            <span class="n">a</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span>
+                <span class="n">a</span><span class="p">,</span> <span class="n">MarathonDeploymentAction</span><span class="p">)</span> <span class="k">else</span> <span class="n">MarathonDeploymentAction</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">(</span><span class="n">current_actions</span> <span class="ow">or</span> <span class="p">[])</span>
         <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_step</span> <span class="o">=</span> <span class="n">current_step</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">steps</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">s</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">MarathonDeploymentAction</span><span class="p">)</span> <span class="k">else</span> <span class="n">MarathonDeploymentAction</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">(</span><span class="n">steps</span> <span class="ow">or</span> <span class="p">[])</span>
-        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">steps</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_deployment_step</span><span class="p">(</span><span class="n">step</span><span class="p">)</span> <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="p">(</span><span class="n">steps</span> <span class="ow">or</span> <span class="p">[])]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">total_steps</span> <span class="o">=</span> <span class="n">total_steps</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">affected_pods</span> <span class="o">=</span> <span class="n">affected_pods</span>
 
-</div>
+<div class="viewcode-block" id="MarathonDeployment.parse_deployment_step"><a class="viewcode-back" href="../../../marathon.html#marathon.models.deployment.MarathonDeployment.parse_deployment_step">[docs]</a>    <span class="k">def</span> <span class="nf">parse_deployment_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">step</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="nb">dict</span><span class="p">:</span>
+            <span class="c1"># This is what Marathon 1.0.0 returns: steps</span>
+            <span class="k">return</span> <span class="n">MarathonDeploymentStep</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">step</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="c1"># This is Marathon &lt; 1.0.0 style, a list of actions</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">s</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">MarathonDeploymentAction</span><span class="p">)</span> <span class="k">else</span> <span class="n">MarathonDeploymentAction</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">step</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">step</span></div></div>
+
+
 <div class="viewcode-block" id="MarathonDeploymentAction"><a class="viewcode-back" href="../../../marathon.html#marathon.models.deployment.MarathonDeploymentAction">[docs]</a><span class="k">class</span> <span class="nc">MarathonDeploymentAction</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
     <span class="sd">&quot;&quot;&quot;Marathon Application resource.</span>
 
 <span class="sd">    See: https://mesosphere.github.io/marathon/docs/rest-api.html#deployments</span>
@@ -143,14 +208,63 @@
 <span class="sd">    :param str action: action</span>
 <span class="sd">    :param str app: app id</span>
 <span class="sd">    :param str apps: app id (see https://github.com/mesosphere/marathon/pull/802)</span>
+<span class="sd">    :param type readiness_check_results: Undocumented</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">app</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">apps</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">app</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">apps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">readiness_check_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pod</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">action</span> <span class="o">=</span> <span class="n">action</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">app</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">apps</span> <span class="o">=</span> <span class="n">apps</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">apps</span> <span class="o">=</span> <span class="n">apps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pod</span> <span class="o">=</span> <span class="n">pod</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span>  <span class="c1"># TODO: Remove builtin shadow</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">readiness_check_results</span> <span class="o">=</span> <span class="n">readiness_check_results</span>  <span class="c1"># TODO: The docs say this is called just &quot;readinessChecks?&quot;</span></div>
+
+
+<div class="viewcode-block" id="MarathonDeploymentPlan"><a class="viewcode-back" href="../../../marathon.html#marathon.models.deployment.MarathonDeploymentPlan">[docs]</a><span class="k">class</span> <span class="nc">MarathonDeploymentPlan</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">steps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">original</span> <span class="o">=</span> <span class="n">MarathonDeploymentOriginalState</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">original</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">MarathonDeploymentTargetState</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">steps</span> <span class="o">=</span> <span class="p">[</span><span class="n">MarathonDeploymentStep</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span></div>
+
+
+<div class="viewcode-block" id="MarathonDeploymentStep"><a class="viewcode-back" href="../../../marathon.html#marathon.models.deployment.MarathonDeploymentStep">[docs]</a><span class="k">class</span> <span class="nc">MarathonDeploymentStep</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actions</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actions</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">MarathonDeploymentAction</span><span class="p">)</span> <span class="k">else</span> <span class="n">MarathonDeploymentAction</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">(</span><span class="n">actions</span> <span class="ow">or</span> <span class="p">[])]</span></div>
+
+
+<div class="viewcode-block" id="MarathonDeploymentOriginalState"><a class="viewcode-back" href="../../../marathon.html#marathon.models.deployment.MarathonDeploymentOriginalState">[docs]</a><span class="k">class</span> <span class="nc">MarathonDeploymentOriginalState</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">apps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pods</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">apps</span> <span class="o">=</span> <span class="n">apps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">groups</span> <span class="o">=</span> <span class="n">groups</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dependencies</span> <span class="o">=</span> <span class="n">dependencies</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pods</span> <span class="o">=</span> <span class="n">pods</span></div>
+
+
+<div class="viewcode-block" id="MarathonDeploymentTargetState"><a class="viewcode-back" href="../../../marathon.html#marathon.models.deployment.MarathonDeploymentTargetState">[docs]</a><span class="k">class</span> <span class="nc">MarathonDeploymentTargetState</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">apps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">dependencies</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pods</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">apps</span> <span class="o">=</span> <span class="n">apps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">groups</span> <span class="o">=</span> <span class="n">groups</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dependencies</span> <span class="o">=</span> <span class="n">dependencies</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pods</span> <span class="o">=</span> <span class="n">pods</span></div>
 </pre></div>
 
+           </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -160,11 +274,13 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014, The Factory.
+
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
 </footer>
+
         </div>
       </div>
 
@@ -182,7 +298,8 @@
             VERSION:'',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

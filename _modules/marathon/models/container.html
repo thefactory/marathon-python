@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>marathon.models.container &mdash; marathon-python  documentation</title>
@@ -12,9 +13,10 @@
 
   
   
+  
+  
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   
   
@@ -28,82 +30,133 @@
   
 
   
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
     <link rel="top" title="marathon-python  documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        <a href="../../../index.html" class="fa fa-home"> marathon-python</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> marathon-python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-      </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
-        
-            <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../marathon.html">marathon package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon.models.app">marathon.models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon.client">marathon.client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon.exceptions">marathon.exceptions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../marathon.html#module-marathon">Module contents</a></li>
-</ul>
-</li>
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../marathon.html">marathon package</a></li>
 </ul>
 
-        
+            
+          
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../index.html">marathon-python</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">marathon-python</a>
+        
       </nav>
 
 
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../../index.html">Module code</a> &raquo;</li>
-      
-    <li>marathon.models.container</li>
+        
+      <li>marathon.models.container</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
+            
+        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for marathon.models.container</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">..exceptions</span> <span class="kn">import</span> <span class="n">InvalidChoiceError</span>
-<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">MarathonObject</span>
+<span></span><span class="kn">from</span> <span class="nn">..exceptions</span> <span class="k">import</span> <span class="n">InvalidChoiceError</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="k">import</span> <span class="n">MarathonObject</span>
 
 
 <div class="viewcode-block" id="MarathonContainer"><a class="viewcode-back" href="../../../marathon.html#marathon.models.container.MarathonContainer">[docs]</a><span class="k">class</span> <span class="nc">MarathonContainer</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
     <span class="sd">&quot;&quot;&quot;Marathon health check.</span>
 
 <span class="sd">    See https://mesosphere.github.io/marathon/docs/native-docker.html</span>
@@ -115,22 +168,27 @@
 <span class="sd">    :type volumes: list[:class:`marathon.models.container.MarathonContainerVolume`] or list[dict]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">TYPES</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;DOCKER&#39;</span><span class="p">]</span>
+    <span class="n">TYPES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;DOCKER&#39;</span><span class="p">,</span> <span class="s1">&#39;MESOS&#39;</span><span class="p">]</span>
     <span class="sd">&quot;&quot;&quot;Valid container types&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docker</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&#39;DOCKER&#39;</span><span class="p">,</span> <span class="n">volumes</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">TYPES</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">InvalidChoiceError</span><span class="p">(</span><span class="s">&#39;type&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">TYPES</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docker</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;DOCKER&#39;</span><span class="p">,</span> <span class="n">volumes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">TYPES</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidChoiceError</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">TYPES</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">docker</span> <span class="o">=</span> <span class="n">docker</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">docker</span><span class="p">,</span> <span class="n">MarathonDockerContainer</span><span class="p">)</span> \
-            <span class="k">else</span> <span class="n">MarathonDockerContainer</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">docker</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">volumes</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">v</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">MarathonContainerVolume</span><span class="p">)</span> <span class="k">else</span> <span class="n">MarathonContainerVolume</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">(</span><span class="n">volumes</span> <span class="ow">or</span> <span class="p">[])</span>
-        <span class="p">]</span>
 
-</div>
+        <span class="k">if</span> <span class="n">docker</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">docker</span> <span class="o">=</span> <span class="n">docker</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">docker</span><span class="p">,</span> <span class="n">MarathonDockerContainer</span><span class="p">)</span> \
+                <span class="k">else</span> <span class="n">MarathonDockerContainer</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">docker</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">volumes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">v</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span>
+                <span class="n">v</span><span class="p">,</span> <span class="n">MarathonContainerVolume</span><span class="p">)</span> <span class="k">else</span> <span class="n">MarathonContainerVolume</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">(</span><span class="n">volumes</span> <span class="ow">or</span> <span class="p">[])</span>
+        <span class="p">]</span></div>
+
+
 <div class="viewcode-block" id="MarathonDockerContainer"><a class="viewcode-back" href="../../../marathon.html#marathon.models.container.MarathonDockerContainer">[docs]</a><span class="k">class</span> <span class="nc">MarathonDockerContainer</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
     <span class="sd">&quot;&quot;&quot;Docker options.</span>
 
 <span class="sd">    See https://mesosphere.github.io/marathon/docs/native-docker.html</span>
@@ -139,52 +197,61 @@
 <span class="sd">    :param str network:</span>
 <span class="sd">    :param port_mappings:</span>
 <span class="sd">    :type port_mappings: list[:class:`marathon.models.container.MarathonContainerPortMapping`] or list[dict]</span>
-<span class="sd">    :param dict parameters:</span>
+<span class="sd">    :param list[dict] parameters:</span>
 <span class="sd">    :param bool privileged: run container in privileged mode</span>
 <span class="sd">    :param bool force_pull_image: Force a docker pull before launching</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">NETWORK_MODES</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;BRIDGE&#39;</span><span class="p">,</span> <span class="s">&#39;HOST&#39;</span><span class="p">]</span>
+    <span class="n">NETWORK_MODES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;BRIDGE&#39;</span><span class="p">,</span> <span class="s1">&#39;HOST&#39;</span><span class="p">,</span> <span class="s1">&#39;NONE&#39;</span><span class="p">]</span>
     <span class="sd">&quot;&quot;&quot;Valid network modes&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">network</span><span class="o">=</span><span class="s">&#39;HOST&#39;</span><span class="p">,</span> <span class="n">port_mappings</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">privileged</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">force_pull_image</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">network</span><span class="o">=</span><span class="s1">&#39;HOST&#39;</span><span class="p">,</span> <span class="n">port_mappings</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">privileged</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">force_pull_image</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span>
         <span class="k">if</span> <span class="n">network</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">network</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">NETWORK_MODES</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="n">InvalidChoiceError</span><span class="p">(</span><span class="s">&#39;network&#39;</span><span class="p">,</span> <span class="n">network</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">NETWORK_MODES</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">network</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">NETWORK_MODES</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">InvalidChoiceError</span><span class="p">(</span>
+                    <span class="s1">&#39;network&#39;</span><span class="p">,</span> <span class="n">network</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">NETWORK_MODES</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">network</span> <span class="o">=</span> <span class="n">network</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">port_mappings</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">pm</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pm</span><span class="p">,</span> <span class="n">MarathonContainerPortMapping</span><span class="p">)</span> <span class="k">else</span> <span class="n">MarathonContainerPortMapping</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">pm</span><span class="p">)</span>
+            <span class="n">pm</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span>
+                <span class="n">pm</span><span class="p">,</span> <span class="n">MarathonContainerPortMapping</span><span class="p">)</span> <span class="k">else</span> <span class="n">MarathonContainerPortMapping</span><span class="p">()</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">pm</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">pm</span> <span class="ow">in</span> <span class="p">(</span><span class="n">port_mappings</span> <span class="ow">or</span> <span class="p">[])</span>
         <span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="n">parameters</span> <span class="ow">or</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">privileged</span> <span class="o">=</span> <span class="n">privileged</span> <span class="ow">or</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="n">parameters</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">privileged</span> <span class="o">=</span> <span class="n">privileged</span> <span class="ow">or</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">force_pull_image</span> <span class="o">=</span> <span class="n">force_pull_image</span> <span class="ow">or</span> <span class="kc">False</span></div>
 
-</div>
+
 <div class="viewcode-block" id="MarathonContainerPortMapping"><a class="viewcode-back" href="../../../marathon.html#marathon.models.container.MarathonContainerPortMapping">[docs]</a><span class="k">class</span> <span class="nc">MarathonContainerPortMapping</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
     <span class="sd">&quot;&quot;&quot;Container port mapping.</span>
 
 <span class="sd">    See https://mesosphere.github.io/marathon/docs/native-docker.html</span>
 
+<span class="sd">    :param str name:</span>
 <span class="sd">    :param int container_port:</span>
 <span class="sd">    :param int host_port:</span>
 <span class="sd">    :param str protocol:</span>
+<span class="sd">    :param object labels:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">PROTOCOLS</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;tcp&#39;</span><span class="p">,</span> <span class="s">&#39;udp&#39;</span><span class="p">]</span>
+    <span class="n">PROTOCOLS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tcp&#39;</span><span class="p">,</span> <span class="s1">&#39;udp&#39;</span><span class="p">]</span>
     <span class="sd">&quot;&quot;&quot;Valid protocols&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container_port</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">host_port</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">service_port</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s">&#39;tcp&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">container_port</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">host_port</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">service_port</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s1">&#39;tcp&#39;</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">container_port</span> <span class="o">=</span> <span class="n">container_port</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">host_port</span> <span class="o">=</span> <span class="n">host_port</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">service_port</span> <span class="o">=</span> <span class="n">service_port</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">protocol</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">PROTOCOLS</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">InvalidChoiceError</span><span class="p">(</span><span class="s">&#39;protocol&#39;</span><span class="p">,</span> <span class="n">protocol</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PROTOCOLS</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">protocol</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">PROTOCOLS</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidChoiceError</span><span class="p">(</span><span class="s1">&#39;protocol&#39;</span><span class="p">,</span> <span class="n">protocol</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PROTOCOLS</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span> <span class="o">=</span> <span class="n">protocol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span></div>
 
-</div>
+
 <div class="viewcode-block" id="MarathonContainerVolume"><a class="viewcode-back" href="../../../marathon.html#marathon.models.container.MarathonContainerVolume">[docs]</a><span class="k">class</span> <span class="nc">MarathonContainerVolume</span><span class="p">(</span><span class="n">MarathonObject</span><span class="p">):</span>
+
     <span class="sd">&quot;&quot;&quot;Volume options.</span>
 
 <span class="sd">    See https://mesosphere.github.io/marathon/docs/native-docker.html</span>
@@ -192,18 +259,26 @@
 <span class="sd">    :param str container_path: container path</span>
 <span class="sd">    :param str host_path: host path</span>
 <span class="sd">    :param str mode: one of [&#39;RO&#39;, &#39;RW&#39;]</span>
+<span class="sd">    :param object persistent: persistent volume options, should be of the form {&#39;size&#39;: 1000}</span>
+<span class="sd">    :param object external: external volume options</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">MODES</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;RO&#39;</span><span class="p">,</span> <span class="s">&#39;RW&#39;</span><span class="p">]</span>
+    <span class="n">MODES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;RO&#39;</span><span class="p">,</span> <span class="s1">&#39;RW&#39;</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container_path</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">host_path</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;RW&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">host_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;RW&#39;</span><span class="p">,</span> <span class="n">persistent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">container_path</span> <span class="o">=</span> <span class="n">container_path</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">host_path</span> <span class="o">=</span> <span class="n">host_path</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">mode</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">MODES</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">InvalidChoiceError</span><span class="p">(</span><span class="s">&#39;mode&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MODES</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span></div>
+        <span class="k">if</span> <span class="n">mode</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">MODES</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidChoiceError</span><span class="p">(</span><span class="s1">&#39;mode&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MODES</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">persistent</span> <span class="o">=</span> <span class="n">persistent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">external</span> <span class="o">=</span> <span class="n">external</span></div>
 </pre></div>
 
+           </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -213,11 +288,13 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014, The Factory.
+
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
 </footer>
+
         </div>
       </div>
 
@@ -235,7 +312,8 @@
             VERSION:'',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

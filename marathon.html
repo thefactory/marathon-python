@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>marathon package &mdash; marathon-python  documentation</title>
@@ -12,9 +13,10 @@
 
   
   
+  
+  
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   
   
@@ -28,36 +30,63 @@
   
 
   
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="marathon-python  documentation" href="index.html"/>
         <link rel="prev" title="marathon-python documentation" href="index.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> marathon-python</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> marathon-python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-      </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
-        
-            <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">marathon package</a><ul>
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">marathon package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-marathon.models.app">marathon.models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-marathon.client">marathon.client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-marathon.exceptions">marathon.exceptions</a></li>
@@ -66,37 +95,66 @@
 </li>
 </ul>
 
-        
+            
+          
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">marathon-python</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">marathon-python</a>
+        
       </nav>
 
 
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>marathon package</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>marathon package</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/marathon.txt" rel="nofollow"> View page source</a>
+            
+            <a href="_sources/marathon.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="marathon-package">
 <h1>marathon package<a class="headerlink" href="#marathon-package" title="Permalink to this headline">¶</a></h1>
@@ -104,8 +162,8 @@
 <span id="marathon-models"></span><h2>marathon.models<a class="headerlink" href="#module-marathon.models.app" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="marathon.models.app.MarathonApp">
-<em class="property">class </em><tt class="descclassname">marathon.models.app.</tt><tt class="descname">MarathonApp</tt><big>(</big><em>args=None</em>, <em>backoff_factor=None</em>, <em>backoff_seconds=None</em>, <em>cmd=None</em>, <em>constraints=None</em>, <em>container=None</em>, <em>cpus=None</em>, <em>dependencies=None</em>, <em>deployments=None</em>, <em>disk=None</em>, <em>env=None</em>, <em>executor=None</em>, <em>health_checks=None</em>, <em>id=None</em>, <em>instances=None</em>, <em>labels=None</em>, <em>last_task_failure=None</em>, <em>max_launch_delay_seconds=None</em>, <em>mem=None</em>, <em>ports=None</em>, <em>require_ports=None</em>, <em>store_urls=None</em>, <em>task_rate_limit=None</em>, <em>tasks=None</em>, <em>tasks_running=None</em>, <em>tasks_staged=None</em>, <em>tasks_healthy=None</em>, <em>tasks_unhealthy=None</em>, <em>upgrade_strategy=None</em>, <em>uris=None</em>, <em>user=None</em>, <em>version=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/app.html#MarathonApp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.MarathonApp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonResource" title="marathon.models.base.MarathonResource"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonResource</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.app.</code><code class="descname">MarathonApp</code><span class="sig-paren">(</span><em>accepted_resource_roles=None</em>, <em>args=None</em>, <em>backoff_factor=None</em>, <em>backoff_seconds=None</em>, <em>cmd=None</em>, <em>constraints=None</em>, <em>container=None</em>, <em>cpus=None</em>, <em>dependencies=None</em>, <em>deployments=None</em>, <em>disk=None</em>, <em>env=None</em>, <em>executor=None</em>, <em>health_checks=None</em>, <em>id=None</em>, <em>instances=None</em>, <em>kill_selection=None</em>, <em>labels=None</em>, <em>last_task_failure=None</em>, <em>max_launch_delay_seconds=None</em>, <em>mem=None</em>, <em>ports=None</em>, <em>require_ports=None</em>, <em>store_urls=None</em>, <em>task_rate_limit=None</em>, <em>tasks=None</em>, <em>tasks_running=None</em>, <em>tasks_staged=None</em>, <em>tasks_healthy=None</em>, <em>task_kill_grace_period_seconds=None</em>, <em>tasks_unhealthy=None</em>, <em>upgrade_strategy=None</em>, <em>unreachable_strategy=None</em>, <em>uris=None</em>, <em>user=None</em>, <em>version=None</em>, <em>version_info=None</em>, <em>ip_address=None</em>, <em>fetch=None</em>, <em>task_stats=None</em>, <em>readiness_checks=None</em>, <em>readiness_check_results=None</em>, <em>secrets=None</em>, <em>port_definitions=None</em>, <em>residency=None</em>, <em>gpus=None</em>, <em>networks=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/app.html#MarathonApp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.MarathonApp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonResource" title="marathon.models.base.MarathonResource"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonResource</span></code></a></p>
 <p>Marathon Application resource.</p>
 <p>See: <a class="reference external" href="https://mesosphere.github.io/marathon/docs/rest-api.html#post-/v2/apps">https://mesosphere.github.io/marathon/docs/rest-api.html#post-/v2/apps</a></p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -113,66 +171,114 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>args</strong> (<em>list[str]</em>) &#8211; args form of the command to run</li>
+<li><strong>accepted_resource_roles</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em></em>) &#8211; a list of resource roles (the resource offer
+must contain at least one of these for the app
+to be launched on that host)</li>
+<li><strong>args</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em></em>) &#8211; args form of the command to run</li>
 <li><strong>backoff_factor</strong> (<em>int</em>) &#8211; multiplier for subsequent backoff</li>
 <li><strong>backoff_seconds</strong> (<em>int</em>) &#8211; base time, in seconds, for exponential backoff</li>
 <li><strong>cmd</strong> (<em>str</em>) &#8211; cmd form of the command to run</li>
-<li><strong>constraints</strong> (list[<a class="reference internal" href="#marathon.models.constraint.MarathonConstraint" title="marathon.models.constraint.MarathonConstraint"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.constraint.MarathonConstraint</span></tt></a>] or list[tuple]) &#8211; placement constraints</li>
-<li><strong>container</strong> (<a class="reference internal" href="#marathon.models.container.MarathonContainer" title="marathon.models.container.MarathonContainer"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.container.MarathonContainer</span></tt></a> or dict) &#8211; container info</li>
+<li><strong>constraints</strong> (list[<a class="reference internal" href="#marathon.models.constraint.MarathonConstraint" title="marathon.models.constraint.MarathonConstraint"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.constraint.MarathonConstraint</span></code></a>] or list[tuple]) &#8211; placement constraints</li>
+<li><strong>container</strong> (<a class="reference internal" href="#marathon.models.container.MarathonContainer" title="marathon.models.container.MarathonContainer"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.container.MarathonContainer</span></code></a> or dict) &#8211; container info</li>
 <li><strong>cpus</strong> (<em>float</em>) &#8211; cpus required per instance</li>
-<li><strong>dependencies</strong> (<em>list[str]</em>) &#8211; services (app IDs) on which this app depends</li>
+<li><strong>dependencies</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em></em>) &#8211; services (app IDs) on which this app depends</li>
 <li><strong>disk</strong> (<em>int</em>) &#8211; disk required per instance</li>
-<li><strong>deployments</strong> (list[<a class="reference internal" href="#marathon.models.deployment.MarathonDeployment" title="marathon.models.deployment.MarathonDeployment"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.deployment.MarathonDeployment</span></tt></a>]) &#8211; (read-only) currently running deployments that affect this app</li>
+<li><strong>deployments</strong> (list[<a class="reference internal" href="#marathon.models.deployment.MarathonDeployment" title="marathon.models.deployment.MarathonDeployment"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.deployment.MarathonDeployment</span></code></a>]) &#8211; (read-only) currently running deployments that affect this app</li>
 <li><strong>env</strong> (<em>dict</em>) &#8211; env vars</li>
 <li><strong>executor</strong> (<em>str</em>) &#8211; executor</li>
-<li><strong>health_checks</strong> (list[<tt class="xref py py-class docutils literal"><span class="pre">marathon.models.MarathonHealthCheck</span></tt>] or list[dict]) &#8211; health checks</li>
+<li><strong>gpus</strong> (<em>int</em>) &#8211; gpus required per instance</li>
+<li><strong>health_checks</strong> (list[<code class="xref py py-class docutils literal"><span class="pre">marathon.models.MarathonHealthCheck</span></code>] or list[dict]) &#8211; health checks</li>
 <li><strong>id</strong> (<em>str</em>) &#8211; app id</li>
 <li><strong>instances</strong> (<em>int</em>) &#8211; instances</li>
-<li><strong>last_task_failure</strong> (<a class="reference internal" href="#marathon.models.app.MarathonTaskFailure" title="marathon.models.app.MarathonTaskFailure"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonTaskFailure</span></tt></a> or dict) &#8211; last task failure</li>
+<li><strong>last_task_failure</strong> (<a class="reference internal" href="#marathon.models.app.MarathonTaskFailure" title="marathon.models.app.MarathonTaskFailure"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonTaskFailure</span></code></a> or dict) &#8211; last task failure</li>
 <li><strong>mem</strong> (<em>float</em>) &#8211; memory (in MB) required per instance</li>
-<li><strong>ports</strong> (<em>list[int]</em>) &#8211; ports</li>
+<li><strong>secrets</strong> (<em>dict</em>) &#8211; A map with named secret declarations.</li>
+<li><strong>ports</strong> (<em>list</em><em>[</em><em>int</em><em>]</em><em></em>) &#8211; ports</li>
 <li><strong>require_ports</strong> (<em>bool</em>) &#8211; require the specified <cite>ports</cite> to be available in the resource offer</li>
-<li><strong>store_urls</strong> (<em>list[str]</em>) &#8211; store URLs</li>
+<li><strong>store_urls</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em></em>) &#8211; store URLs</li>
 <li><strong>task_rate_limit</strong> (<em>float</em>) &#8211; (Removed in Marathon 0.7.0) maximum number of tasks launched per second</li>
-<li><strong>tasks</strong> (list[<a class="reference internal" href="#marathon.models.task.MarathonTask" title="marathon.models.task.MarathonTask"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.task.MarathonTask</span></tt></a>]) &#8211; (read-only) tasks</li>
+<li><strong>tasks</strong> (list[<a class="reference internal" href="#marathon.models.task.MarathonTask" title="marathon.models.task.MarathonTask"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.task.MarathonTask</span></code></a>]) &#8211; (read-only) tasks</li>
 <li><strong>tasks_running</strong> (<em>int</em>) &#8211; (read-only) the number of running tasks</li>
 <li><strong>tasks_staged</strong> (<em>int</em>) &#8211; (read-only) the number of staged tasks</li>
 <li><strong>tasks_healthy</strong> (<em>int</em>) &#8211; (read-only) the number of healthy tasks</li>
 <li><strong>tasks_unhealthy</strong> (<em>int</em>) &#8211; (read-only) the number of unhealthy tasks</li>
-<li><strong>upgrade_strategy</strong> (<a class="reference internal" href="#marathon.models.app.MarathonUpgradeStrategy" title="marathon.models.app.MarathonUpgradeStrategy"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonUpgradeStrategy</span></tt></a> or dict) &#8211; strategy by which app instances are replaced during a deployment</li>
-<li><strong>uris</strong> (<em>list[str]</em>) &#8211; uris</li>
+<li><strong>upgrade_strategy</strong> (<a class="reference internal" href="#marathon.models.app.MarathonUpgradeStrategy" title="marathon.models.app.MarathonUpgradeStrategy"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonUpgradeStrategy</span></code></a> or dict) &#8211; strategy by which app instances are replaced during a deployment</li>
+<li><strong>uris</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em></em>) &#8211; uris</li>
 <li><strong>user</strong> (<em>str</em>) &#8211; user</li>
 <li><strong>version</strong> (<em>str</em>) &#8211; version id</li>
+<li><strong>version_info</strong> (<a class="reference internal" href="#marathon.models.app.MarathonAppVersionInfo" title="marathon.models.app.MarathonAppVersionInfo"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonAppVersionInfo</span></code></a> or dict) &#8211; time of last scaling, last config change</li>
+<li><strong>task_stats</strong> (<a class="reference internal" href="#marathon.models.app.MarathonTaskStats" title="marathon.models.app.MarathonTaskStats"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonTaskStats</span></code></a> or dict) &#8211; task statistics</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>:param dict labels</p>
+<p>:param dict labels
+:type readiness_checks: list[<a class="reference internal" href="#marathon.models.app.ReadinessCheck" title="marathon.models.app.ReadinessCheck"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.ReadinessCheck</span></code></a>] or list[dict]
+:type residency: <a class="reference internal" href="#marathon.models.app.Residency" title="marathon.models.app.Residency"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.Residency</span></code></a> or dict
+:param int task_kill_grace_period_seconds: Configures the termination signal escalation behavior of executors when stopping tasks.
+:param list[dict] unreachable_strategy: Handling for unreachable instances.
+:param str kill_selection: Defines which instance should be killed first in case of e.g. rescaling.</p>
 <dl class="attribute">
 <dt id="marathon.models.app.MarathonApp.CREATE_ONLY_ATTRIBUTES">
-<tt class="descname">CREATE_ONLY_ATTRIBUTES</tt><em class="property"> = ['id']</em><a class="headerlink" href="#marathon.models.app.MarathonApp.CREATE_ONLY_ATTRIBUTES" title="Permalink to this definition">¶</a></dt>
+<code class="descname">CREATE_ONLY_ATTRIBUTES</code><em class="property"> = ['id', 'accepted_resource_roles']</em><a class="headerlink" href="#marathon.models.app.MarathonApp.CREATE_ONLY_ATTRIBUTES" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of attributes that should only be passed on creation</p>
 </dd></dl>
 
 <dl class="attribute">
+<dt id="marathon.models.app.MarathonApp.KILL_SELECTIONS">
+<code class="descname">KILL_SELECTIONS</code><em class="property"> = ['YOUNGEST_FIRST', 'OLDEST_FIRST']</em><a class="headerlink" href="#marathon.models.app.MarathonApp.KILL_SELECTIONS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="marathon.models.app.MarathonApp.READ_ONLY_ATTRIBUTES">
-<tt class="descname">READ_ONLY_ATTRIBUTES</tt><em class="property"> = ['deployments', 'tasks', 'tasks_running', 'tasks_staged', 'tasks_healthy', 'tasks_unhealthy']</em><a class="headerlink" href="#marathon.models.app.MarathonApp.READ_ONLY_ATTRIBUTES" title="Permalink to this definition">¶</a></dt>
+<code class="descname">READ_ONLY_ATTRIBUTES</code><em class="property"> = ['deployments', 'tasks', 'tasks_running', 'tasks_staged', 'tasks_healthy', 'tasks_unhealthy']</em><a class="headerlink" href="#marathon.models.app.MarathonApp.READ_ONLY_ATTRIBUTES" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of read-only attributes</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="marathon.models.app.MarathonApp.UPDATE_OK_ATTRIBUTES">
-<tt class="descname">UPDATE_OK_ATTRIBUTES</tt><em class="property"> = ['args', 'backoff_factor', 'backoff_seconds', 'cmd', 'constraints', 'container', 'cpus', 'dependencies', 'disk', 'env', 'executor', 'health_checks', 'instances', 'labels', 'max_launch_delay_seconds', 'mem', 'ports', 'require_ports', 'store_urls', 'task_rate_limit', 'upgrade_strategy', 'uris', 'user', 'version']</em><a class="headerlink" href="#marathon.models.app.MarathonApp.UPDATE_OK_ATTRIBUTES" title="Permalink to this definition">¶</a></dt>
+<code class="descname">UPDATE_OK_ATTRIBUTES</code><em class="property"> = ['args', 'backoff_factor', 'backoff_seconds', 'cmd', 'constraints', 'container', 'cpus', 'dependencies', 'disk', 'env', 'executor', 'gpus', 'health_checks', 'instances', 'kill_selection', 'labels', 'max_launch_delay_seconds', 'mem', 'ports', 'require_ports', 'store_urls', 'task_rate_limit', 'upgrade_strategy', 'unreachable_strategy', 'uris', 'user', 'version']</em><a class="headerlink" href="#marathon.models.app.MarathonApp.UPDATE_OK_ATTRIBUTES" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of attributes which may be updated/changed after app creation</p>
 </dd></dl>
+
+<dl class="method">
+<dt id="marathon.models.app.MarathonApp.add_env">
+<code class="descname">add_env</code><span class="sig-paren">(</span><em>key</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/app.html#MarathonApp.add_env"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.MarathonApp.add_env" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="marathon.models.app.MarathonAppVersionInfo">
+<em class="property">class </em><code class="descclassname">marathon.models.app.</code><code class="descname">MarathonAppVersionInfo</code><span class="sig-paren">(</span><em>last_scaling_at=None</em>, <em>last_config_change_at=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/app.html#MarathonAppVersionInfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.MarathonAppVersionInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
+<p>Marathon App version info.</p>
+<p>See release notes for Marathon v0.11.0
+<a class="reference external" href="https://github.com/mesosphere/marathon/releases/tag/v0.11.0">https://github.com/mesosphere/marathon/releases/tag/v0.11.0</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>app_id</strong> (<em>str</em>) &#8211; application id</li>
+<li><strong>host</strong> (<em>str</em>) &#8211; mesos slave running the task</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="marathon.models.app.MarathonAppVersionInfo.DATETIME_FORMAT">
+<code class="descname">DATETIME_FORMAT</code><em class="property"> = '%Y-%m-%dT%H:%M:%S.%fZ'</em><a class="headerlink" href="#marathon.models.app.MarathonAppVersionInfo.DATETIME_FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="marathon.models.app.MarathonHealthCheck">
-<em class="property">class </em><tt class="descclassname">marathon.models.app.</tt><tt class="descname">MarathonHealthCheck</tt><big>(</big><em>command=None</em>, <em>grace_period_seconds=None</em>, <em>interval_seconds=None</em>, <em>max_consecutive_failures=None</em>, <em>path=None</em>, <em>port_index=None</em>, <em>protocol=None</em>, <em>timeout_seconds=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/app.html#MarathonHealthCheck"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.MarathonHealthCheck" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.app.</code><code class="descname">MarathonHealthCheck</code><span class="sig-paren">(</span><em>command=None</em>, <em>grace_period_seconds=None</em>, <em>interval_seconds=None</em>, <em>max_consecutive_failures=None</em>, <em>path=None</em>, <em>port_index=None</em>, <em>protocol=None</em>, <em>timeout_seconds=None</em>, <em>ignore_http1xx=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/app.html#MarathonHealthCheck"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.MarathonHealthCheck" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
 <p>Marathon health check.</p>
 <p>See <a class="reference external" href="https://mesosphere.github.io/marathon/docs/health-checks.html">https://mesosphere.github.io/marathon/docs/health-checks.html</a></p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -188,6 +294,8 @@
 <li><strong>port_index</strong> (<em>int</em>) &#8211; target port as indexed in app&#8217;s <cite>ports</cite> array</li>
 <li><strong>protocol</strong> (<em>str</em>) &#8211; health check protocol (&#8216;HTTP&#8217;, &#8216;TCP&#8217;, or &#8216;COMMAND&#8217;)</li>
 <li><strong>timeout_seconds</strong> (<em>int</em>) &#8211; how long before a waiting health check is considered failed</li>
+<li><strong>ignore_http1xx</strong> (<em>bool</em>) &#8211; Ignore HTTP informational status codes 100 to 199.</li>
+<li><strong>kwargs</strong> (<em>dict</em>) &#8211; additional arguments for forward compatibility</li>
 </ul>
 </td>
 </tr>
@@ -197,8 +305,8 @@
 
 <dl class="class">
 <dt id="marathon.models.app.MarathonTaskFailure">
-<em class="property">class </em><tt class="descclassname">marathon.models.app.</tt><tt class="descname">MarathonTaskFailure</tt><big>(</big><em>app_id=None</em>, <em>host=None</em>, <em>message=None</em>, <em>task_id=None</em>, <em>state=None</em>, <em>timestamp=None</em>, <em>version=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/app.html#MarathonTaskFailure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.MarathonTaskFailure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.app.</code><code class="descname">MarathonTaskFailure</code><span class="sig-paren">(</span><em>app_id=None</em>, <em>host=None</em>, <em>message=None</em>, <em>task_id=None</em>, <em>instance_id=None</em>, <em>slave_id=None</em>, <em>state=None</em>, <em>timestamp=None</em>, <em>version=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/app.html#MarathonTaskFailure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.MarathonTaskFailure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
 <p>Marathon Task Failure.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -209,8 +317,9 @@
 <li><strong>host</strong> (<em>str</em>) &#8211; mesos slave running the task</li>
 <li><strong>message</strong> (<em>str</em>) &#8211; error message</li>
 <li><strong>task_id</strong> (<em>str</em>) &#8211; task id</li>
+<li><strong>instance_id</strong> (<em>str</em>) &#8211; instance id</li>
 <li><strong>state</strong> (<em>str</em>) &#8211; task state</li>
-<li><strong>timestamp</strong> (<em>datetime or str</em>) &#8211; when this task failed</li>
+<li><strong>timestamp</strong> (<em>datetime</em><em> or </em><em>str</em>) &#8211; when this task failed</li>
 <li><strong>version</strong> (<em>str</em>) &#8211; app version with which this task was started</li>
 </ul>
 </td>
@@ -219,15 +328,153 @@
 </table>
 <dl class="attribute">
 <dt id="marathon.models.app.MarathonTaskFailure.DATETIME_FORMAT">
-<tt class="descname">DATETIME_FORMAT</tt><em class="property"> = '%Y-%m-%dT%H:%M:%S.%fZ'</em><a class="headerlink" href="#marathon.models.app.MarathonTaskFailure.DATETIME_FORMAT" title="Permalink to this definition">¶</a></dt>
+<code class="descname">DATETIME_FORMAT</code><em class="property"> = '%Y-%m-%dT%H:%M:%S.%fZ'</em><a class="headerlink" href="#marathon.models.app.MarathonTaskFailure.DATETIME_FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="marathon.models.app.MarathonTaskStats">
+<em class="property">class </em><code class="descclassname">marathon.models.app.</code><code class="descname">MarathonTaskStats</code><span class="sig-paren">(</span><em>started_after_last_scaling=None</em>, <em>with_latest_config=None</em>, <em>with_outdated_config=None</em>, <em>total_summary=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/app.html#MarathonTaskStats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.MarathonTaskStats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
+<p>Marathon task statistics</p>
+<p>See <a class="reference external" href="https://mesosphere.github.io/marathon/docs/rest-api.html#taskstats-object-v0-11">https://mesosphere.github.io/marathon/docs/rest-api.html#taskstats-object-v0-11</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>started_after_last_scaling</strong> (<a class="reference internal" href="#marathon.models.app.MarathonTaskStatsType" title="marathon.models.app.MarathonTaskStatsType"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonTaskStatsType</span></code></a> or dict) &#8211; contains statistics about all tasks that were started after the last scaling or restart operation.</li>
+<li><strong>with_latest_config</strong> (<a class="reference internal" href="#marathon.models.app.MarathonTaskStatsType" title="marathon.models.app.MarathonTaskStatsType"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonTaskStatsType</span></code></a> or dict) &#8211; contains statistics about all tasks that run with the same config as the latest app version.</li>
+<li><strong>with_outdated_config</strong> (<a class="reference internal" href="#marathon.models.app.MarathonTaskStatsType" title="marathon.models.app.MarathonTaskStatsType"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonTaskStatsType</span></code></a> or dict) &#8211; contains statistics about all tasks that were started before the last config change
+which was not simply a restart or scaling operation.</li>
+<li><strong>total_summary</strong> (<a class="reference internal" href="#marathon.models.app.MarathonTaskStatsType" title="marathon.models.app.MarathonTaskStatsType"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonTaskStatsType</span></code></a> or dict) &#8211; contains statistics about all tasks.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="marathon.models.app.MarathonTaskStatsCounts">
+<em class="property">class </em><code class="descclassname">marathon.models.app.</code><code class="descname">MarathonTaskStatsCounts</code><span class="sig-paren">(</span><em>staged=None</em>, <em>running=None</em>, <em>healthy=None</em>, <em>unhealthy=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/app.html#MarathonTaskStatsCounts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.MarathonTaskStatsCounts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
+<p>Marathon app task counts</p>
+<p>Equivalent to tasksStaged, tasksRunning, tasksHealthy, tasksUnhealthy.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>staged</strong> (<em>int</em>) &#8211; Staged task count</li>
+<li><strong>running</strong> (<em>int</em>) &#8211; Running task count</li>
+<li><strong>healthy</strong> (<em>int</em>) &#8211; Healthy task count</li>
+<li><strong>unhealthy</strong> (<em>int</em>) &#8211; unhealthy task count</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="marathon.models.app.MarathonTaskStatsLifeTime">
+<em class="property">class </em><code class="descclassname">marathon.models.app.</code><code class="descname">MarathonTaskStatsLifeTime</code><span class="sig-paren">(</span><em>average_seconds=None</em>, <em>median_seconds=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/app.html#MarathonTaskStatsLifeTime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.MarathonTaskStatsLifeTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
+<p>Marathon app life time statistics</p>
+<p>Measured from <cite>&#8220;startedAt&#8221;</cite> (timestamp of the Mesos TASK_RUNNING status update) of each running task until now</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>average_seconds</strong> (<em>float</em>) &#8211; Average seconds</li>
+<li><strong>median_seconds</strong> (<em>float</em>) &#8211; Median seconds</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="marathon.models.app.MarathonTaskStatsStats">
+<em class="property">class </em><code class="descclassname">marathon.models.app.</code><code class="descname">MarathonTaskStatsStats</code><span class="sig-paren">(</span><em>counts=None</em>, <em>life_time=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/app.html#MarathonTaskStatsStats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.MarathonTaskStatsStats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
+<p>Marathon app task stats</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>counts</strong> (<a class="reference internal" href="#marathon.models.app.MarathonTaskStatsCounts" title="marathon.models.app.MarathonTaskStatsCounts"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonTaskStatsCounts</span></code></a> or dict) &#8211; app task count breakdown</li>
+<li><strong>life_time</strong> (<a class="reference internal" href="#marathon.models.app.MarathonTaskStatsLifeTime" title="marathon.models.app.MarathonTaskStatsLifeTime"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonTaskStatsLifeTime</span></code></a> or dict) &#8211; app task life time stats</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="marathon.models.app.MarathonTaskStatsType">
+<em class="property">class </em><code class="descclassname">marathon.models.app.</code><code class="descname">MarathonTaskStatsType</code><span class="sig-paren">(</span><em>stats=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/app.html#MarathonTaskStatsType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.MarathonTaskStatsType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
+<p>Marathon app task stats</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>stats</strong> (<a class="reference internal" href="#marathon.models.app.MarathonTaskStatsStats" title="marathon.models.app.MarathonTaskStatsStats"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonTaskStatsStats</span></code></a> or dict) &#8211; stast about app tasks</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="marathon.models.app.MarathonUnreachableStrategy">
+<em class="property">class </em><code class="descclassname">marathon.models.app.</code><code class="descname">MarathonUnreachableStrategy</code><span class="sig-paren">(</span><em>unreachable_inactive_after_seconds=None</em>, <em>unreachable_expunge_after_seconds=None</em>, <em>inactive_after_seconds=None</em>, <em>expunge_after_seconds=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/app.html#MarathonUnreachableStrategy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.MarathonUnreachableStrategy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
+<p>Marathon unreachable Strategy.</p>
+<p>Define handling for unreachable instances. Given
+<cite>unreachable_inactive_after_seconds = 60</cite> and
+<cite>unreachable_expunge_after = 120</cite>, an instance will be expunged if it has
+been unreachable for more than 120 seconds or a second instance is started
+if it has been unreachable for more than 60 seconds.&#8221;,</p>
+<p>See <a class="reference external" href="https://mesosphere.github.io/marathon/docs/">https://mesosphere.github.io/marathon/docs/</a>?</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>unreachable_inactive_after_seconds</strong> (<em>int</em>) &#8211; time an instance is
+unreachable for in seconds before marked as inactive.</li>
+<li><strong>unreachable_expunge_after_seconds</strong> (<em>int</em>) &#8211; time an instance is
+unreachable for in seconds before expunged.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>:param int inactive_after_seconds
+:param int expunge_after_seconds</p>
+<dl class="attribute">
+<dt id="marathon.models.app.MarathonUnreachableStrategy.DISABLED">
+<code class="descname">DISABLED</code><em class="property"> = 'disabled'</em><a class="headerlink" href="#marathon.models.app.MarathonUnreachableStrategy.DISABLED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="marathon.models.app.MarathonUnreachableStrategy.from_json">
+<em class="property">classmethod </em><code class="descname">from_json</code><span class="sig-paren">(</span><em>attributes</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/app.html#MarathonUnreachableStrategy.from_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.MarathonUnreachableStrategy.from_json" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="marathon.models.app.MarathonUpgradeStrategy">
-<em class="property">class </em><tt class="descclassname">marathon.models.app.</tt><tt class="descname">MarathonUpgradeStrategy</tt><big>(</big><em>maximum_over_capacity=None</em>, <em>minimum_health_capacity=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/app.html#MarathonUpgradeStrategy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.MarathonUpgradeStrategy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.app.</code><code class="descname">MarathonUpgradeStrategy</code><span class="sig-paren">(</span><em>maximum_over_capacity=None</em>, <em>minimum_health_capacity=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/app.html#MarathonUpgradeStrategy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.MarathonUpgradeStrategy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
 <p>Marathon health check.</p>
 <p>See <a class="reference external" href="https://mesosphere.github.io/marathon/docs/health-checks.html">https://mesosphere.github.io/marathon/docs/health-checks.html</a></p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -240,14 +487,91 @@
 </table>
 </dd></dl>
 
+<dl class="class">
+<dt id="marathon.models.app.PortDefinition">
+<em class="property">class </em><code class="descclassname">marathon.models.app.</code><code class="descname">PortDefinition</code><span class="sig-paren">(</span><em>port=None</em>, <em>protocol=None</em>, <em>name=None</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/app.html#PortDefinition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.PortDefinition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
+<p>Marathon port definitions: <a class="reference external" href="https://mesosphere.github.io/marathon/docs/ports.html">https://mesosphere.github.io/marathon/docs/ports.html</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>port</strong> (<em>int</em>) &#8211; The port</li>
+<li><strong>protocol</strong> (<em>string</em>) &#8211; tcp or udp</li>
+<li><strong>name</strong> (<em>string</em>) &#8211; (optional) the name of the port</li>
+<li><strong>labels</strong> (<em>dict</em>) &#8211; undocumented</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="marathon.models.app.ReadinessCheck">
+<em class="property">class </em><code class="descclassname">marathon.models.app.</code><code class="descname">ReadinessCheck</code><span class="sig-paren">(</span><em>name=None</em>, <em>protocol=None</em>, <em>path=None</em>, <em>port_name=None</em>, <em>interval_seconds=None</em>, <em>http_status_codes_for_ready=None</em>, <em>preserve_last_response=None</em>, <em>timeout_seconds=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/app.html#ReadinessCheck"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.ReadinessCheck" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
+<p>Marathon readiness check: <a class="reference external" href="https://mesosphere.github.io/marathon/docs/readiness-checks.html">https://mesosphere.github.io/marathon/docs/readiness-checks.html</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong><strong> (</strong><strong>Optional. Default</strong> (<em>string</em>) &#8211; &#8220;readinessCheck&#8221;): The name used to identify this readiness check.</li>
+<li><strong>protocol</strong><strong> (</strong><strong>Optional. Default</strong> (<em>string</em>) &#8211; &#8220;HTTP&#8221;): Protocol of the requests to be performed. Either HTTP or HTTPS.</li>
+<li><strong>path</strong><strong> (</strong><strong>Optional. Default</strong> (<em>string</em>) &#8211; &#8220;/&#8221;): Path to the endpoint the task exposes to provide readiness status.
+Example: /path/to/readiness.</li>
+<li><strong>port_name</strong><strong> (</strong><strong>Optional. Default</strong> (<em>string</em>) &#8211; &#8220;http-api&#8221;): Name of the port to query as described in the
+portDefinitions. Example: http-api.</li>
+<li><strong>interval_seconds</strong><strong> (</strong><strong>Optional. Default</strong> (<em>int</em>) &#8211; 30 seconds): Number of seconds to wait between readiness checks.</li>
+<li><strong>timeout_seconds</strong><strong> (</strong><strong>Optional. Default</strong> (<em>int</em>) &#8211; 10 seconds): Number of seconds after which a readiness check
+times out, regardless of the response. This value must be smaller than interval_seconds.</li>
+<li><strong>http_status_codes_for_ready</strong><strong> (</strong><strong>Optional. Default</strong> (<em>list</em>) &#8211; [200]): The HTTP/HTTPS status code to treat as ready.</li>
+<li><strong>preserve_last_response</strong><strong> (</strong><strong>Optional. Default</strong> (<em>bool</em>) &#8211; false): If true, the last readiness check response will be
+preserved and exposed in the API as part of a deployment.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="marathon.models.app.Residency">
+<em class="property">class </em><code class="descclassname">marathon.models.app.</code><code class="descname">Residency</code><span class="sig-paren">(</span><em>relaunch_escalation_timeout_seconds=None</em>, <em>task_lost_behavior=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/app.html#Residency"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.Residency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
+<p>Declares how &#8220;resident&#8221; an app is: <a class="reference external" href="https://mesosphere.github.io/marathon/docs/persistent-volumes.html">https://mesosphere.github.io/marathon/docs/persistent-volumes.html</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>relaunch_escalation_timeout_seconds</strong> (<em>int</em>) &#8211; How long marathon will try to relaunch where the volumes is, defaults to 3600</li>
+<li><strong>task_lost_behavior</strong> (<em>string</em>) &#8211; What to do after a TASK_LOST. See the official Marathon docs for options</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="marathon.models.app.Secret">
+<em class="property">class </em><code class="descclassname">marathon.models.app.</code><code class="descname">Secret</code><span class="sig-paren">(</span><em>source=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/app.html#Secret"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.app.Secret" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
+<p>Declares marathon secret object.
+:param str source: The source of the secret&#8217;s value. The format depends on the secret store used by Mesos.</p>
+</dd></dl>
+
 <span class="target" id="module-marathon.models.base"></span><dl class="class">
 <dt id="marathon.models.base.MarathonObject">
-<em class="property">class </em><tt class="descclassname">marathon.models.base.</tt><tt class="descname">MarathonObject</tt><a class="reference internal" href="_modules/marathon/models/base.html#MarathonObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.base.MarathonObject" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<em class="property">class </em><code class="descclassname">marathon.models.base.</code><code class="descname">MarathonObject</code><a class="reference internal" href="_modules/marathon/models/base.html#MarathonObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.base.MarathonObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>Base Marathon object.</p>
 <dl class="classmethod">
 <dt id="marathon.models.base.MarathonObject.from_json">
-<em class="property">classmethod </em><tt class="descname">from_json</tt><big>(</big><em>attributes</em><big>)</big><a class="reference internal" href="_modules/marathon/models/base.html#MarathonObject.from_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.base.MarathonObject.from_json" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="descname">from_json</code><span class="sig-paren">(</span><em>attributes</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/base.html#MarathonObject.from_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.base.MarathonObject.from_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct an object from a parsed response.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -261,7 +585,7 @@
 
 <dl class="method">
 <dt id="marathon.models.base.MarathonObject.json_repr">
-<tt class="descname">json_repr</tt><big>(</big><em>minimal=False</em><big>)</big><a class="reference internal" href="_modules/marathon/models/base.html#MarathonObject.json_repr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.base.MarathonObject.json_repr" title="Permalink to this definition">¶</a></dt>
+<code class="descname">json_repr</code><span class="sig-paren">(</span><em>minimal=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/base.html#MarathonObject.json_repr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.base.MarathonObject.json_repr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct a JSON-friendly representation of the object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -277,7 +601,7 @@
 
 <dl class="method">
 <dt id="marathon.models.base.MarathonObject.to_json">
-<tt class="descname">to_json</tt><big>(</big><em>minimal=True</em><big>)</big><a class="reference internal" href="_modules/marathon/models/base.html#MarathonObject.to_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.base.MarathonObject.to_json" title="Permalink to this definition">¶</a></dt>
+<code class="descname">to_json</code><span class="sig-paren">(</span><em>minimal=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/base.html#MarathonObject.to_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.base.MarathonObject.to_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Encode an object as a JSON string.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -295,15 +619,47 @@
 
 <dl class="class">
 <dt id="marathon.models.base.MarathonResource">
-<em class="property">class </em><tt class="descclassname">marathon.models.base.</tt><tt class="descname">MarathonResource</tt><a class="reference internal" href="_modules/marathon/models/base.html#MarathonResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.base.MarathonResource" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.base.</code><code class="descname">MarathonResource</code><a class="reference internal" href="_modules/marathon/models/base.html#MarathonResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.base.MarathonResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
 <p>Base Marathon resource.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="marathon.models.base.assert_valid_id">
+<code class="descclassname">marathon.models.base.</code><code class="descname">assert_valid_id</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/base.html#assert_valid_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.base.assert_valid_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if an id is the correct format that Marathon expects. Raises ValueError if not valid.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>id</strong> (<em>str</em>) &#8211; App or group id.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="marathon.models.base.assert_valid_path">
+<code class="descclassname">marathon.models.base.</code><code class="descname">assert_valid_path</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/base.html#assert_valid_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.base.assert_valid_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a path is a correct format that Marathon expects. Raises ValueError if not valid.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>str</em>) &#8211; The app id.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <span class="target" id="module-marathon.models.constraint"></span><dl class="class">
 <dt id="marathon.models.constraint.MarathonConstraint">
-<em class="property">class </em><tt class="descclassname">marathon.models.constraint.</tt><tt class="descname">MarathonConstraint</tt><big>(</big><em>field</em>, <em>operator</em>, <em>value=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/constraint.html#MarathonConstraint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.constraint.MarathonConstraint" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.constraint.</code><code class="descname">MarathonConstraint</code><span class="sig-paren">(</span><em>field</em>, <em>operator</em>, <em>value=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/constraint.html#MarathonConstraint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.constraint.MarathonConstraint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
 <p>Marathon placement constraint.</p>
 <p>See <a class="reference external" href="https://mesosphere.github.io/marathon/docs/constraints.html">https://mesosphere.github.io/marathon/docs/constraints.html</a></p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -322,15 +678,9 @@
 <p>If <cite>operator</cite> is GROUP_BY, place at most <cite>value</cite> tasks per group. If <cite>operator</cite>
 is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 :type value: str, int, or None</p>
-<dl class="attribute">
-<dt id="marathon.models.constraint.MarathonConstraint.OPERATORS">
-<tt class="descname">OPERATORS</tt><em class="property"> = ['UNIQUE', 'CLUSTER', 'GROUP_BY', 'LIKE', 'UNLIKE']</em><a class="headerlink" href="#marathon.models.constraint.MarathonConstraint.OPERATORS" title="Permalink to this definition">¶</a></dt>
-<dd><p>Valid operators</p>
-</dd></dl>
-
 <dl class="classmethod">
 <dt id="marathon.models.constraint.MarathonConstraint.from_json">
-<em class="property">classmethod </em><tt class="descname">from_json</tt><big>(</big><em>obj</em><big>)</big><a class="reference internal" href="_modules/marathon/models/constraint.html#MarathonConstraint.from_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.constraint.MarathonConstraint.from_json" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="descname">from_json</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/constraint.html#MarathonConstraint.from_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.constraint.MarathonConstraint.from_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct a MarathonConstraint from a parsed response.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -338,7 +688,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>attributes</strong> (<em>dict</em>) &#8211; object attributes from parsed response</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#marathon.models.constraint.MarathonConstraint" title="marathon.models.constraint.MarathonConstraint"><tt class="xref py py-class docutils literal"><span class="pre">MarathonConstraint</span></tt></a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#marathon.models.constraint.MarathonConstraint" title="marathon.models.constraint.MarathonConstraint"><code class="xref py py-class docutils literal"><span class="pre">MarathonConstraint</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -346,7 +696,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.models.constraint.MarathonConstraint.json_repr">
-<tt class="descname">json_repr</tt><big>(</big><em>minimal=False</em><big>)</big><a class="reference internal" href="_modules/marathon/models/constraint.html#MarathonConstraint.json_repr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.constraint.MarathonConstraint.json_repr" title="Permalink to this definition">¶</a></dt>
+<code class="descname">json_repr</code><span class="sig-paren">(</span><em>minimal=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/constraint.html#MarathonConstraint.json_repr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.constraint.MarathonConstraint.json_repr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct a JSON-friendly representation of the object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -364,8 +714,8 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <span class="target" id="module-marathon.models.container"></span><dl class="class">
 <dt id="marathon.models.container.MarathonContainer">
-<em class="property">class </em><tt class="descclassname">marathon.models.container.</tt><tt class="descname">MarathonContainer</tt><big>(</big><em>docker=None</em>, <em>type='DOCKER'</em>, <em>volumes=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/container.html#MarathonContainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.container.MarathonContainer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.container.</code><code class="descname">MarathonContainer</code><span class="sig-paren">(</span><em>docker=None</em>, <em>type='DOCKER'</em>, <em>volumes=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/container.html#MarathonContainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.container.MarathonContainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
 <p>Marathon health check.</p>
 <p>See <a class="reference external" href="https://mesosphere.github.io/marathon/docs/native-docker.html">https://mesosphere.github.io/marathon/docs/native-docker.html</a></p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -373,9 +723,9 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>docker</strong> (<a class="reference internal" href="#marathon.models.container.MarathonDockerContainer" title="marathon.models.container.MarathonDockerContainer"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.container.MarathonDockerContainer</span></tt></a> or dict) &#8211; docker field (e.g., {&#8220;image&#8221;: &#8220;mygroup/myimage&#8221;})&#8217;</li>
+<li><strong>docker</strong> (<a class="reference internal" href="#marathon.models.container.MarathonDockerContainer" title="marathon.models.container.MarathonDockerContainer"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.container.MarathonDockerContainer</span></code></a> or dict) &#8211; docker field (e.g., {&#8220;image&#8221;: &#8220;mygroup/myimage&#8221;})&#8217;</li>
 <li><strong>type</strong> (<em>str</em>) &#8211; </li>
-<li><strong>volumes</strong> (list[<a class="reference internal" href="#marathon.models.container.MarathonContainerVolume" title="marathon.models.container.MarathonContainerVolume"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.container.MarathonContainerVolume</span></tt></a>] or list[dict]) &#8211; </li>
+<li><strong>volumes</strong> (list[<a class="reference internal" href="#marathon.models.container.MarathonContainerVolume" title="marathon.models.container.MarathonContainerVolume"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.container.MarathonContainerVolume</span></code></a>] or list[dict]) &#8211; </li>
 </ul>
 </td>
 </tr>
@@ -383,7 +733,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 </table>
 <dl class="attribute">
 <dt id="marathon.models.container.MarathonContainer.TYPES">
-<tt class="descname">TYPES</tt><em class="property"> = ['DOCKER']</em><a class="headerlink" href="#marathon.models.container.MarathonContainer.TYPES" title="Permalink to this definition">¶</a></dt>
+<code class="descname">TYPES</code><em class="property"> = ['DOCKER', 'MESOS']</em><a class="headerlink" href="#marathon.models.container.MarathonContainer.TYPES" title="Permalink to this definition">¶</a></dt>
 <dd><p>Valid container types</p>
 </dd></dl>
 
@@ -391,8 +741,8 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="class">
 <dt id="marathon.models.container.MarathonContainerPortMapping">
-<em class="property">class </em><tt class="descclassname">marathon.models.container.</tt><tt class="descname">MarathonContainerPortMapping</tt><big>(</big><em>container_port=None</em>, <em>host_port=0</em>, <em>service_port=None</em>, <em>protocol='tcp'</em><big>)</big><a class="reference internal" href="_modules/marathon/models/container.html#MarathonContainerPortMapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.container.MarathonContainerPortMapping" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.container.</code><code class="descname">MarathonContainerPortMapping</code><span class="sig-paren">(</span><em>name=None</em>, <em>container_port=None</em>, <em>host_port=0</em>, <em>service_port=None</em>, <em>protocol='tcp'</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/container.html#MarathonContainerPortMapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.container.MarathonContainerPortMapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
 <p>Container port mapping.</p>
 <p>See <a class="reference external" href="https://mesosphere.github.io/marathon/docs/native-docker.html">https://mesosphere.github.io/marathon/docs/native-docker.html</a></p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -400,9 +750,11 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>str</em>) &#8211; </li>
 <li><strong>container_port</strong> (<em>int</em>) &#8211; </li>
 <li><strong>host_port</strong> (<em>int</em>) &#8211; </li>
 <li><strong>protocol</strong> (<em>str</em>) &#8211; </li>
+<li><strong>labels</strong> (<em>object</em>) &#8211; </li>
 </ul>
 </td>
 </tr>
@@ -410,7 +762,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 </table>
 <dl class="attribute">
 <dt id="marathon.models.container.MarathonContainerPortMapping.PROTOCOLS">
-<tt class="descname">PROTOCOLS</tt><em class="property"> = ['tcp', 'udp']</em><a class="headerlink" href="#marathon.models.container.MarathonContainerPortMapping.PROTOCOLS" title="Permalink to this definition">¶</a></dt>
+<code class="descname">PROTOCOLS</code><em class="property"> = ['tcp', 'udp']</em><a class="headerlink" href="#marathon.models.container.MarathonContainerPortMapping.PROTOCOLS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Valid protocols</p>
 </dd></dl>
 
@@ -418,8 +770,8 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="class">
 <dt id="marathon.models.container.MarathonContainerVolume">
-<em class="property">class </em><tt class="descclassname">marathon.models.container.</tt><tt class="descname">MarathonContainerVolume</tt><big>(</big><em>container_path=None</em>, <em>host_path=None</em>, <em>mode='RW'</em><big>)</big><a class="reference internal" href="_modules/marathon/models/container.html#MarathonContainerVolume"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.container.MarathonContainerVolume" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.container.</code><code class="descname">MarathonContainerVolume</code><span class="sig-paren">(</span><em>container_path=None</em>, <em>host_path=None</em>, <em>mode='RW'</em>, <em>persistent=None</em>, <em>external=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/container.html#MarathonContainerVolume"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.container.MarathonContainerVolume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
 <p>Volume options.</p>
 <p>See <a class="reference external" href="https://mesosphere.github.io/marathon/docs/native-docker.html">https://mesosphere.github.io/marathon/docs/native-docker.html</a></p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -430,6 +782,8 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <li><strong>container_path</strong> (<em>str</em>) &#8211; container path</li>
 <li><strong>host_path</strong> (<em>str</em>) &#8211; host path</li>
 <li><strong>mode</strong> (<em>str</em>) &#8211; one of [&#8216;RO&#8217;, &#8216;RW&#8217;]</li>
+<li><strong>persistent</strong> (<em>object</em>) &#8211; persistent volume options, should be of the form {&#8216;size&#8217;: 1000}</li>
+<li><strong>external</strong> (<em>object</em>) &#8211; external volume options</li>
 </ul>
 </td>
 </tr>
@@ -437,15 +791,15 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 </table>
 <dl class="attribute">
 <dt id="marathon.models.container.MarathonContainerVolume.MODES">
-<tt class="descname">MODES</tt><em class="property"> = ['RO', 'RW']</em><a class="headerlink" href="#marathon.models.container.MarathonContainerVolume.MODES" title="Permalink to this definition">¶</a></dt>
+<code class="descname">MODES</code><em class="property"> = ['RO', 'RW']</em><a class="headerlink" href="#marathon.models.container.MarathonContainerVolume.MODES" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="marathon.models.container.MarathonDockerContainer">
-<em class="property">class </em><tt class="descclassname">marathon.models.container.</tt><tt class="descname">MarathonDockerContainer</tt><big>(</big><em>image=None</em>, <em>network='HOST'</em>, <em>port_mappings=None</em>, <em>parameters=None</em>, <em>privileged=None</em>, <em>force_pull_image=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/marathon/models/container.html#MarathonDockerContainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.container.MarathonDockerContainer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.container.</code><code class="descname">MarathonDockerContainer</code><span class="sig-paren">(</span><em>image=None</em>, <em>network='HOST'</em>, <em>port_mappings=None</em>, <em>parameters=None</em>, <em>privileged=None</em>, <em>force_pull_image=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/container.html#MarathonDockerContainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.container.MarathonDockerContainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
 <p>Docker options.</p>
 <p>See <a class="reference external" href="https://mesosphere.github.io/marathon/docs/native-docker.html">https://mesosphere.github.io/marathon/docs/native-docker.html</a></p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -455,8 +809,8 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>image</strong> (<em>str</em>) &#8211; docker image</li>
 <li><strong>network</strong> (<em>str</em>) &#8211; </li>
-<li><strong>port_mappings</strong> (list[<a class="reference internal" href="#marathon.models.container.MarathonContainerPortMapping" title="marathon.models.container.MarathonContainerPortMapping"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.container.MarathonContainerPortMapping</span></tt></a>] or list[dict]) &#8211; </li>
-<li><strong>parameters</strong> (<em>dict</em>) &#8211; </li>
+<li><strong>port_mappings</strong> (list[<a class="reference internal" href="#marathon.models.container.MarathonContainerPortMapping" title="marathon.models.container.MarathonContainerPortMapping"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.container.MarathonContainerPortMapping</span></code></a>] or list[dict]) &#8211; </li>
+<li><strong>parameters</strong> (<em>list</em><em>[</em><em>dict</em><em>]</em><em></em>) &#8211; </li>
 <li><strong>privileged</strong> (<em>bool</em>) &#8211; run container in privileged mode</li>
 <li><strong>force_pull_image</strong> (<em>bool</em>) &#8211; Force a docker pull before launching</li>
 </ul>
@@ -466,7 +820,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 </table>
 <dl class="attribute">
 <dt id="marathon.models.container.MarathonDockerContainer.NETWORK_MODES">
-<tt class="descname">NETWORK_MODES</tt><em class="property"> = ['BRIDGE', 'HOST']</em><a class="headerlink" href="#marathon.models.container.MarathonDockerContainer.NETWORK_MODES" title="Permalink to this definition">¶</a></dt>
+<code class="descname">NETWORK_MODES</code><em class="property"> = ['BRIDGE', 'HOST', 'NONE']</em><a class="headerlink" href="#marathon.models.container.MarathonDockerContainer.NETWORK_MODES" title="Permalink to this definition">¶</a></dt>
 <dd><p>Valid network modes</p>
 </dd></dl>
 
@@ -474,33 +828,42 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <span class="target" id="module-marathon.models.deployment"></span><dl class="class">
 <dt id="marathon.models.deployment.MarathonDeployment">
-<em class="property">class </em><tt class="descclassname">marathon.models.deployment.</tt><tt class="descname">MarathonDeployment</tt><big>(</big><em>affected_apps=None</em>, <em>current_actions=None</em>, <em>current_step=None</em>, <em>id=None</em>, <em>steps=None</em>, <em>total_steps=None</em>, <em>version=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/deployment.html#MarathonDeployment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.deployment.MarathonDeployment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonResource" title="marathon.models.base.MarathonResource"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonResource</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.deployment.</code><code class="descname">MarathonDeployment</code><span class="sig-paren">(</span><em>affected_apps=None</em>, <em>current_actions=None</em>, <em>current_step=None</em>, <em>id=None</em>, <em>steps=None</em>, <em>total_steps=None</em>, <em>version=None</em>, <em>affected_pods=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/deployment.html#MarathonDeployment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.deployment.MarathonDeployment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonResource" title="marathon.models.base.MarathonResource"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonResource</span></code></a></p>
 <p>Marathon Application resource.</p>
-<p>See: <a class="reference external" href="https://mesosphere.github.io/marathon/docs/rest-api.html#deployments">https://mesosphere.github.io/marathon/docs/rest-api.html#deployments</a></p>
+<dl class="docutils">
+<dt>See: <a class="reference external" href="https://mesosphere.github.io/marathon/docs/rest-api.html#deployments">https://mesosphere.github.io/marathon/docs/rest-api.html#deployments</a></dt>
+<dd><a class="reference external" href="https://mesosphere.github.io/marathon/docs/generated/api.html#v2_deployments_get">https://mesosphere.github.io/marathon/docs/generated/api.html#v2_deployments_get</a></dd>
+</dl>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>affected_apps</strong> (<em>list[str]</em>) &#8211; list of affected app ids</li>
-<li><strong>current_actions</strong> (list[<a class="reference internal" href="#marathon.models.deployment.MarathonDeploymentAction" title="marathon.models.deployment.MarathonDeploymentAction"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.deployment.MarathonDeploymentAction</span></tt></a>] or list[dict]) &#8211; current actions</li>
+<li><strong>affected_apps</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em></em>) &#8211; list of affected app ids</li>
+<li><strong>current_actions</strong> (list[<a class="reference internal" href="#marathon.models.deployment.MarathonDeploymentAction" title="marathon.models.deployment.MarathonDeploymentAction"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.deployment.MarathonDeploymentAction</span></code></a>] or list[dict]) &#8211; current actions</li>
 <li><strong>current_step</strong> (<em>int</em>) &#8211; current step</li>
 <li><strong>id</strong> (<em>str</em>) &#8211; deployment id</li>
-<li><strong>steps</strong> (list[<a class="reference internal" href="#marathon.models.deployment.MarathonDeploymentAction" title="marathon.models.deployment.MarathonDeploymentAction"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.deployment.MarathonDeploymentAction</span></tt></a>] or list[dict]) &#8211; deployment steps</li>
+<li><strong>steps</strong> (list[<a class="reference internal" href="#marathon.models.deployment.MarathonDeploymentAction" title="marathon.models.deployment.MarathonDeploymentAction"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.deployment.MarathonDeploymentAction</span></code></a>] or list[dict]) &#8211; deployment steps</li>
 <li><strong>total_steps</strong> (<em>int</em>) &#8211; total number of steps</li>
 <li><strong>version</strong> (<em>str</em>) &#8211; version id</li>
+<li><strong>affected_pods</strong> (<em>str</em>) &#8211; list of strings</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="marathon.models.deployment.MarathonDeployment.parse_deployment_step">
+<code class="descname">parse_deployment_step</code><span class="sig-paren">(</span><em>step</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/deployment.html#MarathonDeployment.parse_deployment_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.deployment.MarathonDeployment.parse_deployment_step" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="marathon.models.deployment.MarathonDeploymentAction">
-<em class="property">class </em><tt class="descclassname">marathon.models.deployment.</tt><tt class="descname">MarathonDeploymentAction</tt><big>(</big><em>action=None</em>, <em>app=None</em>, <em>apps=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/deployment.html#MarathonDeploymentAction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.deployment.MarathonDeploymentAction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.deployment.</code><code class="descname">MarathonDeploymentAction</code><span class="sig-paren">(</span><em>action=None</em>, <em>app=None</em>, <em>apps=None</em>, <em>type=None</em>, <em>readiness_check_results=None</em>, <em>pod=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/deployment.html#MarathonDeploymentAction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.deployment.MarathonDeploymentAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
 <p>Marathon Application resource.</p>
 <p>See: <a class="reference external" href="https://mesosphere.github.io/marathon/docs/rest-api.html#deployments">https://mesosphere.github.io/marathon/docs/rest-api.html#deployments</a></p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -511,6 +874,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <li><strong>action</strong> (<em>str</em>) &#8211; action</li>
 <li><strong>app</strong> (<em>str</em>) &#8211; app id</li>
 <li><strong>apps</strong> (<em>str</em>) &#8211; app id (see <a class="reference external" href="https://github.com/mesosphere/marathon/pull/802">https://github.com/mesosphere/marathon/pull/802</a>)</li>
+<li><strong>readiness_check_results</strong> (<em>type</em>) &#8211; Undocumented</li>
 </ul>
 </td>
 </tr>
@@ -518,10 +882,34 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 </table>
 </dd></dl>
 
+<dl class="class">
+<dt id="marathon.models.deployment.MarathonDeploymentOriginalState">
+<em class="property">class </em><code class="descclassname">marathon.models.deployment.</code><code class="descname">MarathonDeploymentOriginalState</code><span class="sig-paren">(</span><em>dependencies=None</em>, <em>apps=None</em>, <em>id=None</em>, <em>version=None</em>, <em>groups=None</em>, <em>pods=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/deployment.html#MarathonDeploymentOriginalState"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.deployment.MarathonDeploymentOriginalState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="marathon.models.deployment.MarathonDeploymentPlan">
+<em class="property">class </em><code class="descclassname">marathon.models.deployment.</code><code class="descname">MarathonDeploymentPlan</code><span class="sig-paren">(</span><em>original=None</em>, <em>target=None</em>, <em>steps=None</em>, <em>id=None</em>, <em>version=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/deployment.html#MarathonDeploymentPlan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.deployment.MarathonDeploymentPlan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="marathon.models.deployment.MarathonDeploymentStep">
+<em class="property">class </em><code class="descclassname">marathon.models.deployment.</code><code class="descname">MarathonDeploymentStep</code><span class="sig-paren">(</span><em>actions=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/deployment.html#MarathonDeploymentStep"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.deployment.MarathonDeploymentStep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="marathon.models.deployment.MarathonDeploymentTargetState">
+<em class="property">class </em><code class="descclassname">marathon.models.deployment.</code><code class="descname">MarathonDeploymentTargetState</code><span class="sig-paren">(</span><em>groups=None</em>, <em>apps=None</em>, <em>dependencies=None</em>, <em>id=None</em>, <em>version=None</em>, <em>pods=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/deployment.html#MarathonDeploymentTargetState"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.deployment.MarathonDeploymentTargetState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
+</dd></dl>
+
 <span class="target" id="module-marathon.models.endpoint"></span><dl class="class">
 <dt id="marathon.models.endpoint.MarathonEndpoint">
-<em class="property">class </em><tt class="descclassname">marathon.models.endpoint.</tt><tt class="descname">MarathonEndpoint</tt><big>(</big><em>app_id=None</em>, <em>service_port=None</em>, <em>host=None</em>, <em>task_id=None</em>, <em>task_port=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/endpoint.html#MarathonEndpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.endpoint.MarathonEndpoint" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.endpoint.</code><code class="descname">MarathonEndpoint</code><span class="sig-paren">(</span><em>app_id=None</em>, <em>service_port=None</em>, <em>host=None</em>, <em>task_id=None</em>, <em>task_port=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/endpoint.html#MarathonEndpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.endpoint.MarathonEndpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
 <p>Marathon Endpoint helper object for service discovery. It describes a single port mapping for a running task.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -530,7 +918,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>app_id</strong> (<em>str</em>) &#8211; application id</li>
 <li><strong>host</strong> (<em>str</em>) &#8211; mesos slave running the task</li>
-<li><strong>id</strong> (<em>str</em>) &#8211; task id</li>
+<li><strong>task_id</strong> (<em>str</em>) &#8211; task id</li>
 <li><strong>service_port</strong> (<em>int</em>) &#8211; application service port</li>
 <li><strong>task_port</strong> (<em>int</em>) &#8211; port allocated on the slave</li>
 </ul>
@@ -540,14 +928,14 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 </table>
 <dl class="classmethod">
 <dt id="marathon.models.endpoint.MarathonEndpoint.from_tasks">
-<em class="property">classmethod </em><tt class="descname">from_tasks</tt><big>(</big><em>tasks</em><big>)</big><a class="reference internal" href="_modules/marathon/models/endpoint.html#MarathonEndpoint.from_tasks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.endpoint.MarathonEndpoint.from_tasks" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="descname">from_tasks</code><span class="sig-paren">(</span><em>tasks</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/endpoint.html#MarathonEndpoint.from_tasks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.endpoint.MarathonEndpoint.from_tasks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct a list of MarathonEndpoints from a list of tasks.</p>
-<p>:param list[<tt class="xref py py-class docutils literal"><span class="pre">marathon.models.MarathonTask</span></tt>] tasks: list of tasks to parse</p>
+<p>:param list[<code class="xref py py-class docutils literal"><span class="pre">marathon.models.MarathonTask</span></code>] tasks: list of tasks to parse</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list[<a class="reference internal" href="#marathon.models.endpoint.MarathonEndpoint" title="marathon.models.endpoint.MarathonEndpoint"><tt class="xref py py-class docutils literal"><span class="pre">MarathonEndpoint</span></tt></a>]</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list[<a class="reference internal" href="#marathon.models.endpoint.MarathonEndpoint" title="marathon.models.endpoint.MarathonEndpoint"><code class="xref py py-class docutils literal"><span class="pre">MarathonEndpoint</span></code></a>]</td>
 </tr>
 </tbody>
 </table>
@@ -557,8 +945,8 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <span class="target" id="module-marathon.models.group"></span><dl class="class">
 <dt id="marathon.models.group.MarathonGroup">
-<em class="property">class </em><tt class="descclassname">marathon.models.group.</tt><tt class="descname">MarathonGroup</tt><big>(</big><em>apps=None</em>, <em>dependencies=None</em>, <em>groups=None</em>, <em>id=None</em>, <em>version=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/group.html#MarathonGroup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.group.MarathonGroup" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonResource" title="marathon.models.base.MarathonResource"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonResource</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.group.</code><code class="descname">MarathonGroup</code><span class="sig-paren">(</span><em>apps=None</em>, <em>dependencies=None</em>, <em>groups=None</em>, <em>id=None</em>, <em>pods=None</em>, <em>version=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/group.html#MarathonGroup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.group.MarathonGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonResource" title="marathon.models.base.MarathonResource"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonResource</span></code></a></p>
 <p>Marathon group resource.</p>
 <p>See: <a class="reference external" href="https://mesosphere.github.io/marathon/docs/rest-api.html#groups">https://mesosphere.github.io/marathon/docs/rest-api.html#groups</a></p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -566,10 +954,11 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>apps</strong> (list[<a class="reference internal" href="#marathon.models.app.MarathonApp" title="marathon.models.app.MarathonApp"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonApp</span></tt></a>] or list[dict]) &#8211; </li>
-<li><strong>dependencies</strong> (<em>list[str]</em>) &#8211; </li>
-<li><strong>groups</strong> (list[<a class="reference internal" href="#marathon.models.group.MarathonGroup" title="marathon.models.group.MarathonGroup"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.group.MarathonGroup</span></tt></a>] or list[dict]) &#8211; </li>
+<li><strong>apps</strong> (list[<a class="reference internal" href="#marathon.models.app.MarathonApp" title="marathon.models.app.MarathonApp"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonApp</span></code></a>] or list[dict]) &#8211; </li>
+<li><strong>dependencies</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em></em>) &#8211; </li>
+<li><strong>groups</strong> (list[<a class="reference internal" href="#marathon.models.group.MarathonGroup" title="marathon.models.group.MarathonGroup"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.group.MarathonGroup</span></code></a>] or list[dict]) &#8211; </li>
 <li><strong>id</strong> (<em>str</em>) &#8211; </li>
+<li><strong>pods</strong> (list[<code class="xref py py-class docutils literal"><span class="pre">marathon.models.pod.MarathonPod</span></code>] or list[dict]) &#8211; </li>
 <li><strong>version</strong> (<em>str</em>) &#8211; </li>
 </ul>
 </td>
@@ -580,8 +969,8 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <span class="target" id="module-marathon.models.info"></span><dl class="class">
 <dt id="marathon.models.info.MarathonConfig">
-<em class="property">class </em><tt class="descclassname">marathon.models.info.</tt><tt class="descname">MarathonConfig</tt><big>(</big><em>checkpoint=None</em>, <em>executor=None</em>, <em>failover_timeout=None</em>, <em>ha=None</em>, <em>hostname=None</em>, <em>local_port_min=None</em>, <em>local_port_max=None</em>, <em>master=None</em>, <em>mesos_role=None</em>, <em>mesos_user=None</em>, <em>webui_url=None</em>, <em>reconciliation_initial_delay=None</em>, <em>reconciliation_interval=None</em>, <em>task_launch_timeout=None</em>, <em>marathon_store_timeout=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/info.html#MarathonConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.info.MarathonConfig" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.info.</code><code class="descname">MarathonConfig</code><span class="sig-paren">(</span><em>checkpoint=None</em>, <em>executor=None</em>, <em>failover_timeout=None</em>, <em>framework_name=None</em>, <em>ha=None</em>, <em>hostname=None</em>, <em>leader_proxy_connection_timeout_ms=None</em>, <em>leader_proxy_read_timeout_ms=None</em>, <em>local_port_min=None</em>, <em>local_port_max=None</em>, <em>master=None</em>, <em>mesos_leader_ui_url=None</em>, <em>mesos_role=None</em>, <em>mesos_user=None</em>, <em>webui_url=None</em>, <em>reconciliation_initial_delay=None</em>, <em>reconciliation_interval=None</em>, <em>task_launch_timeout=None</em>, <em>marathon_store_timeout=None</em>, <em>task_reservation_timeout=None</em>, <em>features=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/info.html#MarathonConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.info.MarathonConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
 <p>Marathon config resource.</p>
 <p>See: <a class="reference external" href="https://mesosphere.github.io/marathon/docs/rest-api.html#get-/v2/info">https://mesosphere.github.io/marathon/docs/rest-api.html#get-/v2/info</a></p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -592,17 +981,23 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <li><strong>checkpoint</strong> (<em>bool</em>) &#8211; </li>
 <li><strong>executor</strong> (<em>str</em>) &#8211; </li>
 <li><strong>failover_timeout</strong> (<em>int</em>) &#8211; </li>
+<li><strong>features</strong> (<em>type</em>) &#8211; Undocumented object</li>
+<li><strong>framework_name</strong> (<em>str</em>) &#8211; </li>
 <li><strong>ha</strong> (<em>bool</em>) &#8211; </li>
 <li><strong>hostname</strong> (<em>str</em>) &#8211; </li>
+<li><strong>leader_proxy_connection_timeout_ms</strong> (<em>int</em>) &#8211; </li>
+<li><strong>leader_proxy_read_timeout_ms</strong> (<em>int</em>) &#8211; </li>
 <li><strong>local_port_min</strong> (<em>int</em>) &#8211; </li>
 <li><strong>local_port_max</strong> (<em>int</em>) &#8211; </li>
 <li><strong>master</strong> (<em>str</em>) &#8211; </li>
+<li><strong>mesos_leader_ui_url</strong> (<em>str</em>) &#8211; </li>
 <li><strong>mesos_role</strong> (<em>str</em>) &#8211; </li>
 <li><strong>mesos_user</strong> (<em>str</em>) &#8211; </li>
 <li><strong>webui_url</strong> (<em>str</em>) &#8211; </li>
 <li><strong>reconciliation_initial_delay</strong> (<em>int</em>) &#8211; </li>
 <li><strong>reconciliation_interval</strong> (<em>int</em>) &#8211; </li>
 <li><strong>task_launch_timeout</strong> (<em>int</em>) &#8211; </li>
+<li><strong>task_reservation_timeout</strong> (<em>int</em>) &#8211; </li>
 <li><strong>marathon_store_timeout</strong> (<em>int</em>) &#8211; </li>
 </ul>
 </td>
@@ -613,8 +1008,8 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="class">
 <dt id="marathon.models.info.MarathonEventSubscriber">
-<em class="property">class </em><tt class="descclassname">marathon.models.info.</tt><tt class="descname">MarathonEventSubscriber</tt><big>(</big><em>type=None</em>, <em>http_endpoints=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/info.html#MarathonEventSubscriber"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.info.MarathonEventSubscriber" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.info.</code><code class="descname">MarathonEventSubscriber</code><span class="sig-paren">(</span><em>type=None</em>, <em>http_endpoints=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/info.html#MarathonEventSubscriber"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.info.MarathonEventSubscriber" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
 <p>Marathon event subscriber resource.</p>
 <p>See: <a class="reference external" href="https://mesosphere.github.io/marathon/docs/rest-api.html#get-/v2/info">https://mesosphere.github.io/marathon/docs/rest-api.html#get-/v2/info</a></p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -623,7 +1018,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>type</strong> (<em>str</em>) &#8211; </li>
-<li><strong>http_endpoints</strong> (<em>list[str]</em>) &#8211; </li>
+<li><strong>http_endpoints</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em></em>) &#8211; </li>
 </ul>
 </td>
 </tr>
@@ -633,8 +1028,8 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="class">
 <dt id="marathon.models.info.MarathonHttpConfig">
-<em class="property">class </em><tt class="descclassname">marathon.models.info.</tt><tt class="descname">MarathonHttpConfig</tt><big>(</big><em>assets_path=None</em>, <em>http_port=None</em>, <em>https_port=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/info.html#MarathonHttpConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.info.MarathonHttpConfig" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.info.</code><code class="descname">MarathonHttpConfig</code><span class="sig-paren">(</span><em>assets_path=None</em>, <em>http_port=None</em>, <em>https_port=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/info.html#MarathonHttpConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.info.MarathonHttpConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
 <p>Marathon http config resource.</p>
 <p>See: <a class="reference external" href="https://mesosphere.github.io/marathon/docs/rest-api.html#get-/v2/info">https://mesosphere.github.io/marathon/docs/rest-api.html#get-/v2/info</a></p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -654,10 +1049,11 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="class">
 <dt id="marathon.models.info.MarathonInfo">
-<em class="property">class </em><tt class="descclassname">marathon.models.info.</tt><tt class="descname">MarathonInfo</tt><big>(</big><em>event_subscriber=None</em>, <em>framework_id=None</em>, <em>http_config=None</em>, <em>leader=None</em>, <em>marathon_config=None</em>, <em>name=None</em>, <em>version=None</em>, <em>elected=None</em>, <em>zookeeper_config=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/info.html#MarathonInfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.info.MarathonInfo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonResource" title="marathon.models.base.MarathonResource"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonResource</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.info.</code><code class="descname">MarathonInfo</code><span class="sig-paren">(</span><em>event_subscriber=None</em>, <em>framework_id=None</em>, <em>http_config=None</em>, <em>leader=None</em>, <em>marathon_config=None</em>, <em>name=None</em>, <em>version=None</em>, <em>elected=None</em>, <em>zookeeper_config=None</em>, <em>buildref=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/info.html#MarathonInfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.info.MarathonInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonResource" title="marathon.models.base.MarathonResource"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonResource</span></code></a></p>
 <p>Marathon Info.</p>
-<p>See: <a class="reference external" href="https://mesosphere.github.io/marathon/docs/rest-api.html#get-/v2/info">https://mesosphere.github.io/marathon/docs/rest-api.html#get-/v2/info</a></p>
+<p>See:  <a class="reference external" href="https://mesosphere.github.io/marathon/docs/rest-api.html#get-v2-info">https://mesosphere.github.io/marathon/docs/rest-api.html#get-v2-info</a>
+Also: <a class="reference external" href="https://mesosphere.github.io/marathon/docs/generated/api.html#v2_info_get">https://mesosphere.github.io/marathon/docs/generated/api.html#v2_info_get</a></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -665,13 +1061,14 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>framework_id</strong> (<em>str</em>) &#8211; </li>
 <li><strong>leader</strong> (<em>str</em>) &#8211; </li>
-<li><strong>marathon_config</strong> (<a class="reference internal" href="#marathon.models.info.MarathonConfig" title="marathon.models.info.MarathonConfig"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.info.MarathonConfig</span></tt></a> or dict) &#8211; </li>
+<li><strong>marathon_config</strong> (<a class="reference internal" href="#marathon.models.info.MarathonConfig" title="marathon.models.info.MarathonConfig"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.info.MarathonConfig</span></code></a> or dict) &#8211; </li>
 <li><strong>name</strong> (<em>str</em>) &#8211; </li>
 <li><strong>version</strong> (<em>str</em>) &#8211; </li>
-<li><strong>zookeeper_config</strong> (<a class="reference internal" href="#marathon.models.info.MarathonZooKeeperConfig" title="marathon.models.info.MarathonZooKeeperConfig"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.info.MarathonZooKeeperConfig</span></tt></a> or dict) &#8211; </li>
-<li><strong>http_config</strong> (<a class="reference internal" href="#marathon.models.info.MarathonHttpConfig" title="marathon.models.info.MarathonHttpConfig"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.info.MarathonHttpConfig</span></tt></a> or dict) &#8211; </li>
-<li><strong>event_subscriber</strong> (<em>:class`marathon.models.info.MarathonEventSubscriber` or dict</em>) &#8211; </li>
+<li><strong>zookeeper_config</strong> (<a class="reference internal" href="#marathon.models.info.MarathonZooKeeperConfig" title="marathon.models.info.MarathonZooKeeperConfig"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.info.MarathonZooKeeperConfig</span></code></a> or dict) &#8211; </li>
+<li><strong>http_config</strong> (<a class="reference internal" href="#marathon.models.info.MarathonHttpConfig" title="marathon.models.info.MarathonHttpConfig"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.info.MarathonHttpConfig</span></code></a> or dict) &#8211; </li>
+<li><strong>event_subscriber</strong> (<em>:class`marathon.models.info.MarathonEventSubscriber`</em><em> or </em><em>dict</em>) &#8211; </li>
 <li><strong>elected</strong> (<em>bool</em>) &#8211; </li>
+<li><strong>buildref</strong> (<em>str</em>) &#8211; </li>
 </ul>
 </td>
 </tr>
@@ -681,8 +1078,8 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="class">
 <dt id="marathon.models.info.MarathonZooKeeperConfig">
-<em class="property">class </em><tt class="descclassname">marathon.models.info.</tt><tt class="descname">MarathonZooKeeperConfig</tt><big>(</big><em>zk=None</em>, <em>zk_future_timeout=None</em>, <em>zk_hosts=None</em>, <em>zk_path=None</em>, <em>zk_state=None</em>, <em>zk_timeout=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/info.html#MarathonZooKeeperConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.info.MarathonZooKeeperConfig" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.info.</code><code class="descname">MarathonZooKeeperConfig</code><span class="sig-paren">(</span><em>zk=None</em>, <em>zk_future_timeout=None</em>, <em>zk_hosts=None</em>, <em>zk_max_versions=None</em>, <em>zk_path=None</em>, <em>zk_session_timeout=None</em>, <em>zk_state=None</em>, <em>zk_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/info.html#MarathonZooKeeperConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.info.MarathonZooKeeperConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
 <p>Marathon zookeeper config resource.</p>
 <p>See: <a class="reference external" href="https://mesosphere.github.io/marathon/docs/rest-api.html#get-/v2/info">https://mesosphere.github.io/marathon/docs/rest-api.html#get-/v2/info</a></p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -693,7 +1090,9 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <li><strong>zk</strong> (<em>str</em>) &#8211; </li>
 <li><strong>zk_future_timeout</strong> (<em>dict</em>) &#8211; </li>
 <li><strong>zk_hosts</strong> (<em>str</em>) &#8211; </li>
+<li><strong>zk_max_versions</strong> (<em>str</em>) &#8211; </li>
 <li><strong>zk_path</strong> (<em>str</em>) &#8211; </li>
+<li><strong>zk_session_timeout</strong> (<em>str</em>) &#8211; </li>
 <li><strong>zk_state</strong> (<em>str</em>) &#8211; </li>
 <li><strong>zk_timeout</strong> (<em>int</em>) &#8211; </li>
 </ul>
@@ -705,17 +1104,45 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <span class="target" id="module-marathon.models.queue"></span><dl class="class">
 <dt id="marathon.models.queue.MarathonQueueItem">
-<em class="property">class </em><tt class="descclassname">marathon.models.queue.</tt><tt class="descname">MarathonQueueItem</tt><big>(</big><em>app=None</em>, <em>overdue=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/queue.html#MarathonQueueItem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.queue.MarathonQueueItem" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonResource" title="marathon.models.base.MarathonResource"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonResource</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.queue.</code><code class="descname">MarathonQueueItem</code><span class="sig-paren">(</span><em>app=None</em>, <em>overdue=None</em>, <em>count=None</em>, <em>delay=None</em>, <em>since=None</em>, <em>processed_offers_summary=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/queue.html#MarathonQueueItem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.queue.MarathonQueueItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonResource" title="marathon.models.base.MarathonResource"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonResource</span></code></a></p>
 <p>Marathon queue item.</p>
 <p>See: <a class="reference external" href="https://mesosphere.github.io/marathon/docs/rest-api.html#queue">https://mesosphere.github.io/marathon/docs/rest-api.html#queue</a></p>
+<p>List all the tasks queued up or waiting to be scheduled. This is mainly
+used for troubleshooting and occurs when scaling changes are requested and the
+volume of scaling changes out paces the ability to schedule those tasks. In
+addition to the application in the queue, you see also the task count that
+needs to be started.</p>
+<p>If the task has a rate limit, then a delay to the start gets applied. You
+can see this delay for every application with the seconds to wait before
+the next launch will be tried.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>app</strong> (<a class="reference internal" href="#marathon.models.app.MarathonApp" title="marathon.models.app.MarathonApp"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonApp</span></tt></a> or dict) &#8211; </li>
+<li><strong>app</strong> (<a class="reference internal" href="#marathon.models.app.MarathonApp" title="marathon.models.app.MarathonApp"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonApp</span></code></a> or dict) &#8211; </li>
+<li><strong>delay</strong> (<code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonQueueItemDelay</span></code> or dict) &#8211; queue item delay</li>
 <li><strong>overdue</strong> (<em>bool</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="marathon.models.queue.MarathonQueueItemDelay">
+<em class="property">class </em><code class="descclassname">marathon.models.queue.</code><code class="descname">MarathonQueueItemDelay</code><span class="sig-paren">(</span><em>time_left_seconds=None</em>, <em>overdue=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/queue.html#MarathonQueueItemDelay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.queue.MarathonQueueItemDelay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonResource" title="marathon.models.base.MarathonResource"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonResource</span></code></a></p>
+<p>Marathon queue item delay.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>time_left_seconds</strong> (<em>int</em>) &#8211; Seconds to wait before the next launch will be tried.</li>
+<li><strong>overdue</strong> (<em>bool</em>) &#8211; Is the queue item overdue.</li>
 </ul>
 </td>
 </tr>
@@ -725,8 +1152,8 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <span class="target" id="module-marathon.models.task"></span><dl class="class">
 <dt id="marathon.models.task.MarathonHealthCheckResult">
-<em class="property">class </em><tt class="descclassname">marathon.models.task.</tt><tt class="descname">MarathonHealthCheckResult</tt><big>(</big><em>alive=None</em>, <em>consecutive_failures=None</em>, <em>first_success=None</em>, <em>last_failure=None</em>, <em>last_success=None</em>, <em>task_id=None</em>, <em>last_failure_cause=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/task.html#MarathonHealthCheckResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.task.MarathonHealthCheckResult" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.task.</code><code class="descname">MarathonHealthCheckResult</code><span class="sig-paren">(</span><em>alive=None</em>, <em>consecutive_failures=None</em>, <em>first_success=None</em>, <em>last_failure=None</em>, <em>last_success=None</em>, <em>task_id=None</em>, <em>last_failure_cause=None</em>, <em>instance_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/task.html#MarathonHealthCheckResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.task.MarathonHealthCheckResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
 <p>Marathon health check result.</p>
 <p>See <a class="reference external" href="https://mesosphere.github.io/marathon/docs/health-checks.html">https://mesosphere.github.io/marathon/docs/health-checks.html</a></p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -741,6 +1168,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <li><strong>last_failure_cause</strong> (<em>str</em>) &#8211; cause for last failure</li>
 <li><strong>last_success</strong> (<em>str</em>) &#8211; last time when which healthcheck succeeded</li>
 <li><strong>task_id</strong> (<em>str</em>) &#8211; task id</li>
+<li><strong>instance_id</strong> (<em>str</em>) &#8211; instance id</li>
 </ul>
 </td>
 </tr>
@@ -748,15 +1176,21 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 </table>
 <dl class="attribute">
 <dt id="marathon.models.task.MarathonHealthCheckResult.DATETIME_FORMAT">
-<tt class="descname">DATETIME_FORMAT</tt><em class="property"> = '%Y-%m-%dT%H:%M:%S.%fZ'</em><a class="headerlink" href="#marathon.models.task.MarathonHealthCheckResult.DATETIME_FORMAT" title="Permalink to this definition">¶</a></dt>
+<code class="descname">DATETIME_FORMAT</code><em class="property"> = '%Y-%m-%dT%H:%M:%S.%fZ'</em><a class="headerlink" href="#marathon.models.task.MarathonHealthCheckResult.DATETIME_FORMAT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
+<dt id="marathon.models.task.MarathonIpAddress">
+<em class="property">class </em><code class="descclassname">marathon.models.task.</code><code class="descname">MarathonIpAddress</code><span class="sig-paren">(</span><em>ip_address=None</em>, <em>protocol=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/task.html#MarathonIpAddress"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.task.MarathonIpAddress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonObject" title="marathon.models.base.MarathonObject"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonObject</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
 <dt id="marathon.models.task.MarathonTask">
-<em class="property">class </em><tt class="descclassname">marathon.models.task.</tt><tt class="descname">MarathonTask</tt><big>(</big><em>app_id=None</em>, <em>health_check_results=None</em>, <em>host=None</em>, <em>id=None</em>, <em>ports=None</em>, <em>service_ports=None</em>, <em>staged_at=None</em>, <em>started_at=None</em>, <em>version=None</em><big>)</big><a class="reference internal" href="_modules/marathon/models/task.html#MarathonTask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.task.MarathonTask" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonResource" title="marathon.models.base.MarathonResource"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonResource</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">marathon.models.task.</code><code class="descname">MarathonTask</code><span class="sig-paren">(</span><em>app_id=None</em>, <em>health_check_results=None</em>, <em>host=None</em>, <em>id=None</em>, <em>ports=None</em>, <em>service_ports=None</em>, <em>slave_id=None</em>, <em>staged_at=None</em>, <em>started_at=None</em>, <em>version=None</em>, <em>ip_addresses=[]</em>, <em>state=None</em>, <em>local_volumes=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/models/task.html#MarathonTask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.models.task.MarathonTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.models.base.MarathonResource" title="marathon.models.base.MarathonResource"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.base.MarathonResource</span></code></a></p>
 <p>Marathon Task resource.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -764,13 +1198,15 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>app_id</strong> (<em>str</em>) &#8211; application id</li>
-<li><strong>health_check_results</strong> (list[<tt class="xref py py-class docutils literal"><span class="pre">marathon.models.MarathonHealthCheckResult</span></tt>] or list[dict]) &#8211; health check results</li>
+<li><strong>health_check_results</strong> (list[<code class="xref py py-class docutils literal"><span class="pre">marathon.models.MarathonHealthCheckResult</span></code>] or list[dict]) &#8211; health check results</li>
 <li><strong>host</strong> (<em>str</em>) &#8211; mesos slave running the task</li>
 <li><strong>id</strong> (<em>str</em>) &#8211; task id</li>
-<li><strong>ports</strong> (<em>list[int]</em>) &#8211; allocated ports</li>
-<li><strong>service_ports</strong> (<em>list[int]</em>) &#8211; ports exposed for load balancing</li>
-<li><strong>staged_at</strong> (<em>datetime or str</em>) &#8211; when this task was staged</li>
-<li><strong>started_at</strong> (<em>datetime or str</em>) &#8211; when this task was started</li>
+<li><strong>ports</strong> (<em>list</em><em>[</em><em>int</em><em>]</em><em></em>) &#8211; allocated ports</li>
+<li><strong>service_ports</strong> (<em>list</em><em>[</em><em>int</em><em>]</em><em></em>) &#8211; ports exposed for load balancing</li>
+<li><strong>state</strong> (<em>str</em>) &#8211; State of the task e.g. TASK_RUNNING</li>
+<li><strong>slave_id</strong> (<em>str</em>) &#8211; Mesos slave id</li>
+<li><strong>staged_at</strong> (<em>datetime</em><em> or </em><em>str</em>) &#8211; when this task was staged</li>
+<li><strong>started_at</strong> (<em>datetime</em><em> or </em><em>str</em>) &#8211; when this task was started</li>
 <li><strong>version</strong> (<em>str</em>) &#8211; app version with which this task was started</li>
 </ul>
 </td>
@@ -779,7 +1215,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 </table>
 <dl class="attribute">
 <dt id="marathon.models.task.MarathonTask.DATETIME_FORMAT">
-<tt class="descname">DATETIME_FORMAT</tt><em class="property"> = '%Y-%m-%dT%H:%M:%S.%fZ'</em><a class="headerlink" href="#marathon.models.task.MarathonTask.DATETIME_FORMAT" title="Permalink to this definition">¶</a></dt>
+<code class="descname">DATETIME_FORMAT</code><em class="property"> = '%Y-%m-%dT%H:%M:%S.%fZ'</em><a class="headerlink" href="#marathon.models.task.MarathonTask.DATETIME_FORMAT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -789,12 +1225,12 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <span id="marathon-client"></span><h2>marathon.client<a class="headerlink" href="#module-marathon.client" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="marathon.client.MarathonClient">
-<em class="property">class </em><tt class="descclassname">marathon.client.</tt><tt class="descname">MarathonClient</tt><big>(</big><em>servers</em>, <em>username=None</em>, <em>password=None</em>, <em>timeout=10</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<em class="property">class </em><code class="descclassname">marathon.client.</code><code class="descname">MarathonClient</code><span class="sig-paren">(</span><em>servers</em>, <em>username=None</em>, <em>password=None</em>, <em>timeout=10</em>, <em>session=None</em>, <em>auth_token=None</em>, <em>verify=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>Client interface for the Marathon REST API.</p>
 <dl class="method">
 <dt id="marathon.client.MarathonClient.create_app">
-<tt class="descname">create_app</tt><big>(</big><em>app_id</em>, <em>app</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.create_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.create_app" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create_app</code><span class="sig-paren">(</span><em>app_id</em>, <em>app</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.create_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.create_app" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create and start an app.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -804,14 +1240,14 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 </tr>
 </tbody>
 </table>
-<p>:param <a class="reference internal" href="#marathon.models.app.MarathonApp" title="marathon.models.app.MarathonApp"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonApp</span></tt></a> app: the application to create</p>
+<p>:param <a class="reference internal" href="#marathon.models.app.MarathonApp" title="marathon.models.app.MarathonApp"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonApp</span></code></a> app: the application to create</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the created app (on success)</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#marathon.models.app.MarathonApp" title="marathon.models.app.MarathonApp"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonApp</span></tt></a> or False</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#marathon.models.app.MarathonApp" title="marathon.models.app.MarathonApp"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonApp</span></code></a> or False</td>
 </tr>
 </tbody>
 </table>
@@ -819,7 +1255,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.create_event_subscription">
-<tt class="descname">create_event_subscription</tt><big>(</big><em>url</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.create_event_subscription"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.create_event_subscription" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create_event_subscription</code><span class="sig-paren">(</span><em>url</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.create_event_subscription"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.create_event_subscription" title="Permalink to this definition">¶</a></dt>
 <dd><p>Register a callback URL as an event subscriber.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -837,9 +1273,9 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.create_group">
-<tt class="descname">create_group</tt><big>(</big><em>group</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.create_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.create_group" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create_group</code><span class="sig-paren">(</span><em>group</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.create_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.create_group" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create and start a group.</p>
-<p>:param <a class="reference internal" href="#marathon.models.group.MarathonGroup" title="marathon.models.group.MarathonGroup"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.group.MarathonGroup</span></tt></a> group: the group to create</p>
+<p>:param <a class="reference internal" href="#marathon.models.group.MarathonGroup" title="marathon.models.group.MarathonGroup"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.group.MarathonGroup</span></code></a> group: the group to create</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -854,7 +1290,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.delete_app">
-<tt class="descname">delete_app</tt><big>(</big><em>app_id</em>, <em>force=False</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.delete_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.delete_app" title="Permalink to this definition">¶</a></dt>
+<code class="descname">delete_app</code><span class="sig-paren">(</span><em>app_id</em>, <em>force=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.delete_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.delete_app" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stop and destroy an app.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -878,7 +1314,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.delete_deployment">
-<tt class="descname">delete_deployment</tt><big>(</big><em>deployment_id</em>, <em>force=False</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.delete_deployment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.delete_deployment" title="Permalink to this definition">¶</a></dt>
+<code class="descname">delete_deployment</code><span class="sig-paren">(</span><em>deployment_id</em>, <em>force=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.delete_deployment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.delete_deployment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cancel a deployment.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -902,7 +1338,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.delete_event_subscription">
-<tt class="descname">delete_event_subscription</tt><big>(</big><em>url</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.delete_event_subscription"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.delete_event_subscription" title="Permalink to this definition">¶</a></dt>
+<code class="descname">delete_event_subscription</code><span class="sig-paren">(</span><em>url</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.delete_event_subscription"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.delete_event_subscription" title="Permalink to this definition">¶</a></dt>
 <dd><p>Deregister a callback URL as an event subscriber.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -920,7 +1356,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.delete_group">
-<tt class="descname">delete_group</tt><big>(</big><em>group_id</em>, <em>force=False</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.delete_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.delete_group" title="Permalink to this definition">¶</a></dt>
+<code class="descname">delete_group</code><span class="sig-paren">(</span><em>group_id</em>, <em>force=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.delete_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.delete_group" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stop and destroy a group.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -944,7 +1380,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.delete_leader">
-<tt class="descname">delete_leader</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.delete_leader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.delete_leader" title="Permalink to this definition">¶</a></dt>
+<code class="descname">delete_leader</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.delete_leader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.delete_leader" title="Permalink to this definition">¶</a></dt>
 <dd><p>Causes the current leader to abdicate, triggers a new election.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -959,8 +1395,26 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 </dd></dl>
 
 <dl class="method">
+<dt id="marathon.client.MarathonClient.event_stream">
+<code class="descname">event_stream</code><span class="sig-paren">(</span><em>raw=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.event_stream"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.event_stream" title="Permalink to this definition">¶</a></dt>
+<dd><p>Polls event bus using /v2/events</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>raw</strong> (<em>bool</em>) &#8211; if true, yield raw event text, else yield MarathonEvent object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">iterator with events</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">iterator</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="marathon.client.MarathonClient.get_app">
-<tt class="descname">get_app</tt><big>(</big><em>app_id</em>, <em>embed_tasks=False</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.get_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.get_app" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_app</code><span class="sig-paren">(</span><em>app_id</em>, <em>embed_tasks=False</em>, <em>embed_counts=False</em>, <em>embed_deployments=False</em>, <em>embed_readiness=False</em>, <em>embed_last_task_failure=False</em>, <em>embed_failures=False</em>, <em>embed_task_stats=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.get_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.get_app" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a single app.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -969,13 +1423,19 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>app_id</strong> (<em>str</em>) &#8211; application ID</li>
 <li><strong>embed_tasks</strong> (<em>bool</em>) &#8211; embed tasks in result</li>
+<li><strong>embed_counts</strong> (<em>bool</em>) &#8211; embed all task counts</li>
+<li><strong>embed_deployments</strong> (<em>bool</em>) &#8211; embed all deployment identifier</li>
+<li><strong>embed_readiness</strong> (<em>bool</em>) &#8211; embed all readiness check results</li>
+<li><strong>embed_last_task_failure</strong> (<em>bool</em>) &#8211; embeds the last task failure</li>
+<li><strong>embed_failures</strong> (<em>bool</em>) &#8211; shorthand for embed_last_task_failure</li>
+<li><strong>embed_task_stats</strong> (<em>bool</em>) &#8211; embed task stats in result</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">application</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#marathon.models.app.MarathonApp" title="marathon.models.app.MarathonApp"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonApp</span></tt></a></p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#marathon.models.app.MarathonApp" title="marathon.models.app.MarathonApp"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonApp</span></code></a></p>
 </td>
 </tr>
 </tbody>
@@ -984,7 +1444,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.get_group">
-<tt class="descname">get_group</tt><big>(</big><em>group_id</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.get_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.get_group" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_group</code><span class="sig-paren">(</span><em>group_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.get_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.get_group" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a single group.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -994,7 +1454,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">group</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#marathon.models.group.MarathonGroup" title="marathon.models.group.MarathonGroup"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.group.MarathonGroup</span></tt></a></td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#marathon.models.group.MarathonGroup" title="marathon.models.group.MarathonGroup"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.group.MarathonGroup</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -1002,7 +1462,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.get_info">
-<tt class="descname">get_info</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.get_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.get_info" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.get_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.get_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get server configuration information.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1010,7 +1470,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">server config info</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#marathon.models.info.MarathonInfo" title="marathon.models.info.MarathonInfo"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.info.MarathonInfo</span></tt></a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#marathon.models.info.MarathonInfo" title="marathon.models.info.MarathonInfo"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.info.MarathonInfo</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -1018,7 +1478,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.get_leader">
-<tt class="descname">get_leader</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.get_leader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.get_leader" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_leader</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.get_leader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.get_leader" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the current marathon leader.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1034,7 +1494,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.get_metrics">
-<tt class="descname">get_metrics</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.get_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.get_metrics" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_metrics</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.get_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.get_metrics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get server metrics</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1050,7 +1510,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.get_version">
-<tt class="descname">get_version</tt><big>(</big><em>app_id</em>, <em>version</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.get_version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.get_version" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_version</code><span class="sig-paren">(</span><em>app_id</em>, <em>version</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.get_version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.get_version" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the configuration of an app at a specific version.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1065,7 +1525,32 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">application configuration</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#marathon.models.app.MarathonApp" title="marathon.models.app.MarathonApp"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonApp</span></tt></a></p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#marathon.models.app.MarathonApp" title="marathon.models.app.MarathonApp"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonApp</span></code></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="marathon.client.MarathonClient.kill_given_tasks">
+<code class="descname">kill_given_tasks</code><span class="sig-paren">(</span><em>task_ids</em>, <em>scale=False</em>, <em>force=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.kill_given_tasks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.kill_given_tasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Kill a list of given tasks.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>task_ids</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em></em>) &#8211; tasks to kill</li>
+<li><strong>scale</strong> (<em>bool</em>) &#8211; if true, scale down the app by the number of tasks killed</li>
+<li><strong>force</strong> (<em>bool</em>) &#8211; if true, ignore any current running deployments</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">True on success</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">bool</p>
 </td>
 </tr>
 </tbody>
@@ -1074,7 +1559,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.kill_task">
-<tt class="descname">kill_task</tt><big>(</big><em>app_id</em>, <em>task_id</em>, <em>scale=False</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.kill_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.kill_task" title="Permalink to this definition">¶</a></dt>
+<code class="descname">kill_task</code><span class="sig-paren">(</span><em>app_id</em>, <em>task_id</em>, <em>scale=False</em>, <em>wipe=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.kill_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.kill_task" title="Permalink to this definition">¶</a></dt>
 <dd><p>Kill a task.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1090,7 +1575,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the killed task</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#marathon.models.task.MarathonTask" title="marathon.models.task.MarathonTask"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.task.MarathonTask</span></tt></a></p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#marathon.models.task.MarathonTask" title="marathon.models.task.MarathonTask"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.task.MarathonTask</span></code></a></p>
 </td>
 </tr>
 </tbody>
@@ -1099,7 +1584,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.kill_tasks">
-<tt class="descname">kill_tasks</tt><big>(</big><em>app_id</em>, <em>scale=False</em>, <em>host=None</em>, <em>batch_size=0</em>, <em>batch_delay=0</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.kill_tasks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.kill_tasks" title="Permalink to this definition">¶</a></dt>
+<code class="descname">kill_tasks</code><span class="sig-paren">(</span><em>app_id</em>, <em>scale=False</em>, <em>wipe=False</em>, <em>host=None</em>, <em>batch_size=0</em>, <em>batch_delay=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.kill_tasks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.kill_tasks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Kill all tasks belonging to app.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1117,7 +1602,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list of killed tasks</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list[<a class="reference internal" href="#marathon.models.task.MarathonTask" title="marathon.models.task.MarathonTask"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.task.MarathonTask</span></tt></a>]</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list[<a class="reference internal" href="#marathon.models.task.MarathonTask" title="marathon.models.task.MarathonTask"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.task.MarathonTask</span></code></a>]</p>
 </td>
 </tr>
 </tbody>
@@ -1126,17 +1611,22 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.list_apps">
-<tt class="descname">list_apps</tt><big>(</big><em>cmd=None</em>, <em>embed_tasks=False</em>, <em>embed_failures=False</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_apps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_apps" title="Permalink to this definition">¶</a></dt>
+<code class="descname">list_apps</code><span class="sig-paren">(</span><em>cmd=None</em>, <em>embed_tasks=False</em>, <em>embed_counts=False</em>, <em>embed_deployments=False</em>, <em>embed_readiness=False</em>, <em>embed_last_task_failure=False</em>, <em>embed_failures=False</em>, <em>embed_task_stats=False</em>, <em>app_id=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_apps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_apps" title="Permalink to this definition">¶</a></dt>
 <dd><p>List all apps.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>app_id</strong> (<em>str</em>) &#8211; application ID</li>
 <li><strong>cmd</strong> (<em>str</em>) &#8211; if passed, only show apps with a matching <cite>cmd</cite></li>
 <li><strong>embed_tasks</strong> (<em>bool</em>) &#8211; embed tasks in result</li>
-<li><strong>embed_failures</strong> (<em>bool</em>) &#8211; embed tasks and last task failure in result</li>
+<li><strong>embed_counts</strong> (<em>bool</em>) &#8211; embed all task counts</li>
+<li><strong>embed_deployments</strong> (<em>bool</em>) &#8211; embed all deployment identifier</li>
+<li><strong>embed_readiness</strong> (<em>bool</em>) &#8211; embed all readiness check results</li>
+<li><strong>embed_last_task_failure</strong> (<em>bool</em>) &#8211; embeds the last task failure</li>
+<li><strong>embed_failures</strong> (<em>bool</em>) &#8211; shorthand for embed_last_task_failure</li>
+<li><strong>embed_task_stats</strong> (<em>bool</em>) &#8211; embed task stats in result</li>
+<li><strong>app_id</strong> (<em>str</em>) &#8211; if passed, only show apps with an &#8216;id&#8217; that matches or contains this value</li>
 <li><strong>kwargs</strong> &#8211; arbitrary search filters</li>
 </ul>
 </td>
@@ -1144,7 +1634,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list of applications</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list[<a class="reference internal" href="#marathon.models.app.MarathonApp" title="marathon.models.app.MarathonApp"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonApp</span></tt></a>]</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list[<a class="reference internal" href="#marathon.models.app.MarathonApp" title="marathon.models.app.MarathonApp"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonApp</span></code></a>]</p>
 </td>
 </tr>
 </tbody>
@@ -1153,7 +1643,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.list_deployments">
-<tt class="descname">list_deployments</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_deployments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_deployments" title="Permalink to this definition">¶</a></dt>
+<code class="descname">list_deployments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_deployments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_deployments" title="Permalink to this definition">¶</a></dt>
 <dd><p>List all running deployments.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1161,7 +1651,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list of deployments</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list[<a class="reference internal" href="#marathon.models.deployment.MarathonDeployment" title="marathon.models.deployment.MarathonDeployment"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.deployment.MarathonDeployment</span></tt></a>]</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list[<a class="reference internal" href="#marathon.models.deployment.MarathonDeployment" title="marathon.models.deployment.MarathonDeployment"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.deployment.MarathonDeployment</span></code></a>]</td>
 </tr>
 </tbody>
 </table>
@@ -1169,7 +1659,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.list_endpoints">
-<tt class="descname">list_endpoints</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_endpoints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_endpoints" title="Permalink to this definition">¶</a></dt>
+<code class="descname">list_endpoints</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_endpoints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_endpoints" title="Permalink to this definition">¶</a></dt>
 <dd><p>List the current endpoints for all applications</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1185,7 +1675,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.list_event_subscriptions">
-<tt class="descname">list_event_subscriptions</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_event_subscriptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_event_subscriptions" title="Permalink to this definition">¶</a></dt>
+<code class="descname">list_event_subscriptions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_event_subscriptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_event_subscriptions" title="Permalink to this definition">¶</a></dt>
 <dd><p>List the event subscriber callback URLs.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1201,7 +1691,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.list_groups">
-<tt class="descname">list_groups</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_groups"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_groups" title="Permalink to this definition">¶</a></dt>
+<code class="descname">list_groups</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_groups"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_groups" title="Permalink to this definition">¶</a></dt>
 <dd><p>List all groups.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1211,7 +1701,23 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of groups</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list[<a class="reference internal" href="#marathon.models.group.MarathonGroup" title="marathon.models.group.MarathonGroup"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.group.MarathonGroup</span></tt></a>]</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list[<a class="reference internal" href="#marathon.models.group.MarathonGroup" title="marathon.models.group.MarathonGroup"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.group.MarathonGroup</span></code></a>]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="marathon.client.MarathonClient.list_queue">
+<code class="descname">list_queue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_queue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all the tasks queued up or waiting to be scheduled.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list of queue items</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list[<a class="reference internal" href="#marathon.models.queue.MarathonQueueItem" title="marathon.models.queue.MarathonQueueItem"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.queue.MarathonQueueItem</span></code></a>]</td>
 </tr>
 </tbody>
 </table>
@@ -1219,7 +1725,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.list_tasks">
-<tt class="descname">list_tasks</tt><big>(</big><em>app_id=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_tasks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_tasks" title="Permalink to this definition">¶</a></dt>
+<code class="descname">list_tasks</code><span class="sig-paren">(</span><em>app_id=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_tasks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_tasks" title="Permalink to this definition">¶</a></dt>
 <dd><p>List running tasks, optionally filtered by app_id.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1234,7 +1740,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list of tasks</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list[<a class="reference internal" href="#marathon.models.task.MarathonTask" title="marathon.models.task.MarathonTask"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.task.MarathonTask</span></tt></a>]</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list[<a class="reference internal" href="#marathon.models.task.MarathonTask" title="marathon.models.task.MarathonTask"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.task.MarathonTask</span></code></a>]</p>
 </td>
 </tr>
 </tbody>
@@ -1243,7 +1749,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.list_versions">
-<tt class="descname">list_versions</tt><big>(</big><em>app_id</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_versions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_versions" title="Permalink to this definition">¶</a></dt>
+<code class="descname">list_versions</code><span class="sig-paren">(</span><em>app_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.list_versions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.list_versions" title="Permalink to this definition">¶</a></dt>
 <dd><p>List the versions of an app.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1261,7 +1767,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.ping">
-<tt class="descname">ping</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.ping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.ping" title="Permalink to this definition">¶</a></dt>
+<code class="descname">ping</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.ping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.ping" title="Permalink to this definition">¶</a></dt>
 <dd><p>Ping the Marathon server.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1276,8 +1782,18 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 </dd></dl>
 
 <dl class="method">
+<dt id="marathon.client.MarathonClient.restart_app">
+<code class="descname">restart_app</code><span class="sig-paren">(</span><em>app_id</em>, <em>force=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.restart_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.restart_app" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restarts given application by app_id
+:param str app_id: application ID
+:param bool force: apply even if a deployment is in progress
+:returns: a dict containing the deployment id and version
+:rtype: dict</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="marathon.client.MarathonClient.rollback_app">
-<tt class="descname">rollback_app</tt><big>(</big><em>app_id</em>, <em>version</em>, <em>force=False</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.rollback_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.rollback_app" title="Permalink to this definition">¶</a></dt>
+<code class="descname">rollback_app</code><span class="sig-paren">(</span><em>app_id</em>, <em>version</em>, <em>force=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.rollback_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.rollback_app" title="Permalink to this definition">¶</a></dt>
 <dd><p>Roll an app back to a previous version.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1302,7 +1818,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.rollback_group">
-<tt class="descname">rollback_group</tt><big>(</big><em>group_id</em>, <em>version</em>, <em>force=False</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.rollback_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.rollback_group" title="Permalink to this definition">¶</a></dt>
+<code class="descname">rollback_group</code><span class="sig-paren">(</span><em>group_id</em>, <em>version</em>, <em>force=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.rollback_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.rollback_group" title="Permalink to this definition">¶</a></dt>
 <dd><p>Roll a group back to a previous version.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1327,7 +1843,7 @@ is <cite>LIKE</cite> or <cite>UNLIKE</cite>, filter servers using regexp.
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.scale_app">
-<tt class="descname">scale_app</tt><big>(</big><em>app_id</em>, <em>instances=None</em>, <em>delta=None</em>, <em>force=False</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.scale_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.scale_app" title="Permalink to this definition">¶</a></dt>
+<code class="descname">scale_app</code><span class="sig-paren">(</span><em>app_id</em>, <em>instances=None</em>, <em>delta=None</em>, <em>force=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.scale_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.scale_app" title="Permalink to this definition">¶</a></dt>
 <dd><p>Scale an app.</p>
 <p>Scale an app to a target number of instances (with <cite>instances</cite>), or scale the number of
 instances up or down by some delta (<cite>delta</cite>). If the resulting number of instances would be negative,
@@ -1357,7 +1873,7 @@ desired instances will be set to zero.</p>
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.scale_group">
-<tt class="descname">scale_group</tt><big>(</big><em>group_id</em>, <em>scale_by</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.scale_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.scale_group" title="Permalink to this definition">¶</a></dt>
+<code class="descname">scale_group</code><span class="sig-paren">(</span><em>group_id</em>, <em>scale_by</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.scale_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.scale_group" title="Permalink to this definition">¶</a></dt>
 <dd><p>Scale a group by a factor.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1381,7 +1897,7 @@ desired instances will be set to zero.</p>
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.update_app">
-<tt class="descname">update_app</tt><big>(</big><em>app_id</em>, <em>app</em>, <em>force=False</em>, <em>minimal=True</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.update_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.update_app" title="Permalink to this definition">¶</a></dt>
+<code class="descname">update_app</code><span class="sig-paren">(</span><em>app_id</em>, <em>app</em>, <em>force=False</em>, <em>minimal=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.update_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.update_app" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update an app.</p>
 <p>Applies writable settings in <cite>app</cite> to <cite>app_id</cite>
 Note: this method can not be used to rename apps.</p>
@@ -1391,7 +1907,33 @@ Note: this method can not be used to rename apps.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>app_id</strong> (<em>str</em>) &#8211; target application ID</li>
-<li><strong>app</strong> (<a class="reference internal" href="#marathon.models.app.MarathonApp" title="marathon.models.app.MarathonApp"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonApp</span></tt></a>) &#8211; application settings</li>
+<li><strong>app</strong> (<a class="reference internal" href="#marathon.models.app.MarathonApp" title="marathon.models.app.MarathonApp"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.app.MarathonApp</span></code></a>) &#8211; application settings</li>
+<li><strong>force</strong> (<em>bool</em>) &#8211; apply even if a deployment is in progress</li>
+<li><strong>minimal</strong> (<em>bool</em>) &#8211; ignore nulls and empty collections</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a dict containing the deployment id and version</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="marathon.client.MarathonClient.update_apps">
+<code class="descname">update_apps</code><span class="sig-paren">(</span><em>apps</em>, <em>force=False</em>, <em>minimal=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.update_apps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.update_apps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update multiple apps.</p>
+<p>Applies writable settings in elements of apps either by upgrading existing ones or creating new ones</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>apps</strong> &#8211; sequence of application settings</li>
 <li><strong>force</strong> (<em>bool</em>) &#8211; apply even if a deployment is in progress</li>
 <li><strong>minimal</strong> (<em>bool</em>) &#8211; ignore nulls and empty collections</li>
 </ul>
@@ -1409,7 +1951,7 @@ Note: this method can not be used to rename apps.</p>
 
 <dl class="method">
 <dt id="marathon.client.MarathonClient.update_group">
-<tt class="descname">update_group</tt><big>(</big><em>group_id</em>, <em>group</em>, <em>force=False</em>, <em>minimal=True</em><big>)</big><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.update_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.update_group" title="Permalink to this definition">¶</a></dt>
+<code class="descname">update_group</code><span class="sig-paren">(</span><em>group_id</em>, <em>group</em>, <em>force=False</em>, <em>minimal=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/client.html#MarathonClient.update_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.client.MarathonClient.update_group" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update a group.</p>
 <p>Applies writable settings in <cite>group</cite> to <cite>group_id</cite>
 Note: this method can not be used to rename groups.</p>
@@ -1419,7 +1961,7 @@ Note: this method can not be used to rename groups.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>group_id</strong> (<em>str</em>) &#8211; target group ID</li>
-<li><strong>group</strong> (<a class="reference internal" href="#marathon.models.group.MarathonGroup" title="marathon.models.group.MarathonGroup"><tt class="xref py py-class docutils literal"><span class="pre">marathon.models.group.MarathonGroup</span></tt></a>) &#8211; group settings</li>
+<li><strong>group</strong> (<a class="reference internal" href="#marathon.models.group.MarathonGroup" title="marathon.models.group.MarathonGroup"><code class="xref py py-class docutils literal"><span class="pre">marathon.models.group.MarathonGroup</span></code></a>) &#8211; group settings</li>
 <li><strong>force</strong> (<em>bool</em>) &#8211; apply even if a deployment is in progress</li>
 <li><strong>minimal</strong> (<em>bool</em>) &#8211; ignore nulls and empty collections</li>
 </ul>
@@ -1442,32 +1984,32 @@ Note: this method can not be used to rename groups.</p>
 <span id="marathon-exceptions"></span><h2>marathon.exceptions<a class="headerlink" href="#module-marathon.exceptions" title="Permalink to this headline">¶</a></h2>
 <dl class="exception">
 <dt id="marathon.exceptions.InternalServerError">
-<em class="property">exception </em><tt class="descclassname">marathon.exceptions.</tt><tt class="descname">InternalServerError</tt><big>(</big><em>response</em><big>)</big><a class="reference internal" href="_modules/marathon/exceptions.html#InternalServerError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.exceptions.InternalServerError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.exceptions.MarathonHttpError" title="marathon.exceptions.MarathonHttpError"><tt class="xref py py-class docutils literal"><span class="pre">marathon.exceptions.MarathonHttpError</span></tt></a></p>
+<em class="property">exception </em><code class="descclassname">marathon.exceptions.</code><code class="descname">InternalServerError</code><span class="sig-paren">(</span><em>response</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/exceptions.html#InternalServerError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.exceptions.InternalServerError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.exceptions.MarathonHttpError" title="marathon.exceptions.MarathonHttpError"><code class="xref py py-class docutils literal"><span class="pre">marathon.exceptions.MarathonHttpError</span></code></a></p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="marathon.exceptions.InvalidChoiceError">
-<em class="property">exception </em><tt class="descclassname">marathon.exceptions.</tt><tt class="descname">InvalidChoiceError</tt><big>(</big><em>param</em>, <em>value</em>, <em>options</em><big>)</big><a class="reference internal" href="_modules/marathon/exceptions.html#InvalidChoiceError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.exceptions.InvalidChoiceError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.exceptions.MarathonError" title="marathon.exceptions.MarathonError"><tt class="xref py py-class docutils literal"><span class="pre">marathon.exceptions.MarathonError</span></tt></a></p>
+<em class="property">exception </em><code class="descclassname">marathon.exceptions.</code><code class="descname">InvalidChoiceError</code><span class="sig-paren">(</span><em>param</em>, <em>value</em>, <em>options</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/exceptions.html#InvalidChoiceError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.exceptions.InvalidChoiceError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.exceptions.MarathonError" title="marathon.exceptions.MarathonError"><code class="xref py py-class docutils literal"><span class="pre">marathon.exceptions.MarathonError</span></code></a></p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="marathon.exceptions.MarathonError">
-<em class="property">exception </em><tt class="descclassname">marathon.exceptions.</tt><tt class="descname">MarathonError</tt><a class="reference internal" href="_modules/marathon/exceptions.html#MarathonError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.exceptions.MarathonError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></tt></p>
+<em class="property">exception </em><code class="descclassname">marathon.exceptions.</code><code class="descname">MarathonError</code><a class="reference internal" href="_modules/marathon/exceptions.html#MarathonError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.exceptions.MarathonError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="marathon.exceptions.MarathonHttpError">
-<em class="property">exception </em><tt class="descclassname">marathon.exceptions.</tt><tt class="descname">MarathonHttpError</tt><big>(</big><em>response</em><big>)</big><a class="reference internal" href="_modules/marathon/exceptions.html#MarathonHttpError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.exceptions.MarathonHttpError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.exceptions.MarathonError" title="marathon.exceptions.MarathonError"><tt class="xref py py-class docutils literal"><span class="pre">marathon.exceptions.MarathonError</span></tt></a></p>
+<em class="property">exception </em><code class="descclassname">marathon.exceptions.</code><code class="descname">MarathonHttpError</code><span class="sig-paren">(</span><em>response</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/exceptions.html#MarathonHttpError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.exceptions.MarathonHttpError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.exceptions.MarathonError" title="marathon.exceptions.MarathonError"><code class="xref py py-class docutils literal"><span class="pre">marathon.exceptions.MarathonError</span></code></a></p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="marathon.exceptions.NotFoundError">
-<em class="property">exception </em><tt class="descclassname">marathon.exceptions.</tt><tt class="descname">NotFoundError</tt><big>(</big><em>response</em><big>)</big><a class="reference internal" href="_modules/marathon/exceptions.html#NotFoundError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.exceptions.NotFoundError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#marathon.exceptions.MarathonHttpError" title="marathon.exceptions.MarathonHttpError"><tt class="xref py py-class docutils literal"><span class="pre">marathon.exceptions.MarathonHttpError</span></tt></a></p>
+<em class="property">exception </em><code class="descclassname">marathon.exceptions.</code><code class="descname">NotFoundError</code><span class="sig-paren">(</span><em>response</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/marathon/exceptions.html#NotFoundError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#marathon.exceptions.NotFoundError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#marathon.exceptions.MarathonHttpError" title="marathon.exceptions.MarathonHttpError"><code class="xref py py-class docutils literal"><span class="pre">marathon.exceptions.MarathonHttpError</span></code></a></p>
 </dd></dl>
 
 </div>
@@ -1477,13 +2019,17 @@ Note: this method can not be used to rename groups.</p>
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="index.html" class="btn btn-neutral" title="marathon-python documentation"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="marathon-python documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -1493,11 +2039,13 @@ Note: this method can not be used to rename groups.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014, The Factory.
+
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
 </footer>
+
         </div>
       </div>
 
@@ -1515,7 +2063,8 @@ Note: this method can not be used to rename groups.</p>
             VERSION:'',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
