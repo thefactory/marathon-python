@@ -32,6 +32,7 @@ class MarathonClient(object):
         :type servers: str or list[str]
         :param str username: Basic auth username
         :param str password: Basic auth password
+        :param requests.session session: requests.session for reusing the connections
         :param int timeout: Timeout (in seconds) for requests to Marathon
         :param str auth_token: Token-based auth token, used with DCOS + Oauth
         :param bool verify: Enable SSL certificate verification
