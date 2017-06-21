@@ -5,7 +5,6 @@ from marathon.util import to_camel_case, to_snake_case, MarathonJsonEncoder, Mar
 
 
 class MarathonObject(object):
-
     """Base Marathon object."""
 
     def __repr__(self):
@@ -16,6 +15,12 @@ class MarathonObject(object):
             return self.__dict__ == other.__dict__
         except:
             return False
+
+    def __hash__(self):
+        # Technically this class shouldn't be hashable because it often
+        # contains mutable fields, but in practice this class is used more
+        # like a record or namedtuple.
+        return hash(self.to_json())
 
     def json_repr(self, minimal=False):
         """Construct a JSON-friendly representation of the object.
