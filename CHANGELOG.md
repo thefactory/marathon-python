@@ -1,17 +1,26 @@
 # Change Log
 
-## [Unreleased](https://github.com/thefactory/marathon-python/tree/HEAD)
-
-[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.14...HEAD)
+## [0.9.0](https://github.com/thefactory/marathon-python/tree/0.9.0) (2017-06-21)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.14...0.9.0)
 
 **Closed issues:**
 
+- MarathonObject is not hashable in Python3 [\#203](https://github.com/thefactory/marathon-python/issues/203)
+- Missing pods attribute in MarathonDeploymentOriginalState [\#196](https://github.com/thefactory/marathon-python/issues/196)
+- Travis tests have stopped automatically running [\#194](https://github.com/thefactory/marathon-python/issues/194)
 - Adding the key "networks" in the JSON received of marathon \( list apps \) [\#192](https://github.com/thefactory/marathon-python/issues/192)
+-  Unknown event\_type: instance\_changed\_event [\#191](https://github.com/thefactory/marathon-python/issues/191)
 - logs cause exception with non-ascii characters [\#187](https://github.com/thefactory/marathon-python/issues/187)
 - Add new Yelp Contributors [\#181](https://github.com/thefactory/marathon-python/issues/181)
 
 **Merged pull requests:**
 
+- Add hash to marathon object [\#204](https://github.com/thefactory/marathon-python/pull/204) ([jolynch](https://github.com/jolynch))
+- Add requests session param tip. [\#201](https://github.com/thefactory/marathon-python/pull/201) ([Colstuwjx](https://github.com/Colstuwjx))
+- Fix variable [\#199](https://github.com/thefactory/marathon-python/pull/199) ([fengyehong](https://github.com/fengyehong))
+- add new marathon event\_stream events [\#198](https://github.com/thefactory/marathon-python/pull/198) ([bergerx](https://github.com/bergerx))
+- There are cases where this check stack traces [\#197](https://github.com/thefactory/marathon-python/pull/197) ([thekad](https://github.com/thekad))
+- Updated changelog [\#195](https://github.com/thefactory/marathon-python/pull/195) ([solarkennedy](https://github.com/solarkennedy))
 - Adding the key "networks" in the JSON received of marathon [\#193](https://github.com/thefactory/marathon-python/pull/193) ([joaoleite](https://github.com/joaoleite))
 - Remove out of date constraint validation of operator. [\#190](https://github.com/thefactory/marathon-python/pull/190) ([akatrevorjay](https://github.com/akatrevorjay))
 - Add raw\_data option for event\_stream method [\#189](https://github.com/thefactory/marathon-python/pull/189) ([fengyehong](https://github.com/fengyehong))
