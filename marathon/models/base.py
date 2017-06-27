@@ -71,6 +71,12 @@ class MarathonResource(MarathonObject):
         except:
             return False
 
+    def __hash__(self):
+        # Technically this class shouldn't be hashable because it often
+        # contains mutable fields, but in practice this class is used more
+        # like a record or namedtuple.
+        return hash(self.to_json())
+
     def __str__(self):
         return "{clazz}::".format(clazz=self.__class__.__name__) + str(self.__dict__)
 
