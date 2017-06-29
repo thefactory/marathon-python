@@ -115,7 +115,7 @@ def kill_tasks(context, to_kill, which):
 def list_tasks(context, which):
     app = context.client.get_app('test-%s-app' % which)
     tasks = context.client.list_tasks('test-%s-app' % which)
-    assert len(tasks) == app.instances
+    assert len(tasks) == app.instances, "we defined %s tasks, got %s tasks" % (app.instances, len(tasks))
 
 
 def listen_for_events(client, events):

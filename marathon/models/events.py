@@ -187,6 +187,8 @@ class EventFactory:
         'pod_deleted_event': MarathonPodDeletedEvent,
     }
 
+    class_to_event = dict((v, k) for k, v in event_to_class.iteritems())
+
     def process(self, event):
         event_type = event['eventType']
         if event_type in self.event_to_class:

@@ -12,7 +12,7 @@ import requests.exceptions
 import marathon
 from .models import MarathonApp, MarathonDeployment, MarathonGroup, MarathonInfo, MarathonTask, MarathonEndpoint, MarathonQueueItem
 from .exceptions import InternalServerError, NotFoundError, MarathonHttpError, MarathonError
-from .models.events import EventFactory
+from .models.events import EventFactory, MarathonEvent
 from .util import MarathonJsonEncoder, MarathonMinimalJsonEncoder
 
 
@@ -109,13 +109,14 @@ class MarathonClient(object):
 
         return response
 
-    def _do_sse_request(self, path):
+    def _do_sse_request(self, path, params=None):
         """Query Marathon server for events."""
         for server in list(self.servers):
             url = ''.join([server.rstrip('/'), path])
             try:
                 response = requests.get(
                     url,
+                    params=params,
                     stream=True,
                     headers={'Accept': 'text/event-stream'},
                     auth=self.auth
@@ -733,17 +734,26 @@ class MarathonClient(object):
         response = self._do_request('GET', '/metrics')
         return response.json()
 
-    def event_stream(self, raw=False):
+    def event_stream(self, raw=False, event_types=None):
         """Polls event bus using /v2/events
 
         :param bool raw: if true, yield raw event text, else yield MarathonEvent object
+        :param event_types: a list of event types to consume
+        :type event_types: list[type] or list[str]
         :returns: iterator with events
         :rtype: iterator
         """
 
         ef = EventFactory()
 
-        for raw_message in self._do_sse_request('/v2/events'):
+        params = {
+            'event_type': [
+                EventFactory.class_to_event[et] if isinstance(et, type) and issubclass(et, MarathonEvent) else et
+                for et in event_types or []
+            ]
+        }
+
+        for raw_message in self._do_sse_request('/v2/events', params=params):
             try:
                 _data = raw_message.decode('utf8').split(':', 1)
 
