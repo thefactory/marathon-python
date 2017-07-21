@@ -8,6 +8,7 @@ except ImportError:
 
 import requests
 import requests.exceptions
+from requests_toolbelt.adapters import socket_options
 
 import marathon
 from .models import MarathonApp, MarathonDeployment, MarathonGroup, MarathonInfo, MarathonTask, MarathonEndpoint, MarathonQueueItem
@@ -21,7 +22,7 @@ class MarathonClient(object):
     """Client interface for the Marathon REST API."""
 
     def __init__(self, servers, username=None, password=None, timeout=10, session=None,
-                 auth_token=None, verify=True):
+                 auth_token=None, verify=True, sse_session=None):
         """Create a MarathonClient instance.
 
         If multiple servers are specified, each will be tried in succession until a non-"Connection Error"-type
@@ -36,11 +37,19 @@ class MarathonClient(object):
         :param int timeout: Timeout (in seconds) for requests to Marathon
         :param str auth_token: Token-based auth token, used with DCOS + Oauth
         :param bool verify: Enable SSL certificate verification
+        :param requests.session sse_session: requests.session for event stream connections, which by default enables tcp keepalive
         """
         if session is None:
             self.session = requests.Session()
         else:
             self.session = session
+        if sse_session is None:
+            self.sse_session = requests.Session()
+            keep_alive = socket_options.TCPKeepAliveAdapter()
+            self.sse_session.mount('http://', keep_alive)
+            self.sse_session.mount('https://', keep_alive)
+        else:
+            self.sse_session = sse_session
         self.servers = servers if isinstance(servers, list) else [servers]
         self.auth = (username, password) if username and password else None
         self.verify = verify
@@ -114,7 +123,7 @@ class MarathonClient(object):
         for server in list(self.servers):
             url = ''.join([server.rstrip('/'), path])
             try:
-                response = requests.get(
+                response = self.sse_session.get(
                     url,
                     params=params,
                     stream=True,
