@@ -131,7 +131,8 @@ class MarathonClient(object):
                     auth=self.auth
                 )
             except Exception as e:
-                marathon.log.error('Error while calling %s: %s', url, e.message)
+                marathon.log.error(
+                    'Error while calling %s: %s', url, e.message)
             else:
                 if response.ok:
                     return response.iter_lines()
@@ -450,7 +451,8 @@ class MarathonClient(object):
         params = {'force': force}
         response = self._do_request(
             'PUT',
-            '/v2/groups/{group_id}/versions/{version}'.format(group_id=group_id, version=version),
+            '/v2/groups/{group_id}/versions/{version}'.format(
+                group_id=group_id, version=version),
             params=params)
         return response.json()
 
@@ -764,7 +766,8 @@ class MarathonClient(object):
 
         params = {
             'event_type': [
-                EventFactory.class_to_event[et] if isinstance(et, type) and issubclass(et, MarathonEvent) else et
+                EventFactory.class_to_event[et] if isinstance(
+                    et, type) and issubclass(et, MarathonEvent) else et
                 for et in event_types or []
             ]
         }
