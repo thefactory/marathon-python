@@ -11,6 +11,8 @@ class MarathonContainer(MarathonObject):
     :param docker: docker field (e.g., {"image": "mygroup/myimage"})'
     :type docker: :class:`marathon.models.container.MarathonDockerContainer` or dict
     :param str type:
+    :param port_mappings: New in Marathon v1.5. container.docker.port_mappings moved here.
+    :type port_mappings: list[:class:`marathon.models.container.MarathonContainerPortMapping`] or list[dict]
     :param volumes:
     :type volumes: list[:class:`marathon.models.container.MarathonContainerVolume`] or list[dict]
     """
@@ -18,10 +20,19 @@ class MarathonContainer(MarathonObject):
     TYPES = ['DOCKER', 'MESOS']
     """Valid container types"""
 
-    def __init__(self, docker=None, type='DOCKER', volumes=None):
+    def __init__(self, docker=None, type='DOCKER', port_mappings=None, volumes=None):
         if type not in self.TYPES:
             raise InvalidChoiceError('type', type, self.TYPES)
         self.type = type
+
+        # Marathon v1.5 moved portMappings from within container.docker object directly
+        # under the container object
+        if port_mappings:
+            self.port_mappings = [
+                pm if isinstance(
+                    pm, MarathonContainerPortMapping) else MarathonContainerPortMapping().from_json(pm)
+                for pm in (port_mappings or [])
+            ]
 
         if docker:
             self.docker = docker if isinstance(docker, MarathonDockerContainer) \
