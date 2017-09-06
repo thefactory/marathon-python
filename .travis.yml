@@ -16,7 +16,6 @@ install:
 script:
   - make test
   - ./itests/install-marathon.sh
-  - /etc/init.d/zookeeper start
   - ./itests/start-marathon.sh &
   - make itests
 
