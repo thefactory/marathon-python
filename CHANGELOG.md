@@ -1,5 +1,24 @@
 # Change Log
 
+## [0.9.1](https://github.com/thefactory/marathon-python/tree/0.9.1) (2017-09-06)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.9.0...0.9.1)
+
+**Closed issues:**
+
+- \_do\_request can raise JSONDecodeError when it means to raise InternalServerError [\#202](https://github.com/thefactory/marathon-python/issues/202)
+- marathon.exceptions.InvalidChoiceError: Invalid choice "tcp,udp" for param "protocol". Must be one of \['tcp', 'udp'\] [\#150](https://github.com/thefactory/marathon-python/issues/150)
+
+**Merged pull requests:**
+
+- Fix for Marathon 1.5 breaking the /v2/apps API moving portMappings [\#213](https://github.com/thefactory/marathon-python/pull/213) ([gisjedi](https://github.com/gisjedi))
+- Update container.py [\#212](https://github.com/thefactory/marathon-python/pull/212) ([DavidZisky](https://github.com/DavidZisky))
+- Support filtering applications by labels [\#211](https://github.com/thefactory/marathon-python/pull/211) ([iandyh](https://github.com/iandyh))
+- add embed option for /v2/queue [\#210](https://github.com/thefactory/marathon-python/pull/210) ([Rob-Johnson](https://github.com/Rob-Johnson))
+- Enable TCP keepalive for sse requests [\#209](https://github.com/thefactory/marathon-python/pull/209) ([fengyehong](https://github.com/fengyehong))
+- Add "udp,tcp" to authorized protocols for containers [\#208](https://github.com/thefactory/marathon-python/pull/208) ([fuegowolf](https://github.com/fuegowolf))
+- Allow event type filter on event stream [\#207](https://github.com/thefactory/marathon-python/pull/207) ([fengyehong](https://github.com/fengyehong))
+- Fix MarathonResource hash as well [\#205](https://github.com/thefactory/marathon-python/pull/205) ([jolynch](https://github.com/jolynch))
+
 ## [0.9.0](https://github.com/thefactory/marathon-python/tree/0.9.0) (2017-06-21)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.14...0.9.0)
 
