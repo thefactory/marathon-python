@@ -127,7 +127,7 @@ class MarathonUnknownInstanceTerminated(MarathonEvent):
     KNOWN_ATTRIBUTES = ['instance_id', 'run_spec_id', 'condition']
 
 
-class MarathonInstanceHealthChanged(MarathonEvent):
+class MarathonInstanceHealthChangedEvent(MarathonEvent):
     KNOWN_ATTRIBUTES = ['instance_id', 'run_spec_id', 'run_spec_version', 'healthy']
 
 
@@ -181,13 +181,13 @@ class EventFactory:
         'instance_changed_event': MarathonInstanceChangedEvent,
         'unknown_instance_terminated_event': MarathonUnknownInstanceTerminated,
         'unhealthy_instance_kill_event': MarathonUnhealthyInstanceKillEvent,
-        'instance_health_changed_event': MarathonInstanceChangedEvent,
+        'instance_health_changed_event': MarathonInstanceHealthChangedEvent,
         'pod_created_event': MarathonPodCreatedEvent,
         'pod_updated_event': MarathonPodUpdatedEvent,
         'pod_deleted_event': MarathonPodDeletedEvent,
     }
 
-    class_to_event = dict((v, k) for k, v in event_to_class.iteritems())
+    class_to_event = dict((v, k) for k, v in event_to_class.items())
 
     def process(self, event):
         event_type = event['eventType']
