@@ -1,5 +1,18 @@
 # Change Log
 
+## [0.9.2](https://github.com/thefactory/marathon-python/tree/0.9.2) (2017-09-13)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.9.1...0.9.2)
+
+**Closed issues:**
+
+- No support for "USER" network mode. [\#173](https://github.com/thefactory/marathon-python/issues/173)
+- YAML support for marathon-cli [\#74](https://github.com/thefactory/marathon-python/issues/74)
+
+**Merged pull requests:**
+
+- Test against the latest marathon 1.4 point release \(1.4.7\) [\#215](https://github.com/thefactory/marathon-python/pull/215) ([nhandler](https://github.com/nhandler))
+- Fix events [\#214](https://github.com/thefactory/marathon-python/pull/214) ([fengyehong](https://github.com/fengyehong))
+
 ## [0.9.1](https://github.com/thefactory/marathon-python/tree/0.9.1) (2017-09-06)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.9.0...0.9.1)
 

@@ -8,7 +8,7 @@ if sys.version_info >= (3,):
 
 setup(
     name='marathon',
-    version='0.9.1',
+    version='0.9.2',
     description='Marathon Client Library',
     long_description="""Python interface to the Mesos Marathon REST API.""",
     author='Mike Babineau',
