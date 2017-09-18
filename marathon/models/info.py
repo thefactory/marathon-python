@@ -115,16 +115,20 @@ class MarathonZooKeeperConfig(MarathonObject):
     :param str zk_session_timeout:
     :param str zk_state:
     :param int zk_timeout:
+    :param int zk_connection_timeout:
     """
 
     def __init__(self, zk=None, zk_future_timeout=None, zk_hosts=None, zk_max_versions=None, zk_path=None,
-                 zk_session_timeout=None, zk_state=None, zk_timeout=None):
+                 zk_session_timeout=None, zk_state=None, zk_timeout=None, zk_connection_timeout=None):
         self.zk = zk
-        self.zk_future_timeout = zk_future_timeout
         self.zk_hosts = zk_hosts
         self.zk_path = zk_path
         self.zk_state = zk_state
+        self.zk_max_versions = zk_max_versions
         self.zk_timeout = zk_timeout
+        self.zk_connection_timeout = zk_connection_timeout
+        self.zk_future_timeout = zk_future_timeout
+        self.zk_session_timeout = zk_session_timeout
 
 
 class MarathonHttpConfig(MarathonObject):
