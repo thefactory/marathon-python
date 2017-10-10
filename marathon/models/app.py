@@ -317,7 +317,10 @@ class MarathonAppVersionInfo(MarathonObject):
     :param str host: mesos slave running the task
     """
 
-    DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
+    DATETIME_FORMATS = [
+      '%Y-%m-%dT%H:%M:%S.%fZ',
+      '%Y-%m-%dT%H:%M:%SZ',
+    ]
 
     def __init__(self, last_scaling_at=None, last_config_change_at=None):
         self.last_scaling_at = self._to_datetime(last_scaling_at)
@@ -327,7 +330,12 @@ class MarathonAppVersionInfo(MarathonObject):
         if (timestamp is None or isinstance(timestamp, datetime)):
             return timestamp
         else:
-            return datetime.strptime(timestamp, self.DATETIME_FORMAT)
+            for fmt in self.DATETIME_FORMATS:
+                try:
+                    return datetime.strptime(timestamp, fmt)
+                except ValueError:
+                    pass
+            raise ValueError('Unrecognized datetime format: {}'.format(timestamp))
 
 
 class MarathonTaskStats(MarathonObject):
