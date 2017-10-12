@@ -26,7 +26,7 @@ class MarathonQueueItem(MarathonResource):
     """
 
     def __init__(self, app=None, overdue=None, count=None, delay=None, since=None,
-                 processed_offers_summary=None):
+                 processed_offers_summary=None, last_unused_offers=None):
         self.app = app if isinstance(
             app, MarathonApp) else MarathonApp().from_json(app)
         self.overdue = overdue
@@ -35,6 +35,7 @@ class MarathonQueueItem(MarathonResource):
             delay, MarathonQueueItemDelay) else MarathonQueueItemDelay().from_json(delay)
         self.since = since
         self.processed_offers_summary = processed_offers_summary
+        self.last_unused_offers = last_unused_offers
 
 
 class MarathonQueueItemDelay(MarathonResource):
