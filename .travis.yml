@@ -28,4 +28,14 @@ addons:
     packages:
     - libstdc++6-4.7-dev
 
-sudo: required # make it explicit: it was by default only because this repo was set up before 2015 (new forks need it)
+sudo: required
+
+deploy:
+  - provider: pypi
+    user: yelplabs
+    password:
+      secure: "Wl8GWxsfPy4KoORYH26N3FllvMeWrifzeCbEx2Af4corcBQl43heeiFRRTlUOcSX0TIasER21PUvQ0R0cAgCjfknDb3SOROcRtcSBe16+cMmvwysfxcAx2OcF1UYBPY8e/qOsGge2Zyzx2PAPNEmJoWKbIT3vUJ4WvlLVeGYdJ0="
+    on:
+      tags: true
+      condition: MARATHONVERSION == "1.4.7"
+      repo: thefactory/marathon-python
