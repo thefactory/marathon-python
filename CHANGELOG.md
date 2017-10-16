@@ -1,10 +1,26 @@
 # Change Log
 
+## [0.9.3](https://github.com/thefactory/marathon-python/tree/0.9.3) (2017-10-16)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.9.2...0.9.3)
+
+**Closed issues:**
+
+- `list\_queue` doesn't like the `embed\_last\_unused\_offers` option [\#220](https://github.com/thefactory/marathon-python/issues/220)
+
+**Merged pull requests:**
+
+- Make travis automatically upload to pypi on new tags [\#223](https://github.com/thefactory/marathon-python/pull/223) ([solarkennedy](https://github.com/solarkennedy))
+- Fix MarathonQueueItem to know about the possible last\_unused\_offers arg [\#221](https://github.com/thefactory/marathon-python/pull/221) ([matthewbentley](https://github.com/matthewbentley))
+- support more datetime formats in MarathonAppVersionInfo [\#219](https://github.com/thefactory/marathon-python/pull/219) ([somic](https://github.com/somic))
+- Remove default container.docker.network [\#218](https://github.com/thefactory/marathon-python/pull/218) ([protetore](https://github.com/protetore))
+- Make MarathonZooKeeperConfig compatible with maraton 1.5 [\#216](https://github.com/thefactory/marathon-python/pull/216) ([fengyehong](https://github.com/fengyehong))
+
 ## [0.9.2](https://github.com/thefactory/marathon-python/tree/0.9.2) (2017-09-13)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.9.1...0.9.2)
 
 **Closed issues:**
 
+- Failed to import marathon in python3 [\#217](https://github.com/thefactory/marathon-python/issues/217)
 - No support for "USER" network mode. [\#173](https://github.com/thefactory/marathon-python/issues/173)
 - YAML support for marathon-cli [\#74](https://github.com/thefactory/marathon-python/issues/74)
 
