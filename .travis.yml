@@ -37,5 +37,5 @@ deploy:
       secure: "Wl8GWxsfPy4KoORYH26N3FllvMeWrifzeCbEx2Af4corcBQl43heeiFRRTlUOcSX0TIasER21PUvQ0R0cAgCjfknDb3SOROcRtcSBe16+cMmvwysfxcAx2OcF1UYBPY8e/qOsGge2Zyzx2PAPNEmJoWKbIT3vUJ4WvlLVeGYdJ0="
     on:
       tags: true
-      condition: MARATHONVERSION == "1.4.7"
+      condition: $MARATHONVERSION == "1.4.7"
       repo: thefactory/marathon-python
