@@ -36,5 +36,5 @@ class MarathonGroup(MarathonResource):
         #     p if isinstance(p, MarathonPod) else MarathonPod().from_json(p)
         #     for p in (pods or [])
         # ]
-        self.id = assert_valid_id(id)
+        self.id = id
         self.version = version
