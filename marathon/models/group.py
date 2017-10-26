@@ -1,4 +1,4 @@
-from .base import MarathonResource, assert_valid_id
+from .base import MarathonResource
 from .app import MarathonApp
 
 
