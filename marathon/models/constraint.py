@@ -55,3 +55,22 @@ class MarathonConstraint(MarathonObject):
         if len(obj) > 2:
             (field, operator, value) = obj
             return cls(field, operator, value)
+    
+    @classmethod
+    def from_string(cls, constraint):
+        """
+        :param str constraint: The string representation of a constraint
+
+        :rtype: :class:`MarathonConstraint`
+        """
+        parts = constraint.split(':')
+
+        if len(parts) == 2:
+            (field, operator) = parts
+            return cls(field, operator)
+        elif len(parts) > 2:
+            (field, operator, value) = parts
+            return cls(field, operator, value)
+        else:
+            raise ValueError("Invalid string format. "
+                             "Expected `field:operator:value`")
