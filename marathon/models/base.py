@@ -13,7 +13,7 @@ class MarathonObject(object):
     def __eq__(self, other):
         try:
             return self.__dict__ == other.__dict__
-        except:
+        except Exception:
             return False
 
     def __hash__(self):
@@ -68,7 +68,7 @@ class MarathonResource(MarathonObject):
     def __eq__(self, other):
         try:
             return self.__dict__ == other.__dict__
-        except:
+        except Exception:
             return False
 
     def __hash__(self):
