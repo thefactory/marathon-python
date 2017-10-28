@@ -19,12 +19,12 @@ class MarathonConstraintTests(unittest.TestCase):
         constraint = MarathonConstraint('a_field', 'OPERATOR', 'a_value')
         json_repr = constraint.json_repr()
         self.assertEqual(json_repr, ['a_field', 'OPERATOR', 'a_value'])
-    
+
     def test_json_repr_without_value(self):
         constraint = MarathonConstraint('a_field', 'OPERATOR')
         json_repr = constraint.json_repr()
         self.assertEqual(json_repr, ['a_field', 'OPERATOR'])
-    
+
     def test_from_json_with_value(self):
         constraint = MarathonConstraint.from_json(['a_field', 'OPERATOR', 'a_value'])
         self.assertEqual(constraint,

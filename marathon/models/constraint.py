@@ -55,7 +55,7 @@ class MarathonConstraint(MarathonObject):
         if len(obj) > 2:
             (field, operator, value) = obj
             return cls(field, operator, value)
-    
+
     @classmethod
     def from_string(cls, constraint):
         """
