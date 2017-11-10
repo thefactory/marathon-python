@@ -214,7 +214,9 @@ class MarathonHealthCheck(MarathonObject):
     def __init__(self, command=None, grace_period_seconds=None, interval_seconds=None, max_consecutive_failures=None,
                  path=None, port_index=None, protocol=None, timeout_seconds=None, ignore_http1xx=None, **kwargs):
 
-        if is_stringy(command):
+        if command is None:
+            self.command = None
+        elif is_stringy(command):
             self.command = {
                 "value": command
             }
