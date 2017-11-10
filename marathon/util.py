@@ -1,5 +1,6 @@
 import collections
 import datetime
+import logging
 
 try:
     import json
@@ -8,6 +9,10 @@ except ImportError:
 import re
 
 from ._compat import string_types
+
+
+def get_log():
+    return logging.getLogger(__name__.split('.')[0])
 
 
 def is_stringy(obj):
