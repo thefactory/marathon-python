@@ -6,6 +6,9 @@ from .constraint import MarathonConstraint
 from .container import MarathonContainer
 from .deployment import MarathonDeployment
 from .task import MarathonTask
+from ..util import is_stringy, get_log
+
+log = get_log()
 
 
 class MarathonApp(MarathonResource):
@@ -210,7 +213,21 @@ class MarathonHealthCheck(MarathonObject):
 
     def __init__(self, command=None, grace_period_seconds=None, interval_seconds=None, max_consecutive_failures=None,
                  path=None, port_index=None, protocol=None, timeout_seconds=None, ignore_http1xx=None, **kwargs):
-        self.command = command
+
+        if command is None:
+            self.command = None
+        elif is_stringy(command):
+            self.command = {
+                "value": command
+            }
+        elif type(command) is dict and 'value' in command:
+            log.warn('Deprecated: Using command as dict instead of string is deprecated')
+            self.command = {
+                "value": command['value']
+            }
+        else:
+            raise ValueError('Invalid command format: {}'.format(command))
+
         self.grace_period_seconds = grace_period_seconds
         self.interval_seconds = interval_seconds
         self.max_consecutive_failures = max_consecutive_failures
@@ -318,8 +335,8 @@ class MarathonAppVersionInfo(MarathonObject):
     """
 
     DATETIME_FORMATS = [
-      '%Y-%m-%dT%H:%M:%S.%fZ',
-      '%Y-%m-%dT%H:%M:%SZ',
+        '%Y-%m-%dT%H:%M:%S.%fZ',
+        '%Y-%m-%dT%H:%M:%SZ',
     ]
 
     def __init__(self, last_scaling_at=None, last_config_change_at=None):
