@@ -74,13 +74,47 @@ class MarathonConfig(MarathonObject):
     :param int task_launch_timeout:
     :param int task_reservation_timeout:
     :param int marathon_store_timeout:
+    :param str access_control_allow_origin:
+    :param int decline_offer_duration:
+    :param str default_network_name:
+    :param str env_vars_prefix:
+    :param int launch_token:
+    :param int launch_token_refresh_interval:
+    :param int max_instances_per_offer:
+    :param int mesos_heartbeat_failure_threshold:
+    :param int mesos_heartbeat_interval:
+    :param int min_revive_offers_interval:
+    :param int offer_matching_timeout:
+    :param int on_elected_prepare_timeout:
+    :param bool revive_offers_for_new_apps:
+    :param int revive_offers_repetitions:
+    :param int scale_apps_initial_delay:
+    :param int scale_apps_interval:
+    :param bool store_cache:
+    :param int task_launch_confirm_timeout:
+    :param int task_lost_expunge_initial_delay:
+    :param int task_lost_expunge_interval:
     """
 
     def __init__(self, checkpoint=None, executor=None, failover_timeout=None, framework_name=None, ha=None,
                  hostname=None, leader_proxy_connection_timeout_ms=None, leader_proxy_read_timeout_ms=None,
                  local_port_min=None, local_port_max=None, master=None, mesos_leader_ui_url=None, mesos_role=None, mesos_user=None,
                  webui_url=None, reconciliation_initial_delay=None, reconciliation_interval=None,
-                 task_launch_timeout=None, marathon_store_timeout=None, task_reservation_timeout=None, features=None):
+                 task_launch_timeout=None, marathon_store_timeout=None, task_reservation_timeout=None, features=None,
+                 access_control_allow_origin=None, decline_offer_duration=None,
+                 default_network_name=None, env_vars_prefix=None,
+                 launch_token=None, launch_token_refresh_interval=None,
+                 max_instances_per_offer=None,
+                 mesos_heartbeat_failure_threshold=None,
+                 mesos_heartbeat_interval=None, min_revive_offers_interval=None,
+                 offer_matching_timeout=None, on_elected_prepare_timeout=None,
+                 revive_offers_for_new_apps=None,
+                 revive_offers_repetitions=None, scale_apps_initial_delay=None,
+                 scale_apps_interval=None, store_cache=None,
+                 task_launch_confirm_timeout=None,
+                 task_lost_expunge_initial_delay=None,
+                 task_lost_expunge_interval=None
+    ):
         self.checkpoint = checkpoint
         self.executor = executor
         self.failover_timeout = failover_timeout
@@ -99,6 +133,26 @@ class MarathonConfig(MarathonObject):
         self.task_launch_timeout = task_launch_timeout
         self.task_reservation_timeout = task_reservation_timeout
         self.marathon_store_timeout = marathon_store_timeout
+        self.access_control_allow_origin = access_control_allow_origin
+        self.decline_offer_duration = decline_offer_duration
+        self.default_network_name = default_network_name
+        self.env_vars_prefix = env_vars_prefix
+        self.launch_token = launch_token
+        self.launch_token_refresh_interval = launch_token_refresh_interval
+        self.max_instances_per_offer = max_instances_per_offer
+        self.mesos_heartbeat_failure_threshold = mesos_heartbeat_failure_threshold
+        self.mesos_heartbeat_interval = mesos_heartbeat_interval
+        self.min_revive_offers_interval = min_revive_offers_interval
+        self.offer_matching_timeout = offer_matching_timeout
+        self.on_elected_prepare_timeout = on_elected_prepare_timeout
+        self.revive_offers_for_new_apps = revive_offers_for_new_apps
+        self.revive_offers_repetitions = revive_offers_repetitions
+        self.scale_apps_initial_delay = scale_apps_initial_delay
+        self.scale_apps_interval = scale_apps_interval
+        self.store_cache = store_cache
+        self.task_launch_confirm_timeout = task_launch_confirm_timeout
+        self.task_lost_expunge_initial_delay = task_lost_expunge_initial_delay
+        self.task_lost_expunge_interval = task_lost_expunge_interval
 
 
 class MarathonZooKeeperConfig(MarathonObject):
@@ -116,10 +170,15 @@ class MarathonZooKeeperConfig(MarathonObject):
     :param str zk_state:
     :param int zk_timeout:
     :param int zk_connection_timeout:
+    :param bool zk_compression:
+    :param int zk_compression_threshold:
+    :param int zk_max_node_size:
     """
 
     def __init__(self, zk=None, zk_future_timeout=None, zk_hosts=None, zk_max_versions=None, zk_path=None,
-                 zk_session_timeout=None, zk_state=None, zk_timeout=None, zk_connection_timeout=None):
+                 zk_session_timeout=None, zk_state=None, zk_timeout=None, zk_connection_timeout=None,
+                 zk_compression=None, zk_compression_threshold=None,
+                 zk_max_node_size=None):
         self.zk = zk
         self.zk_hosts = zk_hosts
         self.zk_path = zk_path
@@ -129,6 +188,9 @@ class MarathonZooKeeperConfig(MarathonObject):
         self.zk_connection_timeout = zk_connection_timeout
         self.zk_future_timeout = zk_future_timeout
         self.zk_session_timeout = zk_session_timeout
+        self.zk_compression = zk_compression
+        self.zk_compression_threshold = zk_compression_threshold
+        self.zk_max_node_size = zk_max_node_size
 
 
 class MarathonHttpConfig(MarathonObject):
