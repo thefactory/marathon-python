@@ -114,7 +114,7 @@ class MarathonConfig(MarathonObject):
                  task_launch_confirm_timeout=None,
                  task_lost_expunge_initial_delay=None,
                  task_lost_expunge_interval=None
-    ):
+                 ):
         self.checkpoint = checkpoint
         self.executor = executor
         self.failover_timeout = failover_timeout
