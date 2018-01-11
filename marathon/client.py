@@ -479,9 +479,9 @@ class MarathonClient(object):
         :returns: a dict containing the deployment id and version
         :rtype: dict
         """
-        params = {'scaleBy': scale_by}
+        data = {'scaleBy': scale_by}
         response = self._do_request(
-            'PUT', '/v2/groups/{group_id}'.format(group_id=group_id), params=params)
+            'PUT', '/v2/groups/{group_id}'.format(group_id=group_id), data=json.dumps(data))
         return response.json()
 
     def list_tasks(self, app_id=None, **kwargs):
