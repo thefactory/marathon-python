@@ -97,7 +97,7 @@ class MarathonContainerPortMapping(MarathonObject):
     PROTOCOLS = ['tcp', 'udp', 'udp,tcp']
     """Valid protocols"""
 
-    def __init__(self, name=None, container_port=None, host_port=0, service_port=None, protocol='tcp', labels=None):
+    def __init__(self, name=None, container_port=None, host_port=None, service_port=None, protocol='tcp', labels=None):
         self.name = name
         self.container_port = container_port
         self.host_port = host_port
