@@ -707,6 +707,11 @@ class MarathonClient(object):
                 'DELETE', '/v2/deployments/{deployment}'.format(deployment=deployment_id))
             return response.json()
 
+    def reset_delay(self, app_id):
+        self._do_request(
+            "DELETE", '/v2/queue/{app_id}/delay'.format(app_id=app_id)
+        )
+
     def get_info(self):
         """Get server configuration information.
 
