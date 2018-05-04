@@ -16,7 +16,6 @@ sudo apt-get update
 
 # Install packages
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install oracle-java8-installer
-sudo apt-get -y purge oracle-java7-installer
 sudo update-java-alternatives -s java-8-oracle
 sudo DEBIAN_FRONTEND=noninteractive apt-get install oracle-java8-set-default
 
