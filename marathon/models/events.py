@@ -1,10 +1,13 @@
 """
 This module is used to translate Events from Marathon's EventBus system.
-See: https://mesosphere.github.io/marathon/docs/event-bus.html
+See:
+* https://mesosphere.github.io/marathon/docs/event-bus.html
+* https://github.com/mesosphere/marathon/blob/master/src/main/scala/mesosphere/marathon/core/event/Events.scala
 """
 
 from marathon.models.base import MarathonObject
 from marathon.models.app import MarathonHealthCheck
+from marathon.models.task import MarathonIpAddress
 from marathon.models.deployment import MarathonDeploymentPlan
 from marathon.exceptions import MarathonError
 
@@ -19,7 +22,11 @@ class MarathonEvent(MarathonObject):
     KNOWN_ATTRIBUTES = []
     attribute_name_to_marathon_object = {  # Allows embedding of MarathonObjects inside events.
         'health_check': MarathonHealthCheck,
-        'plan': MarathonDeploymentPlan
+        'plan': MarathonDeploymentPlan,
+        'ip_address': MarathonIpAddress,
+    }
+    seq_name_to_singular = {
+        'ip_addresses': 'ip_address',
     }
 
     def __init__(self, event_type, timestamp, **kwargs):
@@ -28,13 +35,25 @@ class MarathonEvent(MarathonObject):
         for attribute in self.KNOWN_ATTRIBUTES:
             self._set(attribute, kwargs.get(attribute))
 
+    def __to_marathon_object(self, attribute_name, attribute):
+        if attribute_name in self.attribute_name_to_marathon_object:
+            clazz = self.attribute_name_to_marathon_object[attribute_name]
+            # If this attribute already has a Marathon object instantiate it.
+            attribute = clazz.from_json(attribute)
+        return attribute
+
     def _set(self, attribute_name, attribute):
         if not attribute:
             return
-        if attribute_name in self.attribute_name_to_marathon_object:
-            clazz = self.attribute_name_to_marathon_object[attribute_name]
-            attribute = clazz.from_json(
-                attribute)  # If this attribute already has a Marathon object instantiate it.
+        # Special handling for lists...
+        if isinstance(attribute, list):
+            name = self.seq_name_to_singular.get(attribute_name)
+            attribute = [
+                self.__to_marathon_object(name, v)
+                for v in attribute
+            ]
+        else:
+            attribute = self.__to_marathon_object(attribute_name, attribute)
         setattr(self, attribute_name, attribute)
 
 
@@ -44,7 +63,7 @@ class MarathonApiPostEvent(MarathonEvent):
 
 class MarathonStatusUpdateEvent(MarathonEvent):
     KNOWN_ATTRIBUTES = [
-        'slave_id', 'task_id', 'task_status', 'app_id', 'host', 'ports', 'version', 'message']
+        'slave_id', 'task_id', 'task_status', 'app_id', 'host', 'ports', 'version', 'message', 'ip_addresses']
 
 
 class MarathonFrameworkMessageEvent(MarathonEvent):
@@ -68,11 +87,11 @@ class MarathonRemoveHealthCheckEvent(MarathonEvent):
 
 
 class MarathonFailedHealthCheckEvent(MarathonEvent):
-    KNOWN_ATTRIBUTES = ['app_id', 'health_check', 'task_id']
+    KNOWN_ATTRIBUTES = ['app_id', 'health_check', 'task_id', 'instance_id']
 
 
 class MarathonHealthStatusChangedEvent(MarathonEvent):
-    KNOWN_ATTRIBUTES = ['app_id', 'health_check', 'task_id', 'alive']
+    KNOWN_ATTRIBUTES = ['app_id', 'health_check', 'task_id', 'instance_id', 'alive']
 
 
 class MarathonGroupChangeSuccess(MarathonEvent):
@@ -92,7 +111,7 @@ class MarathonDeploymentFailed(MarathonEvent):
 
 
 class MarathonDeploymentInfo(MarathonEvent):
-    KNOWN_ATTRIBUTES = ['plan']
+    KNOWN_ATTRIBUTES = ['plan', 'current_step']
 
 
 class MarathonDeploymentStepSuccess(MarathonEvent):
@@ -112,7 +131,7 @@ class MarathonEventStreamDetached(MarathonEvent):
 
 
 class MarathonUnhealthyTaskKillEvent(MarathonEvent):
-    KNOWN_ATTRIBUTES = ['app_id', 'task_id', 'version', 'reason']
+    KNOWN_ATTRIBUTES = ['app_id', 'task_id', 'instance_id', 'version', 'reason']
 
 
 class MarathonAppTerminatedEvent(MarathonEvent):
