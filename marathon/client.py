@@ -128,7 +128,8 @@ class MarathonClient(object):
                     params=params,
                     stream=True,
                     headers={'Accept': 'text/event-stream'},
-                    auth=self.auth
+                    auth=self.auth,
+                    verify=self.verify,
                 )
             except Exception as e:
                 marathon.log.error(
