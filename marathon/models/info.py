@@ -81,6 +81,7 @@ class MarathonConfig(MarathonObject):
     :param int launch_token:
     :param int launch_token_refresh_interval:
     :param int max_instances_per_offer:
+    :param str mesos_bridge_name:
     :param int mesos_heartbeat_failure_threshold:
     :param int mesos_heartbeat_interval:
     :param int min_revive_offers_interval:
@@ -104,7 +105,7 @@ class MarathonConfig(MarathonObject):
                  access_control_allow_origin=None, decline_offer_duration=None,
                  default_network_name=None, env_vars_prefix=None,
                  launch_token=None, launch_token_refresh_interval=None,
-                 max_instances_per_offer=None,
+                 max_instances_per_offer=None, mesos_bridge_name= None,
                  mesos_heartbeat_failure_threshold=None,
                  mesos_heartbeat_interval=None, min_revive_offers_interval=None,
                  offer_matching_timeout=None, on_elected_prepare_timeout=None,
@@ -140,6 +141,7 @@ class MarathonConfig(MarathonObject):
         self.launch_token = launch_token
         self.launch_token_refresh_interval = launch_token_refresh_interval
         self.max_instances_per_offer = max_instances_per_offer
+        self.mesos_bridge_name = mesos_bridge_name
         self.mesos_heartbeat_failure_threshold = mesos_heartbeat_failure_threshold
         self.mesos_heartbeat_interval = mesos_heartbeat_interval
         self.min_revive_offers_interval = min_revive_offers_interval
