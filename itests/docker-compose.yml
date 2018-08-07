@@ -2,4 +2,4 @@
 marathon:
   build: .
   ports:
-    - 8080
+    - 18080:8080
