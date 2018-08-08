@@ -105,7 +105,7 @@ class MarathonConfig(MarathonObject):
                  access_control_allow_origin=None, decline_offer_duration=None,
                  default_network_name=None, env_vars_prefix=None,
                  launch_token=None, launch_token_refresh_interval=None,
-                 max_instances_per_offer=None, mesos_bridge_name= None,
+                 max_instances_per_offer=None, mesos_bridge_name=None,
                  mesos_heartbeat_failure_threshold=None,
                  mesos_heartbeat_interval=None, min_revive_offers_interval=None,
                  offer_matching_timeout=None, on_elected_prepare_timeout=None,
