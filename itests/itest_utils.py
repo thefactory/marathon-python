@@ -63,8 +63,7 @@ def get_marathon_connection_string():
         return 'localhost:8080'
     else:
         service_port = get_service_internal_port('marathon')
-        local_port = get_compose_service('marathon').get_container().get_local_port(service_port)
-        return local_port
+        return "localhost:%s" % service_port.published
 
 
 def get_service_internal_port(service_name):
