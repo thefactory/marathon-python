@@ -14,6 +14,6 @@ ADD ./marathon-version /root/marathon-version
 ADD ./install-marathon.sh /root/install-marathon.sh
 RUN /root/install-marathon.sh
 
-EXPOSE 8080
+EXPOSE 8080 5050
 ADD ./start-marathon.sh /root/start-marathon.sh
 CMD /etc/init.d/zookeeper start && /root/start-marathon.sh

@@ -3,3 +3,4 @@ marathon:
   build: .
   ports:
     - 18080:8080
+    - 15050:5050

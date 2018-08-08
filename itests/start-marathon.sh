@@ -11,4 +11,6 @@ export MESOS_WORK_DIR='/tmp/mesos'
 export ZK_HOST=`cat /etc/mesos/zk`
 
 mkdir -p "$MESOS_WORK_DIR"
-exec /usr/bin/marathon --master $ZK_HOST $LOGGER --hostname localhost
+nohup  mesos-master --work_dir=/tmp/mesosmaster --zk=$ZK_HOST --quorum=1 &
+nohup mesos-agent --master=$ZK_HOST --work_dir=/tmp/mesosagent --launcher=posix &
+exec /usr/bin/marathon --master $ZK_HOST $LOGGER 
