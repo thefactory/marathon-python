@@ -8,11 +8,7 @@ This is a Python library for interfacing with [Marathon](https://github.com/meso
 
 * For Marathon 1.6.x, use at least 0.10.0
 * For Marathon 1.4.1, use at least 0.8.13
-* For Marathon 1.1.1 and 0.15.x, use at least 0.8.1
-* For Marathon 0.14.x, use at least 0.7.6
-* For Marathon 0.8.x-0.11.x, use at least marathon-python 0.7.5
-* For Marathon 0.8.x-0.9.x, use as least marathon-python 0.6.11 - 0.7.4
-* For Marathon 0.7.x, use at least marathon-python 0.6.10
+* For Marathon 1.1.1, use at least 0.8.1
 * For all version changes, please see `CHANGELOG.md`
 
 If you find a feature that is broken, please submit a PR that adds a test for
