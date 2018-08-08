@@ -1,5 +1,33 @@
 # Change Log
 
+## [0.10.0](https://github.com/thefactory/marathon-python/tree/0.10.0) (2018-08-08)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.9.3...0.10.0)
+
+**Closed issues:**
+
+- Travis tests are broken [\#249](https://github.com/thefactory/marathon-python/issues/249)
+- SSE SSL authentication not supported [\#247](https://github.com/thefactory/marathon-python/issues/247)
+- Lack of support for container.networks [\#243](https://github.com/thefactory/marathon-python/issues/243)
+- \_\_init\_\_\(\) got an unexpected keyword argument 'port\_mappings' [\#237](https://github.com/thefactory/marathon-python/issues/237)
+- Wrong health check object generated for COMMAND protocol [\#222](https://github.com/thefactory/marathon-python/issues/222)
+
+**Merged pull requests:**
+
+- Add support for mesos 1.6 [\#255](https://github.com/thefactory/marathon-python/pull/255) ([jdewinne](https://github.com/jdewinne))
+- Possibility for send the full json object on create [\#252](https://github.com/thefactory/marathon-python/pull/252) ([kkorekk](https://github.com/kkorekk))
+- events: add a few attributes [\#251](https://github.com/thefactory/marathon-python/pull/251) ([iksaif](https://github.com/iksaif))
+- install-marathon.sh: do not remove oracle-java7-installer [\#250](https://github.com/thefactory/marathon-python/pull/250) ([iksaif](https://github.com/iksaif))
+- MarathonClient: set verify when using sse\_session [\#248](https://github.com/thefactory/marathon-python/pull/248) ([iksaif](https://github.com/iksaif))
+- add reset delay api [\#246](https://github.com/thefactory/marathon-python/pull/246) ([iandyh](https://github.com/iandyh))
+- fixes for issue 244 [\#245](https://github.com/thefactory/marathon-python/pull/245) ([mikekatica](https://github.com/mikekatica))
+- Test against 1.4.11 [\#240](https://github.com/thefactory/marathon-python/pull/240) ([nhandler](https://github.com/nhandler))
+- fix isuuse-238 [\#239](https://github.com/thefactory/marathon-python/pull/239) ([yudong2015](https://github.com/yudong2015))
+- Test against 1.4.10 instead of 1.4.9 [\#236](https://github.com/thefactory/marathon-python/pull/236) ([nhandler](https://github.com/nhandler))
+- make models.info compatible with 1.4.9 [\#233](https://github.com/thefactory/marathon-python/pull/233) ([iandyh](https://github.com/iandyh))
+- Fix health check 'command'  [\#231](https://github.com/thefactory/marathon-python/pull/231) ([protetore](https://github.com/protetore))
+- Feature/marathon constraint model improvements [\#229](https://github.com/thefactory/marathon-python/pull/229) ([diogommartins](https://github.com/diogommartins))
+- Removes id validation from MarathonGroup\(\) [\#228](https://github.com/thefactory/marathon-python/pull/228) ([daltonmatos](https://github.com/daltonmatos))
+
 ## [0.9.3](https://github.com/thefactory/marathon-python/tree/0.9.3) (2017-10-16)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.9.2...0.9.3)
 
@@ -9,6 +37,7 @@
 
 **Merged pull requests:**
 
+- Release 0.9.3 [\#224](https://github.com/thefactory/marathon-python/pull/224) ([solarkennedy](https://github.com/solarkennedy))
 - Make travis automatically upload to pypi on new tags [\#223](https://github.com/thefactory/marathon-python/pull/223) ([solarkennedy](https://github.com/solarkennedy))
 - Fix MarathonQueueItem to know about the possible last\_unused\_offers arg [\#221](https://github.com/thefactory/marathon-python/pull/221) ([matthewbentley](https://github.com/matthewbentley))
 - support more datetime formats in MarathonAppVersionInfo [\#219](https://github.com/thefactory/marathon-python/pull/219) ([somic](https://github.com/somic))
@@ -44,7 +73,7 @@
 - Support filtering applications by labels [\#211](https://github.com/thefactory/marathon-python/pull/211) ([iandyh](https://github.com/iandyh))
 - add embed option for /v2/queue [\#210](https://github.com/thefactory/marathon-python/pull/210) ([Rob-Johnson](https://github.com/Rob-Johnson))
 - Enable TCP keepalive for sse requests [\#209](https://github.com/thefactory/marathon-python/pull/209) ([fengyehong](https://github.com/fengyehong))
-- Add "udp,tcp" to authorized protocols for containers [\#208](https://github.com/thefactory/marathon-python/pull/208) ([fuegowolf](https://github.com/fuegowolf))
+- Add "udp,tcp" to authorized protocols for containers [\#208](https://github.com/thefactory/marathon-python/pull/208) ([alxkt](https://github.com/alxkt))
 - Allow event type filter on event stream [\#207](https://github.com/thefactory/marathon-python/pull/207) ([fengyehong](https://github.com/fengyehong))
 - Fix MarathonResource hash as well [\#205](https://github.com/thefactory/marathon-python/pull/205) ([jolynch](https://github.com/jolynch))
 
@@ -362,7 +391,7 @@
 
 **Merged pull requests:**
 
-- Updated to support Marathon 0.9.1 with get\_info\(\) calls [\#59](https://github.com/thefactory/marathon-python/pull/59) ([pyronicide](https://github.com/pyronicide))
+- Updated to support Marathon 0.9.1 with get\_info\(\) calls [\#59](https://github.com/thefactory/marathon-python/pull/59) ([grampelberg](https://github.com/grampelberg))
 - Add support for building with a wheel and cleanup setup.py [\#58](https://github.com/thefactory/marathon-python/pull/58) ([mattrobenolt](https://github.com/mattrobenolt))
 - travis should run unit tests [\#55](https://github.com/thefactory/marathon-python/pull/55) ([Rob-Johnson](https://github.com/Rob-Johnson))
 - implement \_\_eq\_\_ on base models + fix tests to be useful [\#54](https://github.com/thefactory/marathon-python/pull/54) ([Rob-Johnson](https://github.com/Rob-Johnson))
@@ -408,7 +437,7 @@
 **Merged pull requests:**
 
 - Added forcePullImage parameter for the container model [\#31](https://github.com/thefactory/marathon-python/pull/31) ([solarkennedy](https://github.com/solarkennedy))
-- Quick fix \#29 - add kwargs to MarathonDockerContainer.\_\_init\_\_ [\#30](https://github.com/thefactory/marathon-python/pull/30) ([g----](https://github.com/g----))
+- Quick fix \#29 - add kwargs to MarathonDockerContainer.\_\_init\_\_ [\#30](https://github.com/thefactory/marathon-python/pull/30) ([ghost](https://github.com/ghost))
 - Fixed \#26:Using try/except to get rid of use\_2to3 failing [\#27](https://github.com/thefactory/marathon-python/pull/27) ([vitan](https://github.com/vitan))
 
 ## [0.6.13](https://github.com/thefactory/marathon-python/tree/0.6.13) (2015-03-24)
