@@ -40,3 +40,7 @@ class InvalidChoiceError(MarathonError):
                 param=param, value=value, options=options
             )
         )
+
+
+class NoResponseError(MarathonError):
+    pass

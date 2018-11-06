@@ -12,7 +12,7 @@ from requests_toolbelt.adapters import socket_options
 
 import marathon
 from .models import MarathonApp, MarathonDeployment, MarathonGroup, MarathonInfo, MarathonTask, MarathonEndpoint, MarathonQueueItem
-from .exceptions import InternalServerError, NotFoundError, MarathonHttpError, MarathonError
+from .exceptions import InternalServerError, NotFoundError, MarathonHttpError, MarathonError, NoResponseError
 from .models.events import EventFactory, MarathonEvent
 from .util import MarathonJsonEncoder, MarathonMinimalJsonEncoder
 
@@ -96,7 +96,7 @@ class MarathonClient(object):
                     'Error while calling %s: %s', url, str(e))
 
         if response is None:
-            raise MarathonError('No remaining Marathon servers to try')
+            raise NoResponseError('No remaining Marathon servers to try')
 
         if response.status_code >= 500:
             marathon.log.error('Got HTTP {code}: {body}'.format(
