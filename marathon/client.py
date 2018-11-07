@@ -12,7 +12,7 @@ from requests_toolbelt.adapters import socket_options
 
 import marathon
 from .models import MarathonApp, MarathonDeployment, MarathonGroup, MarathonInfo, MarathonTask, MarathonEndpoint, MarathonQueueItem
-from .exceptions import InternalServerError, NotFoundError, MarathonHttpError, MarathonError, NoResponseError
+from .exceptions import ConflictError, InternalServerError, NotFoundError, MarathonHttpError, MarathonError, NoResponseError
 from .models.events import EventFactory, MarathonEvent
 from .util import MarathonJsonEncoder, MarathonMinimalJsonEncoder
 
@@ -107,6 +107,8 @@ class MarathonClient(object):
                 code=response.status_code, body=response.text.encode('utf-8')))
             if response.status_code == 404:
                 raise NotFoundError(response)
+            elif response.status_code == 409:
+                raise ConflictError(response)
             else:
                 raise MarathonHttpError(response)
         elif response.status_code >= 300:
