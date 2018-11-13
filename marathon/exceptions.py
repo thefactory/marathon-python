@@ -32,6 +32,10 @@ class InternalServerError(MarathonHttpError):
     pass
 
 
+class ConflictError(MarathonHttpError):
+    pass
+
+
 class InvalidChoiceError(MarathonError):
 
     def __init__(self, param, value, options):
@@ -40,3 +44,7 @@ class InvalidChoiceError(MarathonError):
                 param=param, value=value, options=options
             )
         )
+
+
+class NoResponseError(MarathonError):
+    pass
