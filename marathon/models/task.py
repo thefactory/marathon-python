@@ -21,12 +21,17 @@ class MarathonTask(MarathonResource):
     :param started_at: when this task was started
     :type started_at: datetime or str
     :param str version: app version with which this task was started
+    :type region: str
+    :param region: fault domain region support in DCOS EE
+    :type zone: str
+    :param zone: fault domain zone support in DCOS EE
     """
 
     DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
 
     def __init__(self, app_id=None, health_check_results=None, host=None, id=None, ports=None, service_ports=None,
-                 slave_id=None, staged_at=None, started_at=None, version=None, ip_addresses=[], state=None, local_volumes=None):
+                 slave_id=None, staged_at=None, started_at=None, version=None, ip_addresses=[], state=None, local_volumes=None,
+                 region=None, zone=None):
         self.app_id = app_id
         self.health_check_results = health_check_results or []
         self.health_check_results = [
@@ -50,6 +55,8 @@ class MarathonTask(MarathonResource):
                 ip_addresses, MarathonIpAddress) else MarathonIpAddress().from_json(ipaddr)
             for ipaddr in (ip_addresses or [])]
         self.local_volumes = local_volumes or []
+        self.region = region
+        self.zone = zone
 
 
 class MarathonIpAddress(MarathonObject):
