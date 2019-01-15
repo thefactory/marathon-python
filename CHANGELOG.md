@@ -1,5 +1,14 @@
 # Change Log
 
+## [0.11.0](https://github.com/thefactory/marathon-python/tree/0.11.0) (2019-01-15)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.10.0...0.11.0)
+
+**Merged pull requests:**
+
+- Added region and zone members to task model. [\#260](https://github.com/thefactory/marathon-python/pull/260) ([gisjedi](https://github.com/gisjedi))
+- Exception [\#259](https://github.com/thefactory/marathon-python/pull/259) ([fengyehong](https://github.com/fengyehong))
+- New release 0.10.0 [\#256](https://github.com/thefactory/marathon-python/pull/256) ([solarkennedy](https://github.com/solarkennedy))
+
 ## [0.10.0](https://github.com/thefactory/marathon-python/tree/0.10.0) (2018-08-08)
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.9.3...0.10.0)
 
