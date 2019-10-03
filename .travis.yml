@@ -15,15 +15,6 @@ script:
   - ./itests/start-marathon.sh &
   - make itests
 
-# Work around travis-ci/travis-ci#5227
-addons:
-  hostname: localhost
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - libstdc++6-4.7-dev
-
 sudo: required
 
 deploy:
