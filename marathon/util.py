@@ -61,3 +61,21 @@ def to_camel_case(snake_str):
 def to_snake_case(camel_str):
     s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', camel_str)
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
+
+
+DATETIME_FORMATS = [
+    '%Y-%m-%dT%H:%M:%S.%fZ',
+    '%Y-%m-%dT%H:%M:%SZ',  # Marathon omits milliseconds when they would be .000
+]
+
+
+def to_datetime(timestamp):
+    if (timestamp is None or isinstance(timestamp, datetime.datetime)):
+        return timestamp
+    else:
+        for fmt in DATETIME_FORMATS:
+            try:
+                return datetime.datetime.strptime(timestamp, fmt)
+            except ValueError:
+                pass
+        raise ValueError(f'Unrecognized datetime format: {timestamp}')
