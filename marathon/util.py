@@ -75,7 +75,7 @@ def to_datetime(timestamp):
     else:
         for fmt in DATETIME_FORMATS:
             try:
-                return datetime.datetime.strptime(timestamp, fmt)
+                return datetime.datetime.strptime(timestamp, fmt).replace(tzinfo=datetime.timezone.utc)
             except ValueError:
                 pass
         raise ValueError(f'Unrecognized datetime format: {timestamp}')
