@@ -63,3 +63,4 @@ packer_cache
 
 /gh-pages
 itests/marathon-version
+.pytest_cache/

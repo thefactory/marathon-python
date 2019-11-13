@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 from marathon.models.base import MarathonObject
 from marathon.models.base import MarathonResource
 import unittest

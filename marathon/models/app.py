@@ -6,7 +6,7 @@ from .constraint import MarathonConstraint
 from .container import MarathonContainer
 from .deployment import MarathonDeployment
 from .task import MarathonTask
-from ..util import is_stringy, get_log
+from ..util import get_log
 
 log = get_log()
 
@@ -216,7 +216,7 @@ class MarathonHealthCheck(MarathonObject):
 
         if command is None:
             self.command = None
-        elif is_stringy(command):
+        elif isinstance(command, str):
             self.command = {
                 "value": command
             }
@@ -226,7 +226,7 @@ class MarathonHealthCheck(MarathonObject):
                 "value": command['value']
             }
         else:
-            raise ValueError('Invalid command format: {}'.format(command))
+            raise ValueError(f'Invalid command format: {command}')
 
         self.grace_period_seconds = grace_period_seconds
         self.interval_seconds = interval_seconds
@@ -320,7 +320,7 @@ class MarathonUnreachableStrategy(MarathonObject):
     def from_json(cls, attributes):
         if attributes == cls.DISABLED:
             return cls.DISABLED
-        return super(MarathonUnreachableStrategy, cls).from_json(attributes)
+        return super().from_json(attributes)
 
 
 class MarathonAppVersionInfo(MarathonObject):
@@ -352,7 +352,7 @@ class MarathonAppVersionInfo(MarathonObject):
                     return datetime.strptime(timestamp, fmt)
                 except ValueError:
                     pass
-            raise ValueError('Unrecognized datetime format: {}'.format(timestamp))
+            raise ValueError(f'Unrecognized datetime format: {timestamp}')
 
 
 class MarathonTaskStats(MarathonObject):

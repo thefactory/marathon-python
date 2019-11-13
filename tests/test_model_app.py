@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 from marathon.models.app import MarathonApp, MarathonAppVersionInfo
 from datetime import datetime
 import unittest

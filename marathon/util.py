@@ -8,15 +8,9 @@ except ImportError:
     import simplejson as json
 import re
 
-from ._compat import string_types
-
 
 def get_log():
     return logging.getLogger(__name__.split('.')[0])
-
-
-def is_stringy(obj):
-    return isinstance(obj, string_types)
 
 
 class MarathonJsonEncoder(json.JSONEncoder):
@@ -30,7 +24,7 @@ class MarathonJsonEncoder(json.JSONEncoder):
         if isinstance(obj, datetime.datetime):
             return obj.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
 
-        if isinstance(obj, collections.Iterable) and not is_stringy(obj):
+        if isinstance(obj, collections.Iterable) and not isinstance(obj, str):
             try:
                 return {k: self.default(v) for k, v in obj.items()}
             except AttributeError:
@@ -50,7 +44,7 @@ class MarathonMinimalJsonEncoder(json.JSONEncoder):
         if isinstance(obj, datetime.datetime):
             return obj.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
 
-        if isinstance(obj, collections.Iterable) and not is_stringy(obj):
+        if isinstance(obj, collections.Iterable) and not isinstance(obj, str):
             try:
                 return {k: self.default(v) for k, v in obj.items() if (v or v in (False, 0))}
             except AttributeError:
