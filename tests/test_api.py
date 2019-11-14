@@ -34,7 +34,7 @@ def test_get_deployments_pre_1_0():
         mock_client = MarathonClient(servers='http://fake_server')
         actual_deployments = mock_client.list_deployments()
         expected_deployments = [models.MarathonDeployment(
-            id=u"fakeid",
+            id="fakeid",
             steps=[
                 [models.MarathonDeploymentAction(
                     action="ScaleApplication", app="/test")]],
@@ -42,8 +42,8 @@ def test_get_deployments_pre_1_0():
                 action="ScaleApplication", app="/test")],
             current_step=1,
             total_steps=1,
-            affected_apps=[u"/test"],
-            version=u"fakeversion"
+            affected_apps=["/test"],
+            version="fakeversion"
         )]
         assert expected_deployments == actual_deployments
 
@@ -90,7 +90,7 @@ def test_get_deployments_post_1_0():
         mock_client = MarathonClient(servers='http://fake_server')
         actual_deployments = mock_client.list_deployments()
         expected_deployments = [models.MarathonDeployment(
-            id=u"4d2ff4d8-fbe5-4239-a886-f0831ed68d20",
+            id="4d2ff4d8-fbe5-4239-a886-f0831ed68d20",
             steps=[
                 models.MarathonDeploymentStep(
                     actions=[models.MarathonDeploymentAction(
@@ -106,8 +106,8 @@ def test_get_deployments_post_1_0():
             ],
             current_step=2,
             total_steps=2,
-            affected_apps=[u"/test-trivial-app"],
-            version=u"2016-04-20T18:00:20.084Z"
+            affected_apps=["/test-trivial-app"],
+            version="2016-04-20T18:00:20.084Z"
         )]
         # Helpful for tox to see the diff
         assert expected_deployments[0].__dict__ == actual_deployments[0].__dict__

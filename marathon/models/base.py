@@ -4,7 +4,7 @@ import re
 from marathon.util import to_camel_case, to_snake_case, MarathonJsonEncoder, MarathonMinimalJsonEncoder
 
 
-class MarathonObject(object):
+class MarathonObject:
     """Base Marathon object."""
 
     def __repr__(self):
@@ -61,7 +61,7 @@ class MarathonResource(MarathonObject):
 
     def __repr__(self):
         if 'id' in list(vars(self).keys()):
-            return "{clazz}::{id}".format(clazz=self.__class__.__name__, id=self.id)
+            return f"{self.__class__.__name__}::{self.id}"
         else:
             return "{clazz}::{obj}".format(clazz=self.__class__.__name__, obj=self.to_json())
 
@@ -78,7 +78,7 @@ class MarathonResource(MarathonObject):
         return hash(self.to_json())
 
     def __str__(self):
-        return "{clazz}::".format(clazz=self.__class__.__name__) + str(self.__dict__)
+        return f"{self.__class__.__name__}::" + str(self.__dict__)
 
 
 # See:

@@ -20,18 +20,18 @@ def working_marathon(context):
         context.client = marathon.MarathonClient(marathon_connection_string)
 
 
-@then(u'we get the marathon instance\'s info')
+@then('we get the marathon instance\'s info')
 def get_marathon_info(context):
     assert context.client.get_info()
 
 
-@when(u'we create a trivial new app')
+@when('we create a trivial new app')
 def create_trivial_new_app(context):
     context.client.create_app('test-trivial-app', marathon.MarathonApp(
         cmd='sleep 3600', mem=16, cpus=0.1, instances=5))
 
 
-@then(u'we should be able to kill the tasks')
+@then('we should be able to kill the tasks')
 def kill_a_task(context):
     time.sleep(5)
     app = context.client.get_app('test-trivial-app')
@@ -40,7 +40,7 @@ def kill_a_task(context):
         app_id='test-trivial-app', task_id=tasks[0].id, scale=True)
 
 
-@when(u'we create a complex new app')
+@when('we create a complex new app')
 def create_complex_new_app_with_unicode(context):
     app_config = {
         'container': {
@@ -51,13 +51,13 @@ def create_complex_new_app_with_unicode(context):
                       'name': 'myport',
                       'containerPort': 8888,
                       'hostPort': 0}],
-                'image': u'localhost/fake_docker_url',
+                'image': 'localhost/fake_docker_url',
                 'network': 'BRIDGE',
                 'parameters': [{'key': 'add-host', 'value': 'google-public-dns-a.google.com:8.8.8.8'}],
             },
             'volumes':
-                [{'hostPath': u'/etc/stuff',
-                 'containerPath': u'/etc/stuff',
+                [{'hostPath': '/etc/stuff',
+                 'containerPath': '/etc/stuff',
                   'mode': 'RO'}],
         },
         'instances': 1,
@@ -68,7 +68,7 @@ def create_complex_new_app_with_unicode(context):
         'uris': ['file:///root/.dockercfg'],
         'backoff_seconds': 1,
         'constraints': None,
-        'cmd': u'/bin/true',
+        'cmd': '/bin/true',
         'health_checks': [
             {
                 'protocol': 'HTTP',
@@ -85,13 +85,13 @@ def create_complex_new_app_with_unicode(context):
         'test-complex-app', marathon.MarathonApp(**app_config))
 
 
-@then(u'we should see the {which} app running via the marathon api')
+@then('we should see the {which} app running via the marathon api')
 def see_complext_app_running(context, which):
     print(context.client.list_apps())
     assert context.client.get_app('test-%s-app' % which)
 
 
-@when(u'we wait the {which} app deployment finish')
+@when('we wait the {which} app deployment finish')
 def wait_deployment_finish(context, which):
     while True:
         time.sleep(1)
@@ -100,7 +100,7 @@ def wait_deployment_finish(context, which):
             break
 
 
-@then(u'we should be able to kill the #{to_kill} tasks of the {which} app')
+@then('we should be able to kill the #{to_kill} tasks of the {which} app')
 def kill_tasks(context, to_kill, which):
     app_tasks = context.client.get_app(
         'test-%s-app' % which, embed_tasks=True).tasks
@@ -111,11 +111,11 @@ def kill_tasks(context, to_kill, which):
     context.client.kill_given_tasks(task_to_kill)
 
 
-@then(u'we should be able to list tasks of the {which} app')
+@then('we should be able to list tasks of the {which} app')
 def list_tasks(context, which):
     app = context.client.get_app('test-%s-app' % which)
     tasks = context.client.list_tasks('test-%s-app' % which)
-    assert len(tasks) == app.instances, "we defined %s tasks, got %s tasks" % (app.instances, len(tasks))
+    assert len(tasks) == app.instances, "we defined {} tasks, got {} tasks".format(app.instances, len(tasks))
 
 
 def listen_for_events(client, events):
@@ -123,14 +123,14 @@ def listen_for_events(client, events):
         events.append(msg)
 
 
-@when(u'marathon version is greater than {version}')
+@when('marathon version is greater than {version}')
 def marathon_version_chech(context, version):
     info = context.client.get_info()
     if LooseVersion(info.version) < LooseVersion(version):
         context.scenario.skip(reason='Marathon version is too low for this scenario')
 
 
-@when(u'we start listening for events')
+@when('we start listening for events')
 def start_listening_stream(context):
     manager = multiprocessing.Manager()
     mlist = manager.list()
@@ -141,7 +141,7 @@ def start_listening_stream(context):
     context.p = p
 
 
-@then(u'we should see list of events')
+@then('we should see list of events')
 def stop_listening_stream(context):
     time.sleep(10)
     context.p.terminate()

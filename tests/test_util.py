@@ -1,4 +1,5 @@
-from marathon.util import to_camel_case, to_snake_case
+from datetime import datetime, timezone
+from marathon.util import to_camel_case, to_snake_case, to_datetime
 
 
 def _apply_on_pairs(f):
@@ -27,3 +28,10 @@ def test_to_snake_case():
         assert to_snake_case(camel) == snake
 
     _apply_on_pairs(test)
+
+
+def test_version_info_datetime():
+    assert to_datetime("2017-09-28T00:31:55Z") == datetime(2017, 9, 28, 0, 31, 55, tzinfo=timezone.utc)
+    assert to_datetime("2017-09-28T00:31:55.4Z") == datetime(2017, 9, 28, 0, 31, 55, 400000, tzinfo=timezone.utc)
+    assert to_datetime("2017-09-28T00:31:55.004Z") == datetime(2017, 9, 28, 0, 31, 55, 4000, tzinfo=timezone.utc)
+    assert to_datetime("2017-09-28T00:31:55.00042Z") == datetime(2017, 9, 28, 0, 31, 55, 420, tzinfo=timezone.utc)

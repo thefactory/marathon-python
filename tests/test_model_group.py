@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 from marathon.models.group import MarathonGroup
 import unittest
 

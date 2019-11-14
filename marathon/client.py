@@ -17,7 +17,7 @@ from .models.events import EventFactory, MarathonEvent
 from .util import MarathonJsonEncoder, MarathonMinimalJsonEncoder
 
 
-class MarathonClient(object):
+class MarathonClient:
 
     """Client interface for the Marathon REST API."""
 
@@ -79,7 +79,7 @@ class MarathonClient(object):
             'Content-Type': 'application/json', 'Accept': 'application/json'}
 
         if self.auth_token:
-            headers['Authorization'] = "token={}".format(self.auth_token)
+            headers['Authorization'] = f"token={self.auth_token}"
 
         response = None
         servers = list(self.servers)
@@ -143,7 +143,7 @@ class MarathonClient(object):
             else:
                 if response.is_redirect and response.next:
                     urls.append(response.next.url)
-                    marathon.log.debug("Got redirect to {}".format(response.next.url))
+                    marathon.log.debug(f"Got redirect to {response.next.url}")
                 elif response.ok:
                     return response.iter_lines()
 
@@ -257,7 +257,7 @@ class MarathonClient(object):
             params['embed'] = filtered_embed_params
 
         response = self._do_request(
-            'GET', '/v2/apps/{app_id}'.format(app_id=app_id), params=params)
+            'GET', f'/v2/apps/{app_id}', params=params)
         return self._parse_response(response, MarathonApp, resource_name='app')
 
     def restart_app(self, app_id, force=False):
@@ -270,7 +270,7 @@ class MarathonClient(object):
         """
         params = {'force': force}
         response = self._do_request(
-            'POST', '/v2/apps/{app_id}/restart'.format(app_id=app_id), params=params)
+            'POST', f'/v2/apps/{app_id}/restart', params=params)
         return response.json()
 
     def update_app(self, app_id, app, force=False, minimal=True):
@@ -295,7 +295,7 @@ class MarathonClient(object):
         data = app.to_json(minimal=minimal)
 
         response = self._do_request(
-            'PUT', '/v2/apps/{app_id}'.format(app_id=app_id), params=params, data=data)
+            'PUT', f'/v2/apps/{app_id}', params=params, data=data)
         return response.json()
 
     def update_apps(self, apps, force=False, minimal=True):
@@ -337,7 +337,7 @@ class MarathonClient(object):
         params = {'force': force}
         data = json.dumps({'version': version})
         response = self._do_request(
-            'PUT', '/v2/apps/{app_id}'.format(app_id=app_id), params=params, data=data)
+            'PUT', f'/v2/apps/{app_id}', params=params, data=data)
         return response.json()
 
     def delete_app(self, app_id, force=False):
@@ -351,7 +351,7 @@ class MarathonClient(object):
         """
         params = {'force': force}
         response = self._do_request(
-            'DELETE', '/v2/apps/{app_id}'.format(app_id=app_id), params=params)
+            'DELETE', f'/v2/apps/{app_id}', params=params)
         return response.json()
 
     def scale_app(self, app_id, instances=None, delta=None, force=False):
@@ -378,7 +378,7 @@ class MarathonClient(object):
         try:
             app = self.get_app(app_id)
         except NotFoundError:
-            marathon.log.error('App "{app}" not found'.format(app=app_id))
+            marathon.log.error(f'App "{app_id}" not found')
             return
 
         desired = instances if instances is not None else (
@@ -421,7 +421,7 @@ class MarathonClient(object):
         :rtype: :class:`marathon.models.group.MarathonGroup`
         """
         response = self._do_request(
-            'GET', '/v2/groups/{group_id}'.format(group_id=group_id))
+            'GET', f'/v2/groups/{group_id}')
         return self._parse_response(response, MarathonGroup)
 
     def update_group(self, group_id, group, force=False, minimal=True):
@@ -446,7 +446,7 @@ class MarathonClient(object):
         data = group.to_json(minimal=minimal)
 
         response = self._do_request(
-            'PUT', '/v2/groups/{group_id}'.format(group_id=group_id), data=data, params=params)
+            'PUT', f'/v2/groups/{group_id}', data=data, params=params)
         return response.json()
 
     def rollback_group(self, group_id, version, force=False):
@@ -478,7 +478,7 @@ class MarathonClient(object):
         """
         params = {'force': force}
         response = self._do_request(
-            'DELETE', '/v2/groups/{group_id}'.format(group_id=group_id), params=params)
+            'DELETE', f'/v2/groups/{group_id}', params=params)
         return response.json()
 
     def scale_group(self, group_id, scale_by):
@@ -492,7 +492,7 @@ class MarathonClient(object):
         """
         data = {'scaleBy': scale_by}
         response = self._do_request(
-            'PUT', '/v2/groups/{group_id}'.format(group_id=group_id), data=json.dumps(data))
+            'PUT', f'/v2/groups/{group_id}', data=json.dumps(data))
         return response.json()
 
     def list_tasks(self, app_id=None, **kwargs):
@@ -558,7 +558,7 @@ class MarathonClient(object):
             if host:
                 params['host'] = host
             response = self._do_request(
-                'DELETE', '/v2/apps/{app_id}/tasks'.format(app_id=app_id), params)
+                'DELETE', f'/v2/apps/{app_id}/tasks', params)
             # Marathon is inconsistent about what type of object it returns on the multi
             # task deletion endpoint, depending on the version of Marathon. See:
             # https://github.com/mesosphere/marathon/blob/06a6f763a75fb6d652b4f1660685ae234bd15387/src/main/scala/mesosphere/marathon/api/v2/AppTasksResource.scala#L88-L95
@@ -576,12 +576,12 @@ class MarathonClient(object):
 
                 # Pause until the tasks have been killed to avoid race
                 # conditions
-                killed_task_ids = set(t.id for t in killed_tasks)
+                killed_task_ids = {t.id for t in killed_tasks}
                 running_task_ids = killed_task_ids
                 while killed_task_ids.intersection(running_task_ids):
                     time.sleep(1)
-                    running_task_ids = set(
-                        t.id for t in self.get_app(app_id).tasks)
+                    running_task_ids = {
+                        t.id for t in self.get_app(app_id).tasks}
 
                 if batch_delay == 0:
                     # Pause until the replacement tasks are healthy
@@ -626,7 +626,7 @@ class MarathonClient(object):
         :rtype: list[str]
         """
         response = self._do_request(
-            'GET', '/v2/apps/{app_id}/versions'.format(app_id=app_id))
+            'GET', f'/v2/apps/{app_id}/versions')
         return [version for version in response.json()['versions']]
 
     def get_version(self, app_id, version):
@@ -715,12 +715,12 @@ class MarathonClient(object):
             return {}
         else:
             response = self._do_request(
-                'DELETE', '/v2/deployments/{deployment}'.format(deployment=deployment_id))
+                'DELETE', f'/v2/deployments/{deployment_id}')
             return response.json()
 
     def reset_delay(self, app_id):
         self._do_request(
-            "DELETE", '/v2/queue/{app_id}/delay'.format(app_id=app_id)
+            "DELETE", f'/v2/queue/{app_id}/delay'
         )
 
     def get_info(self):

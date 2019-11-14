@@ -1,12 +1,11 @@
-from datetime import datetime
-
 from ..exceptions import InvalidChoiceError
 from .base import MarathonResource, MarathonObject, assert_valid_path
 from .constraint import MarathonConstraint
 from .container import MarathonContainer
 from .deployment import MarathonDeployment
 from .task import MarathonTask
-from ..util import is_stringy, get_log
+from ..util import get_log
+from ..util import to_datetime
 
 log = get_log()
 
@@ -216,7 +215,7 @@ class MarathonHealthCheck(MarathonObject):
 
         if command is None:
             self.command = None
-        elif is_stringy(command):
+        elif isinstance(command, str):
             self.command = {
                 "value": command
             }
@@ -226,7 +225,7 @@ class MarathonHealthCheck(MarathonObject):
                 "value": command['value']
             }
         else:
-            raise ValueError('Invalid command format: {}'.format(command))
+            raise ValueError(f'Invalid command format: {command}')
 
         self.grace_period_seconds = grace_period_seconds
         self.interval_seconds = interval_seconds
@@ -256,8 +255,6 @@ class MarathonTaskFailure(MarathonObject):
     :param str version: app version with which this task was started
     """
 
-    DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
-
     def __init__(self, app_id=None, host=None, message=None, task_id=None, instance_id=None,
                  slave_id=None, state=None, timestamp=None, version=None):
         self.app_id = app_id
@@ -267,8 +264,7 @@ class MarathonTaskFailure(MarathonObject):
         self.instance_id = instance_id
         self.slave_id = slave_id
         self.state = state
-        self.timestamp = timestamp if (timestamp is None or isinstance(timestamp, datetime)) \
-            else datetime.strptime(timestamp, self.DATETIME_FORMAT)
+        self.timestamp = to_datetime(timestamp)
         self.version = version
 
 
@@ -320,7 +316,7 @@ class MarathonUnreachableStrategy(MarathonObject):
     def from_json(cls, attributes):
         if attributes == cls.DISABLED:
             return cls.DISABLED
-        return super(MarathonUnreachableStrategy, cls).from_json(attributes)
+        return super().from_json(attributes)
 
 
 class MarathonAppVersionInfo(MarathonObject):
@@ -334,25 +330,9 @@ class MarathonAppVersionInfo(MarathonObject):
     :param str host: mesos slave running the task
     """
 
-    DATETIME_FORMATS = [
-        '%Y-%m-%dT%H:%M:%S.%fZ',
-        '%Y-%m-%dT%H:%M:%SZ',
-    ]
-
     def __init__(self, last_scaling_at=None, last_config_change_at=None):
-        self.last_scaling_at = self._to_datetime(last_scaling_at)
-        self.last_config_change_at = self._to_datetime(last_config_change_at)
-
-    def _to_datetime(self, timestamp):
-        if (timestamp is None or isinstance(timestamp, datetime)):
-            return timestamp
-        else:
-            for fmt in self.DATETIME_FORMATS:
-                try:
-                    return datetime.strptime(timestamp, fmt)
-                except ValueError:
-                    pass
-            raise ValueError('Unrecognized datetime format: {}'.format(timestamp))
+        self.last_scaling_at = to_datetime(last_scaling_at)
+        self.last_config_change_at = to_datetime(last_config_change_at)
 
 
 class MarathonTaskStats(MarathonObject):

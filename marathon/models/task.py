@@ -1,6 +1,5 @@
-from datetime import datetime
-
 from .base import MarathonResource, MarathonObject
+from ..util import to_datetime
 
 
 class MarathonTask(MarathonResource):
@@ -44,10 +43,8 @@ class MarathonTask(MarathonResource):
         self.ports = ports or []
         self.service_ports = service_ports or []
         self.slave_id = slave_id
-        self.staged_at = staged_at if (staged_at is None or isinstance(staged_at, datetime)) \
-            else datetime.strptime(staged_at, self.DATETIME_FORMAT)
-        self.started_at = started_at if (started_at is None or isinstance(started_at, datetime)) \
-            else datetime.strptime(started_at, self.DATETIME_FORMAT)
+        self.staged_at = to_datetime(staged_at)
+        self.started_at = to_datetime(started_at)
         self.state = state
         self.version = version
         self.ip_addresses = [
@@ -90,12 +87,9 @@ class MarathonHealthCheckResult(MarathonObject):
                  last_failure_cause=None, instance_id=None):
         self.alive = alive
         self.consecutive_failures = consecutive_failures
-        self.first_success = first_success if (first_success is None or isinstance(first_success, datetime)) \
-            else datetime.strptime(first_success, self.DATETIME_FORMAT)
-        self.last_failure = last_failure if (last_failure is None or isinstance(last_failure, datetime)) \
-            else datetime.strptime(last_failure, self.DATETIME_FORMAT)
-        self.last_success = last_success if (last_success is None or isinstance(last_success, datetime)) \
-            else datetime.strptime(last_success, self.DATETIME_FORMAT)
+        self.first_success = to_datetime(first_success)
+        self.last_failure = to_datetime(last_failure)
+        self.last_success = to_datetime(last_success)
         self.task_id = task_id
         self.last_failure_cause = last_failure_cause
         self.instance_id = instance_id

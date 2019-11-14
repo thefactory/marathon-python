@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 from marathon.models.events import EventFactory, MarathonStatusUpdateEvent
 from marathon.models.task import MarathonIpAddress
 import unittest

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # marathon-python documentation build configuration file, created by
 # sphinx-quickstart on Tue Apr 22 11:36:23 2014.
@@ -46,8 +45,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'marathon-python'
-copyright = u'2014, The Factory'
+project = 'marathon-python'
+copyright = '2014, The Factory'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -203,8 +202,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'marathon-python.tex', u'marathon-python Documentation',
-   u'Mike Babineau', 'manual'),
+  ('index', 'marathon-python.tex', 'marathon-python Documentation',
+   'Mike Babineau', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -233,8 +232,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'marathon-python', u'marathon-python Documentation',
-     [u'Mike Babineau'], 1)
+    ('index', 'marathon-python', 'marathon-python Documentation',
+     ['Mike Babineau'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -247,8 +246,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'marathon-python', u'marathon-python Documentation',
-   u'Mike Babineau', 'marathon-python', 'One line description of project.',
+  ('index', 'marathon-python', 'marathon-python Documentation',
+   'Mike Babineau', 'marathon-python', 'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -268,10 +267,10 @@ texinfo_documents = [
 # -- Options for Epub output ----------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = u'marathon-python'
-epub_author = u'Mike Babineau'
-epub_publisher = u'Mike Babineau'
-epub_copyright = u'2014, The Factory'
+epub_title = 'marathon-python'
+epub_author = 'Mike Babineau'
+epub_publisher = 'Mike Babineau'
+epub_copyright = '2014, The Factory'
 
 # The basename for the epub file. It defaults to the project name.
 #epub_basename = u'marathon-python'

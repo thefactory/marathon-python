@@ -14,7 +14,7 @@ class MarathonHttpError(MarathonError):
             self.error_message = content.get('message', self.error_message)
             self.error_details = content.get('details')
         self.status_code = response.status_code
-        super(MarathonHttpError, self).__init__(self.__str__())
+        super().__init__(self.__str__())
 
     def __repr__(self):
         return 'MarathonHttpError: HTTP %s returned with message, "%s"' % \
@@ -39,7 +39,7 @@ class ConflictError(MarathonHttpError):
 class InvalidChoiceError(MarathonError):
 
     def __init__(self, param, value, options):
-        super(InvalidChoiceError, self).__init__(
+        super().__init__(
             'Invalid choice "{value}" for param "{param}". Must be one of {options}'.format(
                 param=param, value=value, options=options
             )
