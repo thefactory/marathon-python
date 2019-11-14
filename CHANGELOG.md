@@ -1,6 +1,20 @@
-# Change Log
+# Changelog
+
+## [Unreleased](https://github.com/thefactory/marathon-python/tree/HEAD)
+
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.11.0...HEAD)
+
+**Closed issues:**
+
+- Downloading Log For App [\#265](https://github.com/thefactory/marathon-python/issues/265)
+
+**Merged pull requests:**
+
+- Always create TZ-aware datetime objects. \(also drop support for python 2\) [\#267](https://github.com/thefactory/marathon-python/pull/267) ([EvanKrall](https://github.com/EvanKrall))
+- Compatible with event stream redirect behavior. [\#262](https://github.com/thefactory/marathon-python/pull/262) ([fengyehong](https://github.com/fengyehong))
 
 ## [0.11.0](https://github.com/thefactory/marathon-python/tree/0.11.0) (2019-01-15)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.10.0...0.11.0)
 
 **Merged pull requests:**
@@ -10,6 +24,7 @@
 - New release 0.10.0 [\#256](https://github.com/thefactory/marathon-python/pull/256) ([solarkennedy](https://github.com/solarkennedy))
 
 ## [0.10.0](https://github.com/thefactory/marathon-python/tree/0.10.0) (2018-08-08)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.9.3...0.10.0)
 
 **Closed issues:**
@@ -38,6 +53,7 @@
 - Removes id validation from MarathonGroup\(\) [\#228](https://github.com/thefactory/marathon-python/pull/228) ([daltonmatos](https://github.com/daltonmatos))
 
 ## [0.9.3](https://github.com/thefactory/marathon-python/tree/0.9.3) (2017-10-16)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.9.2...0.9.3)
 
 **Closed issues:**
@@ -54,6 +70,7 @@
 - Make MarathonZooKeeperConfig compatible with maraton 1.5 [\#216](https://github.com/thefactory/marathon-python/pull/216) ([fengyehong](https://github.com/fengyehong))
 
 ## [0.9.2](https://github.com/thefactory/marathon-python/tree/0.9.2) (2017-09-13)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.9.1...0.9.2)
 
 **Closed issues:**
@@ -68,6 +85,7 @@
 - Fix events [\#214](https://github.com/thefactory/marathon-python/pull/214) ([fengyehong](https://github.com/fengyehong))
 
 ## [0.9.1](https://github.com/thefactory/marathon-python/tree/0.9.1) (2017-09-06)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.9.0...0.9.1)
 
 **Closed issues:**
@@ -87,6 +105,7 @@
 - Fix MarathonResource hash as well [\#205](https://github.com/thefactory/marathon-python/pull/205) ([jolynch](https://github.com/jolynch))
 
 ## [0.9.0](https://github.com/thefactory/marathon-python/tree/0.9.0) (2017-06-21)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.14...0.9.0)
 
 **Closed issues:**
@@ -111,8 +130,13 @@
 - Remove out of date constraint validation of operator. [\#190](https://github.com/thefactory/marathon-python/pull/190) ([akatrevorjay](https://github.com/akatrevorjay))
 - Add raw\_data option for event\_stream method [\#189](https://github.com/thefactory/marathon-python/pull/189) ([fengyehong](https://github.com/fengyehong))
 - handle case when non-ascii char are logged [\#188](https://github.com/thefactory/marathon-python/pull/188) ([tgermain](https://github.com/tgermain))
+- \[fix\] util.to\_camel\_case doesn't handle digits [\#184](https://github.com/thefactory/marathon-python/pull/184) ([hlerebours](https://github.com/hlerebours))
+- \[fix\] broken build: glibc++ not found [\#183](https://github.com/thefactory/marathon-python/pull/183) ([hlerebours](https://github.com/hlerebours))
+- Support for "disabled" unreachableStrategy. [\#182](https://github.com/thefactory/marathon-python/pull/182) ([nihn](https://github.com/nihn))
+- \[fix\] Handle non-JSON errors from Marathon [\#178](https://github.com/thefactory/marathon-python/pull/178) ([hlerebours](https://github.com/hlerebours))
 
 ## [0.8.14](https://github.com/thefactory/marathon-python/tree/0.8.14) (2017-03-24)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.13...0.8.14)
 
 **Closed issues:**
@@ -122,14 +146,8 @@
 - ignoreHttp1xx or ignoreHttp1Xx [\#125](https://github.com/thefactory/marathon-python/issues/125)
 - ValueError when 401 Unauthorized is received [\#22](https://github.com/thefactory/marathon-python/issues/22)
 
-**Merged pull requests:**
-
-- \[fix\] util.to\_camel\_case doesn't handle digits [\#184](https://github.com/thefactory/marathon-python/pull/184) ([hlerebours](https://github.com/hlerebours))
-- \[fix\] broken build: glibc++ not found [\#183](https://github.com/thefactory/marathon-python/pull/183) ([hlerebours](https://github.com/hlerebours))
-- Support for "disabled" unreachableStrategy. [\#182](https://github.com/thefactory/marathon-python/pull/182) ([nihn](https://github.com/nihn))
-- \[fix\] Handle non-JSON errors from Marathon [\#178](https://github.com/thefactory/marathon-python/pull/178) ([hlerebours](https://github.com/hlerebours))
-
 ## [0.8.13](https://github.com/thefactory/marathon-python/tree/0.8.13) (2017-03-17)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.12...0.8.13)
 
 **Merged pull requests:**
@@ -137,6 +155,7 @@
 - Support processed\_offers\_summary attribute [\#177](https://github.com/thefactory/marathon-python/pull/177) ([nhandler](https://github.com/nhandler))
 
 ## [0.8.12](https://github.com/thefactory/marathon-python/tree/0.8.12) (2017-03-17)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.11...0.8.12)
 
 **Closed issues:**
@@ -151,6 +170,7 @@
 - Updated event.py to handle app\_terminated\_event. [\#171](https://github.com/thefactory/marathon-python/pull/171) ([Jbrownstone](https://github.com/Jbrownstone))
 
 ## [0.8.11](https://github.com/thefactory/marathon-python/tree/0.8.11) (2017-02-22)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.10...0.8.11)
 
 **Merged pull requests:**
@@ -160,6 +180,7 @@
 - Adds MarathonApp.add\_env\(\) method [\#166](https://github.com/thefactory/marathon-python/pull/166) ([daltonmatos](https://github.com/daltonmatos))
 
 ## [0.8.10](https://github.com/thefactory/marathon-python/tree/0.8.10) (2017-01-07)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.9...0.8.10)
 
 **Closed issues:**
@@ -173,6 +194,7 @@
 - Add new Marathon 1.4 API keywords [\#162](https://github.com/thefactory/marathon-python/pull/162) ([stj](https://github.com/stj))
 
 ## [0.8.9](https://github.com/thefactory/marathon-python/tree/0.8.9) (2016-12-15)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.8...0.8.9)
 
 **Closed issues:**
@@ -184,6 +206,7 @@
 - Added more unimplemented Marathon 1.4 API keywords [\#161](https://github.com/thefactory/marathon-python/pull/161) ([solarkennedy](https://github.com/solarkennedy))
 
 ## [0.8.8](https://github.com/thefactory/marathon-python/tree/0.8.8) (2016-12-09)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.7...0.8.8)
 
 **Closed issues:**
@@ -196,6 +219,7 @@
 - Expose error details from response object MarathonHttpError [\#157](https://github.com/thefactory/marathon-python/pull/157) ([moonkev](https://github.com/moonkev))
 
 ## [0.8.7](https://github.com/thefactory/marathon-python/tree/0.8.7) (2016-10-24)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.6...0.8.7)
 
 **Closed issues:**
@@ -213,6 +237,7 @@
 - Add external volume support [\#146](https://github.com/thefactory/marathon-python/pull/146) ([drewrobb](https://github.com/drewrobb))
 
 ## [0.8.6](https://github.com/thefactory/marathon-python/tree/0.8.6) (2016-08-29)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.5...0.8.6)
 
 **Closed issues:**
@@ -230,6 +255,7 @@
 - Add support for unhealthy\_task\_kill\_event [\#137](https://github.com/thefactory/marathon-python/pull/137) ([nuclon](https://github.com/nuclon))
 
 ## [0.8.5](https://github.com/thefactory/marathon-python/tree/0.8.5) (2016-08-10)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.4...0.8.5)
 
 **Closed issues:**
@@ -244,6 +270,7 @@
 - Marathon 1.1.2 and Mesos 1.0.\* [\#134](https://github.com/thefactory/marathon-python/pull/134) ([nhandler](https://github.com/nhandler))
 
 ## [0.8.4](https://github.com/thefactory/marathon-python/tree/0.8.4) (2016-07-20)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.3...0.8.4)
 
 **Closed issues:**
@@ -256,6 +283,7 @@
 - Expose id query param in list\_apps [\#129](https://github.com/thefactory/marathon-python/pull/129) ([moonkev](https://github.com/moonkev))
 
 ## [0.8.3](https://github.com/thefactory/marathon-python/tree/0.8.3) (2016-07-19)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.2...0.8.3)
 
 **Closed issues:**
@@ -285,6 +313,7 @@
 - Add message field for MarathonStatusUpdateEvent. [\#109](https://github.com/thefactory/marathon-python/pull/109) ([oilbeater](https://github.com/oilbeater))
 
 ## [0.8.2](https://github.com/thefactory/marathon-python/tree/0.8.2) (2016-06-14)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.1...0.8.2)
 
 **Closed issues:**
@@ -304,6 +333,7 @@
 - add name attribute to port mapping [\#101](https://github.com/thefactory/marathon-python/pull/101) ([Rob-Johnson](https://github.com/Rob-Johnson))
 
 ## [0.8.1](https://github.com/thefactory/marathon-python/tree/0.8.1) (2016-04-21)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.8.0...0.8.1)
 
 **Closed issues:**
@@ -318,6 +348,7 @@
 - Support the deployments endpoint correctly in marathon 1.1.1 [\#95](https://github.com/thefactory/marathon-python/pull/95) ([solarkennedy](https://github.com/solarkennedy))
 
 ## [0.8.0](https://github.com/thefactory/marathon-python/tree/0.8.0) (2016-04-18)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.7...0.8.0)
 
 **Closed issues:**
@@ -332,6 +363,7 @@
 - update for v2/queue and v2/apps?embed=apps.taskStats [\#89](https://github.com/thefactory/marathon-python/pull/89) ([bergerx](https://github.com/bergerx))
 
 ## [0.7.7](https://github.com/thefactory/marathon-python/tree/0.7.7) (2016-02-29)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.6...0.7.7)
 
 **Merged pull requests:**
@@ -340,6 +372,7 @@
 - a small fix for fetching apps for marathon v0.15 [\#87](https://github.com/thefactory/marathon-python/pull/87) ([burakbostancioglu](https://github.com/burakbostancioglu))
 
 ## [0.7.6](https://github.com/thefactory/marathon-python/tree/0.7.6) (2016-02-12)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.5...0.7.6)
 
 **Closed issues:**
@@ -359,23 +392,26 @@
 - Use the /v2/tasks/delete endpoint for taskkill [\#67](https://github.com/thefactory/marathon-python/pull/67) ([fengyehong](https://github.com/fengyehong))
 
 ## [0.7.5](https://github.com/thefactory/marathon-python/tree/0.7.5) (2015-12-09)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.4...0.7.5)
 
 **Merged pull requests:**
 
 - Release 0.7.5 for official Marathon 11 support [\#73](https://github.com/thefactory/marathon-python/pull/73) ([solarkennedy](https://github.com/solarkennedy))
 - Added tests for killing tasks on an app [\#72](https://github.com/thefactory/marathon-python/pull/72) ([solarkennedy](https://github.com/solarkennedy))
+- Use automatic changelog generation [\#69](https://github.com/thefactory/marathon-python/pull/69) ([solarkennedy](https://github.com/solarkennedy))
 - Provide proper compatability support for str/unicode in py3 [\#57](https://github.com/thefactory/marathon-python/pull/57) ([mattrobenolt](https://github.com/mattrobenolt))
 
 ## [0.7.4](https://github.com/thefactory/marathon-python/tree/0.7.4) (2015-11-20)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.3...0.7.4)
 
 **Merged pull requests:**
 
-- Use automatic changelog generation [\#69](https://github.com/thefactory/marathon-python/pull/69) ([solarkennedy](https://github.com/solarkennedy))
 - Marathon 11 Support [\#68](https://github.com/thefactory/marathon-python/pull/68) ([solarkennedy](https://github.com/solarkennedy))
 
 ## [0.7.3](https://github.com/thefactory/marathon-python/tree/0.7.3) (2015-11-12)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.2...0.7.3)
 
 **Closed issues:**
@@ -389,6 +425,7 @@
 - Remove call to logging.basicConfig [\#64](https://github.com/thefactory/marathon-python/pull/64) ([itamaro](https://github.com/itamaro))
 
 ## [0.7.2](https://github.com/thefactory/marathon-python/tree/0.7.2) (2015-09-18)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.7.0...0.7.2)
 
 **Closed issues:**
@@ -412,6 +449,7 @@
 - First pass at adding an itest framework [\#42](https://github.com/thefactory/marathon-python/pull/42) ([solarkennedy](https://github.com/solarkennedy))
 
 ## [0.7.0](https://github.com/thefactory/marathon-python/tree/0.7.0) (2015-07-06)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.15...0.7.0)
 
 **Closed issues:**
@@ -427,6 +465,7 @@
 - Feature/event factory [\#32](https://github.com/thefactory/marathon-python/pull/32) ([kevinschoon](https://github.com/kevinschoon))
 
 ## [0.6.15](https://github.com/thefactory/marathon-python/tree/0.6.15) (2015-06-05)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.14...0.6.15)
 
 **Merged pull requests:**
@@ -434,6 +473,7 @@
 - Make `force\_pull\_image` actually work [\#33](https://github.com/thefactory/marathon-python/pull/33) ([mattrobenolt](https://github.com/mattrobenolt))
 
 ## [0.6.14](https://github.com/thefactory/marathon-python/tree/0.6.14) (2015-05-28)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.13...0.6.14)
 
 **Closed issues:**
@@ -450,6 +490,7 @@
 - Fixed \#26:Using try/except to get rid of use\_2to3 failing [\#27](https://github.com/thefactory/marathon-python/pull/27) ([vitan](https://github.com/vitan))
 
 ## [0.6.13](https://github.com/thefactory/marathon-python/tree/0.6.13) (2015-03-24)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.12...0.6.13)
 
 **Merged pull requests:**
@@ -460,9 +501,11 @@
 - Possibility to send the full object to Marathon on update [\#20](https://github.com/thefactory/marathon-python/pull/20) ([wndhydrnt](https://github.com/wndhydrnt))
 
 ## [0.6.12](https://github.com/thefactory/marathon-python/tree/0.6.12) (2015-03-07)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.11...0.6.12)
 
 ## [0.6.11](https://github.com/thefactory/marathon-python/tree/0.6.11) (2015-03-06)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.10...0.6.11)
 
 **Merged pull requests:**
@@ -470,6 +513,7 @@
 - Small changes to fix compatibility issues with Marathon 0.8.0 [\#19](https://github.com/thefactory/marathon-python/pull/19) ([cloudify](https://github.com/cloudify))
 
 ## [0.6.10](https://github.com/thefactory/marathon-python/tree/0.6.10) (2014-12-17)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.8...0.6.10)
 
 **Merged pull requests:**
@@ -479,9 +523,11 @@
 - apparently undocumented API in Marathon [\#16](https://github.com/thefactory/marathon-python/pull/16) ([elyast](https://github.com/elyast))
 
 ## [0.6.8](https://github.com/thefactory/marathon-python/tree/0.6.8) (2014-11-19)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.7...0.6.8)
 
 ## [0.6.7](https://github.com/thefactory/marathon-python/tree/0.6.7) (2014-11-18)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.6...0.6.7)
 
 **Closed issues:**
@@ -493,6 +539,7 @@
 - fixing issues with resources /v2/tasks, v2/info [\#15](https://github.com/thefactory/marathon-python/pull/15) ([elyast](https://github.com/elyast))
 
 ## [0.6.6](https://github.com/thefactory/marathon-python/tree/0.6.6) (2014-11-17)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.5...0.6.6)
 
 **Closed issues:**
@@ -500,9 +547,11 @@
 - scale\_app\(...\) calls update\_app\(...\) with only 1 argument [\#13](https://github.com/thefactory/marathon-python/issues/13)
 
 ## [0.6.5](https://github.com/thefactory/marathon-python/tree/0.6.5) (2014-11-14)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.4...0.6.5)
 
 ## [0.6.4](https://github.com/thefactory/marathon-python/tree/0.6.4) (2014-11-14)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.3...0.6.4)
 
 **Merged pull requests:**
@@ -510,6 +559,7 @@
 - Add MarathonHealthCheckResult Class to tasks File and Include it in MarathonTask [\#12](https://github.com/thefactory/marathon-python/pull/12) ([JTCunning](https://github.com/JTCunning))
 
 ## [0.6.3](https://github.com/thefactory/marathon-python/tree/0.6.3) (2014-10-10)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.2...0.6.3)
 
 **Merged pull requests:**
@@ -517,6 +567,7 @@
 - add service\_port argument [\#11](https://github.com/thefactory/marathon-python/pull/11) ([danielfrg](https://github.com/danielfrg))
 
 ## [0.6.2](https://github.com/thefactory/marathon-python/tree/0.6.2) (2014-10-09)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.1...0.6.2)
 
 **Merged pull requests:**
@@ -524,9 +575,11 @@
 - Add `LIKE` and `UNLIKE` constraint [\#10](https://github.com/thefactory/marathon-python/pull/10) ([iven](https://github.com/iven))
 
 ## [0.6.1](https://github.com/thefactory/marathon-python/tree/0.6.1) (2014-09-29)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.6.0...0.6.1)
 
 ## [0.6.0](https://github.com/thefactory/marathon-python/tree/0.6.0) (2014-09-29)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.5.1...0.6.0)
 
 **Closed issues:**
@@ -534,9 +587,11 @@
 - Support for HA nodes [\#8](https://github.com/thefactory/marathon-python/issues/8)
 
 ## [0.5.1](https://github.com/thefactory/marathon-python/tree/0.5.1) (2014-09-18)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.5.0...0.5.1)
 
 ## [0.5.0](https://github.com/thefactory/marathon-python/tree/0.5.0) (2014-09-18)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.4.0...0.5.0)
 
 **Merged pull requests:**
@@ -544,6 +599,7 @@
 - Bug Fix: Cannot define constraints with a tuple of strings [\#6](https://github.com/thefactory/marathon-python/pull/6) ([adgaudio](https://github.com/adgaudio))
 
 ## [0.4.0](https://github.com/thefactory/marathon-python/tree/0.4.0) (2014-08-19)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.3.1...0.4.0)
 
 **Merged pull requests:**
@@ -552,6 +608,7 @@
 - Fix container options not being sent to marathon [\#4](https://github.com/thefactory/marathon-python/pull/4) ([boffbowsh](https://github.com/boffbowsh))
 
 ## [0.3.1](https://github.com/thefactory/marathon-python/tree/0.3.1) (2014-08-05)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.2.9...0.3.1)
 
 **Merged pull requests:**
@@ -559,12 +616,15 @@
 - Raise exceptions instead of swallowing them silently [\#3](https://github.com/thefactory/marathon-python/pull/3) ([StephanErb](https://github.com/StephanErb))
 
 ## [0.2.9](https://github.com/thefactory/marathon-python/tree/0.2.9) (2014-08-04)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.2.7...0.2.9)
 
 ## [0.2.7](https://github.com/thefactory/marathon-python/tree/0.2.7) (2014-07-24)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.2.6...0.2.7)
 
 ## [0.2.6](https://github.com/thefactory/marathon-python/tree/0.2.6) (2014-07-24)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.2.5...0.2.6)
 
 **Merged pull requests:**
@@ -572,6 +632,7 @@
 - Updated README.md with correction to create\_app args [\#2](https://github.com/thefactory/marathon-python/pull/2) ([rasathus](https://github.com/rasathus))
 
 ## [0.2.5](https://github.com/thefactory/marathon-python/tree/0.2.5) (2014-07-02)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.2.3...0.2.5)
 
 **Merged pull requests:**
@@ -579,15 +640,21 @@
 - allowing stagedAt and startedAt keys to be null [\#1](https://github.com/thefactory/marathon-python/pull/1) ([Codeacious](https://github.com/Codeacious))
 
 ## [0.2.3](https://github.com/thefactory/marathon-python/tree/0.2.3) (2014-06-02)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.2.0...0.2.3)
 
 ## [0.2.0](https://github.com/thefactory/marathon-python/tree/0.2.0) (2014-04-28)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.1.1...0.2.0)
 
 ## [0.1.1](https://github.com/thefactory/marathon-python/tree/0.1.1) (2014-04-23)
+
 [Full Changelog](https://github.com/thefactory/marathon-python/compare/0.1.0...0.1.1)
 
 ## [0.1.0](https://github.com/thefactory/marathon-python/tree/0.1.0) (2014-04-23)
 
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/8060b138250686d1fe2f79d4d5118fef39aa553e...0.1.0)
 
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
+
+
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
