@@ -531,7 +531,7 @@ class MarathonClient:
         data = json.dumps({"ids": task_ids})
         response = self._do_request(
             'POST', '/v2/tasks/delete', params=params, data=data)
-        return response == 200
+        return response.status_code == 200
 
     def kill_tasks(self, app_id, scale=False, wipe=False,
                    host=None, batch_size=0, batch_delay=0):
