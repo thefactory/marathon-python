@@ -38,6 +38,7 @@ class MarathonApp(MarathonResource):
     :param health_checks: health checks
     :type health_checks: list[:class:`marathon.models.MarathonHealthCheck`] or list[dict]
     :param str id: app id
+    :param str role: mesos role
     :param int instances: instances
     :param last_task_failure: last task failure
     :type last_task_failure: :class:`marathon.models.app.MarathonTaskFailure` or dict
@@ -75,7 +76,7 @@ class MarathonApp(MarathonResource):
         'args', 'backoff_factor', 'backoff_seconds', 'cmd', 'constraints', 'container', 'cpus', 'dependencies', 'disk',
         'env', 'executor', 'gpus', 'health_checks', 'instances', 'kill_selection', 'labels', 'max_launch_delay_seconds',
         'mem', 'ports', 'require_ports', 'store_urls', 'task_rate_limit', 'upgrade_strategy', 'unreachable_strategy',
-        'uris', 'user', 'version'
+        'uris', 'user', 'version', 'role'
     ]
     """List of attributes which may be updated/changed after app creation"""
 
@@ -90,7 +91,7 @@ class MarathonApp(MarathonResource):
 
     def __init__(self, accepted_resource_roles=None, args=None, backoff_factor=None, backoff_seconds=None, cmd=None,
                  constraints=None, container=None, cpus=None, dependencies=None, deployments=None, disk=None, env=None,
-                 executor=None, health_checks=None, id=None, instances=None, kill_selection=None, labels=None,
+                 executor=None, health_checks=None, id=None, role=None, instances=None, kill_selection=None, labels=None,
                  last_task_failure=None, max_launch_delay_seconds=None, mem=None, ports=None, require_ports=None,
                  store_urls=None, task_rate_limit=None, tasks=None, tasks_running=None, tasks_staged=None,
                  tasks_healthy=None, task_kill_grace_period_seconds=None, tasks_unhealthy=None, upgrade_strategy=None,
@@ -131,6 +132,7 @@ class MarathonApp(MarathonResource):
             for hc in (health_checks or [])
         ]
         self.id = assert_valid_path(id)
+        self.role = role
         self.instances = instances
         if kill_selection and kill_selection not in self.KILL_SELECTIONS:
             raise InvalidChoiceError(
