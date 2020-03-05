@@ -131,7 +131,7 @@ class MarathonApp(MarathonResource):
                 hc, MarathonHealthCheck) else MarathonHealthCheck().from_json(hc)
             for hc in (health_checks or [])
         ]
-        self.id = assert_valid_path(id)
+        self.id = assert_valid_path(id.lower())
         self.role = role
         self.instances = instances
         if kill_selection and kill_selection not in self.KILL_SELECTIONS:
