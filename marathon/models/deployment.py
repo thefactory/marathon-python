@@ -1,4 +1,4 @@
-from .base import MarathonObject, MarathonResource assert_valid_path
+from .base import MarathonObject, MarathonResource, assert_valid_path
 
 
 class MarathonDeployment(MarathonResource):
