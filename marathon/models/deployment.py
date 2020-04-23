@@ -1,4 +1,4 @@
-from .base import MarathonObject, MarathonResource
+from .base import MarathonObject, MarathonResource, assert_valid_path
 
 
 class MarathonDeployment(MarathonResource):
@@ -60,8 +60,8 @@ class MarathonDeploymentAction(MarathonObject):
 
     def __init__(self, action=None, app=None, apps=None, type=None, readiness_check_results=None, pod=None):
         self.action = action
-        self.app = app
-        self.apps = apps
+        self.app = assert_valid_path(app.lower())
+        self.apps = assert_valid_path(apps.lower())
         self.pod = pod
         self.type = type  # TODO: Remove builtin shadow
         self.readiness_check_results = readiness_check_results  # TODO: The docs say this is called just "readinessChecks?"

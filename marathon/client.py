@@ -13,6 +13,7 @@ from requests_toolbelt.adapters import socket_options
 import marathon
 from .models import MarathonApp, MarathonDeployment, MarathonGroup, MarathonInfo, MarathonTask, MarathonEndpoint, MarathonQueueItem
 from .exceptions import ConflictError, InternalServerError, NotFoundError, MarathonHttpError, MarathonError, NoResponseError
+from .models.base import assert_valid_path
 from .models.events import EventFactory, MarathonEvent
 from .util import MarathonJsonEncoder, MarathonMinimalJsonEncoder
 
@@ -167,8 +168,9 @@ class MarathonClient:
         :returns: the created app (on success)
         :rtype: :class:`marathon.models.app.MarathonApp` or False
         """
-        app.id = app_id
+        app.id = assert_valid_path(app_id.lower())
         data = app.to_json(minimal=minimal)
+        marathon.log.debug('create app JSON sent: {}'.format(data))
         response = self._do_request('POST', '/v2/apps', data=data)
         if response.status_code == 201:
             return self._parse_response(response, MarathonApp)
