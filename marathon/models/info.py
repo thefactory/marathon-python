@@ -64,10 +64,12 @@ class MarathonConfig(MarathonObject):
     :param int leader_proxy_read_timeout_ms:
     :param int local_port_min:
     :param int local_port_max:
+    :param bool maintenance_mode:
     :param str master:
     :param str mesos_leader_ui_url:
     :param str mesos_role:
     :param str mesos_user:
+    :param str new_group_enforce_role:
     :param str webui_url:
     :param int reconciliation_initial_delay:
     :param int reconciliation_interval:
@@ -99,12 +101,12 @@ class MarathonConfig(MarathonObject):
 
     def __init__(self, checkpoint=None, executor=None, failover_timeout=None, framework_name=None, ha=None,
                  hostname=None, leader_proxy_connection_timeout_ms=None, leader_proxy_read_timeout_ms=None,
-                 local_port_min=None, local_port_max=None, master=None, mesos_leader_ui_url=None, mesos_role=None, mesos_user=None,
-                 webui_url=None, reconciliation_initial_delay=None, reconciliation_interval=None,
-                 task_launch_timeout=None, marathon_store_timeout=None, task_reservation_timeout=None, features=None,
-                 access_control_allow_origin=None, decline_offer_duration=None,
-                 default_network_name=None, env_vars_prefix=None,
-                 launch_token=None, launch_token_refresh_interval=None,
+                 local_port_min=None, local_port_max=None, maintenance_mode=None, master=None, mesos_leader_ui_url=None,
+                 mesos_role=None, mesos_user=None, new_group_enforce_role=None, webui_url=None,
+                 reconciliation_initial_delay=None, reconciliation_interval=None, task_launch_timeout=None,
+                 marathon_store_timeout=None, task_reservation_timeout=None, features=None,
+                 access_control_allow_origin=None, decline_offer_duration=None, default_network_name=None,
+                 env_vars_prefix=None, launch_token=None, launch_token_refresh_interval=None,
                  max_instances_per_offer=None, mesos_bridge_name=None,
                  mesos_heartbeat_failure_threshold=None,
                  mesos_heartbeat_interval=None, min_revive_offers_interval=None,
@@ -124,10 +126,12 @@ class MarathonConfig(MarathonObject):
         self.hostname = hostname
         self.local_port_min = local_port_min
         self.local_port_max = local_port_max
+        self.maintenance_mode = maintenance_mode
         self.master = master
         self.mesos_leader_ui_url = mesos_leader_ui_url
         self.mesos_role = mesos_role
         self.mesos_user = mesos_user
+        self.new_group_enforce_role = new_group_enforce_role
         self.webui_url = webui_url
         self.reconciliation_initial_delay = reconciliation_initial_delay
         self.reconciliation_interval = reconciliation_interval

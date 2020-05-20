@@ -24,13 +24,15 @@ class MarathonTask(MarathonResource):
     :param region: fault domain region support in DCOS EE
     :type zone: str
     :param zone: fault domain zone support in DCOS EE
+    :type role: str
+    :param role: mesos role
     """
 
     DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
 
     def __init__(self, app_id=None, health_check_results=None, host=None, id=None, ports=None, service_ports=None,
                  slave_id=None, staged_at=None, started_at=None, version=None, ip_addresses=[], state=None, local_volumes=None,
-                 region=None, zone=None):
+                 region=None, zone=None, role=None):
         self.app_id = app_id
         self.health_check_results = health_check_results or []
         self.health_check_results = [
@@ -54,6 +56,7 @@ class MarathonTask(MarathonResource):
         self.local_volumes = local_volumes or []
         self.region = region
         self.zone = zone
+        self.role = role
 
 
 class MarathonIpAddress(MarathonObject):
