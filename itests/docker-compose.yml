@@ -1,6 +1,9 @@
 ---
-marathon:
-  build: .
-  ports:
-    - 18080:8080
-    - 15050:5050
+version: "3.8"
+services:
+  marathon:
+    build:
+      context: .
+    ports:
+      - 18080:8080
+      - 15050:5050
