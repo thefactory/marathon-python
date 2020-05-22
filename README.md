@@ -52,7 +52,7 @@ make itests
 ### Running The Tests Against a Specific Version of Marathon
 
 ```bash
-MARATHONVERSION=1.6.322 make itests
+MARATHONVERSION=v1.6.322 make itests
 ```
 
 ## Documentation

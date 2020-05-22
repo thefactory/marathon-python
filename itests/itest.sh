@@ -2,8 +2,8 @@
 
 set -e
 
-[[ -n $TRAVIS ]] || echo MARATHONVERSION=$MARATHONVERSION > marathon-version
-[[ -n $TRAVIS ]] || docker-compose build
+[[ -n $TRAVIS ]] || echo "MARATHONVERSION=${MARATHONVERSION}" > marathon-version
+[[ -n $TRAVIS ]] || docker-compose build --build-arg "MARATHONVERSION=${MARATHONVERSION}"
 [[ -n $TRAVIS ]] || docker-compose pull
 [[ -n $TRAVIS ]] || docker-compose up -d
 behave "$@"

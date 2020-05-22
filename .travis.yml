@@ -1,32 +1,31 @@
 env:
- - MARATHONVERSION: 1.9.109
- - MARATHONVERSION: 1.6.322
- - MARATHONVERSION: 1.4.11
- - MARATHONVERSION: 1.3.0
- - MARATHONVERSION: 1.1.2
+ - MARATHONVERSION: v1.9.109
+ - MARATHONVERSION: v1.6.322
+ - MARATHONVERSION: v1.4.11
+ - MARATHONVERSION: v1.3.0
+ - MARATHONVERSION: v1.1.2
 
 language: python
+services:
+  - docker
 python:
   - 3.6
   - 3.7
+before_install:
+  - docker pull "missingcharacter/marathon-python:${MARATHONVERSION}"
+  - docker run --name marathon-python -d -p 8080:8080 -p 5050:5050 "missingcharacter/marathon-python:${MARATHONVERSION}"
 install:
   - pip install tox
 script:
-  - make test
-  - ./itests/install-marathon.sh
-  - ./itests/start-marathon.sh &
-  - make itests
+  - make test-py${TRAVIS_PYTHON_VERSION/./}
+  - make itests-py${TRAVIS_PYTHON_VERSION/./}
 
 # Work around travis-ci/travis-ci#5227
 addons:
   hostname: localhost
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - libstdc++6-4.7-dev
 
-sudo: required
+os: linux
+dist: xenial
 
 deploy:
   - provider: pypi
@@ -35,5 +34,5 @@ deploy:
       secure: "Wl8GWxsfPy4KoORYH26N3FllvMeWrifzeCbEx2Af4corcBQl43heeiFRRTlUOcSX0TIasER21PUvQ0R0cAgCjfknDb3SOROcRtcSBe16+cMmvwysfxcAx2OcF1UYBPY8e/qOsGge2Zyzx2PAPNEmJoWKbIT3vUJ4WvlLVeGYdJ0="
     on:
       tags: true
-      condition: $MARATHONVERSION == "1.6.322"
+      condition: $MARATHONVERSION == "v1.6.322"
       repo: thefactory/marathon-python

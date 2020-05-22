@@ -1,27 +1,38 @@
-#!/bin/bash
-set -vxeu
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
 
 # Default version of marathon to test against if not set by the user
 [[ -f /root/marathon-version ]] && source /root/marathon-version
-MARATHONVERSION="${MARATHONVERSION:-1.4.0}"
+MARATHONVERSION="${MARATHONVERSION:-v1.6.322}"
 
-# Setup
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 81026D0004C44CF7EF55ADF8DF7D54CBE56151BF
-DISTRO=$(lsb_release -is | tr '[:upper:]' '[:lower:]')
-CODENAME=$(lsb_release -cs)
+export DEBIAN_FRONTEND=noninteractive
 
-# Add the repository
-echo "deb http://repos.mesosphere.com/${DISTRO} ${CODENAME} main" | sudo tee /etc/apt/sources.list.d/mesosphere.list
-sudo apt-get update
+shopt -s extglob
 
-# Install packages
-sudo DEBIAN_FRONTEND=noninteractive apt-get -y install oracle-java8-installer
-sudo update-java-alternatives -s java-8-oracle
-sudo DEBIAN_FRONTEND=noninteractive apt-get install oracle-java8-set-default
+case "${MARATHONVERSION}" in
+  v1.9.109)
+    echo "Marathon version ${MARATHONVERSION} needs no specific changes"
+    apt update
+    ;;
+  v1.6.322)
+    sed -i 's!deb http://ftp.debian.org/debian jessie-backports main!!g' /etc/apt/sources.list
+    apt update
+    apt install -y mesos=1.6.*
+    ;;
+  v1.4.11)
+    sed -i 's!deb http://ftp.debian.org/debian jessie-backports main!!g' /etc/apt/sources.list
+    apt update
+    ;;
+  @(v1.3.0|v1.1.2))
+    rm /etc/apt/sources.list.d/jessie-backports.list
+    apt update
+    ;;
+  *)
+    echo "Marathon version ${MARATHONVERSION} is not supported"
+    exit 1
+    ;;
+esac
 
-sudo DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes install mesos=1.6.* marathon=$MARATHONVERSION*
-
-# WTF MARATHON?
-# Why does the precise version have java7 hardcoded if it requires java8?
-sudo mkdir -p /usr/lib/jvm/java-7-oracle/bin/
-sudo ln -s /usr/lib/jvm/java-8-oracle/bin/java /usr/lib/jvm/java-7-oracle/bin/java
+apt install -y --force-yes zookeeperd curl lsof
+rm -rf /var/log/apt/* /var/log/alternatives.log /var/log/bootstrap.log /var/log/dpkg.log
