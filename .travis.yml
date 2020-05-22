@@ -23,8 +23,8 @@ before_install:
 install:
   - pip install tox
 script:
-  - make test-$TOX_ENV
-  - make itests-$TOX_ENV
+  - make test-py${TRAVIS_PYTHON_VERSION/./}
+  - make itests-py${TRAVIS_PYTHON_VERSION/./}
 
 # Work around travis-ci/travis-ci#5227
 addons:
