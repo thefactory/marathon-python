@@ -11,7 +11,7 @@ export DEBIAN_FRONTEND=noninteractive
 shopt -s extglob
 
 case "${MARATHONVERSION}" in
-  v1.9.109)
+  @(v1.10.19|v1.9.109))
     echo "Marathon version ${MARATHONVERSION} needs no specific changes"
     apt update
     ;;
