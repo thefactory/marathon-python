@@ -11,14 +11,19 @@ services:
 python:
   - 3.6
   - 3.7
+include:
+  - python: 3.7
+    env: TOX_ENV=py37
+  - python: 3.6
+    env: TOX_ENV=py36
 before_install:
   - docker pull "missingcharacter/marathon-python:${MARATHONVERSION}"
-  - docker run -d -p 18080:8080 -p 15050:5050 "missingcharacter/marathon-python:${MARATHONVERSION}"
+  - docker run --name marathon-python -d -p 8080:8080 -p 5050:5050 "missingcharacter/marathon-python:${MARATHONVERSION}"
 install:
   - pip install tox
 script:
-  - make test
-  - make itests
+  - make test-$TOX_ENV
+  - make itests-$TOX_ENV
 
 # Work around travis-ci/travis-ci#5227
 addons:
