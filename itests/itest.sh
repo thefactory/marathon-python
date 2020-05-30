@@ -2,10 +2,7 @@
 
 set -e
 
-[[ -n $TRAVIS ]] || echo MARATHONVERSION=$MARATHONVERSION > marathon-version
-[[ -n $TRAVIS ]] || docker-compose build
-[[ -n $TRAVIS ]] || docker-compose pull
-[[ -n $TRAVIS ]] || docker-compose up -d
+[[ -n $TRAVIS ]] || docker pull "missingcharacter/marathon-python:${MARATHONVERSION}"
+[[ -n $TRAVIS ]] || docker run --rm --name marathon-python -d -p 18080:8080 -p 15050:5050 "missingcharacter/marathon-python:${MARATHONVERSION}"
 behave "$@"
-[[ -n $TRAVIS ]] || docker-compose stop
-[[ -n $TRAVIS ]] || docker-compose rm --force
+[[ -n $TRAVIS ]] || docker kill marathon-python

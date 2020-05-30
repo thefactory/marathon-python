@@ -6,6 +6,7 @@ This is a Python library for interfacing with [Marathon](https://github.com/meso
 
 #### Compatibility
 
+* For Marathon 1.9.x and 1.10.x, use at least 0.13.0
 * For Marathon 1.6.x, use at least 0.10.0
 * For Marathon 1.4.1, use at least 0.8.13
 * For Marathon 1.1.1, use at least 0.8.1
@@ -51,7 +52,7 @@ make itests
 ### Running The Tests Against a Specific Version of Marathon
 
 ```bash
-MARATHONVERSION=1.6.322 make itests
+MARATHONVERSION=v1.6.322 make itests
 ```
 
 ## Documentation

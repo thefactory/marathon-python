@@ -168,7 +168,7 @@ class MarathonClient:
         :returns: the created app (on success)
         :rtype: :class:`marathon.models.app.MarathonApp` or False
         """
-        app.id = assert_valid_path(app_id.lower())
+        app.id = assert_valid_path(app_id)
         data = app.to_json(minimal=minimal)
         marathon.log.debug('create app JSON sent: {}'.format(data))
         response = self._do_request('POST', '/v2/apps', data=data)
