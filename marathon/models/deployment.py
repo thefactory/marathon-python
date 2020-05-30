@@ -25,7 +25,7 @@ class MarathonDeployment(MarathonResource):
         self.affected_apps = affected_apps
         self.current_actions = [
             a if isinstance(
-                a, MarathonDeploymentAction) else MarathonDeploymentAction().from_json(a)
+                a, MarathonDeploymentAction) else MarathonDeploymentAction.from_json(a)
             for a in (current_actions or [])
         ]
         self.current_step = current_step
@@ -41,7 +41,7 @@ class MarathonDeployment(MarathonResource):
             return MarathonDeploymentStep().from_json(step)
         elif step.__class__ == list:
             # This is Marathon < 1.0.0 style, a list of actions
-            return [s if isinstance(s, MarathonDeploymentAction) else MarathonDeploymentAction().from_json(s) for s in step]
+            return [s if isinstance(s, MarathonDeploymentAction) else MarathonDeploymentAction.from_json(s) for s in step]
         else:
             return step
 
@@ -61,7 +61,7 @@ class MarathonDeploymentAction(MarathonObject):
     def __init__(self, action=None, app=None, apps=None, type=None, readiness_check_results=None, pod=None):
         self.action = action
         self.app = assert_valid_path(app.lower())
-        self.apps = assert_valid_path(apps.lower())
+        self.apps = assert_valid_path(apps.lower()) if apps != None else None
         self.pod = pod
         self.type = type  # TODO: Remove builtin shadow
         self.readiness_check_results = readiness_check_results  # TODO: The docs say this is called just "readinessChecks?"
