@@ -1,8 +1,26 @@
 # Changelog
 
-## [Unreleased](https://github.com/thefactory/marathon-python/tree/HEAD)
+## [0.13.0](https://github.com/thefactory/marathon-python/tree/0.13.0) (2020-08-21)
 
-[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.11.0...HEAD)
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.12.0...0.13.0)
+
+**Closed issues:**
+
+- about view one instance app  logs real time [\#277](https://github.com/thefactory/marathon-python/issues/277)
+
+**Merged pull requests:**
+
+- Fix deserialization for Deploment model  [\#276](https://github.com/thefactory/marathon-python/pull/276) ([missingcharacter](https://github.com/missingcharacter))
+- Local tests no longer need docker-compose and rely on "mini-marathon" [\#274](https://github.com/thefactory/marathon-python/pull/274) ([missingcharacter](https://github.com/missingcharacter))
+- Adding support for v1.10.19 [\#273](https://github.com/thefactory/marathon-python/pull/273) ([missingcharacter](https://github.com/missingcharacter))
+- Moving marathon away from ubuntu and starting from mesosphere dockerhub [\#272](https://github.com/thefactory/marathon-python/pull/272) ([missingcharacter](https://github.com/missingcharacter))
+- Updates for Marathon 1.9.109 [\#270](https://github.com/thefactory/marathon-python/pull/270) ([missingcharacter](https://github.com/missingcharacter))
+- Fix return value for kill\_given\_tasks. [\#268](https://github.com/thefactory/marathon-python/pull/268) ([Tilian](https://github.com/Tilian))
+- Bump requests from 2.11.1 to 2.20.0 [\#266](https://github.com/thefactory/marathon-python/pull/266) ([dependabot[bot]](https://github.com/apps/dependabot))
+
+## [0.12.0](https://github.com/thefactory/marathon-python/tree/0.12.0) (2019-11-14)
+
+[Full Changelog](https://github.com/thefactory/marathon-python/compare/0.11.0...0.12.0)
 
 **Closed issues:**
 
@@ -100,7 +118,7 @@
 - Support filtering applications by labels [\#211](https://github.com/thefactory/marathon-python/pull/211) ([iandyh](https://github.com/iandyh))
 - add embed option for /v2/queue [\#210](https://github.com/thefactory/marathon-python/pull/210) ([Rob-Johnson](https://github.com/Rob-Johnson))
 - Enable TCP keepalive for sse requests [\#209](https://github.com/thefactory/marathon-python/pull/209) ([fengyehong](https://github.com/fengyehong))
-- Add "udp,tcp" to authorized protocols for containers [\#208](https://github.com/thefactory/marathon-python/pull/208) ([alxkt](https://github.com/alxkt))
+- Add "udp,tcp" to authorized protocols for containers [\#208](https://github.com/thefactory/marathon-python/pull/208) ([fuegoio](https://github.com/fuegoio))
 - Allow event type filter on event stream [\#207](https://github.com/thefactory/marathon-python/pull/207) ([fengyehong](https://github.com/fengyehong))
 - Fix MarathonResource hash as well [\#205](https://github.com/thefactory/marathon-python/pull/205) ([jolynch](https://github.com/jolynch))
 

@@ -19,12 +19,12 @@ clean:
 	rm -rf dist/ build/
 
 package: clean
+	github_changelog_generator --user=thefactory --project=marathon-python --future-release=0.13.0
 	pip install wheel
 	python setup.py sdist bdist_wheel
 
 publish: package
 	pip install twine
 	twine upload dist/*
-	github_changelog_generator
 
 .PHONY: itests test clean package publish
