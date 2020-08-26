@@ -15,3 +15,16 @@ class MarathonGroupTest(unittest.TestCase):
         }
         group = MarathonGroup().from_json(data)
         self.assertEqual("/", group.id)
+
+    def test_from_json_parses_group_with_enforce_role(self):
+        data = {
+                   "id": "/mygroup/works",
+                   "groups": [
+                       {"id": "/foo", "apps": []},
+                   ],
+                   "apps": [],
+                   "enforceRole": False,
+
+        }
+        group = MarathonGroup().from_json(data)
+        self.assertEqual("/mygroup/works", group.id)
