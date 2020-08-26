@@ -20,7 +20,7 @@ class MarathonGroup(MarathonResource):
     """
 
     def __init__(self, apps=None, dependencies=None,
-                 groups=None, id=None, pods=None, version=None):
+                 groups=None, id=None, pods=None, version=None, enforce_role=None):
         self.apps = [
             a if isinstance(a, MarathonApp) else MarathonApp().from_json(a)
             for a in (apps or [])
@@ -38,3 +38,4 @@ class MarathonGroup(MarathonResource):
         # ]
         self.id = id
         self.version = version
+        self.enforce_role = enforce_role
